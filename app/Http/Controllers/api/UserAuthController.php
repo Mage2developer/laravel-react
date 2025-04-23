@@ -51,6 +51,14 @@ class UserAuthController extends Controller
                                     ]);
         }
 
+        // Check if user is enable or not
+        if ($user->status != 1) {
+            return response()->json([
+                                        'message' => 'You need to activate your account.',
+                                        'success' => false
+                                    ]);
+        }
+
         $token = $user->createToken($user->name);
 
         return response()->json([

@@ -40,12 +40,7 @@ Route::get("/profileList/", [UserProfileController::class, 'index']);
 Route::get("/profileList/{name}", [UserProfileController::class, 'index']);
 Route::get('/profile/{profileId}', [UserProfileController::class, 'getProfileById']);
 
-
-
-
-Route::get("/memberList", [MemberController::class, "index"]);
-
-Route::get("/memberView/{memberId}", [MemberController::class, "show"]);
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 
 Route::get("/hello/{name}", function ($name) {
     return "Hello " . $name . "!";
