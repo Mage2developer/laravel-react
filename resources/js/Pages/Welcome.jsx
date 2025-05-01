@@ -1,5 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
-import InputDesign from '@/Components/InputDesign';
+import Home from './Home';
+
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     const handleImageError = () => {
@@ -16,7 +17,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             <Head title="Welcome" />
-            <InputDesign />
+            <Home />
             {/* <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <img
                     id="background"
