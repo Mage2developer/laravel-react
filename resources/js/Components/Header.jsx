@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import {useState} from "react";
-import {Button} from "./Button";
+import { useState } from "react";
+import { Button } from "./Button";
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import {Link, usePage} from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import Dropdown from "@/Components/Dropdown";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 
@@ -27,10 +27,6 @@ export const Header = () => {
             url: "/about-us",
         },
         {
-            title: "Privacy Policy",
-            url: "/privacy-policy",
-        },
-        {
             title: "Contact Us",
             url: "/contact-us",
         },
@@ -39,17 +35,18 @@ export const Header = () => {
         <a
             href={`${link.url}`}
             key={index}
-            className="text-sm font-medium text-neutral-500 hover:text-violet-400 transition-colors"
+            className="text-xl font-medium text-black hover:text-[#ff3131] transition-colors"
         >
             {link.title}
         </a>
     ));
     return (
-        <header
-            className="fixed top-0 px-5 py-3 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
+        <header className="fixed top-0 px-5 py-3 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
             <div className="flex relative justify-between items-center mx-auto my-0 max-w-[1200px]">
                 <Link href="/">
-                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800"/>
+                    <div className="flex text-2xl font-serif">
+                        <ApplicationLogo className="block fill-current text-gray-800" />
+                    </div>
                 </Link>
                 <button
                     className="p-1.5 text-2xl cursor-pointer border-none text-gray-600 lg:hidden"
@@ -107,12 +104,12 @@ export const Header = () => {
 
                                             <Dropdown.Content>
                                                 <Dropdown.Link
-                                                    href={route('profile.edit')}
+                                                    href={route("profile.edit")}
                                                 >
                                                     Profile
                                                 </Dropdown.Link>
                                                 <Dropdown.Link
-                                                    href={route('logout')}
+                                                    href={route("logout")}
                                                     method="post"
                                                     as="button"
                                                 >
@@ -123,12 +120,14 @@ export const Header = () => {
                                     </div>
                                 </div>
                                 <div className="mt-3 space-y-1 sm:hidden">
-                                    <ResponsiveNavLink href={route('profile.edit')}>
+                                    <ResponsiveNavLink
+                                        href={route("profile.edit")}
+                                    >
                                         Profile
                                     </ResponsiveNavLink>
                                     <ResponsiveNavLink
                                         method="post"
-                                        href={route('logout')}
+                                        href={route("logout")}
                                         as="button"
                                     >
                                         Log Out
@@ -139,12 +138,18 @@ export const Header = () => {
                     ) : (
                         <>
                             <a href="/login">
-                                <Button variant="solid" className="w-full lg:w-auto">
+                                <Button
+                                    variant="red"
+                                    className="w-full lg:w-auto"
+                                >
                                     Login
                                 </Button>
                             </a>
                             <a href="/register">
-                                <Button variant="solid" className="w-full lg:w-auto">
+                                <Button
+                                    variant="red"
+                                    className="w-full lg:w-auto"
+                                >
                                     Sign up
                                 </Button>
                             </a>

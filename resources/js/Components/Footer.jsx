@@ -31,7 +31,7 @@ export const Footer = () => {
         <a
             href={`${link.url}`}
             key={index}
-            className="text-base font-medium text-neutral-500 no-underline transition-colors duration-300 ease hover:text-violet-400"
+            className="text-lg font-medium text-black no-underline transition-colors duration-300 ease hover:text-[#ff3131]"
         >
             {link.title}
         </a>
@@ -45,8 +45,8 @@ export const Footer = () => {
                 <div className="mt-5 text-center">
                     <img
                         alt="Logo"
-                        src="https://images.pexels.com/photos/31763558/pexels-photo-31763558.jpeg"
-                        className="object-cover overflow-hidden mx-auto my-0 w-10 aspect-square"
+                        src="images/vv_header_logo.png"
+                        className="object-cover overflow-hidden mx-auto my-0 h-[100px]"
                     />
                     <p className="mt-5 text-sm text-neutral-400">
                         © 2024 builder.io. All rights reserved.

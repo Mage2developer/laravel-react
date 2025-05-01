@@ -19,7 +19,7 @@ export default function ForgotPassword({ status }) {
             <Head title="Forgot Password" />
             <div className="min-h-[450px] flex items-center justify-center my-12">
                 <div className=" w-full max-w-md mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-lg mt-12 text-gray-800 dark:text-white">
-                    <h1 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center mb-6 text-[#ff3131] bg-clip-text">
                         Forgot Password
                     </h1>
 

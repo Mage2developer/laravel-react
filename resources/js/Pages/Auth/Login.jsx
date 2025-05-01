@@ -7,6 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { Button } from "@/Components/Button";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,7 +32,7 @@ export default function Login({ status, canResetPassword }) {
 
             <div className="min-h-[450px] flex items-center justify-center my-12">
                 <div className="max-w-md w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10">
-                    <h1 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Log In
                     </h1>
 
@@ -114,9 +115,9 @@ export default function Login({ status, canResetPassword }) {
                         </div>
 
                         <div className="flex justify-end">
-                            <PrimaryButton className="" disabled={processing}>
+                            <Button className="" disabled={processing}>
                                 Log in
-                            </PrimaryButton>
+                            </Button>
                         </div>
                     </form>
                 </div>

@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/Components/Button";
 import GuestLayout from "@/Layouts/GuestLayout";
 import React from "react";
 import {
@@ -15,14 +16,14 @@ const ContactUs = () => {
     return (
         <GuestLayout>
             <div className="flex items-center justify-center py-12">
-                <div className="max-w-6xl w-full mx-auto">
-                    <h1 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                <div className="max-w-6xl w-full mx-auto mt-10">
+                    <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Contact Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Contact Form */}
                         <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10">
-                            <h2 className="text-2xl font-semibold">
+                            <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Send us a message
                             </h2>
                             <form className="space-y-4">
@@ -68,18 +69,18 @@ const ContactUs = () => {
                                         className="w-full px-3 py-2 bg-gray-50  border border-gray-700 rounded placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                                     ></textarea>
                                 </div>
-                                <button
+                                <Button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500  py-3 rounded-md hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                                    className="text-xl w-full py-3 rounded-md "
                                 >
                                     Send Message
-                                </button>
+                                </Button>
                             </form>
                         </div>
 
                         {/* Contact Information */}
                         <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10">
-                            <h2 className="text-2xl font-semibold">
+                            <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Get in touch
                             </h2>
                             <div className="space-y-4">
@@ -99,35 +100,35 @@ const ContactUs = () => {
                                 </div>
                             </div>
                             <div className="mt-6">
-                                <h3 className="text-lg font-semibold mb-4">
+                                <h3 className="text-lg font-semibold mb-4 text-[#ff3131]">
                                     Connect with us
                                 </h3>
                                 <div className="flex gap-4">
                                     <a
                                         href="#"
                                         aria-label="Twitter"
-                                        className=" hover:text-blue-400 transition-colors"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiTwitter className="w-6 h-6" />
                                     </a>
                                     <a
                                         href="#"
                                         aria-label="Facebook"
-                                        className=" hover:text-blue-600 transition-colors"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiFacebook className="w-6 h-6" />
                                     </a>
                                     <a
                                         href="#"
                                         aria-label="LinkedIn"
-                                        className=" hover:text-purple-500 transition-colors"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiLinkedin className="w-6 h-6" />
                                     </a>
                                     <a
                                         href="#"
                                         aria-label="Github"
-                                        className=" hover:text-gray-100 transition-colors"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiGithub className="w-6 h-6" />
                                     </a>

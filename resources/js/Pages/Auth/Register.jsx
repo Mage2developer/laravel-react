@@ -6,6 +6,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { Button } from "@/Components/Button";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,9 +34,9 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <div className="flex items-center justify-center py-12 px-4">
+            <div className="flex items-center justify-center py-12 px-4 mt-10">
                 <div className="max-w-md w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10">
-                    <h1 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Register
                     </h1>
 
@@ -150,9 +151,9 @@ export default function Register() {
                                 Already registered?
                             </Link>
 
-                            <PrimaryButton className="" disabled={processing}>
+                            <Button className="" disabled={processing}>
                                 Register
-                            </PrimaryButton>
+                            </Button>
                         </div>
                     </form>
                 </div>

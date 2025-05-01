@@ -4,6 +4,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { TestimonialCard } from "@/Components/TestimonialCard";
 import { ProfileCard } from "@/Components/ProfileCard";
 import { FeatureCard } from "@/Components/FeatureCard";
+import { Button } from "@/Components/Button";
 
 function Home() {
     const [searchText, setSearchText] = useState("");
@@ -89,9 +90,9 @@ function Home() {
                                     Create stunning websites and applications with our powerful
                                     platform
                                 </p>
-                                <button className="px-8 py-4 text-lg font-medium bg-violet-400 cursor-pointer border-none rounded-[30px] hover:bg-violet-500 transition-colors duration-300">
+                                <Button className="px-8 py-4 text-lg font-medium cursor-pointer border-none rounded-[30px] hover:bg-violet-500 transition-colors duration-300">
                                     Get Started
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -116,9 +117,9 @@ function Home() {
                                     intuitive visual editor and powerful development tools make it
                                     easy to create stunning websites and applications.
                                 </p>
-                                <button className="px-8 py-4 text-base font-medium text-black bg-violet-400 rounded-lg transition-transform cursor-pointer border-none duration-200 ease hover:transform hover:scale-105 w-fit">
+                                <Button className="px-8 py-4 text-base font-medium text-black bg-violet-400 rounded-lg transition-transform cursor-pointer border-none duration-200 ease hover:transform hover:scale-105 w-fit">
                                     Get Started Now
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
