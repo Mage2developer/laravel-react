@@ -12,7 +12,7 @@ export const Header = () => {
         },
         {
             title: "About Us",
-            url: "#about-us"
+            url: "/about-us"
         },
         {
             title: "Members",
@@ -24,7 +24,7 @@ export const Header = () => {
         },
         {
             title: "Contact Us",
-            url: "#contact-us"
+            url: "/contact-us"
         }
     ]
     const headerLinksContent = arrHeaderLinks.map((link, index) => (

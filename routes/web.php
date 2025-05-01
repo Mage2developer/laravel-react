@@ -27,4 +27,12 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/members', [MembersController::class, 'list'])->name('members.list');
 
+Route::get('/about-us', function () {
+    return Inertia::render('AboutUs');
+})->name('about-us');
+
+Route::get('/contact-us', function () {
+    return Inertia::render('ContactUs');
+})->name('contact-us');
+
 require __DIR__ . '/auth.php';
