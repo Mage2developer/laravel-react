@@ -23,3 +23,5 @@ yarn-error.log
 /.zed
 /.vscode
 /.idea
+/public/uploads
+package-lock.json

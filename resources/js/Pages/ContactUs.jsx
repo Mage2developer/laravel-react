@@ -1,14 +1,144 @@
-import * as React from "react";
-import { Head } from '@inertiajs/react';
+"use client";
 import GuestLayout from "@/Layouts/GuestLayout";
+import React from "react";
+import {
+    FiFacebook,
+    FiGithub,
+    FiLinkedin,
+    FiMail,
+    FiMapPin,
+    FiPhone,
+    FiTwitter,
+} from "react-icons/fi";
 
-function ContactUs() {
+const ContactUs = () => {
     return (
         <GuestLayout>
-            <Head title="Contact Us" />
-            Contact Us Page
+            <div className="flex items-center justify-center py-12">
+                <div className="max-w-6xl w-full mx-auto">
+                    <h1 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                        Contact Us
+                    </h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Contact Form */}
+                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10">
+                            <h2 className="text-2xl font-semibold">
+                                Send us a message
+                            </h2>
+                            <form className="space-y-4">
+                                <div>
+                                    <label
+                                        htmlFor="name"
+                                        className="block  mb-1"
+                                    >
+                                        Name
+                                    </label>
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        placeholder="Your Name"
+                                        className="w-full px-3 py-2 bg-gray-50  border border-gray-700 rounded placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="email"
+                                        className="block  mb-1"
+                                    >
+                                        Email
+                                    </label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        placeholder="Your Email"
+                                        className="w-full px-3 py-2 bg-gray-50  border border-gray-700 rounded placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="message"
+                                        className="block  mb-1"
+                                    >
+                                        Message
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        placeholder="Your Message"
+                                        rows={4}
+                                        className="w-full px-3 py-2 bg-gray-50  border border-gray-700 rounded placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-gradient-to-r from-blue-500 to-purple-500  py-3 rounded-md hover:from-blue-600 hover:to-purple-600 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                                >
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                        {/* Contact Information */}
+                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10">
+                            <h2 className="text-2xl font-semibold">
+                                Get in touch
+                            </h2>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <FiPhone className="w-5 h-5 text-blue-400" />
+                                    <span className="">+123 456 7890</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <FiMail className="w-5 h-5 text-purple-400" />
+                                    <span className="">info@example.com</span>
+                                </div>
+                                <div className="flex items-start gap-3">
+                                    <FiMapPin className="w-5 h-5 mt-0.5 text-green-400" />
+                                    <span className="">
+                                        123 Main Street, Anytown, USA
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="mt-6">
+                                <h3 className="text-lg font-semibold mb-4">
+                                    Connect with us
+                                </h3>
+                                <div className="flex gap-4">
+                                    <a
+                                        href="#"
+                                        aria-label="Twitter"
+                                        className=" hover:text-blue-400 transition-colors"
+                                    >
+                                        <FiTwitter className="w-6 h-6" />
+                                    </a>
+                                    <a
+                                        href="#"
+                                        aria-label="Facebook"
+                                        className=" hover:text-blue-600 transition-colors"
+                                    >
+                                        <FiFacebook className="w-6 h-6" />
+                                    </a>
+                                    <a
+                                        href="#"
+                                        aria-label="LinkedIn"
+                                        className=" hover:text-purple-500 transition-colors"
+                                    >
+                                        <FiLinkedin className="w-6 h-6" />
+                                    </a>
+                                    <a
+                                        href="#"
+                                        aria-label="Github"
+                                        className=" hover:text-gray-100 transition-colors"
+                                    >
+                                        <FiGithub className="w-6 h-6" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </GuestLayout>
     );
-}
+};
 
 export default ContactUs;
