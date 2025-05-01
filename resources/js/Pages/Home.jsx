@@ -1,12 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
-import { TestimonialCard } from "./TestimonialCard";
-import { ProfileCard } from "./ProfileCard";
-import { FeatureCard } from "./FeatureCard";
+import GuestLayout from "@/Layouts/GuestLayout";
+import { TestimonialCard } from "@/Components/TestimonialCard";
+import { ProfileCard } from "@/Components/ProfileCard";
+import { FeatureCard } from "@/Components/FeatureCard";
 
-function InputDesign() {
+function Home() {
     const [searchText, setSearchText] = useState("");
     const [activeIndex, setActiveIndex] = useState(null);
 
@@ -71,9 +70,8 @@ function InputDesign() {
     ];
 
     return (
-        <div>
+        <GuestLayout>
             <div className="w-full min-h-screen text-white bg-white">
-                <Header />
 
                 <div className="overflow-hidden relative mt-16 h-[600px]">
                     <div className="flex h-full transition-transform duration-500 ease-in-out">
@@ -209,10 +207,9 @@ function InputDesign() {
                     </div>
                 </section>
 
-                <Footer />
             </div>
-        </div>
+        </GuestLayout>
     );
 }
 
-export default InputDesign;
+export default Home;

@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
     return (
-        <footer className="px-10 py-16 border-t border-solid bg-white bg-opacity-90 border-t-zinc-800">
+        <footer className="w-full px-10 py-16 border-t border-solid bg-white bg-opacity-90 border-t-zinc-800">
             <div className="flex flex-col gap-10 items-center mx-auto my-0 max-w-[1200px]">
                 <nav className="flex flex-wrap gap-10 justify-center">
                     <a
