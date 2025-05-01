@@ -31,8 +31,16 @@ Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
 })->name('about-us');
 
+Route::get('/privacy-policy', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy.policy');
+
 Route::get('/contact-us', function () {
     return Inertia::render('ContactUs');
 })->name('contact-us');
+
+Route::get('/terms-conditions', function () {
+    return Inertia::render('TermsandCondition');
+})->name('terms-conditions');
 
 require __DIR__ . '/auth.php';
