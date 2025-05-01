@@ -5,7 +5,7 @@ function TermsandCondition() {
     return (
         <GuestLayout>
             <div class="flex items-center justify-center py-12 ">
-                <div class="max-w-6xl w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10">
+                <div class="max-w-6xl w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10 mt-10">
                     <h1 class="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Terms and Conditions
                     </h1>

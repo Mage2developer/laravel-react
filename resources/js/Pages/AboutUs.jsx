@@ -13,8 +13,8 @@ const AboutUs = () => {
     return (
         <GuestLayout>
             <div className="flex items-center justify-center py-12 ">
-                <div className="max-w-6xl w-full mx-auto mt-10">
-                    <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
+                <div className="max-w-6xl w-full mx-auto mt-20">
+                    <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
                         About Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">

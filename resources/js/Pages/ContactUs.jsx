@@ -16,13 +16,13 @@ const ContactUs = () => {
     return (
         <GuestLayout>
             <div className="flex items-center justify-center py-12">
-                <div className="max-w-6xl w-full mx-auto mt-10">
-                    <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
+                <div className="max-w-6xl w-full mx-auto mt-20">
+                    <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
                         Contact Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Contact Form */}
-                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10">
+                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10 ">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Send us a message
                             </h2>

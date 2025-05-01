@@ -35,7 +35,7 @@ export default function Register() {
             <Head title="Register" />
 
             <div className="flex items-center justify-center py-12 px-4 mt-10">
-                <div className="max-w-md w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10">
+                <div className="max-w-md w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10 mt-10">
                     <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Register
                     </h1>
