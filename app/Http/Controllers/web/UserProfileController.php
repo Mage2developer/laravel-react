@@ -15,6 +15,12 @@ class UserProfileController extends Controller
     ) {
     }
 
+    /**
+     * Get List of all profile
+     *
+     * @param Request $request
+     * @return Response
+     */
     public function list(Request $request): Response
     {
         $request->validate([
@@ -26,8 +32,26 @@ class UserProfileController extends Controller
 
         $profiles = $this->user->getUserProfileList($name);
 
+
         return Inertia::render('Profile/List/Index', [
             'profiles' => $profiles
+        ]);
+    }
+
+    /**
+     * Get Profile by ID
+     *
+     * @param Request $request
+     * @param User $user
+     * @return Response
+     */
+    public function view(Request $request, User $user): Response
+    {
+        $profileId = $request->route('profileId');
+        $userProfile = $this->user->getUserProfileById($profileId);
+
+        return Inertia::render('Profile/View/Index', [
+            'profile' => $userProfile
         ]);
     }
 }
