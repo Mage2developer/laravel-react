@@ -100,7 +100,7 @@ function Index() {
 
     return (
         <GuestLayout>
-            <Head title="Members" />
+            <Head title="Profiles" />
             <div className="w-full min-h-screen text-white bg-white">
                 <main className="min-h-screen text-white bg-black">
                     <Banner

@@ -30,7 +30,7 @@ function Home() {
             image:
                 "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
             quote:
-                "The platform has transformed how we handle our digital presence. The ease of use and powerful features have made it an essential tool for our team.",
+                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
         {
             name: "Michael Chen",
@@ -38,7 +38,7 @@ function Home() {
             image:
                 "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
             quote:
-                "The platform has transformed how we handle our digital presence. The ease of use and powerful features have made it an essential tool for our team.",
+                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
         {
             name: "Emma Davis",
@@ -46,27 +46,27 @@ function Home() {
             image:
                 "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
             quote:
-                "The platform has transformed how we handle our digital presence. The ease of use and powerful features have made it an essential tool for our team.",
+                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
     ];
 
     const features = [
         {
             icon: "⚡",
-            title: "Lightning Fast Performance",
+            title: "Key Features",
             description:
-                "Optimized for speed and efficiency, ensuring your website loads instantly",
+                "Create your profile and start journey towards finding a lifelong partner today",
         },
         {
             icon: "🎨",
-            title: "Beautiful Design Tools",
+            title: "Advanced Search for Ideal Matches",
             description:
-                "Create stunning layouts with our intuitive design interface",
+                "Easily filter profiles based on your preferences",
         },
         {
             icon: "🚀",
-            title: "Seamless Integration",
-            description: "Works perfectly with your existing tech stack and tools",
+            title: "Seamless Messaging System",
+            description: "Communicate with potential matches effortlessly",
         },
     ];
 
@@ -74,7 +74,7 @@ function Home() {
         <GuestLayout>
             <div className="w-full min-h-screen text-white bg-white">
 
-                <div className="overflow-hidden relative mt-16 h-[600px]">
+                <div className="overflow-hidden relative mt-15 h-[600px]">
                     <div className="flex h-full transition-transform duration-500 ease-in-out">
                         <div className="relative animate-[fadeIn_0.5s_ease-in-out] flex-[0_0_100%]">
                             <img
@@ -83,15 +83,14 @@ function Home() {
                                 alt="Hero background"
                             />
                             <div className="absolute top-2/4 left-2/4 px-5 py-0 w-full text-center -translate-x-2/4 -translate-y-2/4 animate-[slideUp_0.8s_ease-out] max-w-[800px]">
-                                <h1 className="mb-6 text-6xl font-bold max-sm:text-4xl">
-                                    Transform Your Digital Experience
+                                <h1 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize">
+                                    Find your perfect match with Vanand Vivah
                                 </h1>
                                 <p className="mb-8 text-xl leading-relaxed text-white text-opacity-90">
-                                    Create stunning websites and applications with our powerful
-                                    platform
+                                    At Vanand Vivah, we connect brides and grooms to help them discover meaningful relationships. Join our community today and take the first step towards your happily ever after.
                                 </p>
-                                <Button className="px-8 py-4 text-lg font-medium cursor-pointer border-none rounded-[30px] hover:bg-violet-500 transition-colors duration-300">
-                                    Get Started
+                                <Button className="px-8 py-4 cursor-pointer border-none rounded-[30px] transition-colors duration-300" variant="red">
+                                    Register Now >
                                 </Button>
                             </div>
                         </div>
@@ -109,16 +108,35 @@ function Home() {
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                             <div className="flex flex-col gap-6">
-                                <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-neutral-500">
-                                    Create beautiful experiences without limits
+                                <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-neutral-500 capitalize">
+                                    Discover your perfect match with confidence
                                 </h2>
                                 <p className="mb-4 text-lg leading-relaxed text-neutral-400">
-                                    Build and optimize digital experiences for any platform. Our
-                                    intuitive visual editor and powerful development tools make it
-                                    easy to create stunning websites and applications.
+                                    Vanand Vivah priorities your safety and privacy. Our advanced matching algorithm
+                                    connects you with compatible partners.
                                 </p>
-                                <Button className="px-8 py-4 text-base font-medium text-black bg-violet-400 rounded-lg transition-transform cursor-pointer border-none duration-200 ease hover:transform hover:scale-105 w-fit">
-                                    Get Started Now
+                                <div className="flex gap-4 items-start">
+                                    <div className="p-3 mt-1 rounded-xl bg-violet-400 bg-opacity-20">
+                                        test
+                                    </div>
+                                    <div>
+                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">Safety First</h3>
+                                        <p className="leading-relaxed text-neutral-400">Your data is protected with top-notch security measures.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-4 items-start">
+                                    <div className="p-3 mt-1 rounded-xl bg-violet-400 bg-opacity-20">
+                                        test
+                                    </div>
+                                    <div>
+                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">Proven Success</h3>
+                                        <p className="leading-relaxed text-neutral-400">Join countless couples who found love through our platform.</p>
+                                    </div>
+                                </div>
+                                <Button
+                                    className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
+                                    variant="red">
+                                    Create Profile >
                                 </Button>
                             </div>
                         </div>
@@ -184,7 +202,7 @@ function Home() {
                         <div className="w-6/12 max-md:w-full">
                             <div className="flex flex-col gap-8">
                                 <h2 className="text-5xl font-bold leading-tight max-sm:text-4xl text-neutral-500">
-                                    Elevate Your Digital Presence
+                                    Discover the Benefits of Choosing Vanand Vivah for Your Matchmaking Journey
                                 </h2>
                                 <div className="flex flex-col gap-6">
                                     {features.map((feature, index) => (
