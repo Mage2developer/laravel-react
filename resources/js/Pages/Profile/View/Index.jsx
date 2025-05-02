@@ -19,6 +19,5 @@ function Index() {    return (
     </GuestLayout>
 );
 }
-
 export default Index;
 
