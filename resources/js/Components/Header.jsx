@@ -19,8 +19,8 @@ export const Header = () => {
             url: "/",
         },
         {
-            title: "Members",
-            url: "/members",
+            title: "Profiles",
+            url: "/profiles",
         },
         {
             title: "About Us",

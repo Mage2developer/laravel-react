@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MembersController;
+use App\Http\Controllers\web\UserProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,11 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/members', [MembersController::class, 'list'])->name('members.list');
+Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');
 
 Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
-})->name('about-us');
+})->name('about.us');
 
 Route::get('/privacy-policy', function () {
     return Inertia::render('PrivacyPolicy');
@@ -37,10 +37,10 @@ Route::get('/privacy-policy', function () {
 
 Route::get('/contact-us', function () {
     return Inertia::render('ContactUs');
-})->name('contact-us');
+})->name('contact.us');
 
 Route::get('/terms-conditions', function () {
     return Inertia::render('TermsandCondition');
-})->name('terms-conditions');
+})->name('terms.conditions');
 
 require __DIR__ . '/auth.php';

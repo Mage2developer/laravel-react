@@ -6,7 +6,7 @@ import ProductFilters from "@/Components/ProductFilters";
 import ProductGrid from "@/Components/ProductGrid";
 import { Head } from "@inertiajs/react";
 
-function List() {
+function Index() {
     const [bannerImage, setBannerImage] = useState(
         "https://images.pexels.com/photos/3059609/pexels-photo-3059609.jpeg",
     );
@@ -130,4 +130,4 @@ function List() {
     );
 }
 
-export default List;
+export default Index;
