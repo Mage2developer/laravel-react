@@ -26,7 +26,7 @@ function SearchBox({ onSearch }) {
                 placeholder="Search Profile Name..."
                 value={searchTerm}
                 onChange={handleInputChange}
-                className="w-full p-2 bg-transparent border-none rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#ff3131]"
+                className="w-full p-2 bg-transparent border-none rounded-lg placeholder-gray-400 focus:outline-none focus:ring-0 "
             />
             {searchTerm && (
                 <button
