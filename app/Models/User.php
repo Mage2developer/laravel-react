@@ -3,16 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Image;
+use App\Http\Helper\Data;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Http\Helper\Data;
+use Illuminate\Support\Facades\DB;
 
 
 class User extends Authenticatable
@@ -48,37 +47,37 @@ class User extends Authenticatable
     {
         static::created(function ($user) {
             $user->userContactDetail()->create([
-                                               'mobile_number' => '',
-                                               'father_mobile_number' => '',
-                                               'native_city' => '',
-                                               'current_address' => ''
-                                           ]);
+                                                   'mobile_number' => '',
+                                                   'father_mobile_number' => '',
+                                                   'native_city' => '',
+                                                   'current_address' => ''
+                                               ]);
 
             $user->userEducationDetail()->create([
-                                                 'education' => '',
-                                                 'occupation' => '',
-                                                 'personal_income' => '',
-                                                 'family_income' => ''
-                                             ]);
+                                                     'education' => '',
+                                                     'occupation' => '',
+                                                     'personal_income' => '',
+                                                     'family_income' => ''
+                                                 ]);
 
             $user->userFamilyDetail()->create([
-                                              'father_name' => '',
-                                              'mother_name' => '',
-                                              'brother_name' => '',
-                                              'brother_in_laws' => '',
-                                              'sister_name' => '',
-                                              'sister_in_laws' => ''
-                                          ]);
+                                                  'father_name' => '',
+                                                  'mother_name' => '',
+                                                  'brother_name' => '',
+                                                  'brother_in_laws' => '',
+                                                  'sister_name' => '',
+                                                  'sister_in_laws' => ''
+                                              ]);
             $user->userPersonalDetail()->create([
-                                                'dob' => '',
-                                                'marital_status' => 0,
-                                                'height' => '',
-                                                'weight' => '',
-                                                'manglik' => 0,
-                                                'have_specs' => 0,
-                                                'hobby' => '',
-                                                'sex' => 0
-                                            ]);
+                                                    'dob' => '',
+                                                    'marital_status' => 0,
+                                                    'height' => '',
+                                                    'weight' => '',
+                                                    'manglik' => 0,
+                                                    'have_specs' => 0,
+                                                    'hobby' => '',
+                                                    'sex' => 0
+                                                ]);
         });
     }
 
@@ -112,13 +111,12 @@ class User extends Authenticatable
      */
     public function getUserProfileList($name = '')
     {
-        return User::select('id', 'name', 'role', 'status', 'email')
-            ->with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
+        return User::with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
             ->where('users.name', 'LIKE', '%' . $name . '%')
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
             ->get();
-    }
+        }
 
     /**
      * @param $id
@@ -126,16 +124,29 @@ class User extends Authenticatable
      */
     public function getUserProfileById($id)
     {
-        /*return User::with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail')->where([
-            ['status', '=', '1'],
-            [ 'id', '=', $id]
-        ]
-        )->get();*/
+        return User::with(
+            'userPersonalDetail',
+            'userFamilyDetail',
+            'userEducationDetail',
+            'userContactDetail',
+            'userImages'
+        )
+            ->where([
+                        ['users.status', '=', Data::ENABLE],
+                        ['users.id', '=', $id]
+                    ]
+            )->get();
+    }
 
-        return User::select('id', 'name', 'role', 'status', 'email')
-            ->with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
-            ->where([['users.status', '=', Data::ENABLE],
-                     ['users.id', '=', $id]])
+    /**
+     * @return mixed
+     */
+    public function getLatestUserProfile()
+    {
+        return User::with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
+            ->where('users.status', Data::ENABLE)
+            ->orderBy('users.id', 'desc')
+            ->limit(Data::LATEST_PROFILE_UMBER)
             ->get();
     }
 

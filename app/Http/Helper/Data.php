@@ -32,6 +32,6 @@ class Data
 
      const MAX_IMAGE_UPLOAD = 5;
 
-
+     const LATEST_PROFILE_UMBER = 10;
 
 }

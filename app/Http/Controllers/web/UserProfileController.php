@@ -5,6 +5,7 @@ namespace App\Http\Controllers\web;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -32,9 +33,8 @@ class UserProfileController extends Controller
 
         $profiles = $this->user->getUserProfileList($name);
 
-
         return Inertia::render('Profile/List/Index', [
-            'profiles' => $profiles
+            'profiles' => $profiles->toArray()
         ]);
     }
 
@@ -47,11 +47,16 @@ class UserProfileController extends Controller
      */
     public function view(Request $request, User $user): Response
     {
+        // If user not logged in redirect on Notice page
+        if (!Auth::id()) {
+            return Inertia::render('LoginRequired');
+        }
+
         $profileId = $request->route('profileId');
         $userProfile = $this->user->getUserProfileById($profileId);
 
         return Inertia::render('Profile/View/Index', [
-            'profile' => $userProfile
+            'profile' => $userProfile->toArray()
         ]);
     }
 }
