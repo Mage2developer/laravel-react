@@ -48,8 +48,8 @@ export const Footer = () => {
                         src="images/vv_header_logo.png"
                         className="object-cover overflow-hidden mx-auto my-0 h-[100px]"
                     />
-                    <p className="mt-5 text-sm text-neutral-400">
-                        © 2024 builder.io. All rights reserved.
+                    <p className="mt-5 text-sm text-neutral-500">
+                        © 2025 vanandvivah.com. All rights reserved.
                     </p>
                 </div>
             </div>

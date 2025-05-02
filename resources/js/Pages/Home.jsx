@@ -5,6 +5,9 @@ import { TestimonialCard } from "@/Components/TestimonialCard";
 import { ProfileCard } from "@/Components/ProfileCard";
 import { FeatureCard } from "@/Components/FeatureCard";
 import { Button } from "@/Components/Button";
+import { AiFillSafetyCertificate } from "react-icons/ai";
+import { LuHeartHandshake } from "react-icons/lu";
+import HeroSlider from "@/Components/HeroSlider";
 
 function Home() {
     const [searchText, setSearchText] = useState("");
@@ -27,26 +30,20 @@ function Home() {
         {
             name: "Sarah Johnson",
             role: "Marketing Director",
-            image:
-                "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-            quote:
-                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
+            image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
+            quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
         {
             name: "Michael Chen",
             role: "CEO",
-            image:
-                "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-            quote:
-                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
+            image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
+            quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
         {
             name: "Emma Davis",
             role: "Product Manager",
-            image:
-                "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-            quote:
-                "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
+            image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
+            quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
         },
     ];
 
@@ -60,8 +57,7 @@ function Home() {
         {
             icon: "🎨",
             title: "Advanced Search for Ideal Matches",
-            description:
-                "Easily filter profiles based on your preferences",
+            description: "Easily filter profiles based on your preferences",
         },
         {
             icon: "🚀",
@@ -73,9 +69,9 @@ function Home() {
     return (
         <GuestLayout>
             <div className="w-full min-h-screen text-white bg-white">
-
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <div className="flex h-full transition-transform duration-500 ease-in-out">
+                    <HeroSlider />
+                    {/* <div className="flex h-full transition-transform duration-500 ease-in-out">
                         <div className="relative animate-[fadeIn_0.5s_ease-in-out] flex-[0_0_100%]">
                             <img
                                 src="images/wedding-banner.jpg"
@@ -87,21 +83,30 @@ function Home() {
                                     Find your perfect match with Vanand Vivah
                                 </h1>
                                 <p className="mb-8 text-xl leading-relaxed text-white text-opacity-90">
-                                    At Vanand Vivah, we connect brides and grooms to help them discover meaningful relationships. Join our community today and take the first step towards your happily ever after.
+                                    At Vanand Vivah, we connect brides and
+                                    grooms to help them discover meaningful
+                                    relationships. Join our community today and
+                                    take the first step towards your happily
+                                    ever after.
                                 </p>
-                                <Button className="px-8 py-4 cursor-pointer border-none rounded-[30px] transition-colors duration-300" variant="red">
-                                    Register Now >
-                                </Button>
+                                <a href="/register">
+                                    <Button
+                                        className="px-8 py-4 cursor-pointer border-none rounded-[30px] transition-colors duration-300"
+                                        variant="red"
+                                    >
+                                        Register Now
+                                    </Button>
+                                </a>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
                     <div className="flex items-center gap-5 max-md:flex-col">
                         <div className="w-6/12 max-md:w-full">
                             <img
-                                src="https://images.pexels.com/photos/31711708/pexels-photo-31711708.jpeg"
+                                src="https://www.varmalla.com/wp-content/uploads/2023/11/Destination-Wedding.jpg"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                                 alt="Feature showcase"
                             />
@@ -112,32 +117,46 @@ function Home() {
                                     Discover your perfect match with confidence
                                 </h2>
                                 <p className="mb-4 text-lg leading-relaxed text-neutral-400">
-                                    Vanand Vivah priorities your safety and privacy. Our advanced matching algorithm
+                                    Vanand Vivah priorities your safety and
+                                    privacy. Our advanced matching algorithm
                                     connects you with compatible partners.
                                 </p>
                                 <div className="flex gap-4 items-start">
-                                    <div className="p-3 mt-1 rounded-xl bg-violet-400 bg-opacity-20">
-                                        test
+                                    <div className="p-2 mt-1 rounded-xl bg-[#ff3131]">
+                                        <AiFillSafetyCertificate size={30} />
                                     </div>
                                     <div>
-                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">Safety First</h3>
-                                        <p className="leading-relaxed text-neutral-400">Your data is protected with top-notch security measures.</p>
+                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">
+                                            Safety First
+                                        </h3>
+                                        <p className="leading-relaxed text-neutral-400">
+                                            Your data is protected with
+                                            top-notch security measures.
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
-                                    <div className="p-3 mt-1 rounded-xl bg-violet-400 bg-opacity-20">
-                                        test
+                                    <div className="p-2 mt-1 rounded-xl bg-[#ff3131]">
+                                        <LuHeartHandshake size={30} />
                                     </div>
                                     <div>
-                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">Proven Success</h3>
-                                        <p className="leading-relaxed text-neutral-400">Join countless couples who found love through our platform.</p>
+                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">
+                                            Proven Success
+                                        </h3>
+                                        <p className="leading-relaxed text-neutral-400">
+                                            Join countless couples who found
+                                            love through our platform.
+                                        </p>
                                     </div>
                                 </div>
-                                <Button
-                                    className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
-                                    variant="red">
-                                    Create Profile >
-                                </Button>
+                                <a href="/register">
+                                    <Button
+                                        className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
+                                        variant="red"
+                                    >
+                                        Create Profile
+                                    </Button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -166,7 +185,8 @@ function Home() {
                             What Our Clients Say
                         </h2>
                         <p className="mx-auto my-0 text-lg max-w-[600px] text-neutral-400">
-                            Hear from our satisfied customers about their experiences
+                            Hear from our satisfied customers about their
+                            experiences
                         </p>
                     </div>
                     <div className="relative px-0 py-5">
@@ -188,7 +208,9 @@ function Home() {
                                     className="w-3 h-3 rounded-full cursor-pointer border-none duration-300 ease transition-colors"
                                     style={{
                                         backgroundColor:
-                                            item === 1 ? "rgb(172, 126, 244)" : "rgb(51, 51, 51)",
+                                            item === 1
+                                                ? "rgb(172, 126, 244)"
+                                                : "rgb(51, 51, 51)",
                                     }}
                                     onClick={() => setActiveIndex(item)}
                                 />
@@ -202,7 +224,8 @@ function Home() {
                         <div className="w-6/12 max-md:w-full">
                             <div className="flex flex-col gap-8">
                                 <h2 className="text-5xl font-bold leading-tight max-sm:text-4xl text-neutral-500">
-                                    Discover the Benefits of Choosing Vanand Vivah for Your Matchmaking Journey
+                                    Discover the Benefits of Choosing Vanand
+                                    Vivah for Your Matchmaking Journey
                                 </h2>
                                 <div className="flex flex-col gap-6">
                                     {features.map((feature, index) => (
@@ -218,14 +241,13 @@ function Home() {
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                             <img
-                                src="https://images.pexels.com/photos/1188751/pexels-photo-1188751.jpeg"
+                                src="https://www.varmalla.com/wp-content/uploads/2024/02/hindu-wedding-mandap-athens-greece-1-65bdc8ccafcea.webp"
                                 className="object-cover overflow-hidden w-full rounded-3xl transition-transform aspect-square duration-300 ease hover:transform hover:scale-105 shadow-[30px_30px_60px_rgba(0,0,0,0.3)]"
                                 alt="Digital presence showcase"
                             />
                         </div>
                     </div>
                 </section>
-
             </div>
         </GuestLayout>
     );

@@ -2,12 +2,10 @@ import React from "react";
 
 function ProductCard({ product }) {
     return (
-        <article
-            className="p-5 rounded-xl transition-all cursor-pointer bg-white bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]"
-        >
-            <figure className="overflow-hidden relative pt-96 mb-5 rounded-lg">
+        <article className="text-center p-5 rounded-xl transition-all cursor-pointer bg-[#aeaeae] bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
+            <figure className="overflow-hidden relative pt-80 mb-5 rounded-lg">
                 <img
-                    className="object-cover overflow-hidden absolute top-0 left-0 rounded-lg aspect-square size-full"
+                    className="object-cover overflow-hidden absolute top-0 left-0 rounded-full aspect-square size-full"
                     src={product.image}
                     alt={product.name}
                 />
@@ -20,9 +18,11 @@ function ProductCard({ product }) {
                     {product.description}
                 </p>
             )}
-            <p className="text-xl font-medium text-violet-400">
-                {product.price}
-            </p>
+            <div className="flex gap-5 justify-center items-center text-xl font-medium text-[#ff3131]">
+                <div>{product.dob}</div>
+                <div>{product.marital_status}</div>
+                <div>{product.occupation}</div>
+            </div>
         </article>
     );
 }

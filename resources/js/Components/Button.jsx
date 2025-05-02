@@ -10,7 +10,7 @@ export const Button = ({
     const variantStyles = {
         outline: "text-white bg-transparent border border-white border-solid",
         solid: "text-black bg-violet-400 border-[none]",
-        red: "text-white bg-[#ff3131] hover:bg-[#880000] text-xl"
+        red: "text-white bg-[#ff3131] hover:bg-[#880000] text-xl",
     };
 
     return (

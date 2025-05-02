@@ -1,3 +1,4 @@
+import { Button } from "@/Components/Button";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
@@ -17,8 +18,8 @@ export default function ForgotPassword({ status }) {
     return (
         <GuestLayout>
             <Head title="Forgot Password" />
-            <div className="min-h-[450px] flex items-center justify-center my-12">
-                <div className=" w-full max-w-md mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-lg mt-12 text-gray-800 dark:text-white">
+            <div className="min-h-[450px] items-center justify-center my-12 mt-5">
+                <div className=" w-full max-w-md mx-auto bg-white/5 backdrop-blur-md border border-black/10 rounded-2xl p-8 shadow-lg text-gray-800 dark:text-white">
                     <h1 className="text-3xl font-bold text-center mb-6 text-[#ff3131] bg-clip-text">
                         Forgot Password
                     </h1>
@@ -56,12 +57,12 @@ export default function ForgotPassword({ status }) {
                         </div>
 
                         <div className="mt-6 flex justify-end">
-                            <PrimaryButton
+                            <Button
                                 className="w-full justify-center"
                                 disabled={processing}
                             >
-                                Email Password Reset Link
-                            </PrimaryButton>
+                                Send Email Password Reset Link
+                            </Button>
                         </div>
                     </form>
                 </div>

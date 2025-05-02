@@ -29,9 +29,8 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-
-            <div className="min-h-[450px] flex items-center justify-center my-12">
-                <div className="max-w-md w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10  mt-20">
+            <div className="min-h-[450px] flex items-center justify-center my-12 mt-5">
+                <div className="max-w-md w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border-[2px] border-black/10 ">
                     <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Log In
                     </h1>
@@ -82,7 +81,11 @@ export default function Login({ status, canResetPassword }) {
                                 className="absolute top-9 right-3 text-gray-400 hover:text-gray-200 focus:outline-none"
                                 tabIndex={-1}
                             >
-                                {showPassword ? <FiEyeOff /> : <FiEye />}
+                                {showPassword ? (
+                                    <FiEyeOff className="hover:text-[#ff3131]" />
+                                ) : (
+                                    <FiEye className="hover:text-[#ff3131]" />
+                                )}
                             </button>
                             <InputError
                                 message={errors.password}
@@ -98,8 +101,9 @@ export default function Login({ status, canResetPassword }) {
                                     onChange={(e) =>
                                         setData("remember", e.target.checked)
                                     }
+                                    className="checked:text-[#ff3131]"
                                 />
-                                <span className="ml-2 text-sm text-gray-400">
+                                <span className="ml-2 text-base text-gray-800">
                                     Remember me
                                 </span>
                             </label>
@@ -107,7 +111,7 @@ export default function Login({ status, canResetPassword }) {
                             {canResetPassword && (
                                 <Link
                                     href={route("password.request")}
-                                    className="text-sm text-gray-400 underline hover:text-gray-200 transition"
+                                    className="text-base text-gray-800 hover:text-red-500 transition"
                                 >
                                     Forgot your password?
                                 </Link>

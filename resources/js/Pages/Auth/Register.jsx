@@ -34,8 +34,8 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <div className="flex items-center justify-center py-12 px-4 mt-10">
-                <div className="max-w-md w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-white/10 mt-10">
+            <div className="flex items-center justify-center my-12">
+                <div className="max-w-md w-full mx-auto bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 border border-black/10 ">
                     <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Register
                     </h1>
@@ -101,7 +101,11 @@ export default function Register() {
                                 className="absolute top-9 right-3 text-gray-400 hover:text-gray-200 focus:outline-none"
                                 tabIndex={-1}
                             >
-                                {showPassword ? <FiEyeOff /> : <FiEye />}
+                                {showPassword ? (
+                                    <FiEyeOff className="hover:text-[#ff3131]" />
+                                ) : (
+                                    <FiEye className="hover:text-[#ff3131]" />
+                                )}
                             </button>
                             <InputError
                                 message={errors.password}
@@ -135,7 +139,11 @@ export default function Register() {
                                 className="absolute top-9 right-3 text-gray-400 hover:text-gray-200 focus:outline-none"
                                 tabIndex={-1}
                             >
-                                {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                                {showConfirmPassword ? (
+                                    <FiEyeOff className="hover:text-[#ff3131]" />
+                                ) : (
+                                    <FiEye className="hover:text-[#ff3131]" />
+                                )}
                             </button>
                             <InputError
                                 message={errors.password_confirmation}
@@ -146,7 +154,7 @@ export default function Register() {
                         <div className="flex items-center justify-between">
                             <Link
                                 href={route("login")}
-                                className="text-sm text-gray-400 underline hover:text-gray-200 transition"
+                                className="text-base text-gray-800 hover:text-red-500 transition"
                             >
                                 Already registered?
                             </Link>

@@ -41,7 +41,7 @@ export const Header = () => {
         </a>
     ));
     return (
-        <header className="fixed top-0 px-5 py-0 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
+        <header className="sticky top-0 px-5 py-0 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
             <div className="flex relative justify-between items-center mx-auto my-0 max-w-[1200px]">
                 <Link href="/">
                     <div className="flex text-2xl font-serif">
@@ -73,7 +73,7 @@ export const Header = () => {
                     }`}
                 >
                     {user ? (
-                        <div className="lg:mx-auto lg:max-w-7xl lg:px-4 sm:px-6 lg:px-8">
+                        <div className="lg:mx-auto lg:max-w-7xl sm:px-6 lg:px-8">
                             <div className="flex h-16 justify-between">
                                 <div className="hidden sm:ms-6 sm:flex sm:items-center">
                                     <div className="relative ms-3">
@@ -82,10 +82,13 @@ export const Header = () => {
                                                 <span className="inline-flex rounded-md">
                                                     <button
                                                         type="button"
-                                                        className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                        className="hover:bg-[#ff3131] hover:text-white text-xl inline-flex items-center rounded-md border border-transparent px-3 py-2 font-medium leading-4  transition duration-150 ease-in-out focus:outline-none "
                                                     >
-                                                        {user.name}
-
+                                                        {
+                                                            user.name.split(
+                                                                " "
+                                                            )[0]
+                                                        }
                                                         <svg
                                                             className="-me-0.5 ms-2 h-4 w-4"
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +108,7 @@ export const Header = () => {
                                             <Dropdown.Content>
                                                 <Dropdown.Link
                                                     href={route("profile.edit")}
+                                                    className="text-xl hover:bg-[#ff3131] hover:text-white m-3 ms-0"
                                                 >
                                                     Profile
                                                 </Dropdown.Link>
@@ -112,6 +116,7 @@ export const Header = () => {
                                                     href={route("logout")}
                                                     method="post"
                                                     as="button"
+                                                    className="text-xl hover:bg-[#ff3131] hover:text-white m-3 ms-0"
                                                 >
                                                     Log Out
                                                 </Dropdown.Link>
@@ -150,7 +155,7 @@ export const Header = () => {
                                     variant="red"
                                     className="w-full lg:w-auto"
                                 >
-                                    Sign up
+                                    Register
                                 </Button>
                             </a>
                         </>

@@ -1,4 +1,5 @@
 import GuestLayout from "@/Layouts/GuestLayout";
+import { Head } from "@inertiajs/react";
 import React from "react";
 import {
     FiTwitter,
@@ -12,8 +13,9 @@ import {
 const AboutUs = () => {
     return (
         <GuestLayout>
+            <Head title="About Us" />
             <div className="flex items-center justify-center py-12 ">
-                <div className="max-w-6xl w-full mx-auto mt-20">
+                <div className="max-w-6xl w-full mx-auto">
                     <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
                         About Us
                     </h1>
@@ -28,7 +30,7 @@ const AboutUs = () => {
                         </div>
 
                         {/* Content Column */}
-                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-white/10 flex flex-col justify-between">
+                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-black/10 flex flex-col justify-between">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Our Story
                             </h2>
@@ -68,23 +70,30 @@ const AboutUs = () => {
                                 <div className="flex gap-4">
                                     <a
                                         href="#"
-                                        className=" hover:text-blue-400"
+                                        aria-label="Twitter"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiTwitter className="w-6 h-6" />
                                     </a>
                                     <a
                                         href="#"
-                                        className=" hover:text-blue-600"
+                                        aria-label="Facebook"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiFacebook className="w-6 h-6" />
                                     </a>
                                     <a
                                         href="#"
-                                        className=" hover:text-purple-500"
+                                        aria-label="LinkedIn"
+                                        className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiLinkedin className="w-6 h-6" />
                                     </a>
-                                    <a href="#" className=" hover:text-white">
+                                    <a
+                                        href="#"
+                                        aria-label="Github"
+                                        className=" hover:text-[#ff3131] transition-colors"
+                                    >
                                         <FiGithub className="w-6 h-6" />
                                     </a>
                                 </div>
