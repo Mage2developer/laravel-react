@@ -82,7 +82,7 @@ export const Header = () => {
                                                 <span className="inline-flex rounded-md">
                                                     <button
                                                         type="button"
-                                                        className="hover:bg-[#ff3131] hover:text-white text-xl inline-flex items-center rounded-md border border-transparent px-3 py-2 font-medium leading-4  transition duration-150 ease-in-out focus:outline-none "
+                                                        className="text-xl inline-flex items-center rounded-md border border-transparent px-3 py-2 font-medium leading-4  transition duration-150 ease-in-out focus:outline-none "
                                                     >
                                                         {
                                                             user.name.split(
@@ -108,7 +108,7 @@ export const Header = () => {
                                             <Dropdown.Content>
                                                 <Dropdown.Link
                                                     href={route("profile.edit")}
-                                                    className="text-xl hover:bg-[#ff3131] hover:text-white m-3 ms-0"
+                                                    className="text-xl hover:bg-[#ff3131] m-3 ms-0"
                                                 >
                                                     Profile
                                                 </Dropdown.Link>
@@ -116,7 +116,7 @@ export const Header = () => {
                                                     href={route("logout")}
                                                     method="post"
                                                     as="button"
-                                                    className="text-xl hover:bg-[#ff3131] hover:text-white m-3 ms-0"
+                                                    className="text-xl hover:bg-[#ff3131] m-3 ms-0"
                                                 >
                                                     Log Out
                                                 </Dropdown.Link>
