@@ -41,7 +41,7 @@ export const Header = () => {
         </a>
     ));
     return (
-        <header className="fixed top-0 px-5 py-3 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
+        <header className="fixed top-0 px-5 py-0 w-full bg-white border-b border-solid border-b-zinc-800 z-[100] max-md:px-5 max-md:py-3">
             <div className="flex relative justify-between items-center mx-auto my-0 max-w-[1200px]">
                 <Link href="/">
                     <div className="flex text-2xl font-serif">
