@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');
+Route::get('/profile/{profileId}', [UserProfileController::class, 'view'])->name('profile.view');
+
 
 Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
