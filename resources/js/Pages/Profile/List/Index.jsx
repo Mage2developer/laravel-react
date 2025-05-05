@@ -1,18 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import Banner from "@/Components/Banner";
+import ProfileBanner from "@/Components/ProfileBanner";
 import ProductFilters from "@/Components/ProductFilters";
-import ProductGrid from "@/Components/ProductGrid";
+import ProfileGrid from "@/Components/ProfileGrid";
 import { Head } from "@inertiajs/react";
 import SearchBox from "@/Components/SearchBox";
 
-function Index() {
-    const [bannerImage, setBannerImage] = useState("images/wedding-banner.jpg");
-    const [bannerTitle, setBannerTitle] = useState("Profile");
-    const [bannerDescription, setBannerDescription] = useState(
-        "Discover our curated selection of modern essentials"
-    );
+function Index({ profiles }) {
+    const bannerImage = "images/wedding-banner.jpg";
+    const bannerTitle = "Profile";
+    const bannerDescription = "Discover our curated selection of modern essentials";
+
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [sortBy, setSortBy] = useState("featured");
     const [categories, setCategories] = useState([
@@ -22,102 +21,21 @@ function Index() {
         "audio",
         "accessories",
     ]);
-    const [products, setProducts] = useState([
-        {
-            id: 1,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://picsum.photos/200/300",
-        },
-        {
-            id: 2,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://images.pexels.com/photos/7535030/pexels-photo-7535030.jpeg",
-        },
-        {
-            id: 1,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://picsum.photos/seed/picsum/200/300",
-        },
-        {
-            id: 2,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://images.pexels.com/photos/7535030/pexels-photo-7535030.jpeg",
-        },
-        {
-            id: 1,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://picsum.photos/id/1/200/300",
-        },
-        {
-            id: 2,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://images.pexels.com/photos/7535030/pexels-photo-7535030.jpeg",
-        },
-        {
-            id: 1,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://picsum.photos/200/300/?blur",
-        },
-        {
-            id: 2,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://images.pexels.com/photos/7535030/pexels-photo-7535030.jpeg",
-        },
-        {
-            id: 1,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://picsum.photos/200/300.jpg",
-        },
-        {
-            id: 2,
-            name: "Modern Desk Lamp",
-            dob: "29",
-            occupation: "Job",
-            marital_status: "Single",
-            image: "https://images.pexels.com/photos/7535030/pexels-photo-7535030.jpeg",
-        },
-    ]);
+    const [profilesData, setProfilesData] = useState(profiles);
 
     // Filter and sort products based on selected category and sort option
-    const getFilteredAndSortedProducts = () => {
-        let filteredProducts = products;
+    const getFilteredAndSortedProfiles = () => {
+        let filteredProfiles = profilesData;
 
         // Filter by category
         if (selectedCategory !== "all") {
             // In a real app, you would filter based on product category
             // For this demo, we're just returning all products
-            filteredProducts = products;
+            filteredProfiles = profilesData;
         }
 
         // Sort products
-        return [...filteredProducts].sort((a, b) => {
+        return [...filteredProfiles].sort((a, b) => {
             if (sortBy === "price-low") {
                 return (
                     parseFloat(a.price.replace("$", "")) -
@@ -142,10 +60,10 @@ function Index() {
             <div className="w-full min-h-screen">
                 <main className="min-h-screen">
                     <div>
-                        <Banner
+                        <ProfileBanner
                             image={bannerImage}
                             title={bannerTitle}
-                            // description={bannerDescription}
+                            description={bannerDescription}
                         />
                     </div>
 
@@ -163,8 +81,8 @@ function Index() {
                             setSortBy={setSortBy}
                         /> */}
 
-                        <ProductGrid
-                            products={getFilteredAndSortedProducts()}
+                        <ProfileGrid
+                            profiles={getFilteredAndSortedProfiles()}
                         />
                     </section>
                 </main>

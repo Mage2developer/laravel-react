@@ -12,3 +12,5 @@ export const ProfileCard = ({ image, name }) => {
         </div>
     );
 };
+
+export default ProfileCard;

@@ -115,17 +115,15 @@ class User extends Authenticatable
     public function getUserProfileList($name = '')
     {
         return User::with(
-            'userPersonalDetail',
-            'userFamilyDetail',
-            'userEducationDetail',
-            'userContactDetail',
+            'userPersonalDetail:id,user_id,dob,marital_status',
+            'userEducationDetail:id,user_id,occupation',
             'userImages'
         )
             ->where('users.name', 'LIKE', '%' . $name . '%')
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
             ->get();
-        }
+    }
 
     /**
      * @param $id
