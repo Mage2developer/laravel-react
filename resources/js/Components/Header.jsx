@@ -88,12 +88,12 @@ export const Header = () => {
                         </Dropdown>
                     ) : (
                         <>
-                            <a href="/login">
+                            <Link href="/login">
                                 <Button variant="red">Login</Button>
-                            </a>
-                            <a href="/register">
+                            </Link>
+                            <Link href="/register">
                                 <Button variant="red">Register</Button>
-                            </a>
+                            </Link>
                         </>
                     )}
                 </div>
@@ -103,13 +103,13 @@ export const Header = () => {
             {isMenuOpen && (
                 <div className="lg:hidden mt-3 flex flex-col gap-4 border-t border-zinc-200 pt-4 px-4">
                     {navLinks.map((link, i) => (
-                        <a
+                        <Link
                             key={i}
                             href={link.url}
                             className="text-xl font-medium text-black hover:text-[#ff3131] transition-colors"
                         >
                             {link.title}
-                        </a>
+                        </Link>
                     ))}
 
                     <div className="flex flex-col gap-3">
@@ -128,16 +128,16 @@ export const Header = () => {
                             </>
                         ) : (
                             <>
-                                <a href="/login">
+                                <Link href="/login">
                                     <Button variant="red" className="w-full">
                                         Login
                                     </Button>
-                                </a>
-                                <a href="/register">
+                                </Link>
+                                <Link href="/register">
                                     <Button variant="red" className="w-full">
                                         Register
                                     </Button>
-                                </a>
+                                </Link>
                             </>
                         )}
                     </div>

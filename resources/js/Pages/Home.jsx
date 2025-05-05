@@ -8,6 +8,7 @@ import { Button } from "@/Components/Button";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { LuHeartHandshake } from "react-icons/lu";
 import HeroSlider from "@/Components/HeroSlider";
+import { Link } from "@inertiajs/react";
 
 function Home() {
     const [searchText, setSearchText] = useState("");
@@ -149,14 +150,14 @@ function Home() {
                                         </p>
                                     </div>
                                 </div>
-                                <a href="/register">
+                                <Link href="/register">
                                     <Button
                                         className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
                                         variant="red"
                                     >
                                         Create Profile
                                     </Button>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

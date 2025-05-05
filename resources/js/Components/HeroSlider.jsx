@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import { Button } from "./Button";
+import { Link } from "@inertiajs/react";
 
 const sliderImages = [
     {
@@ -53,14 +54,14 @@ function HeroSlider() {
                             <p className="mb-8 text-xl leading-relaxed text-white text-opacity-90">
                                 {slide.description}
                             </p>
-                            <a href="/register">
+                            <Link href="/register">
                                 <Button
                                     className="px-8 py-4 border-none rounded-[30px] transition-colors duration-300"
                                     variant="red"
                                 >
                                     Register Now
                                 </Button>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 ))}
