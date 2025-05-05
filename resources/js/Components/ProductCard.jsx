@@ -3,13 +3,15 @@ import React from "react";
 function ProductCard({ product }) {
     return (
         <article className="text-center p-5 rounded-xl transition-all cursor-pointer bg-[#aeaeae] bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
-            <figure className="overflow-hidden relative pt-80 mb-5 rounded-lg">
+            {/* <figure className="overflow-hidden relative pt-52 md:pt-80 mb-5 rounded-lg"> */}
+            <div>
                 <img
-                    className="object-cover overflow-hidden absolute top-0 left-0 rounded-full aspect-square size-full"
+                    className="rounded-full aspect-square size-full"
                     src={product.image}
                     alt={product.name}
                 />
-            </figure>
+            </div>
+            {/* </figure> */}
             <h2 className="mb-2.5 text-2xl font-medium leading-tight">
                 {product.name}
             </h2>

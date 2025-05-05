@@ -4,8 +4,10 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 import {
+    FiClock,
     FiFacebook,
     FiGithub,
+    FiInstagram,
     FiLinkedin,
     FiMail,
     FiMapPin,
@@ -18,14 +20,14 @@ const ContactUs = () => {
         <GuestLayout>
             <Head title="Contact Us" />
 
-            <div className="flex items-center justify-center py-12">
+            <div className="flex items-center justify-center py-12 px-3 sm:px-0">
                 <div className="max-w-6xl w-full mx-auto">
                     <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
                         Contact Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Contact Form */}
-                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-black/10 ">
+                        <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 ">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Send us a message
                             </h2>
@@ -82,23 +84,33 @@ const ContactUs = () => {
                         </div>
 
                         {/* Contact Information */}
-                        <div className="bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-black/10">
+                        <div className="bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Get in touch
                             </h2>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <FiPhone className="w-5 h-5 text-blue-400" />
-                                    <span className="">+123 456 7890</span>
+                                    <span className="">+091 8200426399</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FiMail className="w-5 h-5 text-purple-400" />
-                                    <span className="">info@example.com</span>
+                                    <span className="">
+                                        vanandvivah@gmail.com
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <FiClock className="w-5 h-5 text-purple-400" />
+                                    <span className="">
+                                        {" "}
+                                        11:00 AM to 5:00PM
+                                    </span>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <FiMapPin className="w-5 h-5 mt-0.5 text-green-400" />
+                                    <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400" />
                                     <span className="">
-                                        123 Main Street, Anytown, USA
+                                        Block Number 2, Bluebell Bunglows,
+                                        Silver park, Junagadh, India, 362001
                                     </span>
                                 </div>
                             </div>
@@ -107,34 +119,41 @@ const ContactUs = () => {
                                     Connect with us
                                 </h3>
                                 <div className="flex gap-4">
-                                    <a
+                                    {/* <a
                                         href="#"
                                         aria-label="Twitter"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiTwitter className="w-6 h-6" />
-                                    </a>
+                                    </a> */}
                                     <a
-                                        href="#"
+                                        href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                                         aria-label="Facebook"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiFacebook className="w-6 h-6" />
                                     </a>
                                     <a
+                                        href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
+                                        aria-label="Facebook"
+                                        className=" hover:text-[#ff3131] transition-colors"
+                                    >
+                                        <FiInstagram className="w-6 h-6" />
+                                    </a>
+                                    {/* <a
                                         href="#"
                                         aria-label="LinkedIn"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiLinkedin className="w-6 h-6" />
-                                    </a>
-                                    <a
+                                    </a> */}
+                                    {/* <a
                                         href="#"
                                         aria-label="Github"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiGithub className="w-6 h-6" />
-                                    </a>
+                                    </a> */}
                                 </div>
                             </div>
                         </div>

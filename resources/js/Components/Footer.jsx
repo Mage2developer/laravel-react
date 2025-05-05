@@ -1,54 +1,39 @@
 import React from "react";
 
 export const Footer = () => {
-    let arrFooterLinks = [
-        {
-            title: "Home",
-            url: "/",
-        },
-        {
-            title: "Members",
-            url: "/members",
-        },
-        {
-            title: "About Us",
-            url: "/about-us",
-        },
-        {
-            title: "Privacy Policy",
-            url: "/privacy-policy",
-        },
-        {
-            title: "Contact Us",
-            url: "/contact-us",
-        },
-        {
-            title: "Terms and Conditions",
-            url: "/terms-conditions",
-        }
+    const arrFooterLinks = [
+        { title: "Home", url: "/" },
+        { title: "Members", url: "/members" },
+        { title: "About Us", url: "/about-us" },
+        { title: "Privacy Policy", url: "/privacy-policy" },
+        { title: "Contact Us", url: "/contact-us" },
+        { title: "Terms and Conditions", url: "/terms-conditions" },
     ];
-    const footerLinksContent = arrFooterLinks.map((link, index) => (
-        <a
-            href={`${link.url}`}
-            key={index}
-            className="text-lg font-medium text-black no-underline transition-colors duration-300 ease hover:text-[#ff3131]"
-        >
-            {link.title}
-        </a>
-    ));
+
     return (
-        <footer className="w-full px-10 py-16 border-t border-solid bg-white bg-opacity-90 border-t-zinc-800">
-            <div className="flex flex-col gap-10 items-center mx-auto my-0 max-w-[1200px]">
-                <nav className="flex flex-wrap gap-10 justify-center">
-                    {footerLinksContent}
+        <footer className="w-full bg-white bg-opacity-90 border-t border-zinc-800 px-4 sm:px-6 lg:px-10 py-10">
+            <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-8">
+                {/* Navigation Links */}
+                <nav className="flex flex-wrap justify-center gap-6 sm:gap-10 text-center">
+                    {arrFooterLinks.map((link, index) => (
+                        <a
+                            key={index}
+                            href={link.url}
+                            className="text-base sm:text-lg font-medium text-black transition-colors duration-300 hover:text-[#ff3131]"
+                        >
+                            {link.title}
+                        </a>
+                    ))}
                 </nav>
-                <div className="mt-5 text-center">
+
+                {/* Logo + Copyright */}
+                <div className="text-center">
                     <img
+                        src="/images/vv_header_logo.png"
                         alt="Logo"
-                        src="images/vv_header_logo.png"
-                        className="object-cover overflow-hidden mx-auto my-0 h-[100px]"
+                        className="mx-auto h-20 w-auto object-contain"
                     />
-                    <p className="mt-5 text-sm text-neutral-500">
+                    <p className="mt-4 text-sm text-neutral-500">
                         © 2025 vanandvivah.com. All rights reserved.
                     </p>
                 </div>

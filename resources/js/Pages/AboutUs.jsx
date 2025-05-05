@@ -8,13 +8,14 @@ import {
     FiMapPin,
     FiGithub,
     FiFacebook,
+    FiInstagram,
 } from "react-icons/fi";
 
 const AboutUs = () => {
     return (
         <GuestLayout>
             <Head title="About Us" />
-            <div className="flex items-center justify-center py-12 ">
+            <div className="flex items-center justify-center py-12 px-3 sm:px-0">
                 <div className="max-w-6xl w-full mx-auto">
                     <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
                         About Us
@@ -30,7 +31,7 @@ const AboutUs = () => {
                         </div>
 
                         {/* Content Column */}
-                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl shadow-lg p-8 space-y-6 border border-black/10 flex flex-col justify-between">
+                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 flex flex-col justify-between">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Our Story
                             </h2>
@@ -53,12 +54,13 @@ const AboutUs = () => {
                                 </h3>
                                 <div className="flex items-center gap-3">
                                     <FiPhone className="w-5 h-5 text-blue-400" />
-                                    <span className="">+123 456 7890</span>
+                                    <span className="">+091 8200426399</span>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <FiMapPin className="w-5 h-5 mt-0.5 text-green-400" />
+                                    <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400" />
                                     <span className="">
-                                        123 Main Street, Anytown, USA
+                                        Block Number 2, Bluebell Bunglows,
+                                        Silver park, Junagadh, India, 362001
                                     </span>
                                 </div>
                             </div>
@@ -69,32 +71,18 @@ const AboutUs = () => {
                                 </h3>
                                 <div className="flex gap-4">
                                     <a
-                                        href="#"
-                                        aria-label="Twitter"
-                                        className=" hover:text-[#ff3131] transition-colors"
-                                    >
-                                        <FiTwitter className="w-6 h-6" />
-                                    </a>
-                                    <a
-                                        href="#"
+                                        href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                                         aria-label="Facebook"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
                                         <FiFacebook className="w-6 h-6" />
                                     </a>
                                     <a
-                                        href="#"
-                                        aria-label="LinkedIn"
+                                        href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
+                                        aria-label="Facebook"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
-                                        <FiLinkedin className="w-6 h-6" />
-                                    </a>
-                                    <a
-                                        href="#"
-                                        aria-label="Github"
-                                        className=" hover:text-[#ff3131] transition-colors"
-                                    >
-                                        <FiGithub className="w-6 h-6" />
+                                        <FiInstagram className="w-6 h-6" />
                                     </a>
                                 </div>
                             </div>

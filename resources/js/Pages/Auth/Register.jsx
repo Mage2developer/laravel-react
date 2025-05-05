@@ -151,17 +151,20 @@ export default function Register() {
                             />
                         </div>
 
-                        <div className="flex items-center justify-between">
-                            <Link
-                                href={route("login")}
-                                className="text-base text-gray-800 hover:text-red-500 transition"
-                            >
-                                Already registered?
-                            </Link>
-
-                            <Button className="" disabled={processing}>
-                                Register
-                            </Button>
+                        <div className="block sm:flex items-center justify-between">
+                            <div>
+                                <Link
+                                    href={route("login")}
+                                    className="text-base text-gray-800 hover:text-red-500 transition"
+                                >
+                                    Already registered?
+                                </Link>
+                            </div>
+                            <div className="">
+                                <Button className="w-full sm:w-auto mt-5 sm:mt-0" disabled={processing}>
+                                    Register
+                                </Button>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -93,8 +93,8 @@ export default function Login({ status, canResetPassword }) {
                             />
                         </div>
 
-                        <div className="flex items-center justify-between">
-                            <label className="flex items-center">
+                        <div className="md:flex items-center justify-center sm:justify-between">
+                            <label className="flex items-center mb-2 sm:mb-0">
                                 <Checkbox
                                     name="remember"
                                     checked={data.remember}
@@ -111,7 +111,7 @@ export default function Login({ status, canResetPassword }) {
                             {canResetPassword && (
                                 <Link
                                     href={route("password.request")}
-                                    className="text-base text-gray-800 hover:text-red-500 transition"
+                                    className="text-base text-gray-800 hover:text-red-500 transition "
                                 >
                                     Forgot your password?
                                 </Link>
