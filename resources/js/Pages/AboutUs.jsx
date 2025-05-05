@@ -22,7 +22,7 @@ const AboutUs = () => {
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         {/* Image Column */}
-                        <div className="h-full rounded-xl overflow-hidden shadow-lg border border-white/10 flex justify-center">
+                        <div className="h-full rounded-xl overflow-hidden shadow-lg border border-white/10  flex justify-center">
                             <img
                                 src="images/about-us.png"
                                 alt="Our Team"
@@ -31,7 +31,7 @@ const AboutUs = () => {
                         </div>
 
                         {/* Content Column */}
-                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 flex flex-col justify-between">
+                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 shadow-lg flex flex-col justify-between">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Our Story
                             </h2>

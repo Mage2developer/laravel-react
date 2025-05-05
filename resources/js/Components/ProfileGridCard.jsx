@@ -2,10 +2,9 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 
 function ProfileGridCard({ profile }) {
-    console.log(profile);
     return (
         <Link href={`/profile/${profile.id}`} className="block">
-            <article className="text-center p-5 rounded-xl transition-all cursor-pointer bg-[#aeaeae] bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
+            <article className="text-center p-5 rounded-xl transition-all cursor-pointer bg-[#fff7f7] shadow-lg bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
                 {/* <figure className="overflow-hidden relative pt-52 md:pt-80 mb-5 rounded-lg"> */}
                 <div>
                     <img
@@ -30,8 +29,8 @@ function ProfileGridCard({ profile }) {
                 <div className="flex gap-5 justify-center items-center text-xl font-medium text-[#ff3131]">
                     <div>{profile.user_personal_detail.dob}</div>
                     <div>{profile.user_personal_detail.marital_status}</div>
-                    <div>{profile.user_education_detail.occupation}</div>
                 </div>
+                <div>{profile.user_education_detail.occupation}</div>
             </article>
         </Link>
     );
