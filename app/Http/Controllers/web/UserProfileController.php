@@ -45,7 +45,7 @@ class UserProfileController extends Controller
      * @param User $user
      * @return Response
      */
-    public function view(Request $request, User $user): Response
+    public function view(Request $request): Response
     {
         // If user not logged in redirect on Notice page
         if (!Auth::id()) {
@@ -58,5 +58,16 @@ class UserProfileController extends Controller
         return Inertia::render('Profile/View/Index', [
             'profile' => $userProfile->toArray()
         ]);
+    }
+
+    /**
+     * Get Latest 10 Active User profile
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function getLatestProfiles(): Response
+    {
+        return $this->user->getLatestUserProfile()->toArray();
     }
 }

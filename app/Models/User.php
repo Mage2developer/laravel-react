@@ -37,7 +37,10 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token'
+        'remember_token',
+        'email_verified_at',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -111,7 +114,13 @@ class User extends Authenticatable
      */
     public function getUserProfileList($name = '')
     {
-        return User::with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
+        return User::with(
+            'userPersonalDetail',
+            'userFamilyDetail',
+            'userEducationDetail',
+            'userContactDetail',
+            'userImages'
+        )
             ->where('users.name', 'LIKE', '%' . $name . '%')
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
@@ -139,11 +148,19 @@ class User extends Authenticatable
     }
 
     /**
-     * @return mixed
+     * Get latest 10 Active profile list
+     *
+     * @return Collection
      */
     public function getLatestUserProfile()
     {
-        return User::with('userPersonalDetail', 'userFamilyDetail', 'userEducationDetail', 'userContactDetail', 'userImages')
+        return User::with(
+            'userPersonalDetail',
+            'userFamilyDetail',
+            'userEducationDetail',
+            'userContactDetail',
+            'userImages'
+        )
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
             ->limit(Data::LATEST_PROFILE_UMBER)
