@@ -46,7 +46,7 @@ class UserProfileController extends Controller
      * @param User $user
      * @return Response
      */
-    public function view(Request $request): RedirectResponse
+    public function view(Request $request): RedirectResponse | Response
     {
         // If user not logged in redirect on Notice page
         if (!Auth::id()) {
