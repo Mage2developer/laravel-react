@@ -4,7 +4,7 @@ import React from "react";
 export const Footer = () => {
     const arrFooterLinks = [
         { title: "Home", url: "/" },
-        { title: "Members", url: "/members" },
+        { title: "Profiles", url: "/profiles" },
         { title: "About Us", url: "/about-us" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "Terms and Conditions", url: "/terms-conditions" },

@@ -3,6 +3,7 @@ import { Button } from "@/Components/Button";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
+import { FaWhatsapp } from "react-icons/fa";
 import {
     FiClock,
     FiFacebook,
@@ -90,7 +91,7 @@ const ContactUs = () => {
                             </h2>
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <FiPhone className="w-5 h-5 text-blue-400" />
+                                    <FaWhatsapp className="w-5 h-7 text-blue-400" />
                                     <span className="">+091 8200426399</span>
                                 </div>
                                 <div className="flex items-center gap-3">

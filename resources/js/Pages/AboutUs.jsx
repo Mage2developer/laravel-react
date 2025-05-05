@@ -10,6 +10,7 @@ import {
     FiFacebook,
     FiInstagram,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
 const AboutUs = () => {
     return (
@@ -53,7 +54,7 @@ const AboutUs = () => {
                                     Contact
                                 </h3>
                                 <div className="flex items-center gap-3">
-                                    <FiPhone className="w-5 h-5 text-blue-400" />
+                                    <FaWhatsapp className="w-7 h-7 text-blue-400" />
                                     <span className="">+091 8200426399</span>
                                 </div>
                                 <div className="flex items-start gap-3">
