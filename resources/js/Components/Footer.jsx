@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import React from "react";
 
 export const Footer = () => {
@@ -16,13 +17,20 @@ export const Footer = () => {
                 {/* Navigation Links */}
                 <nav className="flex flex-wrap justify-center gap-6 sm:gap-10 text-center">
                     {arrFooterLinks.map((link, index) => (
-                        <a
+                        <Link
                             key={index}
                             href={link.url}
                             className="text-base sm:text-lg font-medium text-black transition-colors duration-300 hover:text-[#ff3131]"
                         >
                             {link.title}
-                        </a>
+                        </Link>
+                        // <a
+                        //     key={index}
+                        //     href={link.url}
+                        //     className="text-base sm:text-lg font-medium text-black transition-colors duration-300 hover:text-[#ff3131]"
+                        // >
+                        //     {link.title}
+                        // </a>
                     ))}
                 </nav>
 

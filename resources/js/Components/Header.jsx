@@ -38,13 +38,13 @@ export const Header = () => {
                 {/* Desktop Nav Links */}
                 <nav className="hidden lg:flex gap-8 items-center">
                     {navLinks.map((link, i) => (
-                        <a
+                        <Link
                             key={i}
                             href={link.url}
                             className="text-xl font-medium text-black hover:text-[#ff3131] transition-colors"
                         >
                             {link.title}
-                        </a>
+                        </Link>
                     ))}
                 </nav>
 
