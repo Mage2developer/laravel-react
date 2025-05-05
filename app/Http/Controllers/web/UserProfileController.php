@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -45,11 +46,11 @@ class UserProfileController extends Controller
      * @param User $user
      * @return Response
      */
-    public function view(Request $request): Response
+    public function view(Request $request): RedirectResponse
     {
         // If user not logged in redirect on Notice page
         if (!Auth::id()) {
-            return Inertia::render('LoginRequired');
+            return redirect(route('loginRequired', absolute: false));
         }
 
         $profileId = $request->route('profileId');
@@ -63,11 +64,12 @@ class UserProfileController extends Controller
     /**
      * Get Latest 10 Active User profile
      *
-     * @param Request $request
      * @return Response
      */
     public function getLatestProfiles(): Response
     {
-        return $this->user->getLatestUserProfile()->toArray();
+        return Inertia::render('Home', [
+            'latestProfile' => $this->user->getLatestUserProfile()->toArray()
+        ]);
     }
 }

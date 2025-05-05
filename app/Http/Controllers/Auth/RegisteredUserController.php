@@ -44,8 +44,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        return redirect(route('activateProfile', absolute: false));
 
-        return redirect(route('dashboard', absolute: false));
+        /*Auth::login($user);
+
+        return redirect(route('dashboard', absolute: false));*/
     }
 }
