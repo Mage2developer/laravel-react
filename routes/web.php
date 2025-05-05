@@ -28,6 +28,16 @@ Route::middleware('auth')->group(function () {
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');
 Route::get('/profile/{profileId}', [UserProfileController::class, 'view'])->name('profile.view');
 
+// Activate Profile section after signUp
+Route::get('/activateProfile', function () {
+    return Inertia::render('ProfileActivation');
+})->name('activateProfile');
+
+// Disable access profile with-out login
+Route::get('/loginRequired', function () {
+    return Inertia::render('LoginRequired');
+})->name('loginRequired');
+
 
 Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
