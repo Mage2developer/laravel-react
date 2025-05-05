@@ -29,7 +29,7 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-            <div className="min-h-[450px] flex items-center justify-center my-12 mt-5">
+            <div className="min-h-[450px] flex items-center justify-center my-10 ">
                 <div className="max-w-md w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border border-black/10 ">
                     <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Log In

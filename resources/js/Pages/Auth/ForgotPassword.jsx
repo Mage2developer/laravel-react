@@ -18,8 +18,8 @@ export default function ForgotPassword({ status }) {
     return (
         <GuestLayout>
             <Head title="Forgot Password" />
-            <div className="min-h-[450px] items-center justify-center my-12 mt-5">
-                <div className=" w-full max-w-md mx-auto bg-white/5 backdrop-blur-md border border-black/10 rounded-2xl p-8 shadow-lg text-gray-800 dark:text-white">
+            <div className="min-h-[450px] flex items-center justify-center my-0 mt-0" style={{marginTop: "-5px"}}>
+                <div className=" max-w-md w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border border-black/10 bg-white/5">
                     <h1 className="text-3xl font-bold text-center mb-6 text-[#ff3131] bg-clip-text">
                         Forgot Password
                     </h1>
