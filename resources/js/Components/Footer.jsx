@@ -6,7 +6,6 @@ export const Footer = () => {
         { title: "Home", url: "/" },
         { title: "Members", url: "/members" },
         { title: "About Us", url: "/about-us" },
-        { title: "Privacy Policy", url: "/privacy-policy" },
         { title: "Contact Us", url: "/contact-us" },
         { title: "Terms and Conditions", url: "/terms-conditions" },
     ];
@@ -24,13 +23,6 @@ export const Footer = () => {
                         >
                             {link.title}
                         </Link>
-                        // <a
-                        //     key={index}
-                        //     href={link.url}
-                        //     className="text-base sm:text-lg font-medium text-black transition-colors duration-300 hover:text-[#ff3131]"
-                        // >
-                        //     {link.title}
-                        // </a>
                     ))}
                 </nav>
 
@@ -42,7 +34,7 @@ export const Footer = () => {
                         className="mx-auto h-20 w-auto object-contain"
                     />
                     <p className="mt-4 text-sm text-neutral-500">
-                        © 2025 vanandvivah.com. All rights reserved.
+                        © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
                     </p>
                 </div>
             </div>
