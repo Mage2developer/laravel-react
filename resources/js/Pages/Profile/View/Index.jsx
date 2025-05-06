@@ -71,7 +71,7 @@ function Index() {
                                 onClick={() => setActiveTab('about')}
                                 className={`px-4 py-3 font-medium text-sm ${activeTab === 'about' ? 'border-b-2 border-purple-600 text-purple-600' : 'text-gray-500 hover:text-gray-700'}`}
                             >
-                                About
+                                Personal Details
                             </button>
                             <button
                                 onClick={() => setActiveTab('photos')}
@@ -83,13 +83,13 @@ function Index() {
                                 onClick={() => setActiveTab('family')}
                                 className={`px-4 py-3 font-medium text-sm ${activeTab === 'family' ? 'border-b-2 border-purple-600 text-purple-600' : 'text-gray-500 hover:text-gray-700'}`}
                             >
-                                Family
+                                Family Details
                             </button>
                             <button
                                 onClick={() => setActiveTab('preferences')}
                                 className={`px-4 py-3 font-medium text-sm ${activeTab === 'preferences' ? 'border-b-2 border-purple-600 text-purple-600' : 'text-gray-500 hover:text-gray-700'}`}
                             >
-                                Preferences
+                                Contact Details
                             </button>
                         </nav>
                     </div>
