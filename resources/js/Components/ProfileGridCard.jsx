@@ -1,5 +1,7 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
+import AgeCalculator from "./AgeCalculator";
+import MaritalStatus from "./MaritalStatus";
 
 function ProfileGridCard({ profile }) {
     return (
@@ -18,19 +20,19 @@ function ProfileGridCard({ profile }) {
                     />
                 </div>
                 {/* </figure> */}
-                <h2 className="mb-2.5 text-2xl font-medium leading-tight">
+                <h2 className="my-2.5 text-2xl font-medium leading-tight line-clamp-1">
                     {profile.name}
                 </h2>
-                {profile.description && (
-                    <p className="mb-4 text-base leading-snug text-white text-opacity-60">
-                        {profile.description}
-                    </p>
-                )}
-                <div className="flex gap-5 justify-center items-center text-xl font-medium text-[#ff3131]">
-                    <div>{profile.user_personal_detail.dob}</div>
-                    <div>{profile.user_personal_detail.marital_status}</div>
+                <div className="flex gap-5 justify-center items-center text-xl font-medium text-[#ff3131] mb-2.5">
+                    <AgeCalculator dob={profile.user_personal_detail.dob} />
+
+                    <MaritalStatus
+                        status={profile.user_personal_detail.marital_status}
+                    />
                 </div>
-                <div>{profile.user_education_detail.occupation}</div>
+                <div className="mb-2.5 line-clamp-1">
+                    {profile.user_education_detail.occupation}
+                </div>
             </article>
         </Link>
     );
