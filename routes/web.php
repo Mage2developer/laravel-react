@@ -5,13 +5,16 @@ use App\Http\Controllers\web\UserProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\User;
 
 Route::get('/', function () {
+    $userModel = new User();
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'latestProfile' => $userModel->getLatestUserProfile()->toArray(),
     ]);
 });
 

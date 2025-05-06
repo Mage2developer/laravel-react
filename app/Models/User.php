@@ -152,13 +152,7 @@ class User extends Authenticatable
      */
     public function getLatestUserProfile()
     {
-        return User::with(
-            'userPersonalDetail',
-            'userFamilyDetail',
-            'userEducationDetail',
-            'userContactDetail',
-            'userImages'
-        )
+        return User::with('userImages')
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
             ->limit(Data::LATEST_PROFILE_UMBER)
