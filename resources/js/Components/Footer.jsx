@@ -4,10 +4,11 @@ import React from "react";
 export const Footer = () => {
     const arrFooterLinks = [
         { title: "Home", url: "/" },
-        { title: "Profiles", url: "/profiles" },
-        { title: "About Us", url: "/about-us" },
-        { title: "Contact Us", url: "/contact-us" },
-        { title: "Terms and Conditions", url: "/terms-conditions" },
+        { title: "Profiles", url: "/profiles/" },
+        { title: "About Us", url: "/about-us/" },
+        { title: "Contact Us", url: "/contact-us/" },
+        { title: "Terms and Conditions", url: "/terms-conditions/" },
+        { title: "How to Create Profile", url: "/how-to-create-profile/" },
     ];
 
     return (
