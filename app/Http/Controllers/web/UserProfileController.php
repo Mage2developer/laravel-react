@@ -60,16 +60,4 @@ class UserProfileController extends Controller
             'profile' => $userProfile->toArray()
         ]);
     }
-
-    /**
-     * Get Latest 10 Active User profile
-     *
-     * @return Response
-     */
-    public function getLatestProfiles(): Response
-    {
-        return Inertia::render('Home', [
-            'latestProfile' => $this->user->getLatestUserProfile()->toArray()
-        ]);
-    }
 }
