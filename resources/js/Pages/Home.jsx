@@ -9,12 +9,13 @@ import { LatestProfileCard } from "@/Components/LatestProfileCard";
 import { FeatureCard } from "@/Components/FeatureCard";
 import { Button } from "@/Components/Button";
 import HeroSlider from "@/Components/HeroSlider";
+import { FaRegUserCircle } from "react-icons/fa";
+import { IoSearchCircle } from "react-icons/io5";
+import { MdRocketLaunch } from "react-icons/md";
 
 function Home({ latestProfile }) {
     // const [searchText, setSearchText] = useState("");
     // const [activeIndex, setActiveIndex] = useState(null);
-
-    console.log(latestProfile);
 
     // const testimonials = [
     //     {
@@ -39,33 +40,18 @@ function Home({ latestProfile }) {
 
     const features = [
         {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                <path fill-rule="evenodd"
-                      d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                      clip-rule="evenodd"/>
-            </svg>,
+            icon: <FaRegUserCircle size={30} />,
             title: "Easy to Use",
             description:
                 "Create your profile and start journey towards finding a lifelong partner today",
         },
         {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z"/>
-                <path fill-rule="evenodd"
-                      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"
-                      clip-rule="evenodd"/>
-            </svg>,
+            icon: <IoSearchCircle size={30} />,
             title: "Advanced Search for Ideal Matches",
             description: "Easily filter profiles based on your preferences",
         },
         {
-            icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                <path fill-rule="evenodd"
-                      d="M9.315 7.584C12.195 3.883 16.695 1.5 21.75 1.5a.75.75 0 0 1 .75.75c0 5.056-2.383 9.555-6.084 12.436A6.75 6.75 0 0 1 9.75 22.5a.75.75 0 0 1-.75-.75v-4.131A15.838 15.838 0 0 1 6.382 15H2.25a.75.75 0 0 1-.75-.75 6.75 6.75 0 0 1 7.815-6.666ZM15 6.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
-                      clip-rule="evenodd"/>
-                <path
-                    d="M5.26 17.242a.75.75 0 1 0-.897-1.203 5.243 5.243 0 0 0-2.05 5.022.75.75 0 0 0 .625.627 5.243 5.243 0 0 0 5.022-2.051.75.75 0 1 0-1.202-.897 3.744 3.744 0 0 1-3.008 1.51c0-1.23.592-2.323 1.51-3.008Z"/>
-            </svg>,
+            icon: <MdRocketLaunch size={30} />,
             title: "Seamless System",
             description: "Communicate with potential matches effortlessly",
         },
