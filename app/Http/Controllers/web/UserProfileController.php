@@ -50,7 +50,7 @@ class UserProfileController extends Controller
     {
         // If user not logged in redirect on Notice page
         if (!Auth::id()) {
-            return redirect(route('loginRequired', absolute: false));
+            return redirect(route('login.required', absolute: false));
         }
 
         $profileId = $request->route('profileId');
