@@ -44,7 +44,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(route('activate.profile', absolute: false));
+        $userInfo = [
+            'email' => $request->name,
+            'name' => $request->email,
+        ];
+
+        return redirect()->intended(route('activate.profile', $userInfo,  absolute: false));
 
         /*Auth::login($user);
 
