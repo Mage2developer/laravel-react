@@ -12,6 +12,7 @@ import HeroSlider from "@/Components/HeroSlider";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { MdRocketLaunch } from "react-icons/md";
+import { MdImageSearch } from "react-icons/md";
 
 function Home({ latestProfile }) {
     // const [searchText, setSearchText] = useState("");
@@ -46,7 +47,7 @@ function Home({ latestProfile }) {
                 "Create your profile and start journey towards finding a lifelong partner today",
         },
         {
-            icon: <IoSearchCircle size={30} />,
+            icon: <MdImageSearch size={30} />,
             title: "Advanced Search for Ideal Matches",
             description: "Easily filter profiles based on your preferences",
         },
