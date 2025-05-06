@@ -18,3 +18,37 @@ export const getMaritalStatusText = (status) => {
             return "Not Specified";
     }
 };
+
+export const getManglikStatusText = (status) => {
+    switch (status) {
+        case 0:
+            return "Yes";
+        case 1:
+            return "No";
+        default:
+            return "Not Specified";
+    }
+};
+
+export const getHaveSpecsText = (status) => {
+    switch (status) {
+        case 0:
+            return "Yes";
+        case 1:
+            return "No";
+        default:
+            return "Not Specified";
+    }
+};
+
+
+export const getGenderText = (status) => {
+    switch (status) {
+        case 0:
+            return "Male";
+        case 1:
+            return "Female";
+        default:
+            return "Not Specified";
+    }
+};

@@ -64,7 +64,7 @@ const ProfileActivation = () => {
             <Head title="Profile Activation Required" />
             <div className="min-h-[450px] w-ful flex items-center justify-center px-4 py-10">
                 <div className="max-w-2xl w-full bg-white shadow-md border border-black/10 rounded-xl p-8">
-                    <h1 className="text-4xl font-bold text-center text-[#ff3131] mb-6 bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center text-[#ff3131] mb-6 bg-clip-text">
                         Activate Your Profile
                     </h1>
 
@@ -93,11 +93,6 @@ const ProfileActivation = () => {
                                 text="Profile Fees"
                                 tooltipContent={
                                     <ul class="list-disc px-4 sm:px-5">
-                                        <li>
-                                            Users can register themselves or
-                                            send their bio-data personally or by
-                                            email/WhatsApp.
-                                        </li>
                                         <li>
                                             Free registration for fatherless
                                             daughters.
