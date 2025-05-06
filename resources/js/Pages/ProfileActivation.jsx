@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head } from "@inertiajs/react";
+import {Head} from "@inertiajs/react";
 
 const ProfileActivation = () => {
     const [userEmail, setUserEmail] = useState("");
@@ -28,7 +28,7 @@ const ProfileActivation = () => {
 
     return (
         <GuestLayout>
-            <Head title="Profile Activation Required" />
+            <Head title="Profile Activation Required"/>
             <div className="min-h-[450px] w-ful flex items-center justify-center px-4 py-10">
                 <div className="max-w-2xl w-full bg-white shadow-md border border-black/10 rounded-xl p-8">
                     <h1 className="text-4xl font-bold text-center text-red-600 mb-6">
@@ -53,19 +53,20 @@ const ProfileActivation = () => {
                             Please send your User ID & Full Name via WhatsApp.
                         </li>
                         <li>
-                            <span className="font-bold">4. </span>Share your
-                            payment screenshot with the admin on WhatsApp.
+                            <span className="font-bold">4. </span>Share your payment screenshot & Aadhaar card with the admin on
+                            WhatsApp. <br/>
+                            <b>UPI ID for payment </b>: mage2developer@axisbank
                         </li>
                         <li>
                             <span className="font-bold">5. </span>You cannot log
                             in until your profile is activated.
                         </li>
                         <li>
-                            <span className="font-bold">6. </span>Send your
-                            Aadhaar card to admin via WhatsApp.
+                            <span className="font-bold">6. </span> Admin WhatsApp: +91-8200426399
                         </li>
-                        <li className="text-green-700 font-semibold">
-                            7. Admin WhatsApp: +91-8200426399
+                        <li>
+                            <span className="font-bold">7. </span> Created Profile take <span className="font-bold text-red-700"> 3-5 working days </span> to
+                            activate, Once profile has been activated admin will notified on same WhatsApp Number.
                         </li>
                     </ul>
 
