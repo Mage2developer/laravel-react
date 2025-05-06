@@ -5,13 +5,16 @@ use App\Http\Controllers\web\UserProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\User;
 
 Route::get('/', function () {
+    $userModel = new User();
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'latestProfile' => $userModel->getLatestUserProfile(),
     ]);
 });
 
@@ -31,13 +34,17 @@ Route::get('/profile/{profileId}', [UserProfileController::class, 'view'])->name
 // Activate Profile section after signUp
 Route::get('/activateProfile', function () {
     return Inertia::render('ProfileActivation');
-})->name('activateProfile');
+})->name('activate.profile');
 
 // Disable access profile with-out login
 Route::get('/loginRequired', function () {
     return Inertia::render('LoginRequired');
-})->name('loginRequired');
+})->name('login.required');
 
+// How to create profile page
+Route::get('/how-to-create-profile', function () {
+    return Inertia::render('HowToCreateProfile');
+})->name('how.to.create.profile');
 
 Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
