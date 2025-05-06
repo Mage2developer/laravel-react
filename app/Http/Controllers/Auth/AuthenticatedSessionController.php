@@ -33,7 +33,11 @@ class AuthenticatedSessionController extends Controller
         // Customised code for checking user status before login
         $user = User::where('email', $request->email)->first();
         if ($user->status != 1) {
-            return redirect()->intended(route('activate.profile', absolute: false));
+            $userInfo = [
+                'email' => $user->email,
+                'name' => $user->name,
+            ];
+            return redirect()->intended(route('activate.profile', $userInfo,  absolute: false));
         }
 
         $request->authenticate();
