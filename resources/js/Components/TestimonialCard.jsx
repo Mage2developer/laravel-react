@@ -8,10 +8,10 @@ export const TestimonialCard = ({ image, quote, name, role }) => {
                 src={image}
                 alt={`${name}'s testimonial`}
             />
-            <p className="mb-5 text-base leading-relaxed text-neutral-400">{quote}</p>
+            <p className="mb-5 text-base leading-relaxed text-black">{quote}</p>
             <div>
-                <h4 className="mb-1 text-lg font-semibold text-neutral-500">{name}</h4>
-                <p className="text-sm text-neutral-400">{role}</p>
+                <h4 className="mb-1 text-lg font-semibold text-black">{name}</h4>
+                <p className="text-sm text-black">{role}</p>
             </div>
         </div>
     );

@@ -74,10 +74,10 @@ function Home({ latestProfile }) {
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                             <div className="flex flex-col gap-6">
-                                <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-neutral-500 capitalize">
+                                <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-black capitalize">
                                     Discover your perfect match with confidence
                                 </h2>
-                                <p className="mb-4 text-lg leading-relaxed text-neutral-400">
+                                <p className="mb-4 text-lg leading-relaxed text-black">
                                     Vanand Vivah priorities your safety and
                                     privacy. Our advanced matching algorithm
                                     connects you with compatible partners.
@@ -87,10 +87,10 @@ function Home({ latestProfile }) {
                                         <AiFillSafetyCertificate size={30} />
                                     </div>
                                     <div>
-                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">
+                                        <h3 className="mb-2 text-2xl font-semibold text-black">
                                             Safety First
                                         </h3>
-                                        <p className="leading-relaxed text-neutral-400">
+                                        <p className="leading-relaxed text-black">
                                             Your data is protected with
                                             top-notch security measures.
                                         </p>
@@ -101,10 +101,10 @@ function Home({ latestProfile }) {
                                         <LuHeartHandshake size={30} />
                                     </div>
                                     <div>
-                                        <h3 className="mb-2 text-2xl font-semibold text-neutral-500">
+                                        <h3 className="mb-2 text-2xl font-semibold text-black">
                                             Proven Success
                                         </h3>
-                                        <p className="leading-relaxed text-neutral-400">
+                                        <p className="leading-relaxed text-black">
                                             Join countless couples who found
                                             love through our platform.
                                         </p>
@@ -124,7 +124,7 @@ function Home({ latestProfile }) {
                 </section>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
-                    <h2 className="mb-10 text-5xl font-semibold text-center max-sm:text-3xl text-neutral-500">
+                    <h2 className="mb-10 text-5xl font-semibold text-center max-sm:text-3xl text-black">
                         Recently Created Profiles
                     </h2>
                     <div className="overflow-x-auto">
@@ -138,10 +138,10 @@ function Home({ latestProfile }) {
 
                 {/*<section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">*/}
                 {/*    <div className="mb-16 text-center">*/}
-                {/*        <h2 className="mb-4 text-5xl font-semibold max-sm:text-3xl text-neutral-500">*/}
+                {/*        <h2 className="mb-4 text-5xl font-semibold max-sm:text-3xl text-black">*/}
                 {/*            What Our Clients Say*/}
                 {/*        </h2>*/}
-                {/*        <p className="mx-auto my-0 text-lg max-w-[600px] text-neutral-400">*/}
+                {/*        <p className="mx-auto my-0 text-lg max-w-[600px] text-black">*/}
                 {/*            Hear from our satisfied customers about their*/}
                 {/*            experiences*/}
                 {/*        </p>*/}
@@ -180,9 +180,8 @@ function Home({ latestProfile }) {
                     <div className="flex items-center gap-5 max-md:flex-col">
                         <div className="w-6/12 max-md:w-full">
                             <div className="flex flex-col gap-8">
-                                <h2 className="text-5xl font-bold leading-tight max-sm:text-4xl text-neutral-500">
-                                    Discover the Benefits of Choosing Vanand
-                                    Vivah for Your Matchmaking Journey
+                                <h2 className="text-5xl font-bold leading-tight max-sm:text-4xl text-black">
+                                    Discover the Benefits of Choosing Vanand Vivah
                                 </h2>
                                 <div className="flex flex-col gap-6">
                                     {features.map((feature, index) => (

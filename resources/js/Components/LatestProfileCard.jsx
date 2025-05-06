@@ -21,7 +21,7 @@ export const LatestProfileCard = ({ profile }) => {
                         alt={profile.name}
                     />
                 </div>
-            </Link>
+
                 <h3 className="mb-1 text-base font-semibold text-center text-black line-clamp-1">
                     {profile.name}
                 </h3>
@@ -45,7 +45,7 @@ export const LatestProfileCard = ({ profile }) => {
                         {profile.user_education_detail.occupation}
                     </div>
                 </div>
-
+            </Link>
         </div>
     );
 };

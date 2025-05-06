@@ -5,8 +5,8 @@ import MaritalStatus from "./MaritalStatus";
 
 function ProfileGridCard({ profile }) {
     return (
-        <Link href={`/profile/${profile.id}`} className="block">
-            <article className="text-center p-5 rounded-xl transition-all cursor-pointer bg-[#fff7f7] border shadow-lg bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
+        <Link href={`/profile/${profile.id}`} className="block p-5 rounded-xl transition-all cursor-pointer bg-[#fff7f7] border shadow-lg bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
+            <article className="text-center">
                 {/* <figure className="overflow-hidden relative pt-52 md:pt-80 mb-5 rounded-lg"> */}
                 <div>
                     <img

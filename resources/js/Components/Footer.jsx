@@ -34,7 +34,7 @@ export const Footer = () => {
                         alt="Logo"
                         className="mx-auto h-20 w-auto object-contain"
                     />
-                    <p className="mt-4 text-sm text-neutral-500">
+                    <p className="mt-4 text-sm text-black">
                         © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
                     </p>
                 </div>

@@ -7,10 +7,10 @@ export const FeatureCard = ({ icon, title, description }) => {
                 {icon}
             </div>
             <div>
-                <h3 className="mb-2 text-2xl font-semibold text-neutral-500">
+                <h3 className="mb-2 text-2xl font-semibold text-black">
                     {title}
                 </h3>
-                <p className="leading-relaxed text-neutral-400">
+                <p className="leading-relaxed text-black">
                     {description}
                 </p>
             </div>
