@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import { Button } from "@/Components/Button"; // Assuming you have a reusable Button component
 
 function LoginRequired() {
@@ -14,26 +14,14 @@ function LoginRequired() {
                         <h1 className="text-4xl sm:text-5xl font-semibold text-[#ff3131] mb-6 text-center">
                             Login Required
                         </h1>
-                        <p className="text-lg text-gray-700 mb-3">
-                            You are not able to access profiles until your
-                            account is activated.
-                        </p>
-                        <p className="text-md text-gray-600 mb-6">
-                            Please send your Aadhaar card to the admin via
-                            WhatsApp for verification.
+                        <p className="text-lg text-gray-700 mb-10">
+                            You are not able to view profiles as guest, You need to create an account.
                         </p>
 
-                        {/* WhatsApp Button */}
-                        <a
-                            href="https://wa.me/0918200426399?text=Hi%2C%20please%20activate%20my%20account."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block text-center"
-                        >
-                            <Button variant="red" className="text-lg px-6 py-2">
-                                Contact Admin on WhatsApp
-                            </Button>
-                        </a>
+                        <Link href="/register">
+                            <Button variant="red">Create an account</Button>
+                        </Link>
+
                     </section>
                 </div>
             </div>
