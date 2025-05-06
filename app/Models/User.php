@@ -152,11 +152,16 @@ class User extends Authenticatable
      */
     public function getLatestUserProfile()
     {
-        $users = User::with('userImages')
+        $users = User::with(
+            'userPersonalDetail:id,user_id,dob,marital_status',
+            'userEducationDetail:id,user_id,occupation',
+            'userImages'
+        )
             ->where('users.status', Data::ENABLE)
             ->orderBy('users.id', 'desc')
             ->limit(Data::LATEST_PROFILE_UMBER)
             ->get();
+
         return $users->toArray();
     }
 
