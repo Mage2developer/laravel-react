@@ -7,10 +7,10 @@ use App\Http\Controllers\api\UserEducationDetailController;
 use App\Http\Controllers\api\UserFamilyDetailController;
 use App\Http\Controllers\api\UserPersonalDetailController;
 use App\Http\Controllers\api\UserProfileController;
-use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\UserImageController;
+use App\Http\Controllers\api\ForgotPasswordController;
 
 
 Route::get('/user', function (Request $request) {
