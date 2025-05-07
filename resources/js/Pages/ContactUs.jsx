@@ -92,7 +92,7 @@ const ContactUs = () => {
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <FaWhatsapp className="w-5 h-7 text-blue-400" />
-                                    <span className="">+091 8200426399</span>
+                                    <span className="">+91 8200426399</span>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <FiMail className="w-5 h-5 text-purple-400" />
@@ -104,7 +104,7 @@ const ContactUs = () => {
                                     <FiClock className="w-5 h-5 text-purple-400" />
                                     <span className="">
                                         {" "}
-                                        11:00 AM to 5:00PM
+                                        11:00 AM to 5:00PM (Monday - Friday)
                                     </span>
                                 </div>
                                 <div className="flex items-start gap-3">
@@ -120,13 +120,6 @@ const ContactUs = () => {
                                     Connect with us
                                 </h3>
                                 <div className="flex gap-4">
-                                    {/* <a
-                                        href="#"
-                                        aria-label="Twitter"
-                                        className=" hover:text-[#ff3131] transition-colors"
-                                    >
-                                        <FiTwitter className="w-6 h-6" />
-                                    </a> */}
                                     <a
                                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                                         aria-label="Facebook"

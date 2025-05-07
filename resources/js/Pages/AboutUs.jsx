@@ -23,7 +23,7 @@ const AboutUs = () => {
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         {/* Image Column */}
-                        <div className="h-full rounded-xl overflow-hidden shadow-lg border border-white/10  flex justify-center">
+                        <div className="rounded-xl overflow-hidden shadow-lg border border-white/10  flex justify-center">
                             <img
                                 src="images/about-us.png"
                                 alt="Our Team"
@@ -32,33 +32,36 @@ const AboutUs = () => {
                         </div>
 
                         {/* Content Column */}
-                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 shadow-lg flex flex-col justify-between">
+                        <div
+                            className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 shadow-lg flex flex-col justify-between">
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Our Story
                             </h2>
                             <p className="">
-                                We are a passionate team dedicated to creating
-                                innovative solutions. Our journey began with a
-                                vision to build impactful technology. Over the
-                                years, we have evolved, always striving to
-                                deliver excellence and make a positive
-                                difference.
+                                At vanandvivah.com, we believe that everyone deserves to find their
+                                soulmate. Founded on the principles of trust and community, we provide a platform where
+                                genuine connections can blossom.
                             </p>
                             <p className="">
-                                Our mission is to empower users through
-                                user-friendly digital products and exceptional
-                                service.
+                                Unlike generic dating sites, we understand the importance of cultural compatibility in
+                                finding a life partner. Our tailored approach ensures you connect with individuals who
+                                share your values and aspirations.
+                            </p>
+                            <p className="">
+                                Our dedicated team is passionate about creating successful matches. We continuously
+                                strive to enhance our platform with innovative features and ensure a safe and respectful
+                                environment for all our members.
                             </p>
                             <div className="space-y-4">
                                 <h3 className="text-lg font-semibold text-[#ff3131]">
                                     Contact
                                 </h3>
                                 <div className="flex items-center gap-3">
-                                    <FaWhatsapp className="w-7 h-7 text-blue-400" />
-                                    <span className="">+091 8200426399</span>
+                                    <FaWhatsapp className="w-7 h-7 text-blue-400"/>
+                                    <span className="">+91 8200426399</span>
                                 </div>
                                 <div className="flex items-start gap-3">
-                                    <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400" />
+                                    <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400"/>
                                     <span className="">
                                         Block Number 2, Bluebell Bunglows,
                                         Silver park, Junagadh, India, 362001
@@ -71,19 +74,19 @@ const AboutUs = () => {
                                     Follow us
                                 </h3>
                                 <div className="flex gap-4">
-                                    <a
+                                    <a target="_blank"
                                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                                         aria-label="Facebook"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
-                                        <FiFacebook className="w-6 h-6" />
+                                        <FiFacebook className="w-6 h-6"/>
                                     </a>
-                                    <a
+                                    <a target="_blank"
                                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                                         aria-label="Facebook"
                                         className=" hover:text-[#ff3131] transition-colors"
                                     >
-                                        <FiInstagram className="w-6 h-6" />
+                                        <FiInstagram className="w-6 h-6"/>
                                     </a>
                                 </div>
                             </div>
