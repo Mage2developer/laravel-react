@@ -1,14 +1,12 @@
 import React from "react";
-import {useForm, usePage} from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {Transition} from "@headlessui/react";
 
-export default function UpdateFamilyDetailsForm({ className = '' }) {
-    const user = usePage().props.auth.user;
-
+export default function UpdateFamilyDetailsForm({ user, className = '' }) {
     const {data, setData, patch, errors, processing, recentlySuccessful} =
         useForm({
             father_name: user.father_name,

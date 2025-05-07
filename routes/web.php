@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\web\UserProfileController;
+use App\Http\Controllers\api\UserContactDetailController;
+use App\Http\Controllers\api\UserEducationDetailController;
+use App\Http\Controllers\api\UserFamilyDetailController;
+use App\Http\Controllers\api\UserPersonalDetailController;
+use App\Http\Controllers\api\UserImageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,9 +28,21 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/my-account', [ProfileController::class, 'edit'])->name('account.edit');
+    Route::patch('/my-account', [ProfileController::class, 'update'])->name('account.update');
+    Route::delete('/my-account', [ProfileController::class, 'destroy'])->name('account.destroy');
+    Route::get('/profile', function () {
+        return Inertia::render('Profile/Edit');
+    })->name('profile.edit');
+    Route::patch('/userContactDetail', [UserContactDetailController::class, 'update']);
+    Route::patch('/userEducationDetail', [UserEducationDetailController::class, 'update']);
+    Route::patch('/userPersonalDetail', [UserPersonalDetailController::class, 'update']);
+    Route::patch('/userFamilyDetail', [UserFamilyDetailController::class, 'update']);
+
+    Route::post('/profileImages', [UserImageController::class, 'store']);
+    Route::post('/profileImages/{id}/replace', [UserImageController::class, 'replace']);
+    Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
+    Route::get('/profileImages', [UserImageController::class, 'index']);
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');

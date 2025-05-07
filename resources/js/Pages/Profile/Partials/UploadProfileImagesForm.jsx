@@ -1,8 +1,6 @@
-import {useForm, usePage} from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
 
-export default function UploadProfileImagesForm({ className = '' }) {
-    const user = usePage().props.auth.user;
-
+export default function UploadProfileImagesForm({ user, className = '' }) {
     const {data, setData, patch, errors, processing, recentlySuccessful} =
         useForm({
             image_path: user.image_path

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useForm, usePage} from '@inertiajs/react';
+import {useForm} from '@inertiajs/react';
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
@@ -11,10 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {Transition} from "@headlessui/react";
 
-export default function UpdatePersonalDetailsForm({ className = '' }) {
-
-    const user = usePage().props.auth.user;
-
+export default function UpdatePersonalDetailsForm({ user, className = '' }) {
     const {data, setData, patch, errors, processing, recentlySuccessful} =
         useForm({
             dob: user.dob,

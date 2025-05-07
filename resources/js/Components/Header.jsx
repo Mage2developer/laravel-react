@@ -70,18 +70,13 @@ export const Header = () => {
                                 </span>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <Dropdown.Link
-                                    href={route("profile.edit")}
-                                    className="text-xl"
-                                >
+                                <Dropdown.Link href={route("account.edit")} className="text-xl">
+                                    My Account
+                                </Dropdown.Link>
+                                <Dropdown.Link href={route("profile.edit")} className="text-xl">
                                     Profile
                                 </Dropdown.Link>
-                                <Dropdown.Link
-                                    href={route("logout")}
-                                    method="post"
-                                    as="button"
-                                    className="text-xl"
-                                >
+                                <Dropdown.Link href={route("logout")} method="post" as="button" className="text-xl">
                                     Log Out
                                 </Dropdown.Link>
                             </Dropdown.Content>
@@ -115,14 +110,9 @@ export const Header = () => {
                     <div className="flex flex-col gap-3">
                         {user ? (
                             <>
-                                <ResponsiveNavLink href={route("profile.edit")}>
-                                    Profile
-                                </ResponsiveNavLink>
-                                <ResponsiveNavLink
-                                    method="post"
-                                    href={route("logout")}
-                                    as="button"
-                                >
+                                <ResponsiveNavLink href={route("account.edit")}>My Account</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route("profile.edit")}>Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink method="post" href={route("logout")} as="button">
                                     Log Out
                                 </ResponsiveNavLink>
                             </>

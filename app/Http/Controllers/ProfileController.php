@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('Profile/Edit', [
+        return Inertia::render('Profile/Account', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
@@ -37,11 +37,11 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return Redirect::route('account.edit');
     }
 
     /**
-     * Delete the user's account.
+     * Deactivate the user's account.
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -50,10 +50,13 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
+        $user->status = 0;
+        $user->is_deleted = 1;
+        $user->save();
 
         Auth::logout();
 
-        $user->delete();
+        //$user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -3,11 +3,9 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import {Transition} from '@headlessui/react';
-import {Link, useForm, usePage} from '@inertiajs/react';
+import {Link, useForm} from '@inertiajs/react';
 
-export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
-    const user = usePage().props.auth.user;
-
+export default function UpdateProfileInformation({ user, mustVerifyEmail, status, className = '' }) {
     const {data, setData, patch, errors, processing, recentlySuccessful} =
         useForm({
             name: user.name,
@@ -17,11 +15,15 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('profile.update'));
+        patch(route('account.update'));
     };
 
     return (
         <section className={className}>
+            <header>
+                <h2 className="text-lg font-bold">Profile Information</h2>
+            </header>
+
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
                     <InputLabel htmlFor="name" value="Name"/>
@@ -88,8 +90,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="text-sm text-gray-600">
-                            Saved.
+                        <p className="text-sm text-green-600">
+                            Your profile information has been saved successfully.
                         </p>
                     </Transition>
                 </div>
