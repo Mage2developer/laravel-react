@@ -38,7 +38,7 @@ function Index({ profile }) {
     return (
         <AuthenticatedLayout>
             <Head title={item.name} />
-            <div className="min-h-screen bg-gray-100 p-1 sm:p-4">
+            <div className="min-h-screen bg-gray-100 p-[15px] sm:p-4">
                 <div className="max-w-6xl mx-auto">
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-6">
@@ -170,45 +170,40 @@ function Index({ profile }) {
                                     return (
                                         <div
                                             key={section}
-                                            className="border rounded-lg"
+                                            className="border-[1px] rounded-lg m-2"
                                         >
-                                            <div className="flex justify-center items-center">
-                                                <button
-                                                    onClick={() => {
-                                                        setActiveTab(section);
-                                                        setOpenAccordions(
-                                                            (prev) => ({
-                                                                [section]:
-                                                                    !prev[
-                                                                        section
-                                                                    ],
-                                                            })
-                                                        );
-                                                    }}
-                                                    className={`w-full text-left px-4 py-3 font-medium text-xl bg-white flex justify-between items-center${
-                                                        isOpen
-                                                            ? "bg-purple-100 text-purple-700"
-                                                            : "bg-gray-100 text-gray-700 "
-                                                    }`}
-                                                >
-                                                    {section === "about" &&
-                                                        "Personal Details"}
-                                                    {section === "photos" &&
-                                                        "Photos"}
-                                                    {section === "family" &&
-                                                        "Family Details"}
-                                                    {section ===
-                                                        "preferences" &&
-                                                        "Contact Details"}
-                                                    <div className="m-1">
-                                                        {isOpen ? (
-                                                            <IoIosArrowDropup />
-                                                        ) : (
-                                                            <IoIosArrowDropdown />
-                                                        )}
-                                                    </div>
-                                                </button>
-                                            </div>
+                                            <button
+                                                onClick={() => {
+                                                    setActiveTab(section);
+                                                    setOpenAccordions(
+                                                        (prev) => ({
+                                                            [section]:
+                                                                !prev[section],
+                                                        })
+                                                    );
+                                                }}
+                                                className={`w-full text-left px-4 py-3 font-medium text-xl bg-white flex justify-between items-center${
+                                                    isOpen
+                                                        ? "bg-purple-100 text-purple-700"
+                                                        : "bg-gray-100 text-gray-700 "
+                                                }`}
+                                            >
+                                                {section === "about" &&
+                                                    "Personal Details"}
+                                                {section === "photos" &&
+                                                    "Photos"}
+                                                {section === "family" &&
+                                                    "Family Details"}
+                                                {section === "preferences" &&
+                                                    "Contact Details"}
+                                                <div className="m-1">
+                                                    {isOpen ? (
+                                                        <IoIosArrowDropup />
+                                                    ) : (
+                                                        <IoIosArrowDropdown />
+                                                    )}
+                                                </div>
+                                            </button>
 
                                             {isOpen && (
                                                 <div className="px-5 py-3 border-t">
