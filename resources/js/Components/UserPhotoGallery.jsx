@@ -13,7 +13,7 @@ const UserPhotoGallery = ({
 
     return (
         <div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+            <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
                 Photo Gallery
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

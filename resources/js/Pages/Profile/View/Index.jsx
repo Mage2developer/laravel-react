@@ -41,7 +41,7 @@ function Index({ profile }) {
             <div className="min-h-screen bg-gray-100 p-[15px] sm:p-4">
                 <div className="max-w-6xl mx-auto">
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-6">
+                        <div className="bg-gradient-to-r from-[#ff3131] to-[#e1a730] text-white p-6">
                             <div className="flex flex-col md:flex-row items-center md:justify-between">
                                 <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
                                     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 md:mb-0 md:mr-6">
@@ -115,14 +115,13 @@ function Index({ profile }) {
                                 </div>
                             </div>
                         </div>
-
                         <div className="border-b hidden sm:flex">
                             <nav className="flex">
                                 <button
                                     onClick={() => setActiveTab("about")}
                                     className={`px-4 py-3 font-medium text-sm ${
                                         activeTab === "about"
-                                            ? "border-b-2 border-purple-600 text-purple-600"
+                                            ? "border-b-2 border-[#ff3131] text-[#ff3131]"
                                             : "text-gray-500 hover:text-gray-700"
                                     }`}
                                 >
@@ -132,7 +131,7 @@ function Index({ profile }) {
                                     onClick={() => setActiveTab("photos")}
                                     className={`px-4 py-3 font-medium text-sm ${
                                         activeTab === "photos"
-                                            ? "border-b-2 border-purple-600 text-purple-600"
+                                            ? "border-b-2 border-[#ff3131] text-[#ff3131]"
                                             : "text-gray-500 hover:text-gray-700"
                                     }`}
                                 >
@@ -142,7 +141,7 @@ function Index({ profile }) {
                                     onClick={() => setActiveTab("family")}
                                     className={`px-4 py-3 font-medium text-sm ${
                                         activeTab === "family"
-                                            ? "border-b-2 border-purple-600 text-purple-600"
+                                            ? "border-b-2 border-[#ff3131] text-[#ff3131]"
                                             : "text-gray-500 hover:text-gray-700"
                                     }`}
                                 >
@@ -152,7 +151,7 @@ function Index({ profile }) {
                                     onClick={() => setActiveTab("preferences")}
                                     className={`px-4 py-3 font-medium text-sm ${
                                         activeTab === "preferences"
-                                            ? "border-b-2 border-purple-600 text-purple-600"
+                                            ? "border-b-2 border-[#ff3131] text-[#ff3131]"
                                             : "text-gray-500 hover:text-gray-700"
                                     }`}
                                 >
@@ -160,7 +159,6 @@ function Index({ profile }) {
                                 </button>
                             </nav>
                         </div>
-
                         {/* Mobile View Start */}
                         <div className="block sm:hidden space-y-4 mb-8 mt-4">
                             {["about", "photos", "family", "preferences"].map(
@@ -184,7 +182,7 @@ function Index({ profile }) {
                                                 }}
                                                 className={`w-full text-left px-4 py-3 font-medium text-xl bg-white flex justify-between items-center${
                                                     isOpen
-                                                        ? "bg-purple-100 text-purple-700"
+                                                        ? "bg-[#ff3131] text-[#ff3131]"
                                                         : "bg-gray-100 text-gray-700 "
                                                 }`}
                                             >
@@ -251,7 +249,6 @@ function Index({ profile }) {
                             )}
                         </div>
                         {/* Mobile View End  */}
-
                         <div className="p-6 hidden sm:block">
                             {activeTab === "about" && (
                                 <UserPersonalDetails item={item} />

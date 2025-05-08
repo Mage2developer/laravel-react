@@ -4,7 +4,7 @@ import { FaCity, FaLocationCrosshairs, FaPhoneVolume } from "react-icons/fa6";
 const UserContactDetails = ({ item }) => {
     return (
         <div>
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+            <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
                 Contact Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -12,7 +12,7 @@ const UserContactDetails = ({ item }) => {
                     <div className="block xs425:flex items-center text-gray-700">
                         <div className="flex  items-center">
                             <FaPhoneVolume size={15} className="me-2" />
-                            <span className="font-medium">Phone Number:</span>
+                            <span className="font-bold">Phone Number:</span>
                         </div>
                         <span className="ml-7 xs425:ml-2">
                             {item.user_contact_detail.mobile_number}
@@ -23,7 +23,7 @@ const UserContactDetails = ({ item }) => {
                     <div className="block xs425:flex items-center text-gray-700">
                         <div className="flex  items-center">
                             <FaPhoneVolume size={15} className="me-2" />
-                            <span className="font-medium">
+                            <span className="font-bold">
                                 Father's Phone Number:
                             </span>
                         </div>
@@ -36,7 +36,7 @@ const UserContactDetails = ({ item }) => {
                     <div className="block xs425:flex items-center text-gray-700">
                         <div className="flex items-center">
                             <FaLocationCrosshairs size={22} className="me-2" />
-                            <span className="font-medium">Address:</span>
+                            <span className="font-bold">Address:</span>
                         </div>
                         <div className="ml-7 xs425:ml-2">
                             {item.user_contact_detail.current_address}
@@ -50,7 +50,7 @@ const UserContactDetails = ({ item }) => {
                         <div className="block xs425:flex items-center text-gray-700">
                             <div className="flex items-center">
                                 <FaCity size={22} className="me-2" />
-                                <span className="font-medium">
+                                <span className="font-bold">
                                     Native City:
                                 </span>
                             </div>

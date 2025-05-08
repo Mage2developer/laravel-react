@@ -4,6 +4,7 @@ import MaritalStatus from "@/Components/MaritalStatus";
 import MangalikStatus from "@/Components/MangalikStatus";
 import HaveSpecsStatus from "@/Components/HaveSpecsStatus";
 import GetGenderText from "@/Components/GetGenderText";
+import { BsPersonStanding } from "react-icons/bs";
 import {
     FaCalendarDays,
     FaGraduationCap,
@@ -37,14 +38,14 @@ function UserPersonalDetails({ item }) {
                 )}
 
                 <div>
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h2 className="text-lg font-semibold text-[#ff3131] mb-2 ">
                         Basic Details
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <GiBodyHeight size={24} className="me-2" />
-                                <span className="font-medium">Height:</span>
+                                <BsPersonStanding size={24} className="me-2" />
+                                <span className="font-bold">Height:</span>
                                 <span className="ml-2">
                                     {item.user_personal_detail.height}
                                 </span>
@@ -54,7 +55,7 @@ function UserPersonalDetails({ item }) {
                             <div className="flex items-center text-gray-700">
                                 <LiaWeightSolid size={24} className="me-2" />
 
-                                <span className="font-medium">Weight:</span>
+                                <span className="font-bold">Weight:</span>
                                 <span className="ml-2">
                                     {item.user_personal_detail.weight}
                                 </span>
@@ -67,7 +68,7 @@ function UserPersonalDetails({ item }) {
                                         size={22}
                                         className="me-2"
                                     />
-                                    <span className="font-medium">Age:</span>
+                                    <span className="font-bold">Age:</span>
                                 </div>
                                 <span className="ml-7 xs425:ml-2">
                                     <AgeCalculator
@@ -81,7 +82,7 @@ function UserPersonalDetails({ item }) {
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex items-center">
                                     <GiLinkedRings size={24} className="me-2" />
-                                    <span className="font-medium">
+                                    <span className="font-bold">
                                         Marital Status:
                                     </span>
                                 </div>
@@ -98,7 +99,7 @@ function UserPersonalDetails({ item }) {
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
                                 <MdDiamond size={24} className="me-2" />
-                                <span className="font-medium">Manglik:</span>
+                                <span className="font-bold">Manglik:</span>
                                 <span className="ml-2">
                                     <MangalikStatus
                                         status={
@@ -111,7 +112,7 @@ function UserPersonalDetails({ item }) {
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
                                 <GiSpectacles size={30} className="me-2" />
-                                <span className="font-medium">
+                                <span className="font-bold">
                                     Have You Specs:
                                 </span>
                                 <span className="ml-2">
@@ -126,7 +127,7 @@ function UserPersonalDetails({ item }) {
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
                                 <BiMaleFemale size={24} className="me-2" />
-                                <span className="font-medium">Gender:</span>
+                                <span className="font-bold">Gender:</span>
                                 <span className="ml-2">
                                     <GetGenderText
                                         status={item.user_personal_detail.sex}
@@ -138,7 +139,7 @@ function UserPersonalDetails({ item }) {
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex">
                                     <GiMoneyStack size={25} className="me-2" />
-                                    <span className="font-medium">
+                                    <span className="font-bold">
                                         Personal Income :
                                     </span>
                                 </div>
@@ -160,7 +161,7 @@ function UserPersonalDetails({ item }) {
                                         size={24}
                                         className="me-2"
                                     />
-                                    <span className="font-medium">
+                                    <span className="font-bold">
                                         Location:
                                     </span>
                                 </div>
@@ -173,7 +174,7 @@ function UserPersonalDetails({ item }) {
                 </div>
 
                 <div>
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
                         Career
                     </h2>
                     <div className="p-4 rounded-lg">
@@ -184,7 +185,7 @@ function UserPersonalDetails({ item }) {
                                         size={22}
                                         className="me-2"
                                     />
-                                    <span className="font-medium">
+                                    <span className="font-bold">
                                         Occupation :
                                     </span>
                                 </div>
@@ -199,7 +200,7 @@ function UserPersonalDetails({ item }) {
                                         size={22}
                                         className="me-2"
                                     />
-                                    <span className="font-medium">
+                                    <span className="font-bold">
                                         Education:
                                     </span>
                                 </div>
@@ -212,7 +213,7 @@ function UserPersonalDetails({ item }) {
                 </div>
 
                 <div>
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                    <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
                         Hobby
                     </h2>
                     <div className="bg-gray-50 p-4 rounded-lg">
