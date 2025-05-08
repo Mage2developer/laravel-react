@@ -8,7 +8,7 @@ const UserPhotoGallery = ({
     setToggler,
     setSlideIndex,
 }) => {
-    console.log(userImages);
+    // console.log(userImages);
     const photoUrls = userImages.map((photo) => `/${photo.image_path}`);
 
     return (
@@ -38,6 +38,7 @@ const UserPhotoGallery = ({
                 toggler={toggler}
                 sources={photoUrls}
                 slide={slideIndex}
+                exitFullscreenOnClose={true}
             />
         </div>
     );

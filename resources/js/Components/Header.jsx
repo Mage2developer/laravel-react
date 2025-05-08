@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "./Button";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link, usePage } from "@inertiajs/react";
@@ -17,6 +17,21 @@ export const Header = () => {
         { title: "About Us", url: "/about-us" },
         { title: "Contact Us", url: "/contact-us" },
     ];
+    const menuRef = useRef();
+
+    // Close on outside click
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <header className="sticky top-0 z-50 w-full bg-white border-b border-zinc-800 px-4 py-3 shadow-sm">
@@ -70,13 +85,24 @@ export const Header = () => {
                                 </span>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <Dropdown.Link href={route("account.edit")} className="text-xl">
+                                <Dropdown.Link
+                                    href={route("account.edit")}
+                                    className="text-xl"
+                                >
                                     My Account
                                 </Dropdown.Link>
-                                <Dropdown.Link href={route("profile.edit")} className="text-xl">
+                                <Dropdown.Link
+                                    href={route("profile.edit")}
+                                    className="text-xl"
+                                >
                                     Profile
                                 </Dropdown.Link>
-                                <Dropdown.Link href={route("logout")} method="post" as="button" className="text-xl">
+                                <Dropdown.Link
+                                    href={route("logout")}
+                                    method="post"
+                                    as="button"
+                                    className="text-xl"
+                                >
                                     Log Out
                                 </Dropdown.Link>
                             </Dropdown.Content>
@@ -96,7 +122,10 @@ export const Header = () => {
 
             {/* Mobile Menu Dropdown */}
             {isMenuOpen && (
-                <div className="lg:hidden mt-3 flex flex-col gap-4 border-t border-zinc-200 pt-4 px-4">
+                <div
+                    ref={menuRef}
+                    className="lg:hidden absolute top-full left-0 w-full bg-white shadow-md border-t border-zinc-200 z-40 flex flex-col gap-4 py-4 px-4"
+                >
                     {navLinks.map((link, i) => (
                         <Link
                             key={i}
@@ -110,9 +139,17 @@ export const Header = () => {
                     <div className="flex flex-col gap-3">
                         {user ? (
                             <>
-                                <ResponsiveNavLink href={route("account.edit")}>My Account</ResponsiveNavLink>
-                                <ResponsiveNavLink href={route("profile.edit")}>Profile</ResponsiveNavLink>
-                                <ResponsiveNavLink method="post" href={route("logout")} as="button">
+                                <ResponsiveNavLink href={route("account.edit")}>
+                                    My Account
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink href={route("profile.edit")}>
+                                    Profile
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink
+                                    method="post"
+                                    href={route("logout")}
+                                    as="button"
+                                >
                                     Log Out
                                 </ResponsiveNavLink>
                             </>

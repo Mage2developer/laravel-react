@@ -1,14 +1,19 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { GiMoneyStack } from "react-icons/gi";
 
-const InfoCard = ({ label, value }) => {
+const InfoCard = ({ label, value, icon }) => {
     if (!value) return null;
 
     return (
         <div className="bg-gray-50 p-4 rounded-lg">
             <div className="block xs425:flex items-center text-gray-700">
                 <div className="flex gap-2">
-                    <FaUserCircle size={25} className="me-2 sm:me-auto" />
+                    {!icon ? (
+                        <FaUserCircle size={25} className="me-2 sm:me-auto" />
+                    ) : (
+                        icon
+                    )}
                     <span className="font-medium">{label}</span>
                 </div>
                 <span className="ml-10 xs425:ml-2">{value}</span>
@@ -29,7 +34,11 @@ const UserFamilyDetails = ({ item }) => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard label="Father's Name:" value={family.father_name} />
-                <InfoCard label="Father's Income:" value={income} />
+                <InfoCard
+                    label="Father's Income:"
+                    value={income}
+                    icon={<GiMoneyStack size={25} className="me-2" />}
+                />
                 <InfoCard label="Mother's Name:" value={family.mother_name} />
                 <div></div>
                 <InfoCard label="Brother's Name:" value={family.brother_name} />

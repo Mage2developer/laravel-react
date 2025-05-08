@@ -10,8 +10,8 @@ const UserContactDetails = ({ item }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex">
-                            <FaPhoneVolume size={20} className="me-2" />
+                        <div className="flex  items-center">
+                            <FaPhoneVolume size={15} className="me-2" />
                             <span className="font-medium">Phone Number:</span>
                         </div>
                         <span className="ml-7 xs425:ml-2">
@@ -21,8 +21,8 @@ const UserContactDetails = ({ item }) => {
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex">
-                            <FaPhoneVolume size={20} className="me-2" />
+                        <div className="flex  items-center">
+                            <FaPhoneVolume size={15} className="me-2" />
                             <span className="font-medium">
                                 Father's Phone Number:
                             </span>
@@ -34,8 +34,8 @@ const UserContactDetails = ({ item }) => {
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                     <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex ">
-                            <FaLocationCrosshairs size={25} className="me-2" />
+                        <div className="flex items-center">
+                            <FaLocationCrosshairs size={22} className="me-2" />
                             <span className="font-medium">Address:</span>
                         </div>
                         <div className="ml-7 xs425:ml-2">
@@ -48,7 +48,7 @@ const UserContactDetails = ({ item }) => {
                 ) : (
                     <div className="bg-gray-50 p-4 rounded-lg">
                         <div className="block xs425:flex items-center text-gray-700">
-                            <div className="flex">
+                            <div className="flex items-center">
                                 <FaCity size={22} className="me-2" />
                                 <span className="font-medium">
                                     Native City:

@@ -43,7 +43,7 @@ function UserPersonalDetails({ item }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <GiBodyHeight size={30} className="me-2" />
+                                <GiBodyHeight size={24} className="me-2" />
                                 <span className="font-medium">Height:</span>
                                 <span className="ml-2">
                                     {item.user_personal_detail.height}
@@ -52,7 +52,7 @@ function UserPersonalDetails({ item }) {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <LiaWeightSolid size={30} className="me-2" />
+                                <LiaWeightSolid size={24} className="me-2" />
 
                                 <span className="font-medium">Weight:</span>
                                 <span className="ml-2">
@@ -61,10 +61,15 @@ function UserPersonalDetails({ item }) {
                             </div>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <FaCalendarDays size={22} className="me-2" />
-                                <span className="font-medium">Age:</span>
-                                <span className="ml-2">
+                            <div className="block xs425:flex items-center text-gray-700">
+                                <div className="flex items-center">
+                                    <FaCalendarDays
+                                        size={22}
+                                        className="me-2"
+                                    />
+                                    <span className="font-medium">Age:</span>
+                                </div>
+                                <span className="ml-7 xs425:ml-2">
                                     <AgeCalculator
                                         dob={item.user_personal_detail.dob}
                                     />{" "}
@@ -73,12 +78,14 @@ function UserPersonalDetails({ item }) {
                             </div>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <GiLinkedRings size={25} className="me-2" />
-                                <span className="font-medium">
-                                    Marital Status:
-                                </span>
-                                <span className="ml-2">
+                            <div className="block xs425:flex items-center text-gray-700">
+                                <div className="flex items-center">
+                                    <GiLinkedRings size={24} className="me-2" />
+                                    <span className="font-medium">
+                                        Marital Status:
+                                    </span>
+                                </div>
+                                <span className="ml-7 xs425:ml-2">
                                     <MaritalStatus
                                         status={
                                             item.user_personal_detail
@@ -90,7 +97,7 @@ function UserPersonalDetails({ item }) {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <MdDiamond size={25} className="me-2" />
+                                <MdDiamond size={24} className="me-2" />
                                 <span className="font-medium">Manglik:</span>
                                 <span className="ml-2">
                                     <MangalikStatus
@@ -118,7 +125,7 @@ function UserPersonalDetails({ item }) {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <BiMaleFemale size={30} className="me-2" />
+                                <BiMaleFemale size={24} className="me-2" />
                                 <span className="font-medium">Gender:</span>
                                 <span className="ml-2">
                                     <GetGenderText
@@ -130,7 +137,7 @@ function UserPersonalDetails({ item }) {
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex">
-                                    <GiMoneyStack size={30} className="me-2" />
+                                    <GiMoneyStack size={25} className="me-2" />
                                     <span className="font-medium">
                                         Personal Income :
                                     </span>
@@ -150,7 +157,7 @@ function UserPersonalDetails({ item }) {
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex ">
                                     <FaLocationCrosshairs
-                                        size={25}
+                                        size={24}
                                         className="me-2"
                                     />
                                     <span className="font-medium">
@@ -182,9 +189,9 @@ function UserPersonalDetails({ item }) {
                                     </span>
                                 </div>
 
-                                <span className="ml-7 xs425:ml-2">
+                                <div className="ml-7 xs425:ml-2">
                                     {item.user_education_detail.occupation}
-                                </span>
+                                </div>
                             </div>
                             <div className="block xs425:flex items-center text-gray-700 bg-gray-50 p-4 rounded-lg">
                                 <div className="flex">
