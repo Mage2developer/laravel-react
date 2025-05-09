@@ -8,6 +8,7 @@ import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Button } from "@/Components/Button";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -19,8 +20,20 @@ export default function Login({ status, canResetPassword }) {
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(!showPassword);
 
+    const [captchaToken, setCaptchaToken] = useState(null);
+
+    const [captchaError, setcaptchaError] = useState(null);
+
     const submit = (e) => {
         e.preventDefault();
+
+        if (!captchaToken) {
+            e.preventDefault();
+            setcaptchaError("Invalid Captcha !");
+            //alert('Please complete the CAPTCHA');
+            return;
+        }
+
         post(route("login"), {
             onFinish: () => reset("password"),
         });
@@ -117,6 +130,16 @@ export default function Login({ status, canResetPassword }) {
                                 </Link>
                             )}
                         </div>
+
+                        <ReCAPTCHA
+                            sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
+                            onChange={(token) => setCaptchaToken(token)}
+                            onExpired={() => setCaptchaToken(null)}
+                        />
+                        <InputError
+                            message={captchaError}
+                            className="mt-2"
+                        />
 
                         <div className="flex justify-end">
                             <Button className="" disabled={processing}>

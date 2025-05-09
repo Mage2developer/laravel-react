@@ -168,7 +168,7 @@ function Index({ profile }) {
                                     return (
                                         <div
                                             key={section}
-                                            className="border-[1px] rounded-lg m-2"
+                                            className="border-[1px] md:rounded-lg m-2"
                                         >
                                             <button
                                                 onClick={() => {

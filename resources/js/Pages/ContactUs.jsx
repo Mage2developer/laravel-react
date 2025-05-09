@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/Components/Button";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head } from "@inertiajs/react";
+import {Head, useForm} from "@inertiajs/react";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import {
@@ -16,7 +16,29 @@ import {
     FiTwitter,
 } from "react-icons/fi";
 
-const ContactUs = () => {
+import ReCAPTCHA from "react-google-recaptcha";
+import {useState} from "react";
+import InputError from "@/Components/InputError";
+
+export default function ContactUs({ status }) {
+
+    const [captchaToken, setCaptchaToken] = useState(null);
+
+    const [captchaError, setcaptchaError] = useState(null);
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        if (!captchaToken) {
+            e.preventDefault();
+            setcaptchaError("Invalid Captcha !");
+            //alert('Please complete the CAPTCHA');
+            return;
+        }
+
+        post(route("contactus"));
+    };
+
     return (
         <GuestLayout>
             <Head title="Contact Us" />
@@ -32,7 +54,7 @@ const ContactUs = () => {
                             <h2 className="text-2xl font-semibold text-[#ff3131]">
                                 Send us a message
                             </h2>
-                            <form className="space-y-4">
+                            <form onSubmit={submit} className="space-y-4">
                                 <div>
                                     <label
                                         htmlFor="name"
@@ -75,6 +97,15 @@ const ContactUs = () => {
                                         className="w-full px-3 py-2 bg-gray-50  border border-gray-700 rounded placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
                                     ></textarea>
                                 </div>
+                                <ReCAPTCHA
+                                    sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
+                                    onChange={(token) => setCaptchaToken(token)}
+                                    onExpired={() => setCaptchaToken(null)}
+                                />
+                                <InputError
+                                    message={captchaError}
+                                    className="mt-2"
+                                />
                                 <Button
                                     type="submit"
                                     className="text-xl w-full py-3 rounded-md "
@@ -156,6 +187,8 @@ const ContactUs = () => {
             </div>
         </GuestLayout>
     );
-};
+}
 
-export default ContactUs;
+
+
+
