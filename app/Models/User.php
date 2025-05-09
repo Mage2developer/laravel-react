@@ -142,7 +142,7 @@ class User extends Authenticatable
                         ['users.status', '=', Data::ENABLE],
                         ['users.id', '=', $id]
                     ]
-            )->get();
+            )->first();
     }
 
     /**

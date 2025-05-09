@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\web\UserProfileController;
+use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
 use App\Http\Controllers\api\UserContactDetailController;
 use App\Http\Controllers\api\UserEducationDetailController;
 use App\Http\Controllers\api\UserFamilyDetailController;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         return Inertia::render('Profile/Edit');
     })->name('profile.edit');
+    Route::get('/currentProfile/{profileId}', [ApiUserProfileController::class, 'getProfileById']);
     Route::patch('/userContactDetail', [UserContactDetailController::class, 'update']);
     Route::patch('/userEducationDetail', [UserEducationDetailController::class, 'update']);
     Route::patch('/userPersonalDetail', [UserPersonalDetailController::class, 'update']);

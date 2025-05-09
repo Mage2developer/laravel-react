@@ -6,7 +6,7 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {Transition} from "@headlessui/react";
 
-export default function UpdateEducationDetailsForm({ user, className = '' }) {
+export default function UpdateEducationDetailsForm({ userId, className = '' }) {
     const {data, setData, patch, errors, processing, recentlySuccessful} =
         useForm({
             education: user.education,
