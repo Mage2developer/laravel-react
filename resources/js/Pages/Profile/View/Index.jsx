@@ -31,7 +31,7 @@ function Index({ profile }) {
         }));
     };
 
-    const item = profile[0];
+    const item = profile;
 
     const photoUrls = item.user_images.map((img) => `/${img.image_path}`);
     // item.about = "Hello"

@@ -32,7 +32,35 @@ class UserProfileController extends Controller
         $name =
             $request->input('name') ? trim(str_replace(['%', '_'], ['\%', '\_'], $request->input('name'))) : null;
 
-        $profiles = $this->user->getUserProfileList($name);
+        /*$gender =
+            $request->input('sex') ? $request->input('sex') : null;*/
+
+        $gender = 0;
+        $ageFrom = 20;
+        $ageTo = 25;
+
+
+        $filters = [
+            // Todo Age betweem Search
+            [
+                'type' => 'age_between',
+                'value' => [
+                    'ageFrom' => $ageFrom,
+                    'ageTo' => $ageTo
+                ]
+            ],
+            [
+                'type' => 'sex',
+                'value' => $gender,
+            ],
+            [
+                'type' => 'name',
+                'value' => $name
+            ]
+        ];
+
+
+        $profiles = $this->user->getUserProfileList($filters);
 
         return Inertia::render('Profile/List/Index', [
             'profiles' => $profiles->toArray()

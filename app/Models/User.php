@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Helper\Data;
+use App\Models\UserPersonalDetail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
-
 
 class User extends Authenticatable
 {
@@ -112,17 +112,98 @@ class User extends Authenticatable
     /**
      * @return Collection
      */
-    public function getUserProfileList($name = '')
+    public function getUserProfileList($filters = [])
     {
-        return User::with(
-            'userPersonalDetail:id,user_id,dob,marital_status',
-            'userEducationDetail:id,user_id,occupation',
-            'userImages'
-        )
-            ->where('users.name', 'LIKE', '%' . $name . '%')
+        $query = User::withAllDetails();
+
+        if($filters && $filters[0]['type']) {
+            switch ($filters[0]['type']) {
+                case 'sex':
+                    $query->whereSex($filters[0]['value']);
+                    break;
+                case 'name':
+                    $query->whereName($filters[0]['name']['value']);
+                    break;
+                case 'age_between':
+                    $query->whereAgeBetween($filters[0]['value']['ageFrom'], $filters[0]['value']['ageTo']);
+                    break;
+            }
+        }
+
+        return $query->get();
+    }
+
+    public function scopeWhereAge($query, $age, $operator = '=')
+    {
+        // Use a subquery to calculate age from the date of birth.  This is
+        // more efficient and accurate than trying to do date calculations
+        // directly in the main query.  This approach works for all database systems.
+        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($age, $operator) {
+            $subQuery->select(DB::raw('TIMESTAMPDIFF(YEAR, dob, CURDATE()) as age'))
+                ->having('age', $operator, $age);
+        });
+    }
+
+    /**
+     * Scope a query to filter users by age range.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  int  $minAge
+     * @param  int  $maxAge
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereAgeBetween($query, $minAge, $maxAge)
+    {
+        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($minAge, $maxAge) {
+            $subQuery->select(DB::raw('TIMESTAMPDIFF(YEAR, dob, CURDATE()) as age'))
+                ->having('age', '>=', $minAge)
+                ->having('age', '<=', $maxAge);
+        });
+    }
+
+    /**
+     * Scope a query to filter users by date of birth.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $dob  The date of birth to filter by (e.g., '2000-01-01').
+     * @param  string  $operator The operator for the comparison (=, <, >, <=, >=)
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereDob($query, $dob, $operator = '=')
+    {
+        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($dob, $operator) {
+            $subQuery->where('dob', $operator, $dob);
+        });
+    }
+
+    /**
+     * Scope a query to filter users by sex.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  string  $sex  The sex to filter by.
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereSex($query, $sex)
+    {
+        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($sex) {
+            $subQuery->where('sex', $sex);
+        });
+    }
+
+    public function scopeWhereName($query, $name)
+    {
+        return $query->where('users', 'like', '%' . $name . '%' );
+    }
+
+    public function scopeWithAllDetails($query)
+    {
+        return $query->with([
+                                'userPersonalDetail:id,user_id,dob,marital_status',
+                                'userEducationDetail:id,user_id,occupation',
+                                'userImages'
+                            ])
             ->where('users.status', Data::ENABLE)
-            ->orderBy('users.id', 'desc')
-            ->get();
+            ->orderBy('users.id', 'desc');
     }
 
     /**
