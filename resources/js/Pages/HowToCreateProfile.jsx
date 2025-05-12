@@ -7,7 +7,7 @@ import { Button } from "@/Components/Button"; // Assuming you have a reusable Bu
 function HowToCreateProfile() {
     return (
         <GuestLayout>
-            <Head title="How To Create Profile | Vanand Vivah" />
+            <Head title="How To Create Profile" />
             <div className="min-h-[450px] flex items-center justify-center my-12 mt-5">
                 <div className="max-w-lg w-full mx-auto backdrop-blur-md rounded-xl p-8 shadow-md border border-black/10 ">
                     <section className="rounded-2xl p-10 max-w-2xl w-full text-center">

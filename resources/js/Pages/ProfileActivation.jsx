@@ -39,9 +39,6 @@ const ProfileActivation = () => {
         }
     }, []);
 
-    console.log(userEmail);
-    console.log(fullName);
-
     const openWhatsApp = () => {
         if (!userEmail || !fullName) {
             alert("Email and Name are required to contact admin.");
@@ -61,7 +58,6 @@ const ProfileActivation = () => {
 
     return (
         <GuestLayout>
-            <Head title="Profile Activation Required" />
             <div className="min-h-[450px] w-ful flex items-center justify-center px-4 py-10">
                 <div className="max-w-2xl w-full bg-white shadow-md border border-black/10 rounded-xl p-8">
                     <h1 className="text-3xl font-bold text-center text-[#ff3131] mb-6 bg-clip-text">

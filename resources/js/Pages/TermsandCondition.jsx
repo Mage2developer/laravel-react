@@ -5,7 +5,7 @@ import {Head} from "@inertiajs/react";
 function TermsandCondition() {
     return (
         <GuestLayout>
-            <Head title="Term & Condition Page | Vanand Vivah" />
+            <Head title="Term & Condition Page" />
             <div class="flex items-center justify-center my-12">
                 <div class="">
                     <h1 class="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
