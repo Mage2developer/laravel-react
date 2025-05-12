@@ -24,7 +24,7 @@ class UserEducationDetailController extends Controller
             }
 
             $educationDetail->update($request->all());
-            return response()->json(['message' => 'Education details updated successfully.']);
+            return response()->json(['message' => 'Education details have been updated successfully.']);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'error' => true], 500);
         }
