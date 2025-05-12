@@ -13,7 +13,7 @@ export const Footer = () => {
 
     return (
         <footer className="w-full bg-white bg-opacity-90 border-t border-zinc-800 px-4 sm:px-6 lg:px-10 py-10">
-            <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-8">
+            <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-4">
                 {/* Navigation Links */}
                 <nav className="flex flex-wrap justify-center gap-6 sm:gap-10 text-center">
                     {arrFooterLinks.map((link, index) => (
@@ -30,12 +30,19 @@ export const Footer = () => {
                 {/* Logo + Copyright */}
                 <div className="text-center">
                     <img
-                        src="/images/vv_header_logo.png"
+                        src="/images/header-logo.png"
                         alt="Logo"
                         className="mx-auto h-20 w-auto object-contain"
                     />
                     <p className="mt-4 text-sm text-black">
                         © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
+                    </p>
+                    <p className="mt-4 text-sm text-black">
+                        Powered By
+                        <a href="https://www.mage2developer.com/" target="_blank"
+                              className="text-sm font-medium text-black transition-colors duration-300 hover:text-[#ff3131]">
+                            &nbsp; mage2developer.com
+                        </a>
                     </p>
                 </div>
             </div>

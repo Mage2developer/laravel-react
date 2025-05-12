@@ -114,21 +114,26 @@ class User extends Authenticatable
      */
     public function getUserProfileList($filters = [])
     {
-        $query = User::withAllDetails();
 
-        if($filters && $filters[0]['type']) {
-            switch ($filters[0]['type']) {
-                case 'sex':
-                    $query->whereSex($filters[0]['value']);
-                    break;
-                case 'name':
-                    $query->whereName($filters[0]['name']['value']);
-                    break;
-                case 'age_between':
-                    $query->whereAgeBetween($filters[0]['value']['ageFrom'], $filters[0]['value']['ageTo']);
-                    break;
+        $query = User::query();
+
+        if($filters) {
+            foreach ($filters as $filter) {
+                switch ($filter['type']) {
+                    case 'sex':
+                        $query->whereSex($filter['value']);
+                        break;
+                    case 'age_between':
+                        $query->whereAgeBetween($filter['value']['ageFrom'], $filter['value']['ageTo']);
+                        break;
+                    case 'personal_income':
+                        $query->wherePersonalIncome($filter['value']);
+                        break;
+                }
             }
         }
+
+        $query->withAllDetails();
 
         return $query->get();
     }
@@ -192,7 +197,14 @@ class User extends Authenticatable
 
     public function scopeWhereName($query, $name)
     {
-        return $query->where('users', 'like', '%' . $name . '%' );
+        return $query->where('name', 'like', '%' . $name . '%' );
+    }
+
+    public function scopeWherePersonalIncome($query, $dob, $operator = '>=')
+    {
+        return $query->whereHas('userEducationDetail', function ($subQuery) use ($dob, $operator) {
+            $subQuery->where('personal_income', $operator, $dob);
+        });
     }
 
     public function scopeWithAllDetails($query)

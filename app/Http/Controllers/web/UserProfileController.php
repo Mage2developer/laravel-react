@@ -32,16 +32,20 @@ class UserProfileController extends Controller
         $name =
             $request->input('name') ? trim(str_replace(['%', '_'], ['\%', '\_'], $request->input('name'))) : null;
 
-        /*$gender =
-            $request->input('sex') ? $request->input('sex') : null;*/
+        /*
+         * $gender = $request->input('sex') ? $request->input('sex') : null;
+         * $ageFrom = $request->input('ageFrom') ? $request->input('ageFrom') : null;
+         * $ageTo = $request->input('ageTo') ? $request->input('ageTo') : null;
+         * $income = $request->input('personal_income') ? $request->input('personal_income') : null;
+        */
 
-        $gender = 0;
+        /*$gender = 0;
         $ageFrom = 20;
-        $ageTo = 25;
+        $ageTo = 60;
+        $income = 20001;*/
 
-
-        $filters = [
-            // Todo Age betweem Search
+        // This is filter demo
+        /*$filters = [
             [
                 'type' => 'age_between',
                 'value' => [
@@ -54,11 +58,12 @@ class UserProfileController extends Controller
                 'value' => $gender,
             ],
             [
-                'type' => 'name',
-                'value' => $name
+                'type' => 'personal_income',
+                'value' => $income
             ]
-        ];
+        ];*/
 
+        $filters = [];
 
         $profiles = $this->user->getUserProfileList($filters);
 
