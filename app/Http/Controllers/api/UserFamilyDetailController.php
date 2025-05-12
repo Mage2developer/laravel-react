@@ -24,7 +24,7 @@ class UserFamilyDetailController extends Controller
             }
 
             $familyDetail->update($request->all());
-            return response()->json(['message' => 'Family details updated successfully', 'success' => true]);
+            return response()->json(['message' => 'Family details have been updated successfully', 'success' => true]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
         }

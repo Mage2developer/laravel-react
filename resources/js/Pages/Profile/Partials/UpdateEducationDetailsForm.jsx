@@ -1,24 +1,61 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "@inertiajs/react";
+import axios from "axios";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
-import {Transition} from "@headlessui/react";
 
 export default function UpdateEducationDetailsForm({ userId, className = '' }) {
-    const {data, setData, patch, errors, processing, recentlySuccessful} =
+
+    const {data, setData, errors, processing} =
         useForm({
-            education: user.education,
-            occupation: user.occupation,
-            personal_income: user.personal_income,
-            family_income: user.family_income
+            education: '',
+            occupation: '',
+            personal_income: '',
+            family_income: ''
         });
 
-    const updateEducationDetails = (e) => {
+    useEffect(() => {
+        axios.get(`/currentProfile/${userId}`)
+            .then(response => {
+
+                setData(response.data.profile.user_education_detail);
+                setData('user_id', userId);
+
+            })
+            .catch(error => {
+                console.error("Error fetching user data", error);
+            });
+    }, [userId]);
+
+    const [successMessage, setSuccessMessage] = useState('');
+    const [apiErrors, setApiErrors] = useState('');
+    const [alert, setAlert] = useState(true);
+
+    const updateEducationDetails = async (e) => {
         e.preventDefault();
 
-        console.log("update education details");
+        try {
+            await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+
+            const response = await axios.patch("/userEducationDetail", data);
+
+            setSuccessMessage(response.data.message);
+            setApiErrors('');
+
+            setAlert(true);
+            setTimeout(() => {
+                setAlert(false);
+            }, 5000);
+
+        } catch (error) {
+            if (error.response?.status === 422) {
+                setApiErrors(error.response.data.errors);
+            } else {
+                setApiErrors("An error occurred.");
+            }
+        }
     };
 
     return (
@@ -81,17 +118,10 @@ export default function UpdateEducationDetailsForm({ userId, className = '' }) {
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="text-sm text-gray-600">
-                            Saved.
-                        </p>
-                    </Transition>
+                    <div className={`${alert ? 'visible' : 'hidden'}`}>
+                        {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
+                        {apiErrors && <p className="text-sm text-red-600">{apiErrors}</p>}
+                    </div>
                 </div>
             </form>
         </section>

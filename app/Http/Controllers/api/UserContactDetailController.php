@@ -25,7 +25,7 @@ class UserContactDetailController extends Controller
             }
 
             $contactDetail->update($request->all());
-            return response()->json(['message' => 'Contact details updated successfully', 'success' => true]);
+            return response()->json(['message' => 'Contact details have been updated successfully', 'success' => true]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
         }

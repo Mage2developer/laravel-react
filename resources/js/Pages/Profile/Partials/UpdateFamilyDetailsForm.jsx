@@ -1,26 +1,63 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "@inertiajs/react";
+import axios from "axios";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
-import {Transition} from "@headlessui/react";
+import PrimaryButton from "@/Components/PrimaryButton";x
 
 export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
-    const {data, setData, patch, errors, processing, recentlySuccessful} =
+
+    const {data, setData, errors, processing} =
         useForm({
-            father_name: user.father_name,
-            mother_name: user.mother_name,
-            brother_name: user.brother_name,
-            brother_in_laws: user.brother_in_laws,
-            sister_name: user.sister_name,
-            sister_in_laws: user.sister_in_laws
+            father_name: '',
+            mother_name: '',
+            brother_name: '',
+            brother_in_laws: '',
+            sister_name: '',
+            sister_in_laws: ''
         });
 
-    const updateFamilyDetails = (e) => {
+    useEffect(() => {
+        axios.get(`/currentProfile/${userId}`)
+            .then(response => {
+
+                setData(response.data.profile.user_family_detail);
+                setData('user_id', userId);
+
+            })
+            .catch(error => {
+                console.error("Error fetching user data", error);
+            });
+    }, [userId]);
+
+    const [successMessage, setSuccessMessage] = useState('');
+    const [apiErrors, setApiErrors] = useState('');
+    const [alert, setAlert] = useState(true);
+
+    const updateFamilyDetails = async (e) => {
         e.preventDefault();
 
-        console.log("update family details");
+        try {
+            await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+
+            const response = await axios.patch("/userFamilyDetail", data);
+
+            setSuccessMessage(response.data.message);
+            setApiErrors('');
+
+            setAlert(true);
+            setTimeout(() => {
+                setAlert(false);
+            }, 5000);
+
+        } catch (error) {
+            if (error.response?.status === 422) {
+                setApiErrors(error.response.data.errors);
+            } else {
+                setApiErrors("An error occurred.");
+            }
+        }
     };
 
     return (
@@ -109,17 +146,10 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="text-sm text-gray-600">
-                            Saved.
-                        </p>
-                    </Transition>
+                    <div className={`${alert ? 'visible' : 'hidden'}`}>
+                        {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
+                        {apiErrors && <p className="text-sm text-red-600">{apiErrors}</p>}
+                    </div>
                 </div>
             </form>
         </section>

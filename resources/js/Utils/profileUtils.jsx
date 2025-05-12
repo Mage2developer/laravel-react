@@ -52,3 +52,26 @@ export const getGenderText = (status) => {
             return "Not Specified";
     }
 };
+
+export const getYesNoOptions = () => {
+    return [
+        { value: 1, label: 'Yes' },
+        { value: 0, label: 'No' }
+    ];
+};
+
+export const getMaritalStatusOptions = () => {
+    return [
+        { value: 0, label: 'Single' },
+        { value: 1, label: 'Married' },
+        { value: 2, label: 'Divorced' },
+        { value: 3, label: 'Not Specified' }
+    ];
+};
+
+export const getGenderOptions = () => {
+    return [
+        { value: 0, label: 'Male' },
+        { value: 1, label: 'Female' }
+    ];
+};
