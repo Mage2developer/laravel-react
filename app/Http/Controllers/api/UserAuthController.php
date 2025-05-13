@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserContactDetail;
+use App\Http\Helper\Data;
 
 class UserAuthController extends Controller
 {
@@ -52,9 +53,17 @@ class UserAuthController extends Controller
         }
 
         // Check if user is enable or not
-        if ($user->status != 1) {
+        if ($user->status != Data::ENABLE) {
             return response()->json([
                                         'message' => 'You need to activate your account.',
+                                        'success' => false
+                                    ]);
+        }
+
+        // Check if user is deleted or not
+        if ($user->is_deleted == Data::ENABLE) {
+            return response()->json([
+                                        'message' => 'Your account has been deleted.',
                                         'success' => false
                                     ]);
         }

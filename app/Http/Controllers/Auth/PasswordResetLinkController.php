@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\User;
 
 class PasswordResetLinkController extends Controller
 {
@@ -32,6 +34,17 @@ class PasswordResetLinkController extends Controller
         $request->validate([
             'email' => 'required|email',
         ]);
+
+        // Checking if user has been deleted of disable
+        $user = User::where('email',  $request->only('email'))->first();
+
+        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
+            $userInfo = [
+                'email' => $user->email,
+                'name' => $user->name,
+            ];
+            return redirect()->intended(route('activate.profile', $userInfo,  absolute: false));
+        }
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we

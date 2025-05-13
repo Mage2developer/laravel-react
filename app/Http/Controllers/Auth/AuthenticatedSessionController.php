@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -32,7 +33,7 @@ class AuthenticatedSessionController extends Controller
     {
         // Customised code for checking user status before login
         $user = User::where('email', $request->email)->first();
-        if ($user->status != 1) {
+        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
             $userInfo = [
                 'email' => $user->email,
                 'name' => $user->name,

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Models\User;
 
 class ForgotPasswordController extends Controller
 {
@@ -18,6 +20,17 @@ class ForgotPasswordController extends Controller
     public function sendResetLinkEmail(Request $request): JsonResponse
     {
         $request->validate(['email' => 'required|email']);
+
+        // Checking if user has been deleted of disable
+        $user = User::where('email',  $request->only('email'))->first();
+
+        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
+            $userInfo = [
+                'email' => $user->email,
+                'name' => $user->name,
+            ];
+            return redirect()->intended(route('activate.profile', $userInfo,  absolute: false));
+        }
 
         $status = Password::sendResetLink(
             $request->only('email')
