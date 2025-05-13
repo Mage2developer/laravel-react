@@ -67,6 +67,10 @@ class UserProfileController extends Controller
 
         $profiles = $this->user->getUserProfileList($filters);
 
+        if (!$profiles) {
+            return redirect(route('profile.list'))->withErrors(['Profile not found']);
+        }
+
         return Inertia::render('Profile/List/Index', [
             'profiles' => $profiles->toArray()
         ]);
@@ -88,6 +92,11 @@ class UserProfileController extends Controller
 
         $profileId = $request->route('profileId');
         $userProfile = $this->user->getUserProfileById($profileId);
+
+        // If profile not exit
+        if (!$userProfile) {
+            return redirect(route('profile.list'))->withErrors(['Profile not found']);
+        }
 
         return Inertia::render('Profile/View/Index', [
             'profile' => $userProfile->toArray()

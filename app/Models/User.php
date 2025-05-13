@@ -215,6 +215,7 @@ class User extends Authenticatable
                                 'userImages'
                             ])
             ->where('users.status', Data::ENABLE)
+            ->where('users.is_deleted', "=", Data::DISABLE)
             ->orderBy('users.id', 'desc');
     }
 
@@ -233,7 +234,8 @@ class User extends Authenticatable
         )
             ->where([
                         ['users.status', '=', Data::ENABLE],
-                        ['users.id', '=', $id]
+                        ['users.id', '=', $id],
+                        ['users.is_deleted', '=', Data::DISABLE]
                     ]
             )->first();
     }
