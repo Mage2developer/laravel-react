@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/userFamilyDetail', [UserFamilyDetailController::class, 'update']);
 
     Route::post('/profileImages', [UserImageController::class, 'store']);
-    Route::post('/profileImages/{id}/replace', [UserImageController::class, 'replace']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
 });

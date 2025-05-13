@@ -44,7 +44,7 @@ class UserImageController extends Controller
             $imageCount = count(Image::where(Data::USER_ID_FOREIGN_KEY, $user_id)->get());
 
             if ($imageCount + count($request->file('images')) > Data::MAX_IMAGE_UPLOAD) {
-                return response()->json(['success' => false, 'message' => 'You can only upload up to 5 images.'], 500);
+                return response()->json(['success' => false, 'message' => 'You can only upload up to 5 images.']);
             }
 
             // Ensure user folder exists

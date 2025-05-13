@@ -6,6 +6,7 @@ import UpdatePersonalDetailsForm from "./Partials/UpdatePersonalDetailsForm";
 import UpdateEducationDetailsForm from "./Partials/UpdateEducationDetailsForm";
 import UpdateFamilyDetailsForm from "./Partials/UpdateFamilyDetailsForm";
 import UpdateContactDetailsForm from "./Partials/UpdateContactDetailsForm";
+import UploadProfileImagesForm from "./Partials/UploadProfileImagesForm";
 
 export default function Edit() {
     const user = usePage().props.auth.user;
@@ -15,6 +16,7 @@ export default function Edit() {
         { id: 2, title: 'Education Details', content: <UpdateEducationDetailsForm className="max-w-xl" userId={user.id} /> },
         { id: 3, title: 'Family Details', content: <UpdateFamilyDetailsForm className="max-w-xl" userId={user.id} /> },
         { id: 4, title: 'Contact Details', content: <UpdateContactDetailsForm className="max-w-xl" userId={user.id} /> },
+        { id: 5, title: 'Profile Images', content: <UploadProfileImagesForm className="max-w-xl" userId={user.id} /> }
     ];
 
     return (
