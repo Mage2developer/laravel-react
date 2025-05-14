@@ -8,35 +8,14 @@ const ProfileActivation = () => {
     const [fullName, setFullName] = useState("");
 
     useEffect(() => {
-        // First: Try getting from localStorage
-        const storedData = localStorage.getItem("InstructionUserData");
+        const searchParams = new URLSearchParams(window.location.search);
+        const emailFromURL = decodeURIComponent(
+            searchParams.get("email") || ""
+        );
+        const nameFromURL = decodeURIComponent(searchParams.get("name") || "");
 
-        if (storedData) {
-            const parsed = JSON.parse(storedData);
-            setUserEmail(parsed.email || "");
-            setFullName(parsed.name || "");
-        } else {
-            // Fallback: Get from URL query parameters
-            const searchParams = new URLSearchParams(window.location.search);
-            const emailFromURL = decodeURIComponent(
-                searchParams.get("email") || ""
-            );
-            const nameFromURL = decodeURIComponent(
-                searchParams.get("name") || ""
-            );
-
-            setUserEmail(emailFromURL || "");
-            setFullName(nameFromURL || "");
-
-            // Optional: Save to localStorage for future use
-            localStorage.setItem(
-                "InstructionUserData",
-                JSON.stringify({
-                    email: emailFromURL,
-                    name: nameFromURL,
-                })
-            );
-        }
+        setUserEmail(emailFromURL);
+        setFullName(nameFromURL);
     }, []);
 
     const openWhatsApp = () => {
@@ -72,11 +51,11 @@ const ProfileActivation = () => {
                     <ul className="space-y-4 text-lg text-gray-800">
                         <li>
                             <span className="font-bold">1. User Email:</span>{" "}
-                            {userEmail || "Loading..."}
+                            {userEmail || "-"}
                         </li>
                         <li>
                             <span className="font-bold">2. Full Name:</span>{" "}
-                            {fullName || "Loading..."}
+                            {fullName || "-"}
                         </li>
                         <li>
                             <span className="font-bold">3. Contact Admin:</span>{" "}
@@ -107,9 +86,10 @@ const ProfileActivation = () => {
                                 }
                             />
                             <br />
-                        <div className="mt-[10px]">
-                            <b>UPI ID for payment </b>: mage2developer@axisbank
-                        </div>
+                            <div className="mt-[10px]">
+                                <b>UPI ID for payment </b>:
+                                mage2developer@axisbank
+                            </div>
                         </li>
                         <li>
                             <span className="font-bold">5. </span>You cannot log
@@ -131,14 +111,16 @@ const ProfileActivation = () => {
                         </li>
                     </ul>
 
-                    <div className="mt-10 text-center">
-                        <button
-                            onClick={openWhatsApp}
-                            className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-all"
-                        >
-                            Click to share details with admin on WhatsApp
-                        </button>
-                    </div>
+                    {!userEmail & !fullName ? null : (
+                        <div className="mt-10 text-center">
+                            <button
+                                onClick={openWhatsApp}
+                                className="bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition-all"
+                            >
+                                Click to share details with admin on WhatsApp
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </GuestLayout>
