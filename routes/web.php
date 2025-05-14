@@ -47,6 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profileImages', [UserImageController::class, 'index']);
 
     // Admin pages
+
+});
+
+Route::middleware(['admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
 });
 
