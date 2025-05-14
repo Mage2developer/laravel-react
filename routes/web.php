@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\web\UserProfileController;
-use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\api\UserContactDetailController;
 use App\Http\Controllers\api\UserEducationDetailController;
 use App\Http\Controllers\api\UserFamilyDetailController;
-use App\Http\Controllers\api\UserPersonalDetailController;
 use App\Http\Controllers\api\UserImageController;
+use App\Http\Controllers\api\UserPersonalDetailController;
+use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\web\UserProfileController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\User;
 
 Route::get('/', function () {
     $userModel = new User();
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/profileImages', [UserImageController::class, 'store']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
+
+    // Admin pages
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');
