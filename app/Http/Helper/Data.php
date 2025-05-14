@@ -34,4 +34,10 @@ class Data
 
      const LATEST_PROFILE_UMBER = 10;
 
+     const USER_SLUG = 'user';
+
+     const ADMIN_SLUG = 'admin';
+
+     const DESC = 'desc';
+
 }

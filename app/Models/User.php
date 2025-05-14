@@ -215,8 +215,9 @@ class User extends Authenticatable
                                 'userImages'
                             ])
             ->where('users.status', Data::ENABLE)
-            ->where('users.is_deleted', "=", Data::DISABLE)
-            ->orderBy('users.id', 'desc');
+            ->where('users.is_deleted', Data::DISABLE)
+            ->where('users.role', Data::USER_SLUG)
+            ->orderBy('users.id', Data::DESC);
     }
 
     /**
