@@ -62,7 +62,7 @@ export default function UpdateEducationDetailsForm({ userId, className = '' }) {
         <section className={className}>
             <form onSubmit={updateEducationDetails} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="education" value="Education"/>
+                    <InputLabel htmlFor="education" value="Education" required />
 
                     <TextInput
                         id="education"
@@ -76,7 +76,7 @@ export default function UpdateEducationDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.education} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="occupation" value="Occupation"/>
+                    <InputLabel htmlFor="occupation" value="Occupation" required />
 
                     <TextInput
                         id="occupation"
@@ -90,11 +90,12 @@ export default function UpdateEducationDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.occupation} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="personal_income" value="Personal Income"/>
+                    <InputLabel htmlFor="personal_income" value="Personal Income" required />
 
                     <TextInput
                         id="personal_income"
                         value={data.personal_income}
+                        required
                         onChange={(e) => setData('personal_income', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"

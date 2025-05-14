@@ -64,7 +64,7 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
         <section className={className}>
             <form onSubmit={updateContactDetails} className="mt-6 space-y-6" method="post">
                 <div>
-                    <InputLabel htmlFor="mobile_number" value="Mobile Number"/>
+                    <InputLabel htmlFor="mobile_number" value="Mobile Number" required />
 
                     <TextInput
                         id="mobile_number"
@@ -83,7 +83,6 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
                     <TextInput
                         id="father_mobile_number"
                         value={data.father_mobile_number}
-                        required
                         onChange={(e) => setData('father_mobile_number', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
@@ -97,7 +96,6 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
                     <TextInput
                         id="native_city"
                         value={data.native_city}
-                        required
                         onChange={(e) => setData('native_city', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
@@ -106,11 +104,12 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.native_city} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="current_address" value="Current Address"/>
+                    <InputLabel htmlFor="current_address" value="Current Address" required />
 
                     <textarea id="current_address"
                               name="current_address"
                               value={data.current_address}
+                              required
                               onChange={(e) => setData('current_address', e.target.value)}
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
                               focus:ring-indigo-500 text-sm font-medium text-gray-700"

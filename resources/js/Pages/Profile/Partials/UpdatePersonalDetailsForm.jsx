@@ -77,7 +77,7 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
         <section className={className}>
             <form onSubmit={updatePersonalDetails} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="dob" value="Date of Birth"/>
+                    <InputLabel htmlFor="dob" value="Date of Birth" required />
 
                     <DatePicker
                         id="dob"
@@ -96,7 +96,7 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
                     <InputError message={errors.dob} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="marital_status" value="Marital Status"/>
+                    <InputLabel htmlFor="marital_status" value="Marital Status" required />
 
                     <SelectBox
                         id="marital_status"
@@ -111,7 +111,7 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
                     <InputError message={errors.marital_status} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="sex" value="Sex"/>
+                    <InputLabel htmlFor="sex" value="Gender" required />
 
                     <SelectBox
                         id="sex"
@@ -126,27 +126,31 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
                     <InputError message={errors.sex} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="height" value="Height"/>
+                    <InputLabel htmlFor="height" value="Height (For ex. 5ft 11in)" required />
 
                     <TextInput
                         id="height"
                         value={data.height}
+                        required
                         onChange={(e) => setData('height', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
+                        placeholder="5ft 11in"
                     />
 
                     <InputError message={errors.height} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="weight" value="Weight"/>
+                    <InputLabel htmlFor="weight" value="Weight (For ex. 65kg)" required />
 
                     <TextInput
                         id="weight"
                         value={data.weight}
+                        required
                         onChange={(e) => setData('weight', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
+                        placeholder="65kg"
                     />
 
                     <InputError message={errors.weight} className="mt-2"/>

@@ -85,24 +85,20 @@ export const Header = () => {
                                 </span>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <Dropdown.Link
-                                    href={route("account.edit")}
-                                    className="text-xl"
-                                >
+                                <Dropdown.Link href={route("account.edit")} className="text-xl">
                                     My Account
                                 </Dropdown.Link>
-                                <Dropdown.Link
-                                    href={route("profile.edit")}
-                                    className="text-xl"
-                                >
-                                    Profile
-                                </Dropdown.Link>
-                                <Dropdown.Link
-                                    href={route("logout")}
-                                    method="post"
-                                    as="button"
-                                    className="text-xl"
-                                >
+                                {user.role != "admin" ? (
+                                    <Dropdown.Link href={route("profile.edit")} className="text-xl">
+                                        Profile
+                                    </Dropdown.Link>
+                                ) : (
+                                    <Dropdown.Link href={route("users.index")} className="text-xl">
+                                        Users
+                                    </Dropdown.Link>
+                                )}
+
+                                <Dropdown.Link href={route("logout")} method="post" as="button" className="text-xl">
                                     Log Out
                                 </Dropdown.Link>
                             </Dropdown.Content>

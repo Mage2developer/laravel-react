@@ -64,7 +64,7 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
         <section className={className}>
             <form onSubmit={updateFamilyDetails} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="father_name" value="Father's Name"/>
+                    <InputLabel htmlFor="father_name" value="Father's Name" required />
 
                     <TextInput
                         id="father_name"
@@ -78,7 +78,7 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.father_name} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="mother_name" value="Mother's Name"/>
+                    <InputLabel htmlFor="mother_name" value="Mother's Name" required />
 
                     <TextInput
                         id="mother_name"

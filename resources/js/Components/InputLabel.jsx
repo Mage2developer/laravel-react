@@ -13,6 +13,7 @@ export default function InputLabel({
             }
         >
             {value ? value : children}
+            {props.required ? <span className="text-red-500 ml-1">*</span> : ''}
         </label>
     );
 }
