@@ -22,10 +22,10 @@ class UserEducationDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'education' => 'required|max:50',
-            'occupation' => 'required|max:50',
+            'education' => 'required|string|max:100',
+            'occupation' => 'required|string|max:50',
             'personal_income' => 'required|string|max:10',
-            'family_income' => 'required|string|max:10',
+            'family_income' => 'string|max:10',
             'user_id' => 'required|exists:users,id'
         ];
     }
