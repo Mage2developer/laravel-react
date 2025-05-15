@@ -31,9 +31,9 @@ export default function ContactUs({ status }) {
         "g-recaptcha-response": "",
     });
 
-    useEffect(() => {
-        validateForm();
-    }, [name, email, message]);
+    // useEffect(() => {
+    //     validateForm();
+    // }, [name, email, message]);
 
     const validateForm = () => {
         const newErrors = {};
@@ -60,25 +60,29 @@ export default function ContactUs({ status }) {
             return;
         }
 
-        post(route("contactus"), {
-            data: {
-                name,
-                email,
-                message,
-                "g-recaptcha-response": captchaToken,
-            },
-            onSuccess: () => {
-                setName("");
-                setEmail("");
-                setMessage("");
-                setCaptchaToken(null);
-                setSubmitted(false); // Reset submission flag
-                reset();
-            },
-        });
-        setName("");
-        setEmail("");
-        setMessage("");
+        // post(route("contactus"), {
+        //     data: {
+        //         name,
+        //         email,
+        //         message,
+        //         "g-recaptcha-response": captchaToken,
+        //     },   
+        //     onSuccess: () => {
+        //         setName("");
+        //         setEmail("");
+        //         setMessage("");
+        //         setCaptchaToken(null);
+        //         setSubmitted(false); // Reset submission flag
+        //         reset();
+        //     },
+        // });
+        return (
+            setName(""),
+            setEmail(""),
+            setMessage(""),
+            setCaptchaToken(null),
+            console.log("Submit")
+        );
     };
 
     return (
