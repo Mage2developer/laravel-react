@@ -8,6 +8,7 @@ use App\Http\Controllers\api\UserImageController;
 use App\Http\Controllers\api\UserPersonalDetailController;
 use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\web\ContactController;
 use App\Http\Controllers\web\UserProfileController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -80,9 +81,9 @@ Route::get('/privacy-policy', function () {
     return Inertia::render('PrivacyPolicy');
 })->name('privacy.policy');
 
-Route::get('/contact-us', function () {
-    return Inertia::render('ContactUs');
-})->name('contact.us');
+
+Route::get('/contact-us', [ContactController::class, 'index'])->name('contact.show');
+Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('contact.submit');
 
 Route::get('/terms-conditions', function () {
     return Inertia::render('TermsandCondition');

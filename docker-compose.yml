@@ -23,6 +23,7 @@ services:
             - sail
         depends_on:
             - mysql
+            - mailhog
     mysql:
         image: 'mysql/mysql-server:8.0'
         ports:
@@ -47,6 +48,14 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        ports:
+            - "8003:1025"  # SMTP port
+            - "8025:8025"  # MailHog UI
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
