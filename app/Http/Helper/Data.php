@@ -40,4 +40,6 @@ class Data
 
      const DESC = 'desc';
 
+     const ADMIN_USERS_LIST_LIMIT = 10;
+
 }

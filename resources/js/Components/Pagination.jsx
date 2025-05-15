@@ -8,7 +8,7 @@ export default function Pagination({ links, className = '' }) {
     }
 
     return (
-        <div className={`flex flex-wrap -mb-1 ${className}`}>
+        <div className={`flex flex-wrap -mb-1 mt-5 justify-center ${className}`}>
             {links.map((link, key) => {
                 // Skip the "Next" and "Prev" buttons if they're disabled
                 if ((link.label === '&laquo; Previous' || link.label === 'Next &raquo;') && link.url === null) {
@@ -18,12 +18,12 @@ export default function Pagination({ links, className = '' }) {
                 return (
                     <React.Fragment key={key}>
                         {link.url === null ? (
-                            <div className="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded">
+                            <div className="mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded">
                                 {link.label.replace('&laquo; ', '').replace(' &raquo;', '')}
                             </div>
                         ) : (
                             <Link
-                                className={`mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-gray-50 focus:outline-none focus:border-indigo-500 focus:ring ring-indigo-200 ${link.active ? 'bg-indigo-500 text-white' : 'text-gray-700'}`}
+                                className={`mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-yellow-500 focus:outline-none focus:border-red-500 focus:ring ring-red-200 ${link.active ? 'bg-red-500 text-white hover:text-gray-700' : 'text-gray-700'}`}
                                 href={link.url}
                             >
                                 {link.label.replace('&laquo; ', '').replace(' &raquo;', '')}

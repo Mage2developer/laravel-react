@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -33,7 +34,7 @@ class UserController extends Controller
         $query->orderBy($sort, $direction);
 
         // Get paginated results (10 per page)
-        $users = $query->paginate(10)->withQueryString();
+        $users = $query->paginate(Data::ADMIN_USERS_LIST_LIMIT)->withQueryString();
 
         // Return Inertia view with data
         return Inertia::render('Admin/Users/Index', [
