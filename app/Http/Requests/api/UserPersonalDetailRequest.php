@@ -25,7 +25,7 @@ class UserPersonalDetailRequest extends FormRequest
             'dob' => 'required|string|max:50',
             'marital_status' => 'required|boolean|max:5',
             'height' => 'required|string|max:15',
-            'weight' => 'required|number|max:15',
+            'weight' => 'required|string|max:15',
             'manglik' => 'boolean',
             'have_specs' => 'boolean',
             'hobby' => 'string|max:500',
