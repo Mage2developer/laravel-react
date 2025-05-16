@@ -21,7 +21,7 @@ export default function UpdateProfileInformation({ user, mustVerifyEmail, status
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-bold">Profile Information</h2>
+                <h2 className="text-xl font-bold">Profile Information</h2>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Head, Link, router, usePage } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Pagination from '@/Components/Pagination';
 import Checkbox from "@/Components/Checkbox";
-import {FiEye, FiEyeOff} from "react-icons/fi";
 
 export default function Index({ users, filters }) {
     const [search, setSearch] = useState(filters.search || '');
@@ -78,13 +77,6 @@ export default function Index({ users, filters }) {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} users?`)) {
 
-                // try {
-                //     await mockApi.users.delete(selectedUsers);
-                //     await fetchUsers(); // Refresh the list
-                //     setSelectedUsers([]);
-                // } catch (err: any) {
-                //     setError(err.message || 'Failed to delete users');
-                // }
             }
         } else {
             alert('Please select users to delete.');
@@ -94,13 +86,7 @@ export default function Index({ users, filters }) {
     const handleMassActive = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to activate ${selectedUsers.length} users?`)) {
-                // try {
-                //     await mockApi.users.disable(selectedUsers);
-                //     await fetchUsers();
-                //     setSelectedUsers([]);
-                // } catch (err: any) {
-                //     setError(err.message || 'Failed to disable users');
-                // }
+
             }
         } else {
             alert('Please select users to active.');
@@ -110,13 +96,7 @@ export default function Index({ users, filters }) {
     const handleMassInactive = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to deactivate ${selectedUsers.length} users?`)) {
-                // try {
-                //     await mockApi.users.disable(selectedUsers);
-                //     await fetchUsers();
-                //     setSelectedUsers([]);
-                // } catch (err: any) {
-                //     setError(err.message || 'Failed to disable users');
-                // }
+
             }
         } else {
             alert('Please select users to inactive.');
@@ -139,7 +119,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassDelete}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
                                     >
                                         Delete ({selectedUsers.length})
                                     </button>
@@ -147,7 +127,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassActive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
                                     >
                                         Active ({selectedUsers.length})
                                     </button>
@@ -155,7 +135,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassInactive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
                                     >
                                         Inactive ({selectedUsers.length})
                                     </button>
@@ -240,7 +220,15 @@ export default function Index({ users, filters }) {
                                                 <td className="border-t px-6 py-4">
                                                     {new Date(user.created_at).toLocaleDateString()}
                                                 </td>
-                                                <td className="border-t px-6 py-4">Edit</td>
+                                                <td className="border-t px-6 py-4">
+                                                    <Link
+                                                        // href={route("password.request")}
+                                                        href='#'
+                                                        className="text-base text-red-500"
+                                                    >
+                                                        Edit
+                                                    </Link>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (

@@ -64,8 +64,7 @@ export const getMaritalStatusOptions = () => {
     return [
         { value: 0, label: 'Single' },
         { value: 1, label: 'Married' },
-        { value: 2, label: 'Divorced' },
-        { value: 3, label: 'Not Specified' }
+        { value: 2, label: 'Divorced' }
     ];
 };
 

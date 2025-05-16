@@ -7,9 +7,10 @@ import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import SelectBox from "@/Components/SelectBox";
 import PrimaryButton from "@/Components/PrimaryButton";
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-date-picker';
 import { format } from 'date-fns';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 export default function UpdatePersonalDetailsForm({userId, className = ''}) {
 
@@ -80,16 +81,9 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
                     <InputLabel htmlFor="dob" value="Date of Birth" required />
 
                     <DatePicker
-                        id="dob"
-                        name="dob"
-                        required
-                        selected={data.dob}
-                        onChange={(date) => setData('dob', (date ? format(date, 'yyyy-MM-dd') : null))}
-                        dateFormat="YYYY-MM-dd"
-                        isClearable showYearDropdown scrollableYearDropdown
-                        yearDropdownItemNumber={15}
-                        placeholderText="Click to select a date"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
+                        onChange={(date) => setData('dob', date)}
+                        value={data.dob}
+                        className="mt-1 block rounded-md border-gray-300 shadow-sm focus:border-indigo-500
                         focus:ring-indigo-500 text-sm font-medium text-gray-700"
                     />
 
