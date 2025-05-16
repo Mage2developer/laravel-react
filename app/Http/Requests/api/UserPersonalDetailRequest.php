@@ -26,9 +26,9 @@ class UserPersonalDetailRequest extends FormRequest
             'marital_status' => 'required|boolean|max:5',
             'height' => 'required|string|max:15',
             'weight' => 'required|string|max:15',
-            'manglik' => 'boolean',
-            'have_specs' => 'boolean',
-            'hobby' => 'string|max:500',
+            'manglik' => 'nullable|boolean',
+            'have_specs' => 'nullable|boolean',
+            'hobby' => 'nullable|max:500',
             'user_id' => 'required|exists:users,id'
         ];
     }

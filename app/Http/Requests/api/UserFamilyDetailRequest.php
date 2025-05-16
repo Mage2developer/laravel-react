@@ -24,10 +24,10 @@ class UserFamilyDetailRequest extends FormRequest
         return [
             'father_name' => 'required|string|max:100',
             'mother_name' => 'required|string|max:100',
-            'brother_name' => 'string|max:100',
-            'brother_in_laws' => 'string|max:100',
-            'sister_name' => 'string|max:100',
-            'sister_in_laws' => 'string|max:100',
+            'brother_name' => 'nullable|string|max:100',
+            'brother_in_laws' => 'nullable|string|max:100',
+            'sister_name' => 'nullable|string|max:100',
+            'sister_in_laws' => 'nullable|string|max:100',
             'user_id' => 'required|exists:users,id'
         ];
     }

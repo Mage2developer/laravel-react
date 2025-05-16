@@ -16,12 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('dob');
             $table->smallInteger('marital_status');
-            $table->smallInteger('sex');
+            $table->boolean('sex');
             $table->string('height');
             $table->string('weight');
             $table->boolean('manglik');
             $table->boolean('have_specs');
-            $table->text('hobby', 500);
+            $table->text('hobby', 500)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
@@ -48,8 +48,8 @@ return new class extends Migration
         Schema::create('user_family_details', function (Blueprint $table) {
             $table->id()->primary();
             $table->unsignedBigInteger('user_id');
-            $table->string('father_name' )->nullable();
-            $table->string('mother_name')->nullable();
+            $table->string('father_name' );
+            $table->string('mother_name');
             $table->string('brother_name')->nullable();
             $table->string('brother_in_laws')->nullable();
             $table->string('sister_name')->nullable();

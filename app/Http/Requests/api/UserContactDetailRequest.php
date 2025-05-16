@@ -24,7 +24,7 @@ class UserContactDetailRequest extends FormRequest
     {
         return [
             'mobile_number' => 'required|max:50',
-            'father_mobile_number' => 'max:50',
+            'father_mobile_number' => 'nullable|string|max:50',
             'native_city' => 'required|string|max:50',
             'current_address' => 'required|string|max:300',
             'user_id' => 'required|exists:users,id'
