@@ -209,8 +209,8 @@ class User extends Authenticatable
     public function scopeWithAllDetails($query)
     {
         return $query->with([
-                                'userPersonalDetail:id,user_id,dob,marital_status',
-                                'userEducationDetail:id,user_id,occupation',
+                                'userPersonalDetail:id,user_id,dob,marital_status,sex',
+                                'userEducationDetail:id,user_id,occupation,personal_income',
                                 'userImages'
                             ])
             ->where('users.status', Data::ENABLE)

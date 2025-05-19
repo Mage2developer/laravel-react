@@ -3,64 +3,44 @@ import React, {useState} from "react";
 import {Head} from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import ProfileBanner from "@/Components/ProfileBanner";
-import ProductFilters from "@/Components/ProductFilters";
+import ProfileFilters from "@/Components/ProfileFilters";
 import ProfileGrid from "@/Components/ProfileGrid";
-import SearchBox from "@/Components/SearchBox";
 
 function Index({ profiles }) {
-    const [profilesData, setProfilesData] = useState(profiles);
-
     const bannerImage = "images/wedding-banner.webp";
     const bannerTitle = "Profile";
     const bannerDescription = "Discover our curated selection of modern essentials";
 
-    const handleSearch = (searchTerm) => {
-        const filteredResults = profiles.filter(profile =>
-            profile.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setProfilesData(filteredResults);
+    const [profilesData, setProfilesData] = useState(profiles);
+
+    const handleProfileFilters = (filters) => {
+        const filteredItems = profiles.filter(profile => {
+            const { name, sex, marital_status, min_income, max_income } = filters;
+
+            if (name && !profile.name.toLowerCase().includes(name.toLowerCase())) {
+                return false;
+            }
+
+            if (sex && profile.user_personal_detail.sex !== parseInt(sex)) {
+                return false;
+            }
+
+            if (marital_status && profile.user_personal_detail.marital_status !== parseInt(marital_status)) {
+                return false;
+            }
+
+            if (min_income && parseFloat(profile.user_education_detail.personal_income) < parseFloat(min_income)) {
+                return false;
+            }
+
+            if (max_income && parseFloat(profile.user_education_detail.personal_income) > parseFloat(max_income)) {
+                return false;
+            }
+
+            return true;
+        });
+        setProfilesData(filteredItems);
     };
-
-    // const [selectedCategory, setSelectedCategory] = useState("all");
-    // const [sortBy, setSortBy] = useState("featured");
-    // const [categories, setCategories] = useState([
-    //     "all",
-    //     "lighting",
-    //     "furniture",
-    //     "audio",
-    //     "accessories",
-    // ]);
-
-    // Filter and sort products based on selected category and sort option
-    // const getFilteredAndSortedProfiles = () => {
-    //     let filteredProfiles = profilesData;
-    //
-    //     // Filter by category
-    //     if (selectedCategory !== "all") {
-    //         // In a real app, you would filter based on product category
-    //         // For this demo, we're just returning all products
-    //         filteredProfiles = profilesData;
-    //     }
-    //
-    //     // Sort products
-    //     return [...filteredProfiles].sort((a, b) => {
-    //         if (sortBy === "price-low") {
-    //             return (
-    //                 parseFloat(a.price.replace("$", "")) -
-    //                 parseFloat(b.price.replace("$", ""))
-    //             );
-    //         } else if (sortBy === "price-high") {
-    //             return (
-    //                 parseFloat(b.price.replace("$", "")) -
-    //                 parseFloat(a.price.replace("$", ""))
-    //             );
-    //         } else if (sortBy === "name") {
-    //             return a.name.localeCompare(b.name);
-    //         }
-    //         // Default: featured (no sorting)
-    //         return 0;
-    //     });
-    // };
 
     return (
         <GuestLayout>
@@ -72,17 +52,11 @@ function Index({ profiles }) {
                     </div>
 
                     <section className="px-3` sm:px-10 py-0 mx-auto my-0 max-w-[1200px] min-h-[800px]">
-                        <SearchBox onSearch={handleSearch} />
 
-                        {/* <ProductFilters
-                            categories={categories}
-                            selectedCategory={selectedCategory}
-                            setSelectedCategory={setSelectedCategory}
-                            sortBy={sortBy}
-                            setSortBy={setSortBy}
-                        /> */}
+                        <ProfileFilters onFilter={handleProfileFilters} />
 
                         <ProfileGrid profiles={profilesData}/>
+
                     </section>
                 </main>
             </div>
