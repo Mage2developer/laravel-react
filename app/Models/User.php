@@ -4,15 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Helper\Data;
-use App\Models\UserPersonalDetail;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -114,10 +114,9 @@ class User extends Authenticatable
      */
     public function getUserProfileList($filters = [])
     {
-
         $query = User::query();
 
-        if($filters) {
+        if ($filters) {
             foreach ($filters as $filter) {
                 switch ($filter['type']) {
                     case 'sex':
@@ -152,10 +151,10 @@ class User extends Authenticatable
     /**
      * Scope a query to filter users by age range.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  int  $minAge
-     * @param  int  $maxAge
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @param int $minAge
+     * @param int $maxAge
+     * @return Builder
      */
     public function scopeWhereAgeBetween($query, $minAge, $maxAge)
     {
@@ -169,10 +168,10 @@ class User extends Authenticatable
     /**
      * Scope a query to filter users by date of birth.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $dob  The date of birth to filter by (e.g., '2000-01-01').
-     * @param  string  $operator The operator for the comparison (=, <, >, <=, >=)
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @param string $dob The date of birth to filter by (e.g., '2000-01-01').
+     * @param string $operator The operator for the comparison (=, <, >, <=, >=)
+     * @return Builder
      */
     public function scopeWhereDob($query, $dob, $operator = '=')
     {
@@ -184,9 +183,9 @@ class User extends Authenticatable
     /**
      * Scope a query to filter users by sex.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $sex  The sex to filter by.
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param Builder $query
+     * @param string $sex The sex to filter by.
+     * @return Builder
      */
     public function scopeWhereSex($query, $sex)
     {
@@ -197,7 +196,7 @@ class User extends Authenticatable
 
     public function scopeWhereName($query, $name)
     {
-        return $query->where('name', 'like', '%' . $name . '%' );
+        return $query->where('name', 'like', '%' . $name . '%');
     }
 
     public function scopeWherePersonalIncome($query, $dob, $operator = '>=')
@@ -234,9 +233,10 @@ class User extends Authenticatable
             'userImages'
         )
             ->where([
-                        ['users.status', '=', Data::ENABLE],
                         ['users.id', '=', $id],
-                        ['users.is_deleted', '=', Data::DISABLE]
+                        ['users.status', '=', Data::ENABLE],
+                        ['users.is_deleted', '=', Data::DISABLE],
+                        ['users.role', '=', Data::USER_SLUG]
                     ]
             )->first();
     }
@@ -253,8 +253,13 @@ class User extends Authenticatable
             'userEducationDetail:id,user_id,occupation',
             'userImages'
         )
-            ->where('users.status', Data::ENABLE)
-            ->orderBy('users.id', 'desc')
+            ->where([
+                        ['users.status', '=', Data::ENABLE],
+                        ['users.is_deleted', '=', Data::DISABLE],
+                        ['users.role', '=', Data::USER_SLUG]
+                    ]
+            )
+            ->orderBy('users.id', Data::DESC)
             ->limit(Data::LATEST_PROFILE_UMBER)
             ->get();
 
