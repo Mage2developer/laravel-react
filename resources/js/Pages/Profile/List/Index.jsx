@@ -10,7 +10,7 @@ import SearchBox from "@/Components/SearchBox";
 function Index({ profiles }) {
     const [profilesData, setProfilesData] = useState(profiles);
 
-    const bannerImage = "images/wedding-banner.jpg";
+    const bannerImage = "images/wedding-banner.webp";
     const bannerTitle = "Profile";
     const bannerDescription = "Discover our curated selection of modern essentials";
 

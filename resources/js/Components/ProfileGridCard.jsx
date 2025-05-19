@@ -14,7 +14,7 @@ function ProfileGridCard({ profile }) {
                         src={
                             profile.user_images.length > 0
                                 ? profile.user_images[0].image_path
-                                : "/images/profile-placeholder.png"
+                                : "/images/profile-placeholder.webp"
                         }
                         alt={profile.name}
                     />

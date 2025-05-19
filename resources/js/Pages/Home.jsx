@@ -69,7 +69,7 @@ function Home({ latestProfile }) {
                     <div className="flex items-center gap-5 max-md:flex-col">
                         <div className="w-6/12 max-md:w-full">
                             <img
-                                src="https://www.varmalla.com/wp-content/uploads/2023/11/Destination-Wedding.jpg"
+                                src="images/destination-wedding.webp"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                                 alt="Feature showcase"
                             />

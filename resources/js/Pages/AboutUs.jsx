@@ -25,7 +25,7 @@ const AboutUs = () => {
                         {/* Image Column */}
                         <div className="rounded-xl overflow-hidden shadow-lg border border-white/10  flex justify-center">
                             <img
-                                src="images/about-us.png"
+                                src="images/about-us.webp"
                                 alt="Our Team"
                                 className="w-full object-cover"
                             />

@@ -5,19 +5,19 @@ import { Link } from "@inertiajs/react";
 
 const sliderImages = [
     {
-        src: "/images/wedding-banner.jpg",
+        src: "/images/wedding-banner.webp",
         title: "Find your perfect match with Vanand Vivah",
         description:
             "At Vanand Vivah, we connect brides and grooms to help them discover meaningful relationships. Join our community today.",
     },
     {
-        src: "https://www.varmalla.com/wp-content/uploads/2023/11/Destination-Wedding.jpg",
+        src: "/images/destination-wedding.webp",
         title: "Join thousands finding love",
         description:
             "Trusted by thousands across the world, Vanand Vivah helps you take the first step toward a fulfilling relationship.",
     },
     {
-        src: "https://www.varmalla.com/wp-content/uploads/2024/02/hindu-wedding-mandap-athens-greece-1-65bdc8ccafcea.webp",
+        src: "/images/hindu-wedding-mandap.webp",
         title: "Safe, secure, and personalized",
         description:
             "We value your privacy and provide you with a secure platform tailored to your unique preferences.",

@@ -40,7 +40,7 @@ function Index({profile}) {
                                             src={
                                                 item.user_images.length > 0
                                                     ? `/${item.user_images[0].image_path}`
-                                                    : "/images/profile-placeholder.png"
+                                                    : "/images/profile-placeholder.webp"
                                             }
                                             alt="Profile"
                                             className="w-full h-full object-cover"
