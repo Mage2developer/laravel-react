@@ -64,7 +64,7 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
         <section className={className}>
             <form onSubmit={updateFamilyDetails} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="father_name" value="Father's Name" required />
+                    <InputLabel htmlFor="father_name" value="Father's Name" required/>
 
                     <TextInput
                         id="father_name"
@@ -78,7 +78,7 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.father_name} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="mother_name" value="Mother's Name" required />
+                    <InputLabel htmlFor="mother_name" value="Mother's Name" required/>
 
                     <TextInput
                         id="mother_name"
@@ -105,19 +105,6 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.brother_name} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="sister_name" value="Sister's Name"/>
-
-                    <TextInput
-                        id="sister_name"
-                        value={data.sister_name}
-                        onChange={(e) => setData('sister_name', e.target.value)}
-                        type="text"
-                        className="mt-1 block w-full"
-                    />
-
-                    <InputError message={errors.sister_name} className="mt-2"/>
-                </div>
-                <div>
                     <InputLabel htmlFor="brother_in_laws" value="Brother In-law's Name"/>
 
                     <TextInput
@@ -129,6 +116,19 @@ export default function UpdateFamilyDetailsForm({ userId, className = '' }) {
                     />
 
                     <InputError message={errors.brother_in_laws} className="mt-2"/>
+                </div>
+                <div>
+                    <InputLabel htmlFor="sister_name" value="Sister's Name"/>
+
+                    <TextInput
+                        id="sister_name"
+                        value={data.sister_name}
+                        onChange={(e) => setData('sister_name', e.target.value)}
+                        type="text"
+                        className="mt-1 block w-full"
+                    />
+
+                    <InputError message={errors.sister_name} className="mt-2"/>
                 </div>
                 <div>
                     <InputLabel htmlFor="sister_in_laws" value="Sister In-law's Name"/>

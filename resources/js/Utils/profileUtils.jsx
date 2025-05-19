@@ -21,9 +21,9 @@ export const getMaritalStatusText = (status) => {
 
 export const getManglikStatusText = (status) => {
     switch (status) {
-        case 0:
-            return "Yes";
         case 1:
+            return "Yes";
+        case 0:
             return "No";
         default:
             return "Not Specified";
@@ -32,9 +32,9 @@ export const getManglikStatusText = (status) => {
 
 export const getHaveSpecsText = (status) => {
     switch (status) {
-        case 0:
-            return "Yes";
         case 1:
+            return "Yes";
+        case 0:
             return "No";
         default:
             return "Not Specified";
