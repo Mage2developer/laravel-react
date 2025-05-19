@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import axios from 'axios';
+import PrimaryButton from '@/Components/PrimaryButton';
+import { RxCross2 } from "react-icons/rx";
 
 export default function UploadProfileImagesForm({userId, className = ''}) {
 
@@ -128,9 +130,7 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
                 )}
 
                 <div>
-                    <button type="submit" className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        Upload
-                    </button>
+                    <PrimaryButton>Save</PrimaryButton>
                 </div>
 
             </form>
@@ -146,9 +146,9 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
                             <div key={url.id} className="relative group">
                                 <img key={url.id} src={url.image_path} alt={`uploaded-${url.id}`}
                                      className="w-32 h-32 object-cover"/>
-                                <button type="button" onClick={() => handleRemove(url.id)}
+                                <button title="Do you want delete this image?" type="button" onClick={() => handleRemove(url.id)}
                                         className="absolute top-0 right-[60px] text-gray-900 rounded-full p-1 text-sm">
-                                    ✕
+                                    <RxCross2 />
                                 </button>
                             </div>
                         ))}
