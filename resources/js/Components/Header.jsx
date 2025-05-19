@@ -7,6 +7,8 @@ import { Link, usePage } from "@inertiajs/react";
 import Dropdown from "@/Components/Dropdown";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 
+import { FaChevronDown } from "react-icons/fa";
+
 export const Header = () => {
     const user = usePage().props.auth.user;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,18 +72,7 @@ export const Header = () => {
                             <Dropdown.Trigger>
                                 <span className="inline-flex items-center space-x-2 text-xl font-medium cursor-pointer">
                                     <span>{user.name.split(" ")[0]}</span>
-                                    <svg
-                                        className="w-4 h-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clipRule="evenodd"
-                                        />
-                                    </svg>
+                                    <FaChevronDown size={15}/>
                                 </span>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
