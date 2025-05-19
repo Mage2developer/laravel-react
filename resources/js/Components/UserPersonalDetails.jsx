@@ -44,20 +44,12 @@ function UserPersonalDetails({ item }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <BsPersonStanding size={24} className="me-2" />
-                                <span className="font-bold">Height:</span>
+                                <BiMaleFemale size={24} className="me-2"/>
+                                <span className="font-bold">Gender:</span>
                                 <span className="ml-2">
-                                    {item.user_personal_detail.height}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <LiaWeightSolid size={24} className="me-2" />
-
-                                <span className="font-bold">Weight:</span>
-                                <span className="ml-2">
-                                    {item.user_personal_detail.weight}
+                                    <GetGenderText
+                                        status={item.user_personal_detail.sex}
+                                    />
                                 </span>
                             </div>
                         </div>
@@ -79,9 +71,28 @@ function UserPersonalDetails({ item }) {
                             </div>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex items-center text-gray-700">
+                                <LiaWeightSolid size={24} className="me-2"/>
+
+                                <span className="font-bold">Weight:</span>
+                                <span className="ml-2">
+                                    {item.user_personal_detail.weight}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                            <div className="flex items-center text-gray-700">
+                                <BsPersonStanding size={24} className="me-2"/>
+                                <span className="font-bold">Height:</span>
+                                <span className="ml-2">
+                                    {item.user_personal_detail.height}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex items-center">
-                                    <GiLinkedRings size={24} className="me-2" />
+                                    <GiLinkedRings size={24} className="me-2"/>
                                     <span className="font-bold">
                                         Marital Status:
                                     </span>
@@ -98,7 +109,7 @@ function UserPersonalDetails({ item }) {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <MdDiamond size={24} className="me-2" />
+                                <MdDiamond size={24} className="me-2"/>
                                 <span className="font-bold">Manglik:</span>
                                 <span className="ml-2">
                                     <MangalikStatus
@@ -111,7 +122,7 @@ function UserPersonalDetails({ item }) {
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="flex items-center text-gray-700">
-                                <GiSpectacles size={30} className="me-2" />
+                                <GiSpectacles size={30} className="me-2"/>
                                 <span className="font-bold">
                                     Have You Specs:
                                 </span>
@@ -124,28 +135,33 @@ function UserPersonalDetails({ item }) {
                                 </span>
                             </div>
                         </div>
+                        <div></div>
+
                         <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <BiMaleFemale size={24} className="me-2" />
-                                <span className="font-bold">Gender:</span>
-                                <span className="ml-2">
-                                    <GetGenderText
-                                        status={item.user_personal_detail.sex}
-                                    />
+                            <div className="block xs425:flex items-center text-gray-700">
+                                <div className="flex">
+                                    <GiMoneyStack size={25} className="me-2"/>
+                                    <span className="font-bold">
+                                        Personal Income :
+                                    </span>
+                                </div>
+                                <span className="ml-7 xs425:ml-2 flex items-center">
+                                    <FaIndianRupeeSign/>
+                                    {item.user_education_detail.personal_income}
                                 </span>
                             </div>
                         </div>
                         <div className="bg-gray-50 p-4 rounded-lg">
                             <div className="block xs425:flex items-center text-gray-700">
                                 <div className="flex">
-                                    <GiMoneyStack size={25} className="me-2" />
+                                    <GiMoneyStack size={25} className="me-2"/>
                                     <span className="font-bold">
-                                        Personal Income :
+                                        Family Income :
                                     </span>
                                 </div>
                                 <span className="ml-7 xs425:ml-2 flex items-center">
-                                    <FaIndianRupeeSign />
-                                    {item.user_education_detail.personal_income}
+                                    <FaIndianRupeeSign/>
+                                    {item.user_education_detail.family_income}
                                 </span>
                             </div>
                         </div>
@@ -166,7 +182,7 @@ function UserPersonalDetails({ item }) {
                                     </span>
                                 </div>
                                 <div className="ml-7 xs425:ml-2">
-                                    {item.user_contact_detail.current_address}
+                                {item.user_contact_detail.current_address}
                                 </div>
                             </div>
                         </div>

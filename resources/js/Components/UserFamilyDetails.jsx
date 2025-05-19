@@ -34,13 +34,7 @@ const UserFamilyDetails = ({ item }) => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard label="Father's Name:" value={family.father_name} />
-                <InfoCard
-                    label="Father's Income:"
-                    value={income}
-                    icon={<GiMoneyStack size={25} className="me-2" />}
-                />
                 <InfoCard label="Mother's Name:" value={family.mother_name} />
-                <div></div>
                 <InfoCard label="Brother's Name:" value={family.brother_name} />
                 <InfoCard
                     label="Brother-in-law's Name:"

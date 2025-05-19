@@ -33,7 +33,8 @@ class AuthenticatedSessionController extends Controller
     {
         // Customised code for checking user status before login
         $user = User::where('email', $request->email)->first();
-        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
+
+        if ($user && ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE)) {
             $userInfo = [
                 'email' => $user->email,
                 'name' => $user->name,
