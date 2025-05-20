@@ -23,7 +23,7 @@ class UserPersonalDetailRequest extends FormRequest
     {
         return [
             'dob' => 'required|string|max:50',
-            'marital_status' => 'required|boolean',
+            'marital_status' => 'required|integer|between:0,2',
             'height' => 'required|string|max:15',
             'weight' => 'required|string|max:15',
             'manglik' => 'nullable|boolean',
