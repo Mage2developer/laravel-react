@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "@inertiajs/react";
 import AgeCalculator from "./AgeCalculator";
 import MaritalStatus from "./MaritalStatus";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const LatestProfileCard = ({ profile }) => {
     return (
@@ -11,14 +13,15 @@ export const LatestProfileCard = ({ profile }) => {
                 className="text-center flex-col items-center justify-center"
             >
                 <div className="text-center flex items-center justify-center cursor-pointer">
-                    <img
-                        className="object-cover overflow-hidden mb-3 rounded-full aspect-square h-[120px] w-[120px]"
+                    <LazyLoadImage
+                        alt={profile.name}
                         src={
                             profile.user_images.length > 0
                                 ? profile.user_images[0].image_path
                                 : "/images/profile-placeholder.webp"
                         }
-                        alt={profile.name}
+                        effect="blur"
+                        className="object-cover overflow-hidden mb-3 rounded-full aspect-square h-[120px] w-[120px]"
                     />
                 </div>
 

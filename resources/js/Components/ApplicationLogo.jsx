@@ -1,3 +1,12 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import React from "react";
+
 export default function ApplicationLogo(props) {
-    return <img src="/images/header-logo.png" className="h-[70px] " />;
+    return <LazyLoadImage
+        alt="Vanand Vivah Logo"
+        src="/images/header-logo.png"
+        effect="blur"
+        className="h-[70px]"
+    />
 }
