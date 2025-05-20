@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import { LuHeartHandshake } from "react-icons/lu";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { useState } from "react";
@@ -62,9 +62,10 @@ function Home({ latestProfile }) {
 
     return (
         <GuestLayout>
+            <Head title="A Perfect Match For Marriage" />
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                        <HeroSlider/>
+                    <HeroSlider/>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">

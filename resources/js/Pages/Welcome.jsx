@@ -15,7 +15,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, latestProfil
 
     return (
         <>
-            <Head title="Welcome" />
+            <Head title="A Perfect Match For Marriage" />
             <Home latestProfile={latestProfile} />
         </>
     );
