@@ -190,16 +190,22 @@ function UserPersonalDetails({ item }) {
                 </div>
 
                 <div>
-                    <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
-                        Hobby
-                    </h2>
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="grid ">
-                            <div className="flex items-center text-gray-700">
-                                {item.user_personal_detail.hobby}
+                    {!item.user_personal_detail.hobby ? (
+                        ""
+                    ) : (
+                        <>
+                            <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
+                                Hobby
+                            </h2>
+                            <div className="bg-gray-50 p-4 rounded-lg">
+                                <div className="grid ">
+                                    <div className="flex items-center text-gray-700">
+                                        {item.user_personal_detail.hobby}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
