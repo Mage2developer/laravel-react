@@ -33,7 +33,7 @@ export const Footer = () => {
                 <div className="text-center">
                     <LazyLoadImage
                         alt="Vanand Vivah Logo"
-                        src="/images/header-logo.png"
+                        src="/images/header-logo.webp"
                         effect="blur"
                         className="mx-auto h-20 w-auto object-contain"
                     />

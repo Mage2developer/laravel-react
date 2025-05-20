@@ -5,7 +5,7 @@ import React from "react";
 export default function ApplicationLogo(props) {
     return <LazyLoadImage
         alt="Vanand Vivah Logo"
-        src="/images/header-logo.png"
+        src="/images/header-logo.webp"
         effect="blur"
         className="h-[70px]"
     />
