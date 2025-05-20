@@ -28,14 +28,14 @@ const sliderImages = [
 
 function HeroSlider() {
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        arrows: true,
+        arrows: false,
         pauseOnHover: true,
     };
 
@@ -50,11 +50,12 @@ function HeroSlider() {
                             effect="blur"
                             className="object-cover w-full h-full"
                             width={"100%"}
+                            height={"600px"}
                         />
                         <div className="absolute top-2/4 left-2/4 px-5 py-0 w-full text-center -translate-x-2/4 -translate-y-2/4 max-w-[800px]">
-                            <h1 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize text-white drop-shadow-xl">
+                            <h2 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize text-white drop-shadow-xl">
                                 {slide.title}
-                            </h1>
+                            </h2>
                             <p className="mb-8 text-xl leading-relaxed text-white text-opacity-90">
                                 {slide.description}
                             </p>
