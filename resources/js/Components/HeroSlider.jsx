@@ -44,7 +44,7 @@ function HeroSlider() {
             <Slider {...settings}>
                 {sliderImages.map((slide, index) => (
                     <div key={index} className="relative w-full h-[600px]">
-                        <LazyLoadImage
+                        <img
                             alt="Vanand Vivah Registration"
                             src={slide.src}
                             effect="blur"
@@ -76,3 +76,5 @@ function HeroSlider() {
 }
 
 export default HeroSlider;
+
+
