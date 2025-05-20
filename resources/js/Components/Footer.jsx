@@ -36,8 +36,8 @@ export const Footer = () => {
                         src="/images/header-logo.webp"
                         effect="blur"
                         className="mx-auto h-20 w-auto object-contain"
-                        height={"80px"}
-                        width={"267px"}
+                        height={"80"}
+                        width={"267"}
                     />
                     <p className="mt-4 text-sm text-black">
                         © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
