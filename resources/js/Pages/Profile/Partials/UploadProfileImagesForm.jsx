@@ -76,8 +76,8 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
             setPreviews([]);
             clearInputRef();
         } catch (error) {
-            console.error(error);
-            setErrorMessage('Upload failed');
+            // console.error(error);
+            setErrorMessage(error.response.data.message);
         }
     };
 
@@ -105,7 +105,6 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
             setImages([]);
             setPreviews([]);
         } catch (error) {
-            console.error(error);
             setErrorMessage('Failed to delete image');
         }
     };

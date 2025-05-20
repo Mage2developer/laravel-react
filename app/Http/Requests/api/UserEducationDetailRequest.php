@@ -24,8 +24,8 @@ class UserEducationDetailRequest extends FormRequest
         return [
             'education' => 'required|string|max:100',
             'occupation' => 'required|string|max:50',
-            'personal_income' => 'required|string|max:10',
-            'family_income' => 'nullable|max:10',
+            'personal_income' => 'required|numeric|digits_between:0,10',
+            'family_income' => 'nullable|numeric|digits_between:0,10',
             'user_id' => 'required|exists:users,id'
         ];
     }

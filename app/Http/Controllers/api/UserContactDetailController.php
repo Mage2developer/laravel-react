@@ -12,9 +12,9 @@ class UserContactDetailController extends Controller
 {
     public function update(UserContactDetailRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
+
             $contactDetail = UserContactDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
             if ($request->user()->id !== $contactDetail->user_id) {

@@ -37,6 +37,8 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
 
     const updateContactDetails = async (e) => {
         e.preventDefault();
+        setSuccessMessage('');
+        setApiErrors('');
 
         try {
             await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
@@ -44,7 +46,6 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
             const response = await axios.patch("/userContactDetail", data);
 
             setSuccessMessage(response.data.message);
-            setApiErrors('');
 
             setAlert(true);
             setTimeout(() => {
@@ -53,7 +54,7 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
 
         } catch (error) {
             if (error.response?.status === 422) {
-                setApiErrors(error.response.data.errors);
+                setApiErrors(error.response.data.message);
             } else {
                 setApiErrors("An error occurred.");
             }

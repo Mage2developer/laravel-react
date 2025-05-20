@@ -23,8 +23,8 @@ class UserContactDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mobile_number' => 'required|max:50',
-            'father_mobile_number' => 'nullable|string|max:50',
+            'mobile_number' => 'required|numeric|digits_between:10,15',
+            'father_mobile_number' => 'nullable|numeric|digits_between:10,15',
             'native_city' => 'required|string|max:50',
             'current_address' => 'required|string|max:300',
             'user_id' => 'required|exists:users,id'

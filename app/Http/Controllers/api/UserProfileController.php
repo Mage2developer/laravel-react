@@ -30,9 +30,8 @@ class UserProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
             $request->user()->update($request->only(['name', 'email']));
             return response()->json(
                 ['message' => 'Profile updated successfully', 'user' => $request->user(), 'success' => true]

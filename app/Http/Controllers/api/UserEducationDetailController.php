@@ -11,9 +11,9 @@ class UserEducationDetailController extends Controller
 {
     public function update(UserEducationDetailRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
+
             $educationDetail = UserEducationDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
             if ($request->user()->id !== $educationDetail->user_id) {

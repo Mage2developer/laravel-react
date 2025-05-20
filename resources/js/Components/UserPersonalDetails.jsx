@@ -63,10 +63,11 @@ function UserPersonalDetails({ item }) {
                                     <span className="font-bold">Age:</span>
                                 </div>
                                 <span className="ml-7 xs425:ml-2">
+
                                     <AgeCalculator
                                         dob={item.user_personal_detail.dob}
                                     />{" "}
-                                    ({item.user_personal_detail.dob})
+                                    ({item.user_personal_detail.dob.split("T")[0]})
                                 </span>
                             </div>
                         </div>

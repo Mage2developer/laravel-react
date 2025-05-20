@@ -11,7 +11,7 @@ export const getMaritalStatusText = (status) => {
         case 0:
             return "Single";
         case 1:
-            return "Married";
+            return "Widower/Widow";
         case 2:
             return "Divorced";
         default:
@@ -63,7 +63,7 @@ export const getYesNoOptions = () => {
 export const getMaritalStatusOptions = () => {
     return [
         { value: 0, label: 'Single' },
-        { value: 1, label: 'Married' },
+        { value: 1, label: 'Widower/Widow' },
         { value: 2, label: 'Divorced' }
     ];
 };

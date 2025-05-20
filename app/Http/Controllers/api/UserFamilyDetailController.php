@@ -11,9 +11,9 @@ class UserFamilyDetailController extends Controller
 {
     public function update(UserFamilyDetailRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
+
             $familyDetail = UserFamilyDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
             if ($request->user()->id !== $familyDetail->user_id) {

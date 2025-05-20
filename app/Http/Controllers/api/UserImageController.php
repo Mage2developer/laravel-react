@@ -36,9 +36,9 @@ class UserImageController extends Controller
      */
     public function store(UserImageRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
+
             $user_id = Auth::id();
             $folderPath = "uploads/{$user_id}";
             $imageCount = count(Image::where(Data::USER_ID_FOREIGN_KEY, $user_id)->get());

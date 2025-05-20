@@ -11,9 +11,9 @@ class UserPersonalDetailController extends Controller
 {
     public function update(UserPersonalDetailRequest $request)
     {
-        $request->validated();
-
         try {
+            $request->validated();
+
             $personalDetail = UserPersonalDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
             if ($request->user()->id !== $personalDetail->user_id) {

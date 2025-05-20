@@ -67,7 +67,7 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
 
         } catch (error) {
             if (error.response?.status === 422) {
-                setApiErrors(error.response.data.errors);
+                setApiErrors(error.response.data.message);
             } else {
                 setApiErrors("An error occurred.");
             }
