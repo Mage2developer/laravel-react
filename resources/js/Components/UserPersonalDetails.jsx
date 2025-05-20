@@ -20,6 +20,7 @@ import {
 import { LiaWeightSolid } from "react-icons/lia";
 import { MdBusinessCenter, MdDiamond } from "react-icons/md";
 import { BiMaleFemale } from "react-icons/bi";
+import InfoCard from "./InfoCard";
 
 function UserPersonalDetails({ item }) {
     // const items = props.item;
@@ -42,150 +43,118 @@ function UserPersonalDetails({ item }) {
                         Basic Details
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <BiMaleFemale size={24} className="me-2"/>
-                                <span className="font-bold">Gender:</span>
-                                <span className="ml-2">
-                                    <GetGenderText
-                                        status={item.user_personal_detail.sex}
-                                    />
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="block xs425:flex items-center text-gray-700">
-                                <div className="flex items-center">
-                                    <FaCalendarDays
-                                        size={22}
-                                        className="me-2"
-                                    />
-                                    <span className="font-bold">Age:</span>
-                                </div>
-                                <span className="ml-7 xs425:ml-2">
-
+                        <InfoCard
+                            label="Gender:"
+                            value={
+                                <GetGenderText
+                                    status={item.user_personal_detail.sex}
+                                />
+                            }
+                            icon={<BiMaleFemale size={24} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Age:"
+                            value={
+                                <>
                                     <AgeCalculator
                                         dob={item.user_personal_detail.dob}
                                     />{" "}
-                                    ({item.user_personal_detail.dob.split("T")[0]})
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <LiaWeightSolid size={24} className="me-2"/>
-
-                                <span className="font-bold">Weight:</span>
-                                <span className="ml-2">
-                                    {item.user_personal_detail.weight}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <BsPersonStanding size={24} className="me-2"/>
-                                <span className="font-bold">Height:</span>
-                                <span className="ml-2">
-                                    {item.user_personal_detail.height}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="block xs425:flex items-center text-gray-700">
-                                <div className="flex items-center">
-                                    <GiLinkedRings size={24} className="me-2"/>
-                                    <span className="font-bold">
-                                        Marital Status:
-                                    </span>
-                                </div>
-                                <span className="ml-7 xs425:ml-2">
-                                    <MaritalStatus
-                                        status={
-                                            item.user_personal_detail
-                                                .marital_status
-                                        }
-                                    />
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <MdDiamond size={24} className="me-2"/>
-                                <span className="font-bold">Manglik:</span>
-                                <span className="ml-2">
-                                    <MangalikStatus
-                                        status={
-                                            item.user_personal_detail.manglik
-                                        }
-                                    />
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="flex items-center text-gray-700">
-                                <GiSpectacles size={30} className="me-2"/>
-                                <span className="font-bold">
-                                    Have You Specs:
-                                </span>
-                                <span className="ml-2">
-                                    <HaveSpecsStatus
-                                        status={
-                                            item.user_personal_detail.have_specs
-                                        }
-                                    />
-                                </span>
-                            </div>
-                        </div>
+                                    (
+                                    {
+                                        item.user_personal_detail.dob.split(
+                                            "T"
+                                        )[0]
+                                    }
+                                    )
+                                </>
+                            }
+                            icon={<FaCalendarDays size={22} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Weight:"
+                            value={item.user_personal_detail.weight}
+                            icon={<LiaWeightSolid size={24} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Height:"
+                            value={item.user_personal_detail.height}
+                            icon={
+                                <BsPersonStanding size={24} className="me-2" />
+                            }
+                        />
+                        <InfoCard
+                            label="Marital Status:"
+                            value={
+                                <MaritalStatus
+                                    status={
+                                        item.user_personal_detail.marital_status
+                                    }
+                                />
+                            }
+                            icon={<GiLinkedRings size={24} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Manglik:"
+                            value={
+                                <MangalikStatus
+                                    status={item.user_personal_detail.manglik}
+                                />
+                            }
+                            icon={<MdDiamond size={24} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Have You Specs:"
+                            value={
+                                <HaveSpecsStatus
+                                    status={
+                                        item.user_personal_detail.have_specs
+                                    }
+                                />
+                            }
+                            icon={<GiSpectacles size={30} className="me-2" />}
+                        />
                         <div></div>
-
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="block xs425:flex items-center text-gray-700">
-                                <div className="flex">
-                                    <GiMoneyStack size={25} className="me-2"/>
-                                    <span className="font-bold">
-                                        Personal Income :
+                        <InfoCard
+                            label="Personal Income:"
+                            value={
+                                <>
+                                    <span className="ml-7 xs425:ml-2 flex items-center">
+                                        <FaIndianRupeeSign />
+                                        {
+                                            item.user_education_detail
+                                                .personal_income
+                                        }
                                     </span>
-                                </div>
-                                <span className="ml-7 xs425:ml-2 flex items-center">
-                                    <FaIndianRupeeSign/>
-                                    {item.user_education_detail.personal_income}
-                                </span>
-                            </div>
-                        </div>
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                            <div className="block xs425:flex items-center text-gray-700">
-                                <div className="flex">
-                                    <GiMoneyStack size={25} className="me-2"/>
-                                    <span className="font-bold">
-                                        Family Income :
+                                </>
+                            }
+                            icon={<GiMoneyStack size={25} className="me-2" />}
+                        />
+                        <InfoCard
+                            label="Family Income:"
+                            value={
+                                <>
+                                    <span className="ml-7 xs425:ml-2 flex items-center">
+                                        <FaIndianRupeeSign />
+                                        {
+                                            item.user_education_detail
+                                                .family_income
+                                        }
                                     </span>
-                                </div>
-                                <span className="ml-7 xs425:ml-2 flex items-center">
-                                    <FaIndianRupeeSign/>
-                                    {item.user_education_detail.family_income}
-                                </span>
-                            </div>
-                        </div>
+                                </>
+                            }
+                            icon={<GiMoneyStack size={25} className="me-2" />}
+                        />
                     </div>
                 </div>
 
                 <div>
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-gray-50 rounded-lg">
                         <div className="grid ">
-                            <div className="block xs425:flex items-center text-gray-700">
-                                <div className="flex ">
-                                    <FaLocationCrosshairs
-                                        size={24}
-                                        className="me-2"
-                                    />
-                                    <span className="font-bold">
-                                        Location:
-                                    </span>
-                                </div>
-                                <div className="ml-7 xs425:ml-2">
-                                {item.user_contact_detail.current_address}
-                                </div>
-                            </div>
+                            <InfoCard
+                                label="Location:"
+                                value={item.user_contact_detail.current_address}
+                                icon={<FaLocationCrosshairs size={24} />}
+                            />
                         </div>
                     </div>
                 </div>
@@ -196,35 +165,26 @@ function UserPersonalDetails({ item }) {
                     </h2>
                     <div className="p-4 rounded-lg">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg block xs425:flex items-center text-gray-700">
-                                <div className="flex">
+                            <InfoCard
+                                label="Occupation:"
+                                value={item.user_education_detail.occupation}
+                                icon={
                                     <MdBusinessCenter
                                         size={22}
                                         className="me-2"
                                     />
-                                    <span className="font-bold">
-                                        Occupation :
-                                    </span>
-                                </div>
-
-                                <div className="ml-7 xs425:ml-2">
-                                    {item.user_education_detail.occupation}
-                                </div>
-                            </div>
-                            <div className="block xs425:flex items-center text-gray-700 bg-gray-50 p-4 rounded-lg">
-                                <div className="flex">
+                                }
+                            />
+                            <InfoCard
+                                label="Education:"
+                                value={item.user_education_detail.education}
+                                icon={
                                     <FaGraduationCap
                                         size={22}
                                         className="me-2"
                                     />
-                                    <span className="font-bold">
-                                        Education:
-                                    </span>
-                                </div>
-                                <span className="ml-7 xs425:ml-2">
-                                    {item.user_education_detail.education}
-                                </span>
-                            </div>
+                                }
+                            />
                         </div>
                     </div>
                 </div>

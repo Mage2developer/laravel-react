@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaCity, FaLocationCrosshairs, FaPhoneVolume } from "react-icons/fa6";
+import InfoCard from "./InfoCard";
 
 const UserContactDetails = ({ item }) => {
     return (
@@ -8,57 +9,29 @@ const UserContactDetails = ({ item }) => {
                 Contact Details
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex  items-center">
-                            <FaPhoneVolume size={15} className="me-2" />
-                            <span className="font-bold">Phone Number:</span>
-                        </div>
-                        <span className="ml-7 xs425:ml-2">
-                            {item.user_contact_detail.mobile_number}
-                        </span>
-                    </div>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex  items-center">
-                            <FaPhoneVolume size={15} className="me-2" />
-                            <span className="font-bold">
-                                Father's Phone Number:
-                            </span>
-                        </div>
-                        <span className="ml-7 xs425:ml-2">
-                            {item.user_contact_detail.father_mobile_number}
-                        </span>
-                    </div>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="block xs425:flex items-center text-gray-700">
-                        <div className="flex items-center">
-                            <FaLocationCrosshairs size={22} className="me-2" />
-                            <span className="font-bold">Address:</span>
-                        </div>
-                        <div className="ml-7 xs425:ml-2">
-                            {item.user_contact_detail.current_address}
-                        </div>
-                    </div>
-                </div>
+                <InfoCard
+                    label="Phone Number:"
+                    value={item.user_contact_detail.mobile_number}
+                    icon={<FaPhoneVolume size={15} className="me-2" />}
+                />
+                <InfoCard
+                    label="Father's Phone Number:"
+                    value={item.user_contact_detail.father_mobile_number}
+                    icon={<FaPhoneVolume size={15} className="me-2" />}
+                />
+                <InfoCard
+                    label="Address:"
+                    value={item.user_contact_detail.current_address}
+                    icon={<FaLocationCrosshairs size={22} className="me-2" />}
+                />
                 {!item.user_contact_detail.native_city ? (
                     ""
                 ) : (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                        <div className="block xs425:flex items-center text-gray-700">
-                            <div className="flex items-center">
-                                <FaCity size={22} className="me-2" />
-                                <span className="font-bold">
-                                    Native City:
-                                </span>
-                            </div>
-                            <span className="ml-7 xs425:ml-2">
-                                {item.user_contact_detail.native_city}
-                            </span>
-                        </div>
-                    </div>
+                    <InfoCard
+                        label="Native City:"
+                        value={item.user_contact_detail.native_city}
+                        icon={<FaCity size={22} className="me-2" />}
+                    />
                 )}
             </div>
         </div>

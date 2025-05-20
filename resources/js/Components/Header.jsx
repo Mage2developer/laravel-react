@@ -7,11 +7,11 @@ import { Link, usePage } from "@inertiajs/react";
 import Dropdown from "@/Components/Dropdown";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 
-import { FaChevronDown , FaUser, FaUsers } from "react-icons/fa";
+import { FaChevronDown, FaUser, FaUsers } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { MdAccountBox } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
-
+import { HiOutlineMenu, HiX } from "react-icons/hi";
 
 export const Header = () => {
     const user = usePage().props.auth.user;
@@ -49,11 +49,11 @@ export const Header = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="lg:hidden text-2xl text-gray-700 focus:outline-none"
+                    className="lg:hidden text-3xl text-gray-700 focus:outline-none"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Toggle menu"
                 >
-                    ☰
+                    {isMenuOpen ? <HiX /> : <HiOutlineMenu />}
                 </button>
 
                 {/* Desktop Nav Links */}
@@ -77,27 +77,44 @@ export const Header = () => {
                                 <span className="inline-flex items-center space-x-2 text-xl font-medium cursor-pointer">
                                     <FaUser />
                                     <span>{user.name.split(" ")[0]}</span>
-                                    <FaChevronDown size={15}/>
+                                    <FaChevronDown size={15} />
                                 </span>
                             </Dropdown.Trigger>
                             <Dropdown.Content>
-                                <Dropdown.Link href={route("account.edit")} className="flex align-center text-xl">
-                                    <MdAccountBox size={24} className={"mr-2"} />
+                                <Dropdown.Link
+                                    href={route("account.edit")}
+                                    className="flex align-center text-xl"
+                                >
+                                    <MdAccountBox
+                                        size={24}
+                                        className={"mr-2"}
+                                    />
                                     My Account
                                 </Dropdown.Link>
                                 {user.role != "admin" ? (
-                                    <Dropdown.Link href={route("profile.edit")} className="flex align-center text-xl">
-                                        <ImProfile  className={"mr-2"}  />
+                                    <Dropdown.Link
+                                        href={route("profile.edit")}
+                                        className="flex align-center text-xl"
+                                    >
+                                        <ImProfile className={"mr-2"} />
                                         Profile
                                     </Dropdown.Link>
                                 ) : (
-                                    <Dropdown.Link href={route("users.index")} className="flex align-center text-xl">
-                                        <FaUsers className={"mr-2"}/>
+                                    <Dropdown.Link
+                                        href={route("users.index")}
+                                        className="flex align-center text-xl"
+                                    >
+                                        <FaUsers className={"mr-2"} />
                                         Users
                                     </Dropdown.Link>
                                 )}
 
-                                <Dropdown.Link href={route("logout")} method="post" as="button" className="flex align-center text-xl">
+                                <Dropdown.Link
+                                    href={route("logout")}
+                                    method="post"
+                                    as="button"
+                                    className="flex align-center text-xl"
+                                >
                                     <IoLogOut className={"mr-2"} />
                                     Log Out
                                 </Dropdown.Link>
