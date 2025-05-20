@@ -63,7 +63,7 @@ class UserProfileController extends Controller
     /**
      * @return JsonResponse
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         // TODO:: Check user logged in then able to search user profile
         try {
@@ -82,6 +82,35 @@ class UserProfileController extends Controller
             $profiles = $this->user->getUserProfileList($name);
 
             return response()->json(['profiles' => $profiles]);
+        } catch (Exception $exception) {
+            return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
+        }
+    }
+
+    /**
+     * Delete User
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function destroy(Request $request): JsonResponse
+    {
+        try {
+            $request->validate([
+                                   'password' => ['required', 'current_password'],
+                               ]);
+
+            $user = $request->user();
+            $user->status = 0;
+            $user->is_deleted = 1;
+            $user->save();
+
+            $user->tokens()->delete();
+
+            return response()->json([
+                                        'message' => 'Your profile has been successfully deleted.',
+                                        'success' => true
+                                    ]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
         }

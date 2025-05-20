@@ -30,6 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/userFamilyDetail', [UserFamilyDetailController::class, 'update']);
     Route::post('/logout', [UserAuthController::class, 'logout']);
 
+    Route::post('/deleteProfile', [UserProfileController::class, 'destroy']);
+
     Route::post('/profileImages', [UserImageController::class, 'store']);
     Route::post('/profileImages/{id}/replace', [UserImageController::class, 'replace']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
