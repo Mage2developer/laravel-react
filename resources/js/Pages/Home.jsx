@@ -62,7 +62,7 @@ function Home({ latestProfile }) {
 
     return (
         <GuestLayout>
-            <Head title="A Perfect Match For Marriage" />
+            <Head title="Vanand, Nai, Nayi, Sain Matrimony: Find Your Perfect Match" />
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
                     <HeroSlider/>
