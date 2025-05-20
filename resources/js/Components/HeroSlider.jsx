@@ -2,6 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import { Button } from "./Button";
 import { Link } from "@inertiajs/react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const sliderImages = [
     {
@@ -42,10 +44,12 @@ function HeroSlider() {
             <Slider {...settings}>
                 {sliderImages.map((slide, index) => (
                     <div key={index} className="relative w-full h-[600px]">
-                        <img
+                        <LazyLoadImage
+                            alt="Vanand Vivah Registration"
                             src={slide.src}
-                            alt="Hero"
+                            effect="blur"
                             className="object-cover w-full h-full"
+                            width={"100%"}
                         />
                         <div className="absolute top-2/4 left-2/4 px-5 py-0 w-full text-center -translate-x-2/4 -translate-y-2/4 max-w-[800px]">
                             <h1 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize text-white drop-shadow-xl">
