@@ -44,7 +44,7 @@ function HeroSlider() {
             <Slider {...settings}>
                 {sliderImages.map((slide, index) => (
                     <div key={index} className="relative w-full h-[600px]">
-                        <img
+                        <LazyLoadImage
                             alt="Vanand Vivah Registration"
                             src={slide.src}
                             effect="blur"
