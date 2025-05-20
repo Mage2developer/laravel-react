@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/admin/users/mass-delete', [UserController::class, 'massDestroy'])->name('users.massDestroy');
+    Route::post('/admin/users/mass-active', [UserController::class, 'massActive'])->name('users.massActive');
+    Route::get('/admin/users/edit/{profileId}', [UserController::class, 'edit'])->name('users.edit');
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');

@@ -12,6 +12,11 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    public function __construct(
+        protected User $user
+    ) {
+    }
+
     public function index(Request $request)
     {
         // Get sorting parameters from the request
@@ -23,6 +28,7 @@ class UserController extends Controller
 
         // Build the query
         $query = User::query();
+        $query->where('role', Data::USER_SLUG);
 
         // Apply search if provided
         if ($search) {
@@ -57,126 +63,71 @@ class UserController extends Controller
      */
     public function massDestroy(Request $request): JsonResponse
     {
-        //$idArray = $request->input('ids');
-        $idArray = [
-            1,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-        ];
+        $idArray = $request->input('ids');
 
         try {
             User::destroy($idArray);
 
-            return response()->json(
-                [
-                    'message' => 'Profiles deleted successfully.',
-                    'success' => true
-                ]
-            );
+            return response()->json([
+                'message' => 'Profiles deleted successfully.',
+                'success' => true
+            ]);
         } catch (Exception $exception) {
-            return response()->json(
-                [
-                    'message' => $exception->getMessage(),
-                    'success' => false
-                ]
-            );
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'success' => false
+            ]);
         }
     }
 
     /**
-     * Mass De-activate profile
+     * Mass active/inactive profile
      *
      * @param Request $request
      * @return JsonResponse
      */
-    public function massDeactivate(Request $request): JsonResponse
+    public function massActive(Request $request): JsonResponse
     {
-        //$idArray = $request->input('ids');
-        $idArray = [
-            1,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-        ];
+        $idArray = $request->input('ids');
+        $status = $request->input('status');
 
         try {
             foreach ($idArray as $userId) {
+
                 // Find the user by their ID
                 $user = User::findorfail($userId);
                 if ($user) {
+
                     // Update the user's name
-                    $user->status = Data::DISABLE;
-                    $user->is_deleted = Data::ENABLE;
+                    $user->is_deleted = (int)$status;
                     $user->save();
                 }
             }
+            $message = 'Profiles activated successfully.';
+            if ($status) {
+                $message = 'Profiles inactivated successfully.';
+            }
 
-            return response()->json(
-                [
-                    'message' => 'Profiles deactivated successfully.',
-                    'success' => true
-                ]
-            );
+            return response()->json([
+                'message' => $message,
+                'success' => true
+            ]);
         } catch (Exception $exception) {
-            return response()->json(
-                [
-                    'message' => $exception->getMessage(),
-                    'success' => false
-                ]
-            );
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'success' => false
+            ]);
         }
     }
 
-    /**
-     * Mass activate profile
-     *
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function massActivate(Request $request): JsonResponse
+    public function edit(Request $request)
     {
-        $idArray = [
-            1,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-        ];
+        $profileId = $request->route('profileId');
 
-        try {
-            foreach ($idArray as $userId) {
-                // Find the user by their ID
-                $user = User::findorfail($userId);
-                if ($user) {
-                    // Update the user's name
-                    $user->status = Data::ENABLE;
-                    $user->is_deleted = Data::DISABLE;
-                    $user->save();
-                }
-            }
+        $userProfile = $this->user->getUserProfileById($profileId);
 
-            return response()->json(
-                [
-                    'message' => 'Profiles have been activated successfully.',
-                    'success' => true
-                ]
-            );
-        } catch (Exception $exception) {
-            return response()->json(
-                [
-                    'message' => $exception->getMessage(),
-                    'success' => false
-                ]
-            );
-        }
+        return Inertia::render('Admin/Users/Edit', [
+            'profile' => $userProfile->toArray()
+        ]);
     }
 }
