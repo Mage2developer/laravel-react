@@ -13,6 +13,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { MdRocketLaunch } from "react-icons/md";
 import { MdImageSearch } from "react-icons/md";
+import { LazyLoadImage, LazyLoadComponent } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Home({ latestProfile }) {
     // const [searchText, setSearchText] = useState("");
@@ -62,16 +64,19 @@ function Home({ latestProfile }) {
         <GuestLayout>
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <HeroSlider/>
+                    <LazyLoadComponent>
+                        <HeroSlider/>
+                    </LazyLoadComponent>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
                     <div className="flex items-center gap-5 max-md:flex-col">
                         <div className="w-6/12 max-md:w-full">
-                            <img
-                                src="images/destination-wedding.webp"
-                                className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
+                            <LazyLoadImage
                                 alt="Feature showcase"
+                                src="images/destination-wedding.webp"
+                                effect="blur"
+                                className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                             />
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
@@ -198,10 +203,11 @@ function Home({ latestProfile }) {
                             </div>
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                            <img
+                            <LazyLoadImage
+                                alt="Vanand Vivah Digital Presence Showcase"
                                 src="images/hindu-wedding-mandap.webp"
+                                effect="blur"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
-                                alt="Digital presence showcase"
                             />
                         </div>
                     </div>

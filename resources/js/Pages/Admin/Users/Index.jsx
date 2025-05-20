@@ -3,6 +3,7 @@ import { Head, Link, router } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Pagination from '@/Components/Pagination';
 import Checkbox from "@/Components/Checkbox";
+import axios from "axios";
 
 export default function Index({ users, filters }) {
     const [search, setSearch] = useState(filters.search || '');
@@ -10,51 +11,57 @@ export default function Index({ users, filters }) {
     const [direction, setDirection] = useState(filters.direction || 'asc');
     const [isSearching, setIsSearching] = useState(false);
     const [selectedUsers, setSelectedUsers] = useState([]);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const updateSort = (column) => {
-        const newDirection = sort === column && direction === 'asc' ? 'desc' : 'asc';
-        setSort(column);
-        setDirection(newDirection);
-        router.get(route('users.index'), {
-            search,
-            sort: column,
-            direction: newDirection
-        }, {
+    const fetchUsers = (search, sort, direction, onFinish = null) => {
+        router.get(route('users.index'), { search, sort, direction}, {
             preserveState: true,
             replace: true,
+            onFinish: () => onFinish,
         });
-    };
-
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
-    };
+    }
 
     // Debounce search input to prevent too many requests
     useEffect(() => {
         const timeout = setTimeout(() => {
             if (search !== filters.search) {
                 setIsSearching(true);
-                router.get(route('users.index'), {
-                    search,
-                    sort,
-                    direction
-                }, {
-                    preserveState: true,
-                    replace: true,
-                    onFinish: () => setIsSearching(false),
-                });
+
+                fetchUsers(search, sort, direction, setIsSearching(false));
             }
         }, 300);
 
         return () => clearTimeout(timeout);
     }, [search]);
 
+    // Automatically clear messages after 5 seconds
+    useEffect(() => {
+        let timer;
+        if (successMessage || errorMessage) {
+            timer = setTimeout(() => {
+                setSuccessMessage('');
+                setErrorMessage('');
+            }, 5000);
+        }
+        return () => clearTimeout(timer);
+    }, [successMessage, errorMessage]);
+
+    const updateSort = (column) => {
+        const newDirection = sort === column && direction === 'asc' ? 'desc' : 'asc';
+        setSort(column);
+        setDirection(newDirection);
+        fetchUsers(search, column, newDirection);
+    };
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+    };
+
     const sortIcon = (column) => {
         if (sort !== column) return null;
 
-        return direction === 'asc'
-            ? <span className="ml-1">↑</span>
-            : <span className="ml-1">↓</span>;
+        return direction === 'asc' ? <span className="ml-1">↑</span> : <span className="ml-1">↓</span>;
     };
 
     const handleCheckboxChange = (userId) => {
@@ -76,17 +83,64 @@ export default function Index({ users, filters }) {
     const handleMassDelete = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} users?`)) {
+                try {
+                    await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                    const response = await axios.post("/admin/users/mass-delete", {
+                        ids: selectedUsers
+                    });
 
+                    if (response.data.success) {
+                        setSuccessMessage(response.data.message);
+                    }
+                    else {
+                        setErrorMessage(response.data.message);
+                    }
+
+                    fetchUsers(search, sort, direction);
+                    setSelectedUsers([]);
+                } catch (error) {
+                    if (error.response?.status === 422) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage("An error occurred.");
+                    }
+                }
             }
         } else {
             alert('Please select users to delete.');
         }
     };
 
+    const massActiveInactiveAction = async (status) => {
+        try {
+            await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+            const response = await axios.post("/admin/users/mass-active", {
+                ids: selectedUsers,
+                status: status
+            });
+
+            if (response.data.success) {
+                setSuccessMessage(response.data.message);
+            }
+            else {
+                setErrorMessage(response.data.message);
+            }
+
+            fetchUsers(search, sort, direction);
+            setSelectedUsers([]);
+        } catch (error) {
+            if (error.response?.status === 422) {
+                setErrorMessage(error.response.data.message);
+            } else {
+                setErrorMessage("An error occurred.");
+            }
+        }
+    };
+
     const handleMassActive = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to activate ${selectedUsers.length} users?`)) {
-
+                await massActiveInactiveAction(0);
             }
         } else {
             alert('Please select users to active.');
@@ -95,8 +149,8 @@ export default function Index({ users, filters }) {
 
     const handleMassInactive = async () => {
         if (selectedUsers.length > 0) {
-            if (window.confirm(`Are you sure you want to deactivate ${selectedUsers.length} users?`)) {
-
+            if (window.confirm(`Are you sure you want to inactivate ${selectedUsers.length} users?`)) {
+                await massActiveInactiveAction(1);
             }
         } else {
             alert('Please select users to inactive.');
@@ -119,7 +173,8 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassDelete}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
+                                        border rounded cursor-pointer"
                                     >
                                         Delete ({selectedUsers.length})
                                     </button>
@@ -127,7 +182,8 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassActive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
+                                        border rounded cursor-pointer"
                                     >
                                         Active ({selectedUsers.length})
                                     </button>
@@ -135,7 +191,8 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassInactive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2 border rounded cursor-pointer"
+                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
+                                        border rounded cursor-pointer"
                                     >
                                         Inactive ({selectedUsers.length})
                                     </button>
@@ -145,7 +202,8 @@ export default function Index({ users, filters }) {
                                 <div className="flex items-center">
                                     <input
                                         type="text"
-                                        className="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                                        className="border-gray-300 focus:border-indigo-300 focus:ring
+                                        focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                                         placeholder="Search users..."
                                         value={search}
                                         onChange={handleSearch}
@@ -154,6 +212,17 @@ export default function Index({ users, filters }) {
                                 </div>
                             </div>
 
+                            {successMessage && (
+                                <div className="mb-4 p-3 rounded bg-green-100 text-green-800 border border-green-300">
+                                    {successMessage}
+                                </div>
+                            )}
+                            {errorMessage && (
+                                <div className="mb-4 p-3 rounded bg-red-100 text-red-800 border border-red-300">
+                                    {errorMessage}
+                                </div>
+                            )}
+
                             <div className="overflow-x-auto">
                                 <table className="w-full whitespace-nowrap">
                                     <thead>
@@ -161,11 +230,13 @@ export default function Index({ users, filters }) {
                                         <th>
                                             <Checkbox
                                                 onChange={handleSelectAll}
-                                                checked={selectedUsers.length === users.data.length && users.data.length > 0}
+                                                checked={selectedUsers.length === users.data.length &&
+                                                    users.data.length > 0}
                                                 aria-label="Select all users"
                                             />
                                         </th>
-                                        <th className="pb-4 pt-6 px-6 cursor-pointer" onClick={() => updateSort('id')}>
+                                        <th className="pb-4 pt-6 px-6 cursor-pointer"
+                                            onClick={() => updateSort('id')}>
                                             ID {sortIcon('id')}
                                         </th>
                                         <th className="pb-4 pt-6 px-6 cursor-pointer"
@@ -207,15 +278,18 @@ export default function Index({ users, filters }) {
                                                 <td className="border-t px-6 py-4">{user.id}</td>
                                                 <td className="border-t px-6 py-4">{user.name}</td>
                                                 <td className="border-t px-6 py-4">{user.email}</td>
-                                                <td className="border-t px-6 py-4">{user.is_deleted ? "Inactive" : "Active"}</td>
-                                                <td className="border-t px-6 py-4">{user.status ? "Approved" : "Pending"}</td>
+                                                <td className="border-t px-6 py-4">
+                                                    {user.is_deleted ? "Inactive" : "Active"}
+                                                </td>
+                                                <td className="border-t px-6 py-4">
+                                                    {user.status ? "Approved" : "Pending"}
+                                                </td>
                                                 <td className="border-t px-6 py-4">
                                                     {new Date(user.created_at).toLocaleDateString()}
                                                 </td>
                                                 <td className="border-t px-6 py-4">
                                                     <Link
-                                                        // href={route("password.request")}
-                                                        href='#'
+                                                        href={route("users.edit", user.id)}
                                                         className="text-base text-red-500"
                                                     >
                                                         Edit

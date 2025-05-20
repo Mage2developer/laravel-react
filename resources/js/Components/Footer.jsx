@@ -1,5 +1,7 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const Footer = () => {
     const arrFooterLinks = [
@@ -29,10 +31,13 @@ export const Footer = () => {
 
                 {/* Logo + Copyright */}
                 <div className="text-center">
-                    <img
-                        src="/images/header-logo.png"
-                        alt="Logo"
+                    <LazyLoadImage
+                        alt="Vanand Vivah Logo"
+                        src="/images/header-logo.webp"
+                        effect="blur"
                         className="mx-auto h-20 w-auto object-contain"
+                        height={"80"}
+                        width={"267"}
                     />
                     <p className="mt-4 text-sm text-black">
                         © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
