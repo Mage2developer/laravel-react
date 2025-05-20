@@ -2,24 +2,25 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import AgeCalculator from "./AgeCalculator";
 import MaritalStatus from "./MaritalStatus";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function ProfileGridCard({ profile }) {
     return (
         <Link href={`/profile/${profile.id}`} className="block p-5 rounded-xl transition-all cursor-pointer bg-[#fff7f7] border shadow-lg bg-opacity-10 duration-[0.3s] ease-[cubic-bezier(0.37,0.01,0,0.98)] hover:transform hover:scale-[1.02]">
             <article className="text-center">
-                {/* <figure className="overflow-hidden relative pt-52 md:pt-80 mb-5 rounded-lg"> */}
                 <div>
-                    <img
-                        className="rounded-full aspect-square size-full"
+                    <LazyLoadImage
+                        alt={profile.name}
                         src={
                             profile.user_images.length > 0
                                 ? profile.user_images[0].image_path
                                 : "/images/profile-placeholder.webp"
                         }
-                        alt={profile.name}
+                        effect="blur"
+                        className="rounded-full aspect-square size-full"
                     />
                 </div>
-                {/* </figure> */}
                 <h2 className="my-2.5 text-2xl font-medium leading-tight line-clamp-1">
                     {profile.name}
                 </h2>

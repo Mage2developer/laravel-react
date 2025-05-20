@@ -66,7 +66,7 @@ export default function ContactUs({ status }) {
         //         email,
         //         message,
         //         "g-recaptcha-response": captchaToken,
-        //     },   
+        //     },
         //     onSuccess: () => {
         //         setName("");
         //         setEmail("");

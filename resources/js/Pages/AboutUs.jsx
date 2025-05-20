@@ -2,15 +2,14 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
 import React from "react";
 import {
-    FiTwitter,
-    FiLinkedin,
-    FiPhone,
     FiMapPin,
-    FiGithub,
     FiFacebook,
     FiInstagram,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const AboutUs = () => {
     return (
@@ -24,7 +23,7 @@ const AboutUs = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         {/* Image Column */}
                         <div className="rounded-xl overflow-hidden shadow-lg border border-white/10  flex justify-center">
-                            <img
+                            <LazyLoadImage
                                 src="images/about-us.webp"
                                 alt="Our Team"
                                 className="w-full object-cover"
