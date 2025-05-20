@@ -13,7 +13,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { MdRocketLaunch } from "react-icons/md";
 import { MdImageSearch } from "react-icons/md";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage, LazyLoadComponent } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Home({ latestProfile }) {
@@ -64,7 +64,9 @@ function Home({ latestProfile }) {
         <GuestLayout>
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <HeroSlider/>
+                    <LazyLoadComponent>
+                        <HeroSlider/>
+                    </LazyLoadComponent>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
