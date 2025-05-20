@@ -8,5 +8,7 @@ export default function ApplicationLogo(props) {
         src="/images/header-logo.webp"
         effect="blur"
         className="h-[70px]"
+        height={"70px"}
+        width={"234px"}
     />
 }
