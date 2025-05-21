@@ -16,7 +16,7 @@ export default function Edit() {
         { id: 2, title: 'Education Details', content: <UpdateEducationDetailsForm className="max-w-xl" userId={user.id} /> },
         { id: 3, title: 'Family Details', content: <UpdateFamilyDetailsForm className="max-w-xl" userId={user.id} /> },
         { id: 4, title: 'Contact Details', content: <UpdateContactDetailsForm className="max-w-xl" userId={user.id} /> },
-        { id: 5, title: 'Profile Images', content: <UploadProfileImagesForm className="max-w-xl" userId={user.id} /> }
+        { id: 5, title: 'Profile Images', content: <UploadProfileImagesForm className="w-full" userId={user.id} /> }
     ];
 
     return (

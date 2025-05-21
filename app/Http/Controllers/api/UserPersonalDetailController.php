@@ -24,7 +24,7 @@ class UserPersonalDetailController extends Controller
             }
 
             $personalDetail->update($request->all());
-            return response()->json(['message' => 'Personal details have been updated successfully', 'success' => false]);
+            return response()->json(['message' => 'Personal details have been updated successfully', 'success' => true]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
         }

@@ -8,11 +8,14 @@ import InputError from "@/Components/InputError";
 import SelectBox from "@/Components/SelectBox";
 import PrimaryButton from "@/Components/PrimaryButton";
 import DatePicker from 'react-date-picker';
-import { format } from 'date-fns';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
 export default function UpdatePersonalDetailsForm({userId, className = ''}) {
+
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [alert, setAlert] = useState(false);
 
     const {data, setData, errors, processing} =
         useForm({
@@ -39,38 +42,41 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
     };
 
     useEffect(() => {
-
         fetchData(userId);
-
     }, [userId]);
 
-    const [successMessage, setSuccessMessage] = useState('');
-    const [apiErrors, setApiErrors] = useState('');
-    const [alert, setAlert] = useState(true);
+    useEffect(() => {
+        if (alert) {
+            setTimeout(() => {
+                setAlert(false);
+                setSuccessMessage('');
+                setErrorMessage('');
+            }, 5000);
+        }
+    }, [alert, successMessage, errorMessage]);
 
     const updatePersonalDetails = async (e) => {
         e.preventDefault();
-
         try {
             await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
 
             const response = await axios.patch("/userPersonalDetail", data);
 
-            await fetchData(userId);
-            setSuccessMessage(response.data.message);
-            setApiErrors('');
-
+            if (response.data.success) {
+                setSuccessMessage(response.data.message);
+                await fetchData(userId);
+            } else {
+                setErrorMessage(response.data.message);
+            }
             setAlert(true);
-            setTimeout(() => {
-                setAlert(false);
-            }, 5000);
 
         } catch (error) {
             if (error.response?.status === 422) {
-                setApiErrors(error.response.data.message);
+                setErrorMessage(error.response.data.message);
             } else {
-                setApiErrors("An error occurred.");
+                setErrorMessage("An error occurred.");
             }
+            setAlert(true);
         }
     };
 
@@ -195,7 +201,7 @@ export default function UpdatePersonalDetailsForm({userId, className = ''}) {
 
                     <div className={`${alert ? 'visible' : 'hidden'}`}>
                         {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
-                        {apiErrors && <p className="text-sm text-red-600">{apiErrors}</p>}
+                        {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
                     </div>
                 </div>
             </form>

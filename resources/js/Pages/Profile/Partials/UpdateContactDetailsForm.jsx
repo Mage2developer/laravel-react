@@ -9,6 +9,10 @@ import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function UpdateContactDetailsForm({ userId, className = '' }) {
 
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [alert, setAlert] = useState(false);
+
     const {data, setData, errors, processing} =
         useForm({
             user_id: '',
@@ -18,7 +22,7 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
             current_address: ''
         });
 
-    useEffect(() => {
+    const fetchData = async (userId) => {
         axios.get(`/currentProfile/${userId}`)
             .then(response => {
 
@@ -29,35 +33,44 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
             .catch(error => {
                 console.error("Error fetching user data", error);
             });
+    };
+
+    useEffect(() => {
+        fetchData(userId);
     }, [userId]);
 
-    const [successMessage, setSuccessMessage] = useState('');
-    const [apiErrors, setApiErrors] = useState('');
-    const [alert, setAlert] = useState(true);
+    useEffect(() => {
+        if (alert) {
+            setTimeout(() => {
+                setAlert(false);
+                setSuccessMessage('');
+                setErrorMessage('');
+            }, 5000);
+        }
+    }, [alert, successMessage, errorMessage]);
 
     const updateContactDetails = async (e) => {
         e.preventDefault();
-        setSuccessMessage('');
-        setApiErrors('');
-
         try {
             await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
 
             const response = await axios.patch("/userContactDetail", data);
 
-            setSuccessMessage(response.data.message);
-
+            if (response.data.success) {
+                setSuccessMessage(response.data.message);
+                await fetchData(userId);
+            } else {
+                setErrorMessage(response.data.message);
+            }
             setAlert(true);
-            setTimeout(() => {
-                setAlert(false);
-            }, 5000);
 
         } catch (error) {
             if (error.response?.status === 422) {
-                setApiErrors(error.response.data.message);
+                setErrorMessage(error.response.data.message);
             } else {
-                setApiErrors("An error occurred.");
+                setErrorMessage("An error occurred.");
             }
+            setAlert(true);
         }
     };
 
@@ -123,7 +136,7 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
 
                     <div className={`${alert ? 'visible' : 'hidden'}`}>
                         {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
-                        {apiErrors && <p className="text-sm text-red-600">{apiErrors}</p>}
+                        {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
                     </div>
                 </div>
             </form>

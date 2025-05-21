@@ -7,8 +7,9 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
 
     const [images, setImages] = useState([]);
     const [previews, setPreviews] = useState([]);
-    const [message, setMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [alert, setAlert] = useState(false);
     const [uploadedUrls, setUploadedUrls] = useState([]);
     const fileInputRef = useRef(null);
 
@@ -25,6 +26,16 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
     useEffect(() => {
         fetchImages();
     }, []);
+
+    useEffect(() => {
+        if (alert) {
+            setTimeout(() => {
+                setAlert(false);
+                setSuccessMessage('');
+                setErrorMessage('');
+            }, 5000);
+        }
+    }, [alert, successMessage, errorMessage]);
 
     const clearInputRef = () => {
         if (fileInputRef.current) {
@@ -43,12 +54,14 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
         e.preventDefault();
 
         if (uploadedUrls.length >= 5) {
-            alert('You can add maximum 5 images');
+            setErrorMessage('You can add maximum 5 images');
+            setAlert(true);
             return;
         }
 
         if (!images.length) {
-            alert('Please select at least one image');
+            setErrorMessage('Please select at least one image');
+            setAlert(true);
             return;
         }
 
@@ -61,23 +74,24 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
             const response = await axios.post('/profileImages', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                },
+                }
             });
 
             if (response.data.success) {
-                setMessage(response.data.message);
+                setSuccessMessage(response.data.message);
             }
             else {
                 setErrorMessage(response.data.message);
             }
+            setAlert(true);
 
             fetchImages();
             setImages([]);
             setPreviews([]);
             clearInputRef();
         } catch (error) {
-            // console.error(error);
             setErrorMessage(error.response.data.message);
+            setAlert(true);
         }
     };
 
@@ -100,27 +114,34 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
         try {
             const response = await axios.delete(`/profileImages/${imageId}`);
 
-            setMessage(response.data.message);
+            if (response.data.success) {
+                setSuccessMessage(response.data.message);
+            }
+            else {
+                setErrorMessage(response.data.message);
+            }
             fetchImages();
             setImages([]);
             setPreviews([]);
+
         } catch (error) {
             setErrorMessage('Failed to delete image');
         }
     };
 
-    return (<section className={className}>
+    return (
+        <section className={className}>
             <form onSubmit={uploadProfileImages} className="mt-6 space-y-6">
 
                 <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange}/>
 
                 {previews.length > 0 && (
-                    <div className="grid grid-cols-3 gap-2 mt-4">
+                    <div className="flex gap-8 mt-4">
                         {previews.map((src, index) => (
                             <div key={index} className="relative group">
                                 <img key={index} src={src} alt={`preview-${index}`} className="w-32 h-32 object-cover"/>
                                 <button type="button" onClick={() => handleRemovePreview(index)}
-                                        className="absolute top-0 right-[60px] text-gray-900 rounded-full p-1 text-sm">
+                                        className="absolute top-0 text-gray-900 rounded-full p-1 text-sm right-0">
                                     ✕
                                 </button>
                             </div>
@@ -134,25 +155,29 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
 
             </form>
 
-            {message && <p className="mt-4 text-green-600">{message}</p>}
-            {errorMessage && <p className="mt-4 text-red-600">{errorMessage}</p>}
+            <div className={`${alert ? 'visible' : 'hidden'} mt-3`}>
+                {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
+                {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
+            </div>
 
             {uploadedUrls.length > 0 && (
                 <div className="mt-4">
                     <h2 className="text-lg font-medium mb-2">Uploaded Images:</h2>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="flex gap-8 mt-4">
                         {uploadedUrls.map((url) => (
                             <div key={url.id} className="relative group">
                                 <img key={url.id} src={url.image_path} alt={`uploaded-${url.id}`}
                                      className="w-32 h-32 object-cover"/>
-                                <button title="Do you want delete this image?" type="button" onClick={() => handleRemove(url.id)}
-                                        className="absolute top-0 right-[60px] text-gray-900 rounded-full p-1 text-sm">
-                                    <RxCross2 />
+                                <button title="Do you want delete this image?" type="button"
+                                        onClick={() => handleRemove(url.id)}
+                                        className="absolute top-0 text-gray-900 rounded-full p-1 text-sm right-0">
+                                    <RxCross2/>
                                 </button>
                             </div>
                         ))}
                     </div>
                 </div>
             )}
-        </section>);
+        </section>
+    );
 }
