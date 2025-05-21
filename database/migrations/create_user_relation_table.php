@@ -40,7 +40,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('mobile_number', 50)->nullable();
             $table->string('father_mobile_number', 50)->nullable();
-            $table->string('native_city');
+            $table->string('native_city', 50)->nullable();
             $table->text('current_address', 300);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
