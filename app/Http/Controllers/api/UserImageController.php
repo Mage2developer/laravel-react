@@ -9,9 +9,10 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Drivers\Gd\Driver;
+// use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
-
+use Intervention\Image\Drivers\Imagick\Driver;
+use Illuminate\Support\Str;
 
 class UserImageController extends Controller
 {
@@ -55,21 +56,19 @@ class UserImageController extends Controller
             // Process each image
             foreach ($request->file('images') as $imageFile) {
                 $manager = new ImageManager(new Driver());
-                $image = $manager->read($imageFile);
+                $image = $manager->read($imageFile)
+                    ->resizeDown(1200, 1200)
+                    ->toWebp(80);
 
-                $image->resize(800, 800, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
+                // Random image name
+                $webpImagePath = time() . '-' . Str::random() . '.webp';
 
-                // Create file name
-                $imageName = time() . '-' . $imageFile->getClientOriginalName();
-                $image->save($folderPath . '/' . $imageName);
+                $image->save($folderPath . '/' . $webpImagePath);
 
                 // Store image info in DB
                 Image::create([
                                   Data::USER_ID_FOREIGN_KEY => $user_id,
-                                  'image_path' => $folderPath . "/" . $imageName,
+                                  'image_path' => $folderPath . "/" . $webpImagePath,
                               ]);
             }
 

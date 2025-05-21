@@ -25,7 +25,7 @@ class UserImageRequest extends FormRequest
     {
         return [
             'images' => 'required|array|max:5',
-            'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:1024',
+            'images.*' => 'image|mimes:jpeg,png,jpg,svg',
         ];
     }
 }
