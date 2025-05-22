@@ -63,7 +63,7 @@ class UserAuthController extends Controller
         // Check if user is deleted or not
         if ($user->is_deleted == Data::ENABLE) {
             return response()->json([
-                                        'message' => 'Your account has been deleted.',
+                                        'message' => 'Your account has been deleted. Please contact admin if you want to create account with same email.',
                                         'success' => false
                                     ]);
         }

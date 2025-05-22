@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Data;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Models\User;
 
 class PasswordResetLinkController extends Controller
 {
@@ -27,23 +27,29 @@ class PasswordResetLinkController extends Controller
     /**
      * Handle an incoming password reset link request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => 'required|email',
-        ]);
+                               'email' => 'required|email',
+                           ]);
 
         // Checking if user has been deleted of disable
-        $user = User::where('email',  $request->only('email'))->first();
+        $user = User::where('email', $request->only('email'))->first();
 
-        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
+        if ($user->is_deleted == Data::ENABLE) {
+            throw ValidationException::withMessages([
+                                                        'email' => trans('auth.failed'),
+                                                    ]);
+        }
+
+        if ($user && $user->status != Data::ENABLE) {
             $userInfo = [
                 'email' => $user->email,
                 'name' => $user->name,
             ];
-            return redirect()->intended(route('activate.profile', $userInfo,  absolute: false));
+            return redirect()->intended(route('activate.profile', $userInfo, absolute: false));
         }
 
         // We will send the password reset link to this user. Once we have attempted
@@ -58,7 +64,7 @@ class PasswordResetLinkController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'email' => [trans($status)],
-        ]);
+                                                    'email' => [trans($status)],
+                                                ]);
     }
 }

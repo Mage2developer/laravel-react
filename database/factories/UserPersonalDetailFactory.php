@@ -22,8 +22,8 @@ class UserPersonalDetailFactory extends Factory
     {
         return [
             'user_id' => '',
-            'dob' => fake()->date(),
-            'marital_status' => $this->faker->numberBetween(0, 3),
+            'dob' => fake()->date($format = 'Y-m-d'),
+            'marital_status' => $this->faker->numberBetween(0, 2),
             'height' => '5ft'.' 10inch',
             'weight' => '60 Kg',
             'manglik' => fake()->boolean,

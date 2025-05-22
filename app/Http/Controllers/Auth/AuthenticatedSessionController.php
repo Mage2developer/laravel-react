@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -34,7 +35,14 @@ class AuthenticatedSessionController extends Controller
         // Customised code for checking user status before login
         $user = User::where('email', $request->email)->first();
 
-        if ($user && ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE)) {
+        // If user account deleted user not able to login as well.
+        if($user->is_deleted == Data::ENABLE) {
+            throw ValidationException::withMessages([
+                                                        'email' => trans('auth.failed'),
+                                                    ]);
+        }
+
+        if ($user && $user->status != Data::ENABLE ) {
             $userInfo = [
                 'email' => $user->email,
                 'name' => $user->name,

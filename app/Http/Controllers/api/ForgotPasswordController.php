@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 
 class ForgotPasswordController extends Controller
 {
@@ -24,7 +25,13 @@ class ForgotPasswordController extends Controller
         // Checking if user has been deleted of disable
         $user = User::where('email',  $request->only('email'))->first();
 
-        if ($user->status != Data::ENABLE || $user->is_deleted == Data::ENABLE) {
+        if($user->is_deleted == Data::ENABLE) {
+            throw ValidationException::withMessages([
+                                                        'email' => trans('auth.failed'),
+                                                    ]);
+        }
+
+        if ($user && $user->status != Data::ENABLE) {
             $userInfo = [
                 'email' => $user->email,
                 'name' => $user->name,
