@@ -59,16 +59,19 @@ class UserImageController extends Controller
                 $image = $manager->read($imageFile)
                     ->resizeDown(1200, 1200)
                     ->toWebp(80);
+                //    ->toPng();;
 
                 // Random image name
                 $webpImagePath = time() . '-' . Str::random() . '.webp';
+                //$webpImagePath = time() . '-' . Str::random() . '.png';
 
-                $image->save($folderPath . '/' . $webpImagePath);
+                $imagePath = $folderPath . '/' . $webpImagePath;
+                $image->save($imagePath);
 
                 // Store image info in DB
                 Image::create([
                                   Data::USER_ID_FOREIGN_KEY => $user_id,
-                                  'image_path' => $folderPath . "/" . $webpImagePath,
+                                  'image_path' => $imagePath,
                               ]);
             }
 
