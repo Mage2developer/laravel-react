@@ -9,9 +9,8 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-// use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Imagick\Driver;
 use Illuminate\Support\Str;
 
 class UserImageController extends Controller
