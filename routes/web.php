@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\api\UserProfileUpdate;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\api\UserContactDetailController;
 use App\Http\Controllers\api\UserEducationDetailController;
@@ -46,16 +47,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/profileImages', [UserImageController::class, 'store']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
-
     // Admin pages
 
 });
 
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/admin/users/mass-delete', [UserController::class, 'massDestroy'])->name('users.massDestroy');
     Route::post('/admin/users/mass-active', [UserController::class, 'massActive'])->name('users.massActive');
     Route::get('/admin/users/edit/{profileId}', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/admin/users/profileUpdate/{profileId}', [UserProfileUpdate::class, 'update'])->name(
+        'users.admin.profileUpdate'
+    );
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');

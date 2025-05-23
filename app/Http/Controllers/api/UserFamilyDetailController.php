@@ -16,7 +16,7 @@ class UserFamilyDetailController extends Controller
 
             $familyDetail = UserFamilyDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
-            if ($request->user()->id !== $familyDetail->user_id) {
+            if($request->user()->role == 'user' && $request->user()->id !== $familyDetail->user_id) {
                 return response()->json(
                     ['message' => 'You are not authorized to update this details.', 'success' => false],
                     403

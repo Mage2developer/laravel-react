@@ -16,7 +16,7 @@ class UserEducationDetailController extends Controller
 
             $educationDetail = UserEducationDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
-            if ($request->user()->id !== $educationDetail->user_id) {
+            if ($request->user()->role == 'user' && $request->user()->id !== $educationDetail->user_id) {
                 return response()->json(
                     ['message' => 'You are not authorized to update this details.', 'error' => true],
                     403

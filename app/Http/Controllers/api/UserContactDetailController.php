@@ -17,7 +17,7 @@ class UserContactDetailController extends Controller
 
             $contactDetail = UserContactDetail::where(Data::USER_ID_FOREIGN_KEY, $request->user_id)->first();
 
-            if ($request->user()->id !== $contactDetail->user_id) {
+            if ($request->user()->role == 'user' && $request->user()->id !== $contactDetail->user_id) {
                 return response()->json(
                     ['message' => 'You are not authorized to update this details.', 'success' => false],
                     403

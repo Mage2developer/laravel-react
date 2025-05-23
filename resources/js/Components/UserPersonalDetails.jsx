@@ -21,6 +21,7 @@ import { LiaWeightSolid } from "react-icons/lia";
 import { MdBusinessCenter, MdDiamond } from "react-icons/md";
 import { BiMaleFemale } from "react-icons/bi";
 import InfoCard from "./InfoCard";
+import { format } from 'date-fns';
 
 function UserPersonalDetails({ item }) {
     // const items = props.item;
@@ -61,9 +62,7 @@ function UserPersonalDetails({ item }) {
                                     />{" "}
                                     (
                                     {
-                                        item.user_personal_detail.dob.split(
-                                            "T"
-                                        )[0]
+                                        format(item.user_personal_detail.dob, 'dd-MM-yyyy')
                                     }
                                     )
                                 </>
