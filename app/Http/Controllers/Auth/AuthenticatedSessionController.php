@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         $user = User::where('email', $request->email)->first();
 
         // If user account deleted user not able to login as well.
-        if($user->is_deleted == Data::ENABLE) {
+        if($user && $user->is_deleted == Data::ENABLE) {
             throw ValidationException::withMessages([
                                                         'email' => trans('auth.failed'),
                                                     ]);

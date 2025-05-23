@@ -53,7 +53,7 @@ class UserAuthController extends Controller
         }
 
         // Check if user is enable or not
-        if ($user->status != Data::ENABLE) {
+        if ($user && $user->status != Data::ENABLE) {
             return response()->json([
                                         'message' => 'You need to activate your account.',
                                         'success' => false
@@ -61,7 +61,7 @@ class UserAuthController extends Controller
         }
 
         // Check if user is deleted or not
-        if ($user->is_deleted == Data::ENABLE) {
+        if ($user && $user->is_deleted == Data::ENABLE) {
             return response()->json([
                                         'message' => 'Your account has been deleted. Please contact admin if you want to create account with same email.',
                                         'success' => false

@@ -25,7 +25,7 @@ class ForgotPasswordController extends Controller
         // Checking if user has been deleted of disable
         $user = User::where('email',  $request->only('email'))->first();
 
-        if($user->is_deleted == Data::ENABLE) {
+        if($user && $user->is_deleted == Data::ENABLE) {
             throw ValidationException::withMessages([
                                                         'email' => trans('auth.failed'),
                                                     ]);
