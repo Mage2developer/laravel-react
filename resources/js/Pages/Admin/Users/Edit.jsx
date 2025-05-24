@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Head, Link, usePage} from "@inertiajs/react";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {useParams} from 'react-router-dom';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import Accordion from "@/Components/Accordion";
 import UpdatePersonalDetailsForm from "@/Pages/Profile/Partials/UpdatePersonalDetailsForm";
@@ -27,9 +27,6 @@ export default function Edit({ profile }) {
         { id: 6, title: 'Profile Images', content: <UploadProfileImagesForm className="w-full" userId={profile.id} /> }
     ];
 
-
-
-
     // Automatically clear messages after 5 seconds
     useEffect(() => {
         let timer;
@@ -46,32 +43,52 @@ export default function Edit({ profile }) {
         <AuthenticatedLayout>
             <Head title="Users" />
 
-            <div className="py-12">
+            <div className="py-12 pt-0">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden">
                         <div className="p-6 bg-white border-gray-200">
-
                             <Link
-                                href={route("login")}
-                                className="text-xl font-bold text-decoration text-gray-800 hover:text-red-500 transition"
+                                href={route("users.index")}
+                                className="primary-button"
                             >
-                                Back
+                                <IoMdArrowRoundBack className={"mr-1"}/> Back
                             </Link>
 
-                            <h1 className="text-2xl font-semibold mb-6">{profile.name}</h1>
+                            <form onSubmit={"#"} className="mt-6 space-y-6">
 
-                            {successMessage && (
-                                <div className="mb-4 p-3 rounded bg-green-100 text-green-800 border border-green-300">
-                                    {successMessage}
+                                <div className="mb-4 flex gap-2 justify-end">
+                                    <button
+                                        type="button"
+                                        className="primary-button"
+                                        value={""}
+                                    >
+                                        Delete
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="primary-button"
+                                        value={""}
+                                    >
+                                        Active
+                                    </button>
                                 </div>
-                            )}
-                            {errorMessage && (
-                                <div className="mb-4 p-3 rounded bg-red-100 text-red-800 border border-red-300">
-                                    {errorMessage}
-                                </div>
-                            )}
+                            </form>
 
-                            <Accordion items={items}/>
+                                <h1 className="text-2xl mt-5 font-semibold mb-6">{profile.name}</h1>
+
+                                {successMessage && (
+                                    <div
+                                        className="mb-4 p-3 rounded bg-green-100 text-green-800 border border-green-300">
+                                        {successMessage}
+                                    </div>
+                                )}
+                                {errorMessage && (
+                                    <div className="mb-4 p-3 rounded bg-red-100 text-red-800 border border-red-300">
+                                        {errorMessage}
+                                    </div>
+                                )}
+
+                                <Accordion items={items}/>
                         </div>
                     </div>
                 </div>

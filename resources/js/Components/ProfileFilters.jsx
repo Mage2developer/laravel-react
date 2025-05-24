@@ -33,6 +33,62 @@ function ProfileFilters({ onFilter }) {
 
     return (
         <>
+            <div className="flex gap-4 items-center p-5 mb-10 rounded-xl border border-solid bg-white bg-opacity-10
+            border-neutral-700 flex-wrap xl:flex-row xl:flex-nowrap xl:gap-8">
+
+                <InputLabel htmlFor="sex" value="I'm looking for" className="basis-full xl:w-22 sm:basis-full md:basis-full"/>
+
+                <select
+                    id="sex"
+                    name="sex"
+                    value={filters.sex}
+                    onChange={handleFilterChange}
+                    className="basis-full md:basis-2/5 rounded-md border-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500
+                    text-sm font-medium text-gray-700"
+                >
+                    <option className="text-gray-500" key="" value="">Please select gender</option>
+                    {getGenderOptions().map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                </select>
+
+                <select
+                    id="marital_status"
+                    name="marital_status"
+                    value={filters.marital_status}
+                    onChange={handleFilterChange}
+                    className="basis-full md:basis-2/5 rounded-md border-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500
+                    text-sm font-medium text-gray-700"
+                >
+                    <option className="text-gray-500" key="" value="">Please select marital status</option>
+                    {getMaritalStatusOptions().map((opt) => (
+                        <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    ))}
+                </select>
+
+                <input
+                    id="min_income"
+                    name="min_income"
+                    type="number"
+                    placeholder="Min income"
+                    value={filters.minIncome}
+                    onChange={handleFilterChange}
+                    className="basis-full md:basis-2/5 p-2 bg-transparent border-black text-sm rounded-lg placeholder-gray-400 focus:outline-none
+                    focus:ring-0 focus:outline-none focus:ring-0"
+                />
+
+                <input
+                    id="max_income"
+                    name="max_income"
+                    type="number"
+                    placeholder="Max income"
+                    value={filters.maxIncome}
+                    onChange={handleFilterChange}
+                    className="basis-full md:basis-2/5 p-2 bg-transparent border-black text-sm rounded-lg placeholder-gray-400 focus:outline-none
+                    focus:ring-0"
+                />
+
+            </div>
             <div className="flex items-center p-3 mb-10 rounded-xl border border-solid bg-white bg-opacity-10
                 border-neutral-700">
                 <input
@@ -54,62 +110,6 @@ function ProfileFilters({ onFilter }) {
                         <AiOutlineClose size={20}/>
                     </button>
                 )}
-            </div>
-            <div className="flex gap-8 items-center p-5 mb-10 rounded-xl border border-solid bg-white bg-opacity-10
-            border-neutral-700">
-
-                <InputLabel htmlFor="sex" value="I'm looking for" className="w-22"/>
-
-                <select
-                    id="sex"
-                    name="sex"
-                    value={filters.sex}
-                    onChange={handleFilterChange}
-                    className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500
-                    text-sm font-medium text-gray-700"
-                >
-                    <option key="" value="">Please select gender</option>
-                    {getGenderOptions().map((opt) => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                </select>
-
-                <select
-                    id="marital_status"
-                    name="marital_status"
-                    value={filters.marital_status}
-                    onChange={handleFilterChange}
-                    className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500
-                    text-sm font-medium text-gray-700"
-                >
-                    <option key="" value="">Please select marital status</option>
-                    {getMaritalStatusOptions().map((opt) => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                    ))}
-                </select>
-
-                <input
-                    id="min_income"
-                    name="min_income"
-                    type="number"
-                    placeholder="Min income"
-                    value={filters.minIncome}
-                    onChange={handleFilterChange}
-                    className="w-26 p-2 bg-transparent text-sm rounded-lg placeholder-gray-400 focus:outline-none
-                    focus:ring-0"
-                />
-
-                <input
-                    id="max_income"
-                    name="max_income"
-                    type="number"
-                    placeholder="Max income"
-                    value={filters.maxIncome}
-                    onChange={handleFilterChange}
-                    className="w-26 p-2 bg-transparent text-sm rounded-lg placeholder-gray-400 focus:outline-none
-                    focus:ring-0"
-                />
-
             </div>
         </>
     );

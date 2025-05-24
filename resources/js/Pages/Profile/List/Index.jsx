@@ -51,7 +51,7 @@ function Index({ profiles }) {
                         <ProfileBanner image={bannerImage} title={bannerTitle} description={bannerDescription}/>
                     </div>
 
-                    <section className="px-3` sm:px-10 py-0 mx-auto my-0 max-w-[1200px] min-h-[800px]">
+                    <section className="px-3 sm:px-5 px-10 py-0 mx-auto my-0 max-w-[1200px] min-h-[800px]">
 
                         <ProfileFilters onFilter={handleProfileFilters} />
 

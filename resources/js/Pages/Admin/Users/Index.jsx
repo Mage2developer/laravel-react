@@ -173,8 +173,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassDelete}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
-                                        border rounded cursor-pointer"
+                                        className="primary-button"
                                     >
                                         Delete ({selectedUsers.length})
                                     </button>
@@ -182,8 +181,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassActive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
-                                        border rounded cursor-pointer"
+                                        className="primary-button"
                                     >
                                         Active ({selectedUsers.length})
                                     </button>
@@ -191,8 +189,7 @@ export default function Index({ users, filters }) {
                                         type="button"
                                         onClick={handleMassInactive}
                                         disabled={selectedUsers.length === 0}
-                                        className="bg-red-500 hover:bg-yellow-500 hover:text-gray-700 text-white p-2
-                                        border rounded cursor-pointer"
+                                        className="primary-button"
                                     >
                                         Inactive ({selectedUsers.length})
                                     </button>

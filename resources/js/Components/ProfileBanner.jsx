@@ -4,7 +4,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function ProfileBanner({ image, title, description }) {
     return (
-        <header className="overflow-hidden relative mb-16 w-full h-[400px]">
+        <header className="overflow-hidden relative mb-10 w-full h-[400px]">
             <LazyLoadImage
                 className="object-cover overflow-hidden aspect-square size-full "
                 src={image}
