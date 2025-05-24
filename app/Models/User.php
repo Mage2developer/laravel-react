@@ -49,37 +49,47 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::created(function ($user) {
+            $sex = request()->sex ?: 0;
+            $dob = request()->dob ?: '';
+            $education = request()->education ?: '';
+            $occupation = request()->occupation ?: '';
+            $mobile_number = request()->mobile_number ?: '';
+            $father_name = request()->father_name ?: '';
+            $mother_name = request()->mother_name ?: '';
+            $marital_status = request()->marital_status ?: 0;
+            $personal_income = request()->personal_income ?: '';
+
             $user->userContactDetail()->create([
-                                                   'mobile_number' => '',
+                                                   'mobile_number' => $mobile_number,
                                                    'father_mobile_number' => '',
                                                    'native_city' => '',
                                                    'current_address' => ''
                                                ]);
 
             $user->userEducationDetail()->create([
-                                                     'education' => '',
-                                                     'occupation' => '',
-                                                     'personal_income' => '',
+                                                     'education' => $education,
+                                                     'occupation' => $occupation,
+                                                     'personal_income' => $personal_income,
                                                      'family_income' => ''
                                                  ]);
 
             $user->userFamilyDetail()->create([
-                                                  'father_name' => '',
-                                                  'mother_name' => '',
+                                                  'father_name' => $father_name,
+                                                  'mother_name' => $mother_name,
                                                   'brother_name' => '',
                                                   'brother_in_laws' => '',
                                                   'sister_name' => '',
                                                   'sister_in_laws' => ''
                                               ]);
             $user->userPersonalDetail()->create([
-                                                    'dob' => '',
-                                                    'marital_status' => 0,
+                                                    'dob' => $dob,
+                                                    'marital_status' => $marital_status,
                                                     'height' => '',
                                                     'weight' => '',
                                                     'manglik' => 0,
                                                     'have_specs' => 0,
                                                     'hobby' => '',
-                                                    'sex' => 0
+                                                    'sex' => $sex
                                                 ]);
         });
     }
@@ -116,96 +126,15 @@ class User extends Authenticatable
     {
         $query = User::query();
 
-        if ($filters) {
-            foreach ($filters as $filter) {
-                switch ($filter['type']) {
-                    case 'sex':
-                        $query->whereSex($filter['value']);
-                        break;
-                    case 'age_between':
-                        $query->whereAgeBetween($filter['value']['ageFrom'], $filter['value']['ageTo']);
-                        break;
-                    case 'personal_income':
-                        $query->wherePersonalIncome($filter['value']);
-                        break;
-                }
-            }
-        }
-
         $query->withAllDetails();
 
         return $query->get();
     }
 
-    public function scopeWhereAge($query, $age, $operator = '=')
-    {
-        // Use a subquery to calculate age from the date of birth.  This is
-        // more efficient and accurate than trying to do date calculations
-        // directly in the main query.  This approach works for all database systems.
-        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($age, $operator) {
-            $subQuery->select(DB::raw('TIMESTAMPDIFF(YEAR, dob, CURDATE()) as age'))
-                ->having('age', $operator, $age);
-        });
-    }
-
     /**
-     * Scope a query to filter users by age range.
-     *
-     * @param Builder $query
-     * @param int $minAge
-     * @param int $maxAge
-     * @return Builder
+     * @param $query
+     * @return mixed
      */
-    public function scopeWhereAgeBetween($query, $minAge, $maxAge)
-    {
-        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($minAge, $maxAge) {
-            $subQuery->select(DB::raw('TIMESTAMPDIFF(YEAR, dob, CURDATE()) as age'))
-                ->having('age', '>=', $minAge)
-                ->having('age', '<=', $maxAge);
-        });
-    }
-
-    /**
-     * Scope a query to filter users by date of birth.
-     *
-     * @param Builder $query
-     * @param string $dob The date of birth to filter by (e.g., '2000-01-01').
-     * @param string $operator The operator for the comparison (=, <, >, <=, >=)
-     * @return Builder
-     */
-    public function scopeWhereDob($query, $dob, $operator = '=')
-    {
-        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($dob, $operator) {
-            $subQuery->where('dob', $operator, $dob);
-        });
-    }
-
-    /**
-     * Scope a query to filter users by sex.
-     *
-     * @param Builder $query
-     * @param string $sex The sex to filter by.
-     * @return Builder
-     */
-    public function scopeWhereSex($query, $sex)
-    {
-        return $query->whereHas('userPersonalDetail', function ($subQuery) use ($sex) {
-            $subQuery->where('sex', $sex);
-        });
-    }
-
-    public function scopeWhereName($query, $name)
-    {
-        return $query->where('name', 'like', '%' . $name . '%');
-    }
-
-    public function scopeWherePersonalIncome($query, $dob, $operator = '>=')
-    {
-        return $query->whereHas('userEducationDetail', function ($subQuery) use ($dob, $operator) {
-            $subQuery->where('personal_income', $operator, $dob);
-        });
-    }
-
     public function scopeWithAllDetails($query)
     {
         return $query->with([

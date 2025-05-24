@@ -36,7 +36,7 @@ function ProfileFilters({ onFilter }) {
             <div className="flex gap-4 items-center p-5 mb-10 rounded-xl border border-solid bg-white bg-opacity-10
             border-neutral-700 flex-wrap xl:flex-row xl:flex-nowrap xl:gap-8">
 
-                <InputLabel htmlFor="sex" value="I'm looking for" className="basis-full xl:w-22 sm:basis-full md:basis-full"/>
+                <InputLabel htmlFor="sex" value="I'm looking for" className="basis-full xl:w-22"/>
 
                 <select
                     id="sex"

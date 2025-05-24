@@ -29,43 +29,7 @@ class UserProfileController extends Controller
                                'name' => 'string|max:50',
                            ]);
 
-        $name =
-            $request->input('name') ? trim(str_replace(['%', '_'], ['\%', '\_'], $request->input('name'))) : null;
-
-        /*
-         * $gender = $request->input('sex') ? $request->input('sex') : null;
-         * $ageFrom = $request->input('ageFrom') ? $request->input('ageFrom') : null;
-         * $ageTo = $request->input('ageTo') ? $request->input('ageTo') : null;
-         * $income = $request->input('personal_income') ? $request->input('personal_income') : null;
-        */
-
-        /*$gender = 0;
-        $ageFrom = 20;
-        $ageTo = 60;
-        $income = 20001;*/
-
-        // This is filter demo
-        /*$filters = [
-            [
-                'type' => 'age_between',
-                'value' => [
-                    'ageFrom' => $ageFrom,
-                    'ageTo' => $ageTo
-                ]
-            ],
-            [
-                'type' => 'sex',
-                'value' => $gender,
-            ],
-            [
-                'type' => 'personal_income',
-                'value' => $income
-            ]
-        ];*/
-
-        $filters = [];
-
-        $profiles = $this->user->getUserProfileList($filters);
+        $profiles = $this->user->getUserProfileList();
 
         if (!$profiles) {
             return redirect(route('profile.list'))->withErrors(['Profile not found']);

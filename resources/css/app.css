@@ -5,3 +5,12 @@
 .primary-button {
     @apply inline-flex items-center rounded-md border border-transparent bg-[#ff3131] px-4 py-1.5 text-sm font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-[#880000] focus:bg-[#880000] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-[#880000]
 }
+
+.react-date-picker__wrapper {
+        @apply w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm font-medium text-gray-700 h-9
+}
+
+
+#app .react-date-picker__wrapper {
+    border-color: rgb(209 213 219) !important;
+}

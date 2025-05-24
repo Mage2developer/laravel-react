@@ -12,6 +12,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import SelectBox from "@/Components/SelectBox";
 import { getGenderOptions } from "@/Utils/profileUtils";
+import { getMaritalStatusOptions } from "@/Utils/profileUtils";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -20,6 +21,8 @@ export default function Register() {
         password: "",
         password_confirmation: "",
         sex: "",
+        marital_status: "",
+        personal_income: "",
         dob: "",
         education: "",
         occupation: "",
@@ -55,14 +58,14 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            <div className="min-h-[450px] flex items-center justify-center my-16">
-                <div className="max-w-xl w-full mx-auto backdrop-blur-md rounded-xl shadow-lg p-8 border border-black/10 bg-white/5">
+            <div className="min-h-[450px] flex items-center justify-center my-2 md:my-16 p-2 md:p-0">
+                <div className="max-w-full w-full sm:max-w-xl mx-auto backdrop-blur-md rounded-xl shadow-lg p-4 sm:p-8 border border-black/10 bg-white/5">
                     <h1 className="text-3xl font-bold text-center mb-8 text-[#ff3131] bg-clip-text">
                         Register
                     </h1>
 
-                    <form onSubmit={submit} className="space-y-6">
-                        <div>
+                    <form onSubmit={submit} className="sm:space-y-4">
+                        <div className="my-3 sm:my-0">
                             <InputLabel htmlFor="name" value="Name" required/>
                             <TextInput
                                 id="name"
@@ -76,7 +79,7 @@ export default function Register() {
                             />
                             <InputError message={errors.name} className="mt-2"/>
                         </div>
-                        <div>
+                        <div className="my-3 sm:my-0">
                             <InputLabel htmlFor="email" value="Email" required/>
                             <TextInput
                                 id="email"
@@ -90,7 +93,7 @@ export default function Register() {
                             />
                             <InputError message={errors.email} className="mt-2"/>
                         </div>
-                        <div>
+                        <div className="my-3 sm:my-0">
                             <InputLabel htmlFor="mobile_number" value="Mobile Number" required/>
                             <TextInput
                                 id="mobile_number"
@@ -102,7 +105,7 @@ export default function Register() {
                             />
                             <InputError message={errors.mobile_number} className="mt-2"/>
                         </div>
-                        <div className="flex flex-row gap-3 items-center">
+                        <div className="flex flex-col sm:flex-row sm:gap-3 items-center">
                             <div className="w-full">
                                 <InputLabel htmlFor="sex" value="Gender" required/>
                                 <SelectBox
@@ -116,19 +119,45 @@ export default function Register() {
                                 />
                                 <InputError message={errors.sex} className="mt-2"/>
                             </div>
-                            <div className="w-full">
+                            <div className="w-full my-3 sm:my-0">
+                                <InputLabel htmlFor="marital_status" value="Marital Status" required/>
+                                <SelectBox
+                                    id="marital_status"
+                                    name="marital_status"
+                                    value={data.marital_status}
+                                    required
+                                    onChange={setData}
+                                    options={getMaritalStatusOptions()}
+                                    className="mt-1 block w-full"
+                                />
+                                <InputError message={errors.marital_status} className="mt-2"/>
+                            </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row sm:gap-3 items-center">
+                            <div className="w-full my-3 sm:my-0">
                                 <InputLabel htmlFor="dob" value="Date of Birth" required/>
                                 <DatePicker
                                     onChange={(date) => setData('dob', date)}
                                     value={data.dob}
-                                    className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
-                                    focus:ring-indigo-500 text-sm font-medium text-gray-700"
+                                    className="w-full"
                                 />
                                 <InputError message={errors.dob} className="mt-2"/>
                             </div>
+                            <div className="w-full my-3 sm:my-0">
+                                <InputLabel htmlFor="personal_income" value="Personal Income" required/>
+                                <TextInput
+                                    id="personal_income"
+                                    value={data.personal_income}
+                                    required
+                                    onChange={(e) => setData('personal_income', e.target.value)}
+                                    type="number"
+                                    className="mt-1 block w-full"
+                                />
+                                <InputError message={errors.personal_income} className="mt-2"/>
+                            </div>
                         </div>
-                        <div className="flex flex-row gap-3 items-center">
-                            <div>
+                        <div className="flex flex-col sm:flex-row sm:gap-3 items-center">
+                            <div className="w-full mb-3 sm:mb-0">
                                 <InputLabel htmlFor="education" value="Education" required/>
                                 <TextInput
                                     id="education"
@@ -140,7 +169,7 @@ export default function Register() {
                                 />
                                 <InputError message={errors.education} className="mt-2"/>
                             </div>
-                            <div>
+                            <div className="w-full">
                                 <InputLabel htmlFor="occupation" value="Occupation" required/>
                                 <TextInput
                                     id="occupation"
@@ -153,8 +182,8 @@ export default function Register() {
                                 <InputError message={errors.occupation} className="mt-2"/>
                             </div>
                         </div>
-                        <div className="flex flex-row gap-3 items-center">
-                            <div>
+                        <div className="flex flex-col sm:flex-row sm:gap-3 items-center">
+                            <div className="w-full mt-3 sm:mt-0">
                                 <InputLabel htmlFor="father_name" value="Father's Name" required/>
                                 <TextInput
                                     id="father_name"
@@ -166,7 +195,7 @@ export default function Register() {
                                 />
                                 <InputError message={errors.father_name} className="mt-2"/>
                             </div>
-                            <div>
+                            <div className="w-full mt-3 sm:mt-0">
                                 <InputLabel htmlFor="mother_name" value="Mother's Name" required/>
                                 <TextInput
                                     id="mother_name"
@@ -179,8 +208,8 @@ export default function Register() {
                                 <InputError message={errors.mother_name} className="mt-2"/>
                             </div>
                         </div>
-                        <div className="flex flex-row gap-3 items-center">
-                            <div className="relative">
+                        <div className="flex flex-col sm:flex-row sm:gap-3 items-center">
+                            <div className="relative w-full mt-3 sm:mt-0">
                                 <InputLabel htmlFor="password" value="Password" required/>
                                 <TextInput
                                     id="password"
@@ -206,7 +235,7 @@ export default function Register() {
                                 </button>
                                 <InputError message={errors.password} className="mt-2"/>
                             </div>
-                            <div className="relative">
+                            <div className="relative w-full my-3 sm:my-0">
                                 <InputLabel htmlFor="password_confirmation" value="Confirm Password" required/>
                                 <TextInput
                                     id="password_confirmation"
@@ -233,29 +262,31 @@ export default function Register() {
                                 <InputError message={errors.password_confirmation} className="mt-2"/>
                             </div>
                         </div>
-
-                        <ReCAPTCHA
-                            sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
-                            onChange={(token) => setCaptchaToken(token)}
-                            onExpired={() => setCaptchaToken(null)}
-                        />
-                        <InputError message={captchaError} className="mt-2"/>
-
-                        <div className="block sm:flex items-center justify-between">
-                            <div>
-                                <Link
-                                    href={route("login")}
-                                    className="text-base text-gray-800 hover:text-red-500 transition"
-                                >
-                                    Already registered?
-                                </Link>
-                            </div>
-                            <div className="">
-                                <Button className="w-full sm:w-auto mt-5 sm:mt-0" disabled={processing}>
-                                    Register
-                                </Button>
-                            </div>
+                        <div className="w-full my-3 sm:my-0">
+                            <ReCAPTCHA
+                                className="w-full"
+                                sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
+                                onChange={(token) => setCaptchaToken(token)}
+                                onExpired={() => setCaptchaToken(null)}
+                            />
+                            <InputError message={captchaError} className="mt-2"/>
                         </div>
+
+                            <div className="block sm:flex items-center justify-between">
+                                <div className='mt-4 sm:mt-0'>
+                                    <Link
+                                        href={route("login")}
+                                        className="text-base text-gray-800 hover:text-red-500 transition"
+                                    >
+                                        Already registered?
+                                    </Link>
+                                </div>
+                                <div className="">
+                                    <Button className="w-full sm:w-auto mt-5 sm:mt-0" disabled={processing}>
+                                        Register
+                                    </Button>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>
