@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to {{ $appName }}</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,8 +25,7 @@
             margin-bottom: 30px;
             padding: 0 !important;
         }
-        .logo,
-        .logo img {
+        .logo {
             width: 300px !important;
             margin: 0 auto;
         }
@@ -41,7 +41,7 @@
         }
         .content {
             margin-bottom: 30px;
-            text-align: left;
+            text-align: center;
         }
         .content p {
             margin-bottom: 15px;
@@ -128,16 +128,49 @@
         <div class="logo"><img src="{{ $logo }}" alt="{{ $appName }}"></div>
     </div>
 
-    <div class="content">
-        Thank you for inquiry, Support team will be contact you soon.
-    </div>
+    <h1 class="welcome-title">
+        Welcome, <span class="user-name">{{ $user->name }}</span>! 🎉
+    </h1>
 
     <div class="content">
-        <p><strong>Name:</strong> {{ $name }}</p>
-        <p><strong>Email:</strong> {{ $email }}</p>
-        <p><strong>Subject:</strong> {{ $subject }}</p>
-        <p><strong>Message:</strong></p>
-        <p>{{ $contactMessage }}</p>
+        <p>We're thrilled to have you join {{ $appName }}! Your account has been successfully created and you're all set to get started.</p>
+
+        <p>Here's what you can do next:</p>
+    </div>
+
+    <div class="features">
+        <div class="feature-item">
+            <div class="feature-icon">💬</div>
+            <div>
+                <strong>Activate your profile</strong><br>
+                <ul>
+                    <li>
+                        <div>User Name : {{ $user->name }}</div>
+                        <div>Email : {{ $user->email }}</div>
+                    </li>
+                    <li><b>Contact Admin: </b> Please send your User ID & Full Name via WhatsApp.</li>
+                    <li>Share your payment screenshot & Aadhaar card with the admin on WhatsApp. <br>
+                        UPI ID for payment : mage2developer@axisbank </li>
+                    <li>You cannot log in until your profile is activated.</li>
+                    <li>Admin WhatsApp: +91-8200426399</li>
+                    <li> Created Profile take <b> 3-5 working days </b> to activate, Once profile has been activated admin will notified on same WhatsApp Number.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <div>
+                <strong>Complete your profile</strong><br>
+                Add your personal information and preferences
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🚀</div>
+            <div>
+                <strong>Explore All Profiles</strong><br>
+                Discover all Profiles view available to you
+            </div>
+        </div>
     </div>
 
     <div class="content">
@@ -151,8 +184,8 @@
         </div>
 
         <p>
-            Thanks for your inquiry {{ $appName }}!<br>
-            This email was sent to {{ $email }}
+            Thanks for joining {{ $appName }}!<br>
+            This email was sent to {{ $user->email }}
         </p>
 
         <p>
@@ -167,4 +200,3 @@
 </div>
 </body>
 </html>
-

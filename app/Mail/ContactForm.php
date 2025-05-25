@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormSubmitted extends Mailable
+class ContactForm extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,7 @@ class ContactFormSubmitted extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Contact Form Submission', // You can customize the subject
+            subject: 'Contact Form Submission', // You can customize the subject
         );
     }
 
@@ -46,7 +46,10 @@ class ContactFormSubmitted extends Mailable
                       'name' => $this->formData['name'],
                       'email' => $this->formData['email'],
                       'subject' => $this->formData['subject'] ?? 'No Subject',
-                      'message' => $this->formData['message'],
+                      'contactMessage' => $this->formData['message'],
+                      'appName' => config('app.name'),
+                      'appUrl' => config('app.url'),
+                      'logo' => asset('images/header-logo.webp'),
                   ],
         );
     }
