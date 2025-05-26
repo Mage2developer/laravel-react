@@ -30,8 +30,10 @@ class ContactForm extends Mailable
      */
     public function envelope(): Envelope
     {
+        // TODO : Please checck bcc functionality
+
         return new Envelope(
-            subject: 'Contact Form Submission', // You can customize the subject
+            subject: 'Contact Request Created'
         );
     }
 
