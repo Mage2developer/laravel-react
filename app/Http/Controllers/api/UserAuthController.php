@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\api\SignupRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,15 +23,22 @@ class UserAuthController extends Controller
      */
     public function signup(SignupRequest $request)
     {
-        $request->validated();
-        $user = User::create($request->all());
-        $token = $user->createToken($request->name);
+        try {
+            $request->validated();
+            $user = User::create($request->all());
 
-        return response()->json([
-                                    'success' => true,
-                                    'user' => $user,
-                                    'token' => $token->plainTextToken
+            event(new Registered($user));
+
+            $token = $user->createToken($request->name);
+
+            return response()->json([
+                                        'success' => true,
+                                        'user' => $user,
+                                        'token' => $token->plainTextToken
                                 ]);
+        } catch (Exception $exception) {
+            return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
+        }
     }
 
     /**
