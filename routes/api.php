@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\UserImageController;
 use App\Http\Controllers\api\ForgotPasswordController;
-
-
+use App\Http\Controllers\api\ContactController;
 
 
 Route::get('/user', function (Request $request) {
@@ -23,6 +22,8 @@ Route::get('/user', function (Request $request) {
 Route::post("/login", [UserAuthController::class, 'login']);
 Route::post("/signup", [UserAuthController::class, 'signup']);
 
+Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('contact.submit');
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'show']);
     Route::put('/profile', [UserProfileController::class, 'update']);
@@ -31,7 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/userPersonalDetail', [UserPersonalDetailController::class, 'update']);
     Route::put('/userFamilyDetail', [UserFamilyDetailController::class, 'update']);
     Route::post('/logout', [UserAuthController::class, 'logout']);
-
     Route::post('/deleteProfile', [UserProfileController::class, 'destroy']);
 
     Route::post('/profileImages', [UserImageController::class, 'store']);
