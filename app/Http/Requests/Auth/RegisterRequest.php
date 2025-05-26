@@ -28,6 +28,11 @@ class RegisterRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'dob' => 'required|string|max:50',
+            'education' => 'required|string|max:100',
+            'occupation' => 'required|string|max:50',
+            'father_name' => 'required|string|max:100',
+            'mother_name' => 'required|string|max:100',
         ];
     }
 }

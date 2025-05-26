@@ -18,17 +18,17 @@ export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
-        password: "",
-        password_confirmation: "",
+        mobile_number: "",
         sex: "",
         marital_status: "",
         personal_income: "",
-        dob: "",
+        dob: '',
         education: "",
         occupation: "",
-        mobile_number: "",
         father_name: "",
         mother_name: "",
+        password: "",
+        password_confirmation: "",
     });
 
     const [showPassword, setShowPassword] = useState(false);
@@ -139,8 +139,9 @@ export default function Register() {
                                 <DatePicker
                                     onChange={(date) => setData('dob', date)}
                                     value={data.dob}
-                                    className="w-full"
+                                    className="w-full required"
                                 />
+
                                 <InputError message={errors.dob} className="mt-2"/>
                             </div>
                             <div className="w-full my-3 sm:my-0">
