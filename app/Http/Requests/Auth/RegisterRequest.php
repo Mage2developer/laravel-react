@@ -27,12 +27,14 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'mobile_number' => 'required|numeric|digits_between:10,15',
             'dob' => 'required|string|max:50',
+            'personal_income' => 'required|numeric|digits_between:0,10',
             'education' => 'required|string|max:100',
             'occupation' => 'required|string|max:50',
             'father_name' => 'required|string|max:100',
             'mother_name' => 'required|string|max:100',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ];
     }
 }
