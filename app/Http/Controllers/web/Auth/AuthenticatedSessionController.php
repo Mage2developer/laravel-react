@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\web\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Data;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\web\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use App\Http\Requests\api\SignupRequest;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\web\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\UserContactDetail;
-use App\Http\Helper\Data;
 
 class UserAuthController extends Controller
 {

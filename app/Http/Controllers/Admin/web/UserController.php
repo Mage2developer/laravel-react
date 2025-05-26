@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\web;
 
+use App\Http\Controllers\Admin\Exception;
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Data;
 use App\Models\User;

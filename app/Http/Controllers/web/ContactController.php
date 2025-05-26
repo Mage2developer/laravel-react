@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Http\Controllers\Controller;
-use App\Mail\ContactForm;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Inertia\Inertia;
-use App\Http\Requests\Auth\ContactRequest;
 use App\Events\ContactEvent;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\web\Auth\ContactRequest;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {

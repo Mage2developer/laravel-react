@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\api\UserProfileUpdate;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\web\UserController;
 use App\Http\Controllers\api\UserContactDetailController;
 use App\Http\Controllers\api\UserEducationDetailController;
 use App\Http\Controllers\api\UserFamilyDetailController;
 use App\Http\Controllers\api\UserImageController;
 use App\Http\Controllers\api\UserPersonalDetailController;
 use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\web\ContactController;
+use App\Http\Controllers\web\ProfileController;
 use App\Http\Controllers\web\UserProfileController;
 use App\Models\User;
 use Illuminate\Foundation\Application;

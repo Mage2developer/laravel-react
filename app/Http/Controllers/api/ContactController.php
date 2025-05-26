@@ -4,8 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Events\ContactEvent;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\web\Auth\ContactRequest;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\Auth\ContactRequest;
 
 class ContactController extends Controller
 {
