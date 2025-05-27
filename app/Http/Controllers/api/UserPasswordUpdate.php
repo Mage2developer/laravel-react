@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\api\UserPasswordUpdateRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserPasswordUpdate extends Controller
 {
