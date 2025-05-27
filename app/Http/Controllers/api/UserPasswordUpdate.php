@@ -5,13 +5,19 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\UserPasswordUpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Http\Request;
+
 
 class UserPasswordUpdate extends Controller
 {
-    public function update(UserPasswordUpdateRequest $request)
+    public function update(Request $request)
     {
         try {
-            $request->validate();
+            $validated = $request->validate([
+                                                'current_password' => ['required', 'current_password'],
+                                                'password' => ['required', Password::defaults(), 'confirmed'],
+                                            ]);
 
             $user = $request->user();
 
@@ -24,8 +30,6 @@ class UserPasswordUpdate extends Controller
             $user->forceFill([
                                  'password' => Hash::make($request->password),
                              ])->save();
-
-            //$user->tokens()->delete();
 
 
             return response()->json([
