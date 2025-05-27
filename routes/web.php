@@ -47,7 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/profileImages', [UserImageController::class, 'store']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
-    // Admin pages
 
 });
 
@@ -59,6 +58,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/admin/users/profileUpdate/{profileId}', [UserProfileUpdate::class, 'update'])->name(
         'users.admin.profileUpdate'
     );
+
+    //TODO Image part for admin user
+    Route::get('/profileImages/user/{userId}', [UserImageController::class, 'index']);
+    /*Route::post('/profileImages/user/{userId}', [UserImageController::class, 'store']);
+    Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);*/
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');

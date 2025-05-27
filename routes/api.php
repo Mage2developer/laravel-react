@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\UserImageController;
 use App\Http\Controllers\api\ForgotPasswordController;
 use App\Http\Controllers\api\ContactController;
+use App\Http\Controllers\api\UserPasswordUpdate;
 
 
 Route::get('/user', function (Request $request) {
@@ -31,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/userEducationDetail', [UserEducationDetailController::class, 'update']);
     Route::put('/userPersonalDetail', [UserPersonalDetailController::class, 'update']);
     Route::put('/userFamilyDetail', [UserFamilyDetailController::class, 'update']);
+    Route::put('/userPasswordUpdate', [UserPasswordUpdate::class, 'update']);
     Route::post('/logout', [UserAuthController::class, 'logout']);
     Route::post('/deleteProfile', [UserProfileController::class, 'destroy']);
 
@@ -38,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profileImages/{id}/replace', [UserImageController::class, 'replace']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
+
 });
 
 Route::get("/profileList/", [UserProfileController::class, 'index']);
