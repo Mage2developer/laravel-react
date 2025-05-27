@@ -30,6 +30,6 @@ class SendContactEmail
 
         $data = $event->data;
         Mail::to($data['email'])->send(new ContactForm($data));
-        Mail::bcc(env('ADMIN_EMAIL'))->send(new ContactForm($data));
+        Mail::to(env('ADMIN_EMAIL'))->send(new ContactForm($data));
     }
 }
