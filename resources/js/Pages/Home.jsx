@@ -73,7 +73,7 @@ function Home({ latestProfile }) {
                         <div className="w-6/12 max-md:w-full">
                             <LazyLoadImage
                                 alt="Feature showcase"
-                                src="images/destination-wedding.webp"
+                                src="/images/home/box/destination-wedding.webp"
                                 effect="blur"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                             />
@@ -204,7 +204,7 @@ function Home({ latestProfile }) {
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                             <LazyLoadImage
                                 alt="Vanand Vivah Digital Presence Showcase"
-                                src="images/hindu-wedding-mandap.webp"
+                                src="/images/home/box/hindu-wedding-mandap.webp"
                                 effect="blur"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                             />

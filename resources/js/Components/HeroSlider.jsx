@@ -7,19 +7,19 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const sliderImages = [
     {
-        src: "/images/wedding-banner.webp",
+        src: "/images/home/slider/wedding-banner.webp",
         title: "Find your perfect match with Vanand Vivah",
         description:
             "At Vanand Vivah, we connect brides and grooms to help them discover meaningful relationships. Join our community today.",
     },
     {
-        src: "/images/destination-wedding.webp",
+        src: "/images/home/slider/destination-wedding.webp",
         title: "Join thousands finding love",
         description:
             "Trusted by thousands across the world, Vanand Vivah helps you take the first step toward a fulfilling relationship.",
     },
     {
-        src: "/images/hindu-wedding-mandap.webp",
+        src: "/images/home/slider/hindu-wedding-mandap.webp",
         title: "Safe, secure, and personalized",
         description:
             "We value your privacy and provide you with a secure platform tailored to your unique preferences.",
