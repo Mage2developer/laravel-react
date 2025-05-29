@@ -129,7 +129,7 @@ function Home({ latestProfile }) {
                     </div>
                 </section>
 
-                <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
+               {/* <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
                     <h2 className="mb-10 text-5xl font-semibold text-center max-sm:text-3xl text-black">
                         Recently Created Profiles
                     </h2>
@@ -140,7 +140,7 @@ function Home({ latestProfile }) {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section>*/}
 
                 {/*<section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">*/}
                 {/*    <div className="mb-16 text-center">*/}
