@@ -1,11 +1,15 @@
-import * as React from "react";
+import React,{Suspense, lazy} from "react";
 import {Head, Link} from "@inertiajs/react";
 import { LuHeartHandshake } from "react-icons/lu";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { useState } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { TestimonialCard } from "@/Components/TestimonialCard";
-import { LatestProfileCard } from "@/Components/LatestProfileCard";
+
+//import { LatestProfileCard } from "@/Components/LatestProfileCard";
+
+const LatestProfileCard = lazy(() => import('@/Components/LatestProfileCard'))
+
 import { FeatureCard } from "@/Components/FeatureCard";
 import { Button } from "@/Components/Button";
 import HeroSlider from "@/Components/HeroSlider";
@@ -136,7 +140,9 @@ function Home({ latestProfile }) {
                     <div className="overflow-x-auto">
                         <div className="flex gap-5 px-0 py-5 min-w-min">
                             {latestProfile.map((profile, index) => (
-                                <LatestProfileCard profile={profile} />
+                                <Suspense fallback={<h1>Still Loading…</h1>}>
+                                    <LatestProfileCard profile={profile} />
+                                </Suspense>
                             ))}
                         </div>
                     </div>
