@@ -47,7 +47,7 @@ function HeroSlider() {
                         <LazyLoadImage
                             alt="Vanand Vivah Registration"
                             src={slide.src}
-                            effect="blur"
+                            effect="eager"
                             className="object-cover w-full h-full"
                             width={"100%"}
                             height={"600px"}

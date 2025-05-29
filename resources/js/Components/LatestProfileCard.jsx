@@ -18,10 +18,12 @@ export const LatestProfileCard = ({ profile }) => {
                         src={
                             profile.user_images.length > 0
                                 ? profile.user_images[0].image_path
-                                : "/images/profile-placeholder.webp"
+                                : "/images/recent-slider/profile-placeholder.webp"
                         }
                         effect="blur"
                         className="object-cover overflow-hidden mb-3 rounded-full aspect-square h-[120px] w-[120px]"
+                        height="120"
+                        width="200"
                     />
                 </div>
 

@@ -1,27 +1,26 @@
 import React,{Suspense, lazy} from "react";
 import {Head, Link} from "@inertiajs/react";
-import { LuHeartHandshake } from "react-icons/lu";
-import { AiFillSafetyCertificate } from "react-icons/ai";
-import { useState } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { TestimonialCard } from "@/Components/TestimonialCard";
-
-//import { LatestProfileCard } from "@/Components/LatestProfileCard";
-
-const LatestProfileCard = lazy(() => import('@/Components/LatestProfileCard'))
-
+import HeroSlider from "@/Components/HeroSlider";
 import { FeatureCard } from "@/Components/FeatureCard";
 import { Button } from "@/Components/Button";
-//import HeroSlider from "@/Components/HeroSlider";
-
-const HeroSlider = lazy(() => import('@/Components/HeroSlider'))
-
+import { AiFillSafetyCertificate } from "react-icons/ai";
+import { LuHeartHandshake } from "react-icons/lu";
 import { FaRegUserCircle } from "react-icons/fa";
-import { IoSearchCircle } from "react-icons/io5";
-import { MdRocketLaunch } from "react-icons/md";
-import { MdImageSearch } from "react-icons/md";
+import { MdRocketLaunch, MdImageSearch } from "react-icons/md";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+
+const LatestProfileCard = lazy(() => import('@/Components/LatestProfileCard'));
+
+//import { IoSearchCircle } from "react-icons/io5";
+//import { useState } from "react";
+//import { LatestProfileCard } from "@/Components/LatestProfileCard";
+
+const renderLoader = () => <p>Loading</p>;
+
+
+//import { TestimonialCard } from "@/Components/TestimonialCard";
 
 function Home({ latestProfile }) {
     // const [searchText, setSearchText] = useState("");
@@ -72,9 +71,7 @@ function Home({ latestProfile }) {
             <Head title="Vanand, Nai, Nayi, Sain Matrimony: Find Your Perfect Match" />
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <Suspense fallback={<h1>Still Loading…</h1>}>
-                        <HeroSlider/>
-                    </Suspense>
+                    <HeroSlider/>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
@@ -142,15 +139,17 @@ function Home({ latestProfile }) {
                     <h2 className="mb-10 text-5xl font-semibold text-center max-sm:text-3xl text-black">
                         Recently Created Profiles
                     </h2>
-                    <div className="overflow-x-auto">
-                        <div className="flex gap-5 px-0 py-5 min-w-min">
-                            {latestProfile.map((profile, index) => (
-                                <Suspense fallback={<h1>Still Loading…</h1>}>
-                                    <LatestProfileCard profile={profile} />
-                                </Suspense>
-                            ))}
+                    <Suspense fallback={renderLoader}>
+                        <div className="overflow-x-auto">
+                            <div className="flex gap-5 px-0 py-5 min-w-min">
+                                {latestProfile.map((profile, index) => (
+
+                                        <LatestProfileCard profile={profile} />
+
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    </Suspense>
                 </section>
 
                 {/*<section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">*/}
@@ -201,14 +200,15 @@ function Home({ latestProfile }) {
                                     Discover the Benefits of Choosing Vanand Vivah
                                 </h2>
                                 <div className="flex flex-col gap-6">
-                                    {features.map((feature, index) => (
-                                        <FeatureCard
-                                            key={index}
-                                            icon={feature.icon}
-                                            title={feature.title}
-                                            description={feature.description}
-                                        />
-                                    ))}
+                                        {features.map((feature, index) => (
+                                                <FeatureCard
+                                                    key={index}
+                                                    icon={feature.icon}
+                                                    title={feature.title}
+                                                    description={feature.description}
+                                                />
+
+                                        ))}
                                 </div>
                             </div>
                         </div>
