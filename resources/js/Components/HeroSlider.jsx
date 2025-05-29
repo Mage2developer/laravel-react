@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { Button } from "./Button";
 import { Link } from "@inertiajs/react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const sliderImages = [
     {
@@ -47,13 +47,10 @@ function HeroSlider() {
                         <LazyLoadImage
                             alt="Vanand Vivah Registration"
                             src={slide.src}
+                            effect="blur"
                             className="object-cover w-full h-full"
-                            height={"600px"}    
-                            threshold={300}
-                            wrapperClassName="h-[600px] w-full"
-                            visibleByDefault={index === 0}
-                            loading="eager"
-                            effect="opacity"
+                            width={"100%"}
+                            height={"600px"}
                         />
                         <div className="absolute top-2/4 left-2/4 px-5 py-0 w-full text-center -translate-x-2/4 -translate-y-2/4 max-w-[800px]">
                             <h2 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize text-white drop-shadow-xl">
@@ -79,3 +76,5 @@ function HeroSlider() {
 }
 
 export default HeroSlider;
+
+

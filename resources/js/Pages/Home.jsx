@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Head, Link } from "@inertiajs/react";
+import {Head, Link} from "@inertiajs/react";
 import { LuHeartHandshake } from "react-icons/lu";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { useState } from "react";
@@ -13,8 +13,8 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { MdRocketLaunch } from "react-icons/md";
 import { MdImageSearch } from "react-icons/md";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 function Home({ latestProfile }) {
     // const [searchText, setSearchText] = useState("");
@@ -65,7 +65,7 @@ function Home({ latestProfile }) {
             <Head title="Vanand, Nai, Nayi, Sain Matrimony: Find Your Perfect Match" />
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <HeroSlider />
+                    <HeroSlider/>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
@@ -74,10 +74,8 @@ function Home({ latestProfile }) {
                             <LazyLoadImage
                                 alt="Feature showcase"
                                 src="images/destination-wedding.webp"
+                                effect="blur"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
-                                threshold={300}
-                                loading="eager"
-                                effect="opacity"
                             />
                         </div>
                         <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
@@ -138,10 +136,7 @@ function Home({ latestProfile }) {
                     <div className="overflow-x-auto">
                         <div className="flex gap-5 px-0 py-5 min-w-min">
                             {latestProfile.map((profile, index) => (
-                                <LatestProfileCard
-                                    key={index}
-                                    profile={profile}
-                                />
+                                <LatestProfileCard profile={profile} />
                             ))}
                         </div>
                     </div>
@@ -192,8 +187,7 @@ function Home({ latestProfile }) {
                         <div className="w-6/12 max-md:w-full">
                             <div className="flex flex-col gap-8">
                                 <h2 className="text-5xl font-bold leading-tight max-sm:text-4xl text-black">
-                                    Discover the Benefits of Choosing Vanand
-                                    Vivah
+                                    Discover the Benefits of Choosing Vanand Vivah
                                 </h2>
                                 <div className="flex flex-col gap-6">
                                     {features.map((feature, index) => (
@@ -211,10 +205,8 @@ function Home({ latestProfile }) {
                             <LazyLoadImage
                                 alt="Vanand Vivah Digital Presence Showcase"
                                 src="images/hindu-wedding-mandap.webp"
+                                effect="blur"
                                 className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
-                                threshold={300}
-                                loading="eager"
-                                effect="opacity"
                             />
                         </div>
                     </div>
