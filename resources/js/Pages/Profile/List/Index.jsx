@@ -7,7 +7,7 @@ import ProfileFilters from "@/Components/ProfileFilters";
 import ProfileGrid from "@/Components/ProfileGrid";
 
 function Index({ profiles }) {
-    const bannerImage = "images/wedding-banner.webp";
+    const bannerImage = "images/home/slider/wedding-banner.webp";
     const bannerTitle = "Profile";
     const bannerDescription = "Discover our curated selection of modern essentials";
 

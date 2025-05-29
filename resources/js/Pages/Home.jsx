@@ -12,7 +12,10 @@ const LatestProfileCard = lazy(() => import('@/Components/LatestProfileCard'))
 
 import { FeatureCard } from "@/Components/FeatureCard";
 import { Button } from "@/Components/Button";
-import HeroSlider from "@/Components/HeroSlider";
+//import HeroSlider from "@/Components/HeroSlider";
+
+const HeroSlider = lazy(() => import('@/Components/HeroSlider'))
+
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
 import { MdRocketLaunch } from "react-icons/md";
@@ -69,7 +72,9 @@ function Home({ latestProfile }) {
             <Head title="Vanand, Nai, Nayi, Sain Matrimony: Find Your Perfect Match" />
             <div className="w-full min-h-screen text-white bg-white">
                 <div className="overflow-hidden relative mt-15 h-[600px]">
-                    <HeroSlider/>
+                    <Suspense fallback={<h1>Still Loading…</h1>}>
+                        <HeroSlider/>
+                    </Suspense>
                 </div>
 
                 <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
