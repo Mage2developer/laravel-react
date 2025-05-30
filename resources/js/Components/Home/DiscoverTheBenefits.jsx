@@ -1,6 +1,6 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FeatureCard } from "../FeatureCard";
+import { FeatureCard } from "./FeatureCard.jsx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdImageSearch, MdRocketLaunch } from "react-icons/md";
 
