@@ -1,11 +1,16 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Head } from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import HeroSlider from "@/Components/Home/HeroSlider";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import DiscoverYourPerfect from "@/Components/Home/DiscoverYourPerfect";
-import RecentlyCreatedProfiles from "@/Components/Home/RecentlyCreatedProfiles";
-import DiscoverTheBenefits from "@/Components/Home/DiscoverTheBenefits";
+//import DiscoverYourPerfect from "@/Components/Home/DiscoverYourPerfect";
+// import RecentlyCreatedProfiles from "@/Components/Home/RecentlyCreatedProfiles";
+// import DiscoverTheBenefits from "@/Components/Home/DiscoverTheBenefits";
+
+
+const RecentlyCreatedProfiles = lazy(() => import('@/Components/Home/RecentlyCreatedProfiles'));
+const DiscoverTheBenefits = lazy(() => import('@/Components/Home/DiscoverTheBenefits'));
+const DiscoverYourPerfect = lazy(() => import('@/Components/Home/DiscoverYourPerfect'));
 
 function Home({ latestProfile }) {
     return (
@@ -16,17 +21,12 @@ function Home({ latestProfile }) {
                 <HeroSlider />
                 {/* Hero Slider Component End */}
 
-                {/* DiscoverYourPerfect Component Start */}
-                <DiscoverYourPerfect />
-                {/* DiscoverYourPerfect Component End */}
-
-                {/* RecentlyCreatedProfiles Component Start */}
-                <RecentlyCreatedProfiles latestProfile={latestProfile} />
-                {/* RecentlyCreatedProfiles Component End */}
-
-                {/* DiscoverTheBenefits Component Start */}
-                <DiscoverTheBenefits />
-                {/* DiscoverTheBenefits Component End */}
+                <Suspense fallback={<div>Loading...</div>}>
+                    <DiscoverYourPerfect />
+                    <RecentlyCreatedProfiles latestProfile={latestProfile} />
+                    <DiscoverTheBenefits />
+                </Suspense>
+                
             </div>
         </GuestLayout>
     );
