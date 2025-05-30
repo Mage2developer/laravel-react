@@ -14,6 +14,8 @@ import SelectBox from "@/Components/SelectBox";
 import { getGenderOptions } from "@/Utils/profileUtils";
 import { getMaritalStatusOptions } from "@/Utils/profileUtils";
 
+import Setting from "@/Utils/Setting.jsx";
+
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
@@ -266,7 +268,7 @@ export default function Register() {
                         <div className="w-full my-3 sm:my-0">
                             <ReCAPTCHA
                                 className="w-full"
-                                sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
+                                sitekey={Setting.capatcha_v2_sitekey}
                                 onChange={(token) => setCaptchaToken(token)}
                                 onExpired={() => setCaptchaToken(null)}
                             />

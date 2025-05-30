@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Bus\Queueable;
+use App\Http\Helper\Data;
 
 class SendContactEmail
 {
@@ -30,6 +31,6 @@ class SendContactEmail
 
         $data = $event->data;
         Mail::to($data['email'])->send(new ContactForm($data));
-        Mail::to(env('ADMIN_EMAIL'))->send(new ContactForm($data));
+        Mail::to(Data::ADMIN_EMAIL)->send(new ContactForm($data));
     }
 }

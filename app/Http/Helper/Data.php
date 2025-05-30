@@ -42,4 +42,6 @@ class Data
 
      const ADMIN_USERS_LIST_LIMIT = 10;
 
+     const ADMIN_EMAIL = "vanandvivah@gmail.com";
+
 }

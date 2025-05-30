@@ -10,43 +10,9 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { MdRocketLaunch, MdImageSearch } from "react-icons/md";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
-const LatestProfileCard = lazy(() => import('@/Components/LatestProfileCard'));
-
-//import { IoSearchCircle } from "react-icons/io5";
-//import { useState } from "react";
-//import { LatestProfileCard } from "@/Components/LatestProfileCard";
-
-const renderLoader = () => <p>Loading</p>;
-
-
-//import { TestimonialCard } from "@/Components/TestimonialCard";
+import LatestProfileCard from "../Components/LatestProfileCard";
 
 function Home({ latestProfile }) {
-    // const [searchText, setSearchText] = useState("");
-    // const [activeIndex, setActiveIndex] = useState(null);
-
-    // const testimonials = [
-    //     {
-    //         name: "Sarah Johnson",
-    //         role: "Marketing Director",
-    //         image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-    //         quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
-    //     },
-    //     {
-    //         name: "Michael Chen",
-    //         role: "CEO",
-    //         image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-    //         quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
-    //     },
-    //     {
-    //         name: "Emma Davis",
-    //         role: "Product Manager",
-    //         image: "https://images.pexels.com/photos/31750448/pexels-photo-31750448.jpeg",
-    //         quote: "Vanand Vivah made my search for a partner effortless. I found my perfect match within weeks.",
-    //     },
-    // ];
-
     const features = [
         {
             icon: <FaRegUserCircle size={30} />,
@@ -70,6 +36,7 @@ function Home({ latestProfile }) {
         <GuestLayout>
             <Head title="Vanand, Nai, Nayi, Sain Matrimony: Find Your Perfect Match" />
             <div className="w-full min-h-screen text-white bg-white">
+
                 <div className="overflow-hidden relative mt-15 h-[600px]">
                     <HeroSlider/>
                 </div>
@@ -139,7 +106,7 @@ function Home({ latestProfile }) {
                     <h2 className="mb-10 text-5xl font-semibold text-center max-sm:text-3xl text-black">
                         Recently Created Profiles
                     </h2>
-                    <Suspense fallback={renderLoader}>
+
                         <div className="overflow-x-auto">
                             <div className="flex gap-5 px-0 py-5 min-w-min">
                                 {latestProfile.map((profile, index) => (
@@ -149,48 +116,8 @@ function Home({ latestProfile }) {
                                 ))}
                             </div>
                         </div>
-                    </Suspense>
-                </section>
 
-                {/*<section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">*/}
-                {/*    <div className="mb-16 text-center">*/}
-                {/*        <h2 className="mb-4 text-5xl font-semibold max-sm:text-3xl text-black">*/}
-                {/*            What Our Clients Say*/}
-                {/*        </h2>*/}
-                {/*        <p className="mx-auto my-0 text-lg max-w-[600px] text-black">*/}
-                {/*            Hear from our satisfied customers about their*/}
-                {/*            experiences*/}
-                {/*        </p>*/}
-                {/*    </div>*/}
-                {/*    <div className="relative px-0 py-5">*/}
-                {/*        <div className="flex overflow-x-hidden gap-6 px-0 py-5 max-sm:flex-col">*/}
-                {/*            {testimonials.map((testimonial, index) => (*/}
-                {/*                <TestimonialCard*/}
-                {/*                    key={index}*/}
-                {/*                    image={testimonial.image}*/}
-                {/*                    quote={testimonial.quote}*/}
-                {/*                    name={testimonial.name}*/}
-                {/*                    role={testimonial.role}*/}
-                {/*                />*/}
-                {/*            ))}*/}
-                {/*        </div>*/}
-                {/*        <div className="flex gap-3 justify-center mt-8">*/}
-                {/*            {[1, 2, 3].map((item) => (*/}
-                {/*                <button*/}
-                {/*                    key={item}*/}
-                {/*                    className="w-3 h-3 rounded-full cursor-pointer border-none duration-300 ease transition-colors"*/}
-                {/*                    style={{*/}
-                {/*                        backgroundColor:*/}
-                {/*                            item === 1*/}
-                {/*                                ? "rgb(172, 126, 244)"*/}
-                {/*                                : "rgb(51, 51, 51)",*/}
-                {/*                    }}*/}
-                {/*                    onClick={() => setActiveIndex(item)}*/}
-                {/*                />*/}
-                {/*            ))}*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</section>*/}
+                </section>
 
                 <section className="px-10 py-0 mx-auto my-24 max-w-[1200px]">
                     <div className="flex items-center gap-5 max-md:flex-col">

@@ -1,23 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, {useState} from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, useForm } from "@inertiajs/react";
+import {Head, useForm} from "@inertiajs/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import InputError from "@/Components/InputError";
-import { FaWhatsapp } from "react-icons/fa";
-import {
-    FiClock,
-    FiFacebook,
-    FiInstagram,
-    FiMail,
-    FiMapPin,
-} from "react-icons/fi";
+import {FaWhatsapp} from "react-icons/fa";
+import {FiClock, FiFacebook, FiInstagram, FiMail, FiMapPin,} from "react-icons/fi";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Textarea} from "@headlessui/react";
 import TextInput from "@/Components/TextInput.jsx";
+import Setting from "@/Utils/Setting.jsx";
 
 export default function ContactUs() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const {data, setData, post, processing, errors, reset} = useForm({
         name: '',
         email: '',
         subject: '',
@@ -53,7 +48,7 @@ export default function ContactUs() {
 
     return (
         <GuestLayout>
-            <Head title="Contact Us" />
+            <Head title="Contact Us"/>
             <div className="flex items-center justify-center py-12 px-3 sm:px-0">
                 <div className="max-w-6xl w-full mx-auto">
                     <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
@@ -145,9 +140,9 @@ export default function ContactUs() {
 
                                 <div className="mb-6">
                                     <ReCAPTCHA
-                                        sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
-                                        onChange={(token) => {
-                                            setCaptchaToken(token);
+                                        sitekey={Setting.capatcha_v2_sitekey}
+                                        onChange={(captchaToken) => {
+                                            setCaptchaToken(captchaToken);
                                             setCaptchaError(null);
                                         }}
                                         onExpired={() => setCaptchaToken(null)}

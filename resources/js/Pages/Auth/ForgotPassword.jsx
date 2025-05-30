@@ -6,6 +6,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, useForm } from "@inertiajs/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import {useState} from "react";
+import Setting from "@/Utils/Setting.jsx";
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -73,7 +74,7 @@ export default function ForgotPassword({ status }) {
                             </div>
 
                             <ReCAPTCHA
-                                sitekey="6LdBejMrAAAAACUAes7oSakKuH7s3M3amBvw8LiT"
+                                sitekey={Setting.capatcha_v2_sitekey}
                                 onChange={(token) => setCaptchaToken(token)}
                                 onExpired={() => setCaptchaToken(null)}
                             />
