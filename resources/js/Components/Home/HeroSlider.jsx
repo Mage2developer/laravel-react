@@ -8,21 +8,21 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 const sliderImages = [
     {
         desktopSrc: "/images/home/slider/wedding-banner.webp",
-        mobileSrc: "/images/home/slider/mobile-images/wedding-banner-480x600.webp",
+        mobileSrc: "/images/home/slider/mobile/wedding-banner-480x600.webp",
         title: "Find your perfect match with Vanand Vivah",
         description:
             "At Vanand Vivah, we connect brides and grooms to help them discover meaningful relationships. Join our community today.",
     },
     {
         desktopSrc: "/images/home/slider/destination-wedding.webp",
-        mobileSrc: "/images/home/slider/mobile-images/destination-wedding-480x600.webp",
+        mobileSrc: "/images/home/slider/mobile/destination-wedding-480x600.webp",
         title: "Join thousands finding love",
         description:
             "Trusted by thousands across the world, Vanand Vivah helps you take the first step toward a fulfilling relationship.",
     },
     {
         desktopSrc: "/images/home/slider/hindu-wedding-mandap.webp",
-        mobileSrc: "/images/home/slider/mobile-images/hindu-wedding-mandap-480x600.webp",
+        mobileSrc: "/images/home/slider/mobile/hindu-wedding-mandap-480x600.webp",
         title: "Safe, secure, and personalized",
         description:
             "We value your privacy and provide you with a secure platform tailored to your unique preferences.",
