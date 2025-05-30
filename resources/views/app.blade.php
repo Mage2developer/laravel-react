@@ -12,6 +12,7 @@
         <link rel="icon" type="image/png" href="{{ asset('images/vv_header_logo.png') }}">
 
         <link rel="preload" as="image" href="{{ asset('images/home/slider/wedding-banner.webp') }}">
+        <link rel="preload" as="image" href="{{ asset('images/home/slider/mobile/wedding-banner.webp') }}">
 
 
         <!-- Scripts -->
