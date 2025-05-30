@@ -11,7 +11,7 @@ function RecentlyCreatedProfiles({ latestProfile }) {
             <div className="overflow-x-auto">
                 <div className="flex gap-5 px-0 py-5 min-w-min">
                     {latestProfile.map((profile, index) => (
-                        <LatestProfileCard profile={profile} />
+                        <LatestProfileCard key={index} profile={profile} />
                     ))}
                 </div>
             </div>
