@@ -1,10 +1,11 @@
 "use client";
-import React, {useState} from "react";
+import React, {lazy, Suspense, useState} from "react";
 import {Head} from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import ProfileBanner from "@/Components/ProfileBanner";
-import ProfileFilters from "@/Components/ProfileFilters";
-import ProfileGrid from "@/Components/ProfileGrid";
+
+const ProfileGrid = lazy(() => import('@/Components/ProfileGrid'));
+const ProfileFilters = lazy(() => import('@/Components/ProfileFilters'));
 
 function Index({ profiles }) {
     const bannerImage = "images/home/slider/wedding-banner.webp";
@@ -52,11 +53,11 @@ function Index({ profiles }) {
                     </div>
 
                     <section className="px-3 sm:px-5 px-10 py-0 mx-auto my-0 max-w-[1200px] min-h-[800px]">
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ProfileFilters onFilter={handleProfileFilters} />
 
-                        <ProfileFilters onFilter={handleProfileFilters} />
-
-                        <ProfileGrid profiles={profilesData}/>
-
+                            <ProfileGrid profiles={profilesData}/>
+                        </Suspense>
                     </section>
                 </main>
             </div>

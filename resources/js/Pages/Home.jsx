@@ -3,10 +3,6 @@ import { Head } from "@inertiajs/react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import HeroSlider from "@/Components/Home/HeroSlider";
 import "react-lazy-load-image-component/src/effects/blur.css";
-//import DiscoverYourPerfect from "@/Components/Home/DiscoverYourPerfect";
-// import RecentlyCreatedProfiles from "@/Components/Home/RecentlyCreatedProfiles";
-// import DiscoverTheBenefits from "@/Components/Home/DiscoverTheBenefits";
-
 
 const RecentlyCreatedProfiles = lazy(() => import('@/Components/Home/RecentlyCreatedProfiles'));
 const DiscoverTheBenefits = lazy(() => import('@/Components/Home/DiscoverTheBenefits'));
