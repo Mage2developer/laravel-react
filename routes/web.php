@@ -8,6 +8,7 @@ use App\Http\Controllers\api\UserFamilyDetailController;
 use App\Http\Controllers\api\UserImageController;
 use App\Http\Controllers\api\UserPersonalDetailController;
 use App\Http\Controllers\api\UserProfileController as ApiUserProfileController;
+use App\Http\Controllers\TestMailController;
 use App\Http\Controllers\web\ContactController;
 use App\Http\Controllers\web\ProfileController;
 use App\Http\Controllers\web\UserProfileController;
@@ -15,6 +16,9 @@ use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+
+Route::get('/testmail', [TestMailController::class, 'sendEmail'])->name('test.mail');
 
 Route::get('/', function () {
     $userModel = new User();
@@ -47,7 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/profileImages', [UserImageController::class, 'store']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
-
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
