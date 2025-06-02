@@ -59,27 +59,19 @@ const ProfileActivation = () => {
                         </li>
                         <li>
                             <span className="font-bold">3. Contact Admin:</span>{" "}
-                            Please send your User ID & Full Name via WhatsApp.
+                            Please send your User ID & Full Name via Admin WhatsApp Number.
                         </li>
                         <li>
                             <span className="font-bold">4. </span>Share your
-                            payment screenshot & Aadhaar card with the admin on
-                            WhatsApp. {"  "}
+                            payment screenshot & Aadhaar card photo with the admin on WhatsApp.
                             <ClickableTooltip
                                 text="Profile Fees"
                                 tooltipContent={
                                     <ul class="list-disc px-4 sm:px-5">
+                                        <li>Free registration for fatherless daughters.</li>
+                                        <li>Rs. 1000/- fees if the father runs a salon.</li>
                                         <li>
-                                            Free registration for fatherless
-                                            daughters.
-                                        </li>
-                                        <li>
-                                            Rs. 1000/- fees if the father runs a
-                                            salon.
-                                        </li>
-                                        <li>
-                                            Rs. 2500/- fees if the father has a
-                                            government/ reputed job or business.
+                                            Rs. 2500/- fees if the father has a government/reputed job or business.
                                         </li>
                                         <li>All fees are non-refundable.</li>
                                     </ul>
@@ -87,27 +79,22 @@ const ProfileActivation = () => {
                             />
                             <br />
                             <div className="mt-[10px]">
-                                <b>UPI ID for payment </b>:
-                                mage2developer@axisbank
+                                <b>UPI ID for payment</b>: mage2developer@axisbank
                             </div>
                         </li>
                         <li>
-                            <span className="font-bold">5. </span>You cannot log
-                            in until your profile is activated.
+                            <span className="font-bold">5. </span>You cannot log in until your profile is activated.
                         </li>
                         <li>
-                            <span className="font-bold">6. </span> Admin
-                            WhatsApp: +91-8200426399
+                            <span className="font-bold">6. </span> Admin WhatsApp Number: +91-8200426399
                         </li>
                         <li>
-                            <span className="font-bold">7. </span> Created
-                            Profile take{" "}
-                            <span className="font-bold text-red-700">
-                                {" "}
-                                3-5 working days{" "}
-                            </span>{" "}
-                            to activate, Once profile has been activated admin
-                            will notified on same WhatsApp Number.
+                            <span className="font-bold">7. </span> It may take
+                            <span className="font-bold text-red-700 mx-1">
+                                3-5 working days
+                            </span>
+                            to activate your profile. Once profile has been activated admin
+                            will notify you on your same WhatsApp Number.
                         </li>
                     </ul>
 

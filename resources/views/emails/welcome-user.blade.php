@@ -148,12 +148,12 @@
                         <div>User Name : {{ $user->name }}</div>
                         <div>Email : {{ $user->email }}</div>
                     </li>
-                    <li><b>Contact Admin: </b> Please send your User ID & Full Name via WhatsApp.</li>
-                    <li>Share your payment screenshot & Aadhaar card with the admin on WhatsApp. <br>
+                    <li><b>Contact Admin: </b> Please send your User ID & Full Name via Admin WhatsApp Number.</li>
+                    <li>Share your payment screenshot & Aadhaar card photo with the admin on WhatsApp. <br>
                         UPI ID for payment : mage2developer@axisbank </li>
                     <li>You cannot log in until your profile is activated.</li>
-                    <li>Admin WhatsApp: +91-8200426399</li>
-                    <li> Created Profile take <b> 3-5 working days </b> to activate, Once profile has been activated admin will notified on same WhatsApp Number.</li>
+                    <li>Admin WhatsApp Number: +91-8200426399</li>
+                    <li>It may take <b> 3-5 working days </b> to activate your profile. Once profile has been activated admin will notify you on your same WhatsApp Number.</li>
                 </ul>
             </div>
         </div>
@@ -168,7 +168,7 @@
             <div class="feature-icon">🚀</div>
             <div>
                 <strong>Explore All Profiles</strong><br>
-                Discover all Profiles view available to you
+                Discover all profile view available to you
             </div>
         </div>
     </div>
