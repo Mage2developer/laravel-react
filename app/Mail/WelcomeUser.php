@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Helper\Data;
 
 class WelcomeUser extends Mailable
 {
@@ -45,7 +46,7 @@ class WelcomeUser extends Mailable
                           'user' => $this->user,
                           'appName' => config('app.name'),
                           'appUrl' => config('app.url'),
-                          'logo' => asset('images/header-logo.webp'),
+                          'logo' => asset(Data::EMAIL_LOGO),
                       ]
         );
     }

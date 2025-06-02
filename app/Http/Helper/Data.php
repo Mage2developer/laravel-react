@@ -44,4 +44,6 @@ class Data
 
      const ADMIN_EMAIL = "vanandvivah@gmail.com";
 
+     const EMAIL_LOGO = 'images/email/logo.png';
+
 }

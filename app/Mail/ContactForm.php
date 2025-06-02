@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Helper\Data;
 
 class ContactForm extends Mailable
 {
@@ -51,7 +52,7 @@ class ContactForm extends Mailable
                       'contactMessage' => $this->formData['message'],
                       'appName' => config('app.name'),
                       'appUrl' => config('app.url'),
-                      'logo' => asset('images/email/logo.png'),
+                      'logo' => asset(Data::EMAIL_LOGO),
                   ],
         );
     }

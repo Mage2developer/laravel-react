@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
                                      'email' => $request->email,
                                      'password' => Hash::make($request->password),
                                  ]);
-            
+
             event(new Registered($user));
             // Mail::to(config('mail.from.address'))->send(new WelcomeUser($user));
 
