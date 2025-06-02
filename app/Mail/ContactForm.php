@@ -51,7 +51,7 @@ class ContactForm extends Mailable
                       'contactMessage' => $this->formData['message'],
                       'appName' => config('app.name'),
                       'appUrl' => config('app.url'),
-                      'logo' => asset('images/header-logo.webp'),
+                      'logo' => asset('images/email/logo.png'),
                   ],
         );
     }

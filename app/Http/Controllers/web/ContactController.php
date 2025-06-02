@@ -25,10 +25,11 @@ class ContactController extends Controller
         $request->validated();
         $data = $request->all();
 
-        event(new ContactEvent($data));
+
 
         try {
-            Mail::to(config('mail.from.address'))->send(new ContactForm($request->all()));  
+            event(new ContactEvent($data));
+            //Mail::to(config('mail.from.address'))->send(new ContactForm($request->all()));
         } catch(Exception $exception) {
             Log::critical($exception->getMessage());
         }
