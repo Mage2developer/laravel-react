@@ -22,12 +22,9 @@ class ContactController extends Controller
     public function createRequest(ContactRequest $request)
     {
         // Validate the form data
-        $request->validated();
-        $data = $request->all();
-
-
-
         try {
+            $request->validated();
+            $data = $request->all();
             event(new ContactEvent($data));
             //Mail::to(config('mail.from.address'))->send(new ContactForm($request->all()));
         } catch(Exception $exception) {

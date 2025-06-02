@@ -23,27 +23,29 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterRequest $request): RedirectResponse
     {
-        $request->validated();
-
-        $user = User::create([
-                                 'name' => $request->name,
-                                 'email' => $request->email,
-                                 'password' => Hash::make($request->password),
-                             ]);
-
-        event(new Registered($user));
+        $userInfo = [];
 
         try {
-            Mail::to(config('mail.from.address'))->send(new WelcomeUser($user));  
+            $request->validated();
+
+            $user = User::create([
+                                     'name' => $request->name,
+                                     'email' => $request->email,
+                                     'password' => Hash::make($request->password),
+                                 ]);
+            
+            event(new Registered($user));
+            // Mail::to(config('mail.from.address'))->send(new WelcomeUser($user));
+
+            // Customised code for to redirect on profile activation page with pass Name, Email
+            $userInfo = [
+                'email' => $request->name,
+                'name' => $request->email,
+            ];
+
         } catch(Exception $exception) {
             Log::critical($exception->getMessage());
         }
-
-        // Customised code for to redirect on profile activation page with pass Name, Email
-        $userInfo = [
-            'email' => $request->name,
-            'name' => $request->email,
-        ];
 
         return redirect()->intended(route('activate.profile', $userInfo, absolute: false));
 
