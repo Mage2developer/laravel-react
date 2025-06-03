@@ -18,9 +18,11 @@ class UserImageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $userId = Auth::id();
+        $userId = $request->route('userId') ?: Auth::id();
+
+        //$userId = Auth::id();
         $images = Image::where(Data::USER_ID_FOREIGN_KEY, $userId)->get();
 
         if ($images) {
@@ -36,10 +38,13 @@ class UserImageController extends Controller
      */
     public function store(UserImageRequest $request)
     {
+
         try {
             $request->validated();
 
-            $user_id = Auth::id();
+            $user_id = $request->route('userId') ?: Auth::id();
+
+            //$user_id = Auth::id();
             $folderPath = "uploads/{$user_id}";
             $imageCount = count(Image::where(Data::USER_ID_FOREIGN_KEY, $user_id)->get());
 
@@ -119,8 +124,13 @@ class UserImageController extends Controller
     {
         try {
             $image = Image::findOrFail($id);
-            if ($image->user_id != Auth::id()) {
-                return response()->json(['success' => 'false', 'message' => 'Unauthorized action']);
+
+            $user = Auth::getUser();
+
+            if($user->role != "admin") {
+                if ($image->user_id != Auth::id()) {
+                    return response()->json(['success' => 'false', 'message' => 'Unauthorized action']);
+                }
             }
 
             $imagePath = $image->image_path;
