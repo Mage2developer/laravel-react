@@ -27,10 +27,7 @@ class SendContactEmail
      */
     public function handle(ContactEvent $event): void
     {
-        // TODO : Please checck bcc functionality
-
         $data = $event->data;
-        Mail::to($data['email'])->send(new ContactForm($data));
-        Mail::to(Data::ADMIN_EMAIL)->send(new ContactForm($data));
+        Mail::to($data['email'])->bcc(Data::ADMIN_EMAIL)->send(new ContactForm($data));
     }
 }
