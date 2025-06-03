@@ -77,8 +77,8 @@
             border-radius: 8px;
         }
         .feature-icon {
-            width: 24px;
-            height: 24px;
+            width: 35px;
+            height: 30px;
             background-color: #4f46e5;
             border-radius: 50%;
             display: flex;
@@ -87,7 +87,20 @@
             margin-right: 15px;
             color: white;
             font-weight: bold;
+            position: relative;
+            text-align: center;
         }
+
+        .feature-icon img {
+            height: 21px;
+            vertical-align: middle;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            width: 17px;
+            left: 50%;
+        }
+
         .footer {
             text-align: center;
             margin-top: 40px;
