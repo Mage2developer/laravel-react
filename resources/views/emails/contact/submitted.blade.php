@@ -46,7 +46,6 @@
         .content p {
             margin-bottom: 15px;
             font-size: 16px;
-            line-height: 1.8;
         }
         .cta-button {
             display: inline-block;
@@ -129,7 +128,7 @@
     </div>
 
     <div class="content">
-        Thank you for inquiry, Support team will be contact you soon.
+        <p>Thank you for inquiry, Support team will be contact you soon.</p>
     </div>
 
     <div class="content">

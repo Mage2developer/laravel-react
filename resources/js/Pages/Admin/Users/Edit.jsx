@@ -8,7 +8,7 @@ import UpdatePersonalDetailsForm from "@/Pages/Profile/Partials/UpdatePersonalDe
 import UpdateEducationDetailsForm from "@/Pages/Profile/Partials/UpdateEducationDetailsForm";
 import UpdateFamilyDetailsForm from "@/Pages/Profile/Partials//UpdateFamilyDetailsForm";
 import UpdateContactDetailsForm from "@/Pages/Profile/Partials/UpdateContactDetailsForm";
-import UploadProfileImagesForm from "@/Pages/Profile/Partials/UploadProfileImagesForm";
+import UploadProfileImagesForm from "./Partials/UploadProfileImagesForm";
 
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm.jsx";
 
@@ -75,18 +75,6 @@ export default function Edit({ profile }) {
                             </form>
 
                                 <h1 className="text-2xl mt-5 font-semibold mb-6">{profile.name}</h1>
-
-                                {successMessage && (
-                                    <div
-                                        className="mb-4 p-3 rounded bg-green-100 text-green-800 border border-green-300">
-                                        {successMessage}
-                                    </div>
-                                )}
-                                {errorMessage && (
-                                    <div className="mb-4 p-3 rounded bg-red-100 text-red-800 border border-red-300">
-                                        {errorMessage}
-                                    </div>
-                                )}
 
                                 <Accordion items={items}/>
                         </div>

@@ -64,8 +64,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     //TODO Image part for admin user
     Route::get('/profileImages/user/{userId}', [UserImageController::class, 'index']);
-    /*Route::post('/profileImages/user/{userId}', [UserImageController::class, 'store']);
-    Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);*/
+    Route::post('/profileImages/user/{userId}', [UserImageController::class, 'store']);
+    /*Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);*/
 });
 
 Route::get('/profiles', [UserProfileController::class, 'list'])->name('profile.list');
