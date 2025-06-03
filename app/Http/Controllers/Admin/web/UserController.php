@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\web;
 
+use App\Events\UserActivateEvent;
 use App\Events\UserDeleteEvent;
 use App\Http\Controllers\Admin\Exception;
 use App\Http\Controllers\Controller;
@@ -70,8 +71,6 @@ class UserController extends Controller
         try {
            foreach ($idArray as $id) {
                $user = User::find($id);
-               // Email notification has been sent
-               event(new UserDeleteEvent($user->email));
                $user->delete();
            }
 
@@ -96,23 +95,29 @@ class UserController extends Controller
     public function massRestoreProfiles(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
-        $status = (int)$request->input('status');
+        // $status = (int)$request->input('status');
 
         try {
             foreach ($idArray as $userId) {
                 $user = User::findorfail($userId);
                 if ($user) {
-                    $user->is_deleted = $status;
-                    $user->status = !$status;
+                    $user->is_deleted = 0;
+                    $user->status = 1;
                     $user->save();
+
+                    $userData = $user->only(['name', 'email']);
+
+                    // Email notification has been sent
+                    event(new UserActivateEvent($userData));
                 }
             }
+
             $message = 'Profiles are restored successfully.';
 
             return response()->json([
-                'message' => $message,
-                'success' => true
-            ]);
+                                        'message' => $message,
+                                        'success' => true
+                                    ]);
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
@@ -130,15 +135,16 @@ class UserController extends Controller
     public function massInternalDelete(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
-        $status = (int)$request->input('status');
+        //$status = (int)$request->input('status');
 
         try {
             foreach ($idArray as $userId) {
                 $user = User::findorfail($userId);
                 if ($user) {
-                    $user->is_deleted = $status;
-                    $user->status = !$status;
+                    $user->is_deleted = 1;
+                    $user->status = 0;
                     $user->save();
+                    event(new UserDeleteEvent($user->email));
                 }
             }
             $message = 'Profiles are deleted internally.';
@@ -159,7 +165,7 @@ class UserController extends Controller
     {
         $profileId = $request->route('profileId');
 
-        $userProfile = $this->user->getUserProfileById($profileId);
+        $userProfile = $this->user->getUserProfileByIdFromAdmin($profileId);
 
         return Inertia::render('Admin/Users/Edit', [
             'profile' => $userProfile->toArray()
