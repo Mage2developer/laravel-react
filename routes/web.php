@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/admin/users/mass-delete', [UserController::class, 'massDestroy'])->name('users.massDestroy');
-    Route::post('/admin/users/mass-active', [UserController::class, 'massActive'])->name('users.massActive');
+    Route::post('/admin/users/mass-restore-profiles', [UserController::class, 'massRestoreProfiles'])->name('users.massRestoreProfiles');
+    Route::post('/admin/users/mass-internal-delete', [UserController::class, 'massInternalDelete'])->name('users.massInternalDelete');
     Route::get('/admin/users/edit/{profileId}', [UserController::class, 'edit'])->name('users.edit');
     Route::patch('/admin/users/profileUpdate/{profileId}', [UserProfileUpdate::class, 'update'])->name(
         'users.admin.profileUpdate'

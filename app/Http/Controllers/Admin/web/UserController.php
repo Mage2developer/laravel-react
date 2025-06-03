@@ -88,33 +88,60 @@ class UserController extends Controller
     }
 
     /**
-     * Mass active/inactive profile
+     * Mass restore profiles, set is_deleted = 0 and status = 1
      *
      * @param Request $request
      * @return JsonResponse
      */
-    public function massActive(Request $request): JsonResponse
+    public function massRestoreProfiles(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
         $status = (int)$request->input('status');
 
         try {
             foreach ($idArray as $userId) {
-
-                // Find the user by their ID
                 $user = User::findorfail($userId);
                 if ($user) {
-
-                    // Update the user's name
                     $user->is_deleted = $status;
                     $user->status = !$status;
                     $user->save();
                 }
             }
             $message = 'Profiles are restored successfully.';
-            if ($status) {
-                $message = 'Profiles are deleted internally.';
+
+            return response()->json([
+                'message' => $message,
+                'success' => true
+            ]);
+        } catch (Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'success' => false
+            ]);
+        }
+    }
+
+    /**
+     * Mass internal delete profiles, set is_deleted = 1 and status = 0
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function massInternalDelete(Request $request): JsonResponse
+    {
+        $idArray = $request->input('ids');
+        $status = (int)$request->input('status');
+
+        try {
+            foreach ($idArray as $userId) {
+                $user = User::findorfail($userId);
+                if ($user) {
+                    $user->is_deleted = $status;
+                    $user->status = !$status;
+                    $user->save();
+                }
             }
+            $message = 'Profiles are deleted internally.';
 
             return response()->json([
                 'message' => $message,

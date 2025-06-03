@@ -43,9 +43,13 @@ export default function Index({ users, filters }) {
                 setSuccessMessage('');
                 setErrorMessage('');
             }, 5000);
+
+            fetchUsers(search, sort, direction);
+            setSelectedUsers([]);
         }
         return () => clearTimeout(timer);
-    }, [successMessage, errorMessage]);
+
+    }, [successMessage]);
 
     const updateSort = (column) => {
         const newDirection = sort === column && direction === 'asc' ? 'desc' : 'asc';
@@ -95,9 +99,6 @@ export default function Index({ users, filters }) {
                     else {
                         setErrorMessage(response.data.message);
                     }
-
-                    fetchUsers(search, sort, direction);
-                    setSelectedUsers([]);
                 } catch (error) {
                     if (error.response?.status === 422) {
                         setErrorMessage(error.response.data.message);
@@ -111,46 +112,58 @@ export default function Index({ users, filters }) {
         }
     };
 
-    const massActiveInactiveAction = async (status) => {
-        try {
-            await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
-            const response = await axios.post("/admin/users/mass-active", {
-                ids: selectedUsers,
-                status: status
-            });
-
-            if (response.data.success) {
-                setSuccessMessage(response.data.message);
-            }
-            else {
-                setErrorMessage(response.data.message);
-            }
-
-            fetchUsers(search, sort, direction);
-            setSelectedUsers([]);
-        } catch (error) {
-            if (error.response?.status === 422) {
-                setErrorMessage(error.response.data.message);
-            } else {
-                setErrorMessage("An error occurred.");
-            }
-        }
-    };
-
-    const handleMassActive = async () => {
+    const handleMassRestoreProfile = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to restore ${selectedUsers.length} user(s)?`)) {
-                await massActiveInactiveAction(0);
+                try {
+                    await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                    const response = await axios.post("/admin/users/mass-restore-profiles", {
+                        ids: selectedUsers,
+                        status: 0
+                    });
+
+                    if (response.data.success) {
+                        setSuccessMessage(response.data.message);
+                    }
+                    else {
+                        setErrorMessage(response.data.message);
+                    }
+                } catch (error) {
+                    if (error.response?.status === 422) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage("An error occurred.");
+                    }
+                }
             }
         } else {
             alert('Please select users to active.');
         }
     };
 
-    const handleMassInactive = async () => {
+    const handleMassInternalDelete = async () => {
         if (selectedUsers.length > 0) {
             if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} user(s) internally?`)) {
-                await massActiveInactiveAction(1);
+                try {
+                    await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                    const response = await axios.post("/admin/users/mass-internal-delete", {
+                        ids: selectedUsers,
+                        status: 1
+                    });
+
+                    if (response.data.success) {
+                        setSuccessMessage(response.data.message);
+                    }
+                    else {
+                        setErrorMessage(response.data.message);
+                    }
+                } catch (error) {
+                    if (error.response?.status === 422) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage("An error occurred.");
+                    }
+                }
             }
         } else {
             alert('Please select users to inactive.');
@@ -179,7 +192,7 @@ export default function Index({ users, filters }) {
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={handleMassActive}
+                                        onClick={handleMassRestoreProfile}
                                         disabled={selectedUsers.length === 0}
                                         className="primary-button"
                                     >
@@ -187,7 +200,7 @@ export default function Index({ users, filters }) {
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={handleMassInactive}
+                                        onClick={handleMassInternalDelete}
                                         disabled={selectedUsers.length === 0}
                                         className="primary-button"
                                     >
