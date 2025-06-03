@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Head, Link, router } from '@inertiajs/react';
+import {Head, Link, router, usePage} from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Pagination from '@/Components/Pagination';
 import Checkbox from "@/Components/Checkbox";
 import axios from "axios";
 
 export default function Index({ users, filters }) {
+    const { flash } = usePage().props;
     const [search, setSearch] = useState(filters.search || '');
     const [sort, setSort] = useState(filters.sort || 'id');
     const [direction, setDirection] = useState(filters.direction || 'asc');
@@ -50,6 +51,16 @@ export default function Index({ users, filters }) {
         return () => clearTimeout(timer);
 
     }, [successMessage]);
+
+    // Set success/error message on page load
+    useEffect(() => {
+        if (flash.success) {
+            setSuccessMessage(flash.success);
+        }
+        if (flash.error) {
+            setErrorMessage(flash.error);
+        }
+    }, [flash]);
 
     const updateSort = (column) => {
         const newDirection = sort === column && direction === 'asc' ? 'desc' : 'asc';
