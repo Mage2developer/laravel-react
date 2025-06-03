@@ -1,33 +1,43 @@
+import {useState, useRef} from "react";
 import { Button } from "@/Components/Button";
 import InputError from "@/Components/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, useForm } from "@inertiajs/react";
 import ReCAPTCHA from "react-google-recaptcha";
-import {useState} from "react";
-import Setting from "@/Utils/Setting.jsx";
+import Setting from "@/Utils/Setting";
 
 export default function ForgotPassword({ status }) {
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
     });
 
+    const recaptchaRef = useRef(null);
+
     const [captchaToken, setCaptchaToken] = useState(null);
 
-    const [captchaError, setcaptchaError] = useState(null);
+    const [captchaError, setCaptchaError] = useState(null);
 
     const submit = (e) => {
         e.preventDefault();
+        const token = recaptchaRef.current.getValue();
 
-        if (!captchaToken) {
+        if (!token) {
             e.preventDefault();
-            setcaptchaError("Invalid Captcha !");
-            //alert('Please complete the CAPTCHA');
+            setCaptchaError("Invalid Captcha !");
             return;
         }
 
-        post(route("password.email"));
+        post(route("password.email"), {
+            onFinish: () => {
+                reset();
+                recaptchaRef.current.reset();
+            },
+            onSuccess: () => {
+                reset();
+                recaptchaRef.current.reset();
+            },
+        });
     };
 
     return (
@@ -35,7 +45,8 @@ export default function ForgotPassword({ status }) {
             <Head title="Forgot Password"/>
                 <div className="min-h-[450px] flex items-center justify-center my-2 md:my-10 p-2 md:p-0">
                     <div
-                        className="max-w-full w-full sm:max-w-xl mx-auto backdrop-blur-md rounded-xl shadow-lg p-4 sm:p-8 border border-black/10 bg-white/5">
+                        className="max-w-full w-full sm:max-w-xl mx-auto backdrop-blur-md rounded-xl shadow-lg p-4
+                        sm:p-8 border border-black/10 bg-white/5">
 
                         <h1 className="text-3xl font-bold text-center mb-6 text-[#ff3131] bg-clip-text">
                             Forgot Password
@@ -74,9 +85,16 @@ export default function ForgotPassword({ status }) {
                             </div>
 
                             <ReCAPTCHA
+                                ref={recaptchaRef}
                                 sitekey={Setting.capatcha_v2_sitekey}
-                                onChange={(token) => setCaptchaToken(token)}
-                                onExpired={() => setCaptchaToken(null)}
+                                onChange={(token) => {
+                                    setCaptchaToken(token);
+                                    setCaptchaError(null);
+                                }}
+                                onExpired={() => {
+                                    recaptchaRef.current.reset();
+                                    setCaptchaToken(null);
+                                }}
                             />
                             <InputError
                                 message={captchaError}
@@ -84,10 +102,7 @@ export default function ForgotPassword({ status }) {
                             />
 
                             <div className="mt-6 flex justify-end">
-                                <Button
-                                    className="w-full justify-center"
-                                    disabled={processing}
-                                >
+                                <Button className="w-full justify-center" disabled={processing}>
                                     Send Email Password Reset Link
                                 </Button>
                             </div>

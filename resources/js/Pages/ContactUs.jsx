@@ -1,23 +1,18 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import InputError from "@/Components/InputError";
 import { FaWhatsapp } from "react-icons/fa";
-import {
-    FiClock,
-    FiFacebook,
-    FiInstagram,
-    FiMail,
-    FiMapPin,
-} from "react-icons/fi";
-import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import { FiClock, FiMail, FiMapPin } from "react-icons/fi";
+import PrimaryButton from "@/Components/PrimaryButton";
 import { Textarea } from "@headlessui/react";
-import TextInput from "@/Components/TextInput.jsx";
-import Setting from "@/Utils/Setting.jsx";
+import TextInput from "@/Components/TextInput";
+import Setting from "@/Utils/Setting";
 import FollowUs from "@/Components/Common/FollowUs";
 
-export default function ContactUs() {
+export default function ContactUs(props) {
+    const { flash } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
@@ -25,29 +20,29 @@ export default function ContactUs() {
         message: "",
     });
 
+    const recaptchaRef = useRef(null);
     const [captchaToken, setCaptchaToken] = useState(null);
     const [captchaError, setCaptchaError] = useState(null);
-    const [success, setSuccess] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const token = recaptchaRef.current.getValue();
 
-        if (!captchaToken) {
+        if (!token) {
             setCaptchaError("Invalid Captcha!");
             return;
         }
 
         post(route("contact.submit"), {
             onFinish: () => {
-                setCaptchaToken(null);
+                reset();
+                recaptchaRef.current.reset();
             },
             onSuccess: () => {
-                reset(); // Clear the form on successful submission
-                setCaptchaToken(null);
+                reset();
+                recaptchaRef.current.reset();
             },
         });
-
-        return setSuccess(success);
     };
 
     return (
@@ -65,7 +60,7 @@ export default function ContactUs() {
                                 Send us a message
                             </h2>
 
-                            {success && (
+                            {flash.success && (
                                 <div
                                     className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
                                     role="alert"
@@ -73,9 +68,8 @@ export default function ContactUs() {
                                     <strong className="font-bold">
                                         Success!
                                     </strong>
-                                    <span className="block sm:inline">
-                                        {" "}
-                                        {success}
+                                    <span className="block sm:inline ml-1">
+                                        {flash.success}
                                     </span>
                                 </div>
                             )}
@@ -187,12 +181,16 @@ export default function ContactUs() {
 
                                 <div className="mb-6">
                                     <ReCAPTCHA
+                                        ref={recaptchaRef}
                                         sitekey={Setting.capatcha_v2_sitekey}
                                         onChange={(captchaToken) => {
                                             setCaptchaToken(captchaToken);
                                             setCaptchaError(null);
                                         }}
-                                        onExpired={() => setCaptchaToken(null)}
+                                        onExpired={() => {
+                                            recaptchaRef.current.reset();
+                                            setCaptchaError(null);
+                                        }}
                                     />
                                     {captchaError && (
                                         <InputError
@@ -240,7 +238,7 @@ export default function ContactUs() {
                                     <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400" />
                                     <span>
                                         Block Number 2, Bluebell Bunglows,
-                                        Silver Park, Junagadh, India, 362001
+                                        Silver Park, Junagadh, Gujarat, India, 362001
                                     </span>
                                 </div>
                             </div>

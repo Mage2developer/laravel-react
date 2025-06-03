@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Checkbox from "@/Components/Checkbox";
 import InputError from "@/Components/InputError";
@@ -8,7 +8,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Button } from "@/Components/Button";
 import ReCAPTCHA from 'react-google-recaptcha';
-import Setting from "@/Utils/Setting.jsx";
+import Setting from "@/Utils/Setting";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -20,22 +20,27 @@ export default function Login({ status, canResetPassword }) {
     const [showPassword, setShowPassword] = useState(false);
     const togglePassword = () => setShowPassword(!showPassword);
 
+    const recaptchaRef = useRef(null);
+
     const [captchaToken, setCaptchaToken] = useState(null);
 
-    const [captchaError, setcaptchaError] = useState(null);
+    const [captchaError, setCaptchaError] = useState(null);
 
     const submit = (e) => {
         e.preventDefault();
+        const token = recaptchaRef.current.getValue();
 
-        if (!captchaToken) {
+        if (!token) {
             e.preventDefault();
-            setcaptchaError("Invalid Captcha !");
-            //alert('Please complete the CAPTCHA');
+            setCaptchaError("Invalid Captcha !");
             return;
         }
 
         post(route("login"), {
-            onFinish: () => reset("password"),
+            onFinish: () => {
+                reset("password");
+                recaptchaRef.current.reset();
+            },
         });
     };
 
@@ -132,9 +137,16 @@ export default function Login({ status, canResetPassword }) {
                         </div>
 
                         <ReCAPTCHA
+                            ref={recaptchaRef}
                             sitekey={Setting.capatcha_v2_sitekey}
-                            onChange={(captchaToken) => setCaptchaToken(captchaToken)}
-                            onExpired={() => setCaptchaToken(null)}
+                            onChange={(captchaToken) => {
+                                setCaptchaToken(captchaToken);
+                                setCaptchaError(null);
+                            }}
+                            onExpired={() => {
+                                setCaptchaToken(null);
+                                recaptchaRef.current.reset();
+                            }}
                         />
                         <InputError
                             message={captchaError}
