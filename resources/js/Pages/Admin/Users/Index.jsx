@@ -175,7 +175,7 @@ export default function Index({ users, filters }) {
                                         disabled={selectedUsers.length === 0}
                                         className="primary-button"
                                     >
-                                        Delete ({selectedUsers.length})
+                                        Permanent Delete ({selectedUsers.length})
                                     </button>
                                     <button
                                         type="button"

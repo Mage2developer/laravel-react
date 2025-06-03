@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\web;
 
+use App\Events\UserDeleteEvent;
 use App\Http\Controllers\Admin\Exception;
 use App\Http\Controllers\Controller;
 use App\Http\Helper\Data;
@@ -67,7 +68,12 @@ class UserController extends Controller
         $idArray = $request->input('ids');
 
         try {
-            User::destroy($idArray);
+           foreach ($idArray as $id) {
+               $user = User::find($id);
+               // Email notification has been sent
+               event(new UserDeleteEvent($user->email));
+               $user->delete();
+           }
 
             return response()->json([
                 'message' => 'Profiles deleted successfully.',
