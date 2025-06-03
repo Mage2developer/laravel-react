@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Events\UserDeleteEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\web\ProfileUpdateRequest;
 use App\Models\User;
@@ -47,17 +48,14 @@ class UserProfileController extends Controller
      */
     public function getProfileById(Request $request, User $user): JsonResponse
     {
-        // TODO:: Check user logged in then able to view user profile
-        /*
-        if (!Auth::id()) {
-            return response()->json(['success' => 'false', 'message' => 'You need to login for view profile.']);
-        }*/
+        try {
+            $profileId = $request->route('profileId');
+            $profile = $this->user->getUserProfileById($profileId);
 
-
-        $profileId = $request->route('profileId');
-        $profile = $this->user->getUserProfileById($profileId);
-
-        return response()->json(['profile' => $profile]);
+            return response()->json(['profile' => $profile]);
+        } catch (Exception $exception) {
+            return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
+        }
     }
 
     /**
@@ -65,21 +63,8 @@ class UserProfileController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        // TODO:: Check user logged in then able to search user profile
         try {
-            $request->validate([
-                                   'name' => 'string|max:50',
-                               ]);
-
-            $name =
-                $request->input('name') ? trim(str_replace(['%', '_'], ['\%', '\_'], $request->input('name'))) : null;
-
-            // TODO:: Check user logged in then able to view user profile
-            /*if ($name && !Auth::id()) {
-                return response()->json(['success' => 'false', 'message' => 'You need to login for search profile.']);
-            }*/
-
-            $profiles = $this->user->getUserProfileList($name);
+            $profiles = $this->user->getUserProfileList();
 
             return response()->json(['profiles' => $profiles]);
         } catch (Exception $exception) {
@@ -104,6 +89,8 @@ class UserProfileController extends Controller
             $user->status = 0;
             $user->is_deleted = 1;
             $user->save();
+
+            event(new UserDeleteEvent($user->email));
 
             $user->tokens()->delete();
 
