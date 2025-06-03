@@ -82,7 +82,7 @@ export default function Index({ users, filters }) {
 
     const handleMassDelete = async () => {
         if (selectedUsers.length > 0) {
-            if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} users?`)) {
+            if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} user(s) permanently?`)) {
                 try {
                     await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
                     const response = await axios.post("/admin/users/mass-delete", {
@@ -139,7 +139,7 @@ export default function Index({ users, filters }) {
 
     const handleMassActive = async () => {
         if (selectedUsers.length > 0) {
-            if (window.confirm(`Are you sure you want to activate ${selectedUsers.length} users?`)) {
+            if (window.confirm(`Are you sure you want to restore ${selectedUsers.length} user(s)?`)) {
                 await massActiveInactiveAction(0);
             }
         } else {
@@ -149,7 +149,7 @@ export default function Index({ users, filters }) {
 
     const handleMassInactive = async () => {
         if (selectedUsers.length > 0) {
-            if (window.confirm(`Are you sure you want to inactivate ${selectedUsers.length} users?`)) {
+            if (window.confirm(`Are you sure you want to delete ${selectedUsers.length} user(s) internally?`)) {
                 await massActiveInactiveAction(1);
             }
         } else {
@@ -183,7 +183,7 @@ export default function Index({ users, filters }) {
                                         disabled={selectedUsers.length === 0}
                                         className="primary-button"
                                     >
-                                        Active ({selectedUsers.length})
+                                        Restore Profiles ({selectedUsers.length})
                                     </button>
                                     <button
                                         type="button"
@@ -191,7 +191,7 @@ export default function Index({ users, filters }) {
                                         disabled={selectedUsers.length === 0}
                                         className="primary-button"
                                     >
-                                        Inactive ({selectedUsers.length})
+                                        Internal Delete ({selectedUsers.length})
                                     </button>
                                 </div>
 
@@ -246,7 +246,7 @@ export default function Index({ users, filters }) {
                                         </th>
                                         <th className="pb-4 pt-6 px-6 cursor-pointer"
                                             onClick={() => updateSort('is_deleted')}>
-                                            Active {sortIcon('is_deleted')}
+                                            Is Deleted {sortIcon('is_deleted')}
                                         </th>
                                         <th className="pb-4 pt-6 px-6 cursor-pointer"
                                             onClick={() => updateSort('status')}>
@@ -276,7 +276,7 @@ export default function Index({ users, filters }) {
                                                 <td className="border-t px-6 py-4">{user.name}</td>
                                                 <td className="border-t px-6 py-4">{user.email}</td>
                                                 <td className="border-t px-6 py-4">
-                                                    {user.is_deleted ? "Inactive" : "Active"}
+                                                    {user.is_deleted ? "Deleted" : ""}
                                                 </td>
                                                 <td className="border-t px-6 py-4">
                                                     {user.status ? "Approved" : "Pending"}

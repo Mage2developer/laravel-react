@@ -76,7 +76,7 @@ class UserController extends Controller
            }
 
             return response()->json([
-                'message' => 'Profiles deleted successfully.',
+                'message' => 'Profiles are deleted permanently.',
                 'success' => true
             ]);
         } catch (Exception $exception) {
@@ -96,7 +96,7 @@ class UserController extends Controller
     public function massActive(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
-        $status = $request->input('status');
+        $status = (int)$request->input('status');
 
         try {
             foreach ($idArray as $userId) {
@@ -106,13 +106,14 @@ class UserController extends Controller
                 if ($user) {
 
                     // Update the user's name
-                    $user->is_deleted = (int)$status;
+                    $user->is_deleted = $status;
+                    $user->status = !$status;
                     $user->save();
                 }
             }
-            $message = 'Profiles activated successfully.';
+            $message = 'Profiles are restored successfully.';
             if ($status) {
-                $message = 'Profiles inactivated successfully.';
+                $message = 'Profiles are deleted internally.';
             }
 
             return response()->json([
