@@ -124,7 +124,7 @@ return [
     ],
 
     'mobile_app' => [
-        'deep_link_scheme' => env('MOBILE_APP_SCHEME', 'yourapp://'),
+        'deep_link_scheme' => env('MOBILE_APP_SCHEME', 'exp+mgapp'),
         'reset_password_path' => env('MOBILE_RESET_PATH', 'reset-password'),
     ],
 ];
