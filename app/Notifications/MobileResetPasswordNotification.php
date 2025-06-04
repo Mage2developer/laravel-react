@@ -27,7 +27,7 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
     public function toMail($notifiable)
     {
         if ($this->isMobileApp) {
-            return $this->buildMobileMailMessage($notifiable);
+            return $this->buildMobileMailMessage($this->resetUrl($notifiable));
         }
 
         return $this->buildMailMessage($this->resetUrl($notifiable));
@@ -69,10 +69,7 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
     }
 
     /**
-     * Get mobile reset password Url
-     *
-     * @param $webUrl
-     * @param $email
+     * @param $notifiable
      * @return string
      */
     protected function getMobileResetUrl($notifiable)
