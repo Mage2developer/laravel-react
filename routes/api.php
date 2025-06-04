@@ -23,8 +23,6 @@ Route::get('/user', function (Request $request) {
 Route::post("/login", [UserAuthController::class, 'login']);
 Route::post("/signup", [UserAuthController::class, 'signup']);
 
-Route::post('/reset-password', [UserProfileController::class, 'resetPassword'])->name('api.password.update');
-
 Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('contact.submit');
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -48,7 +46,13 @@ Route::get("/profileList/", [UserProfileController::class, 'index']);
 Route::get("/profileList/{name}", [UserProfileController::class, 'index']);
 Route::get('/profile/{profileId}', [UserProfileController::class, 'getProfileById']);
 
-Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::prefix('password')->group(function () {
+    Route::post('/email', [ForgotPasswordController::class, 'sendResetLink']);
+//    Route::post('/reset', [ForgotPasswordController::class, 'resetPassword']);
+    Route::post('/verify-token', [ForgotPasswordController::class, 'verifyToken']);
+});
+
+Route::post('/reset-password', [UserProfileController::class, 'resetPassword'])->name('api.password.reset');
 
 Route::get("/hello/{name}", function ($name) {
     return "Hello " . $name . "!";

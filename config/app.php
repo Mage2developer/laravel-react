@@ -123,4 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'mobile_app' => [
+        'deep_link_scheme' => env('MOBILE_APP_SCHEME', 'yourapp://'),
+        'reset_password_path' => env('MOBILE_RESET_PATH', 'reset-password'),
+    ],
 ];

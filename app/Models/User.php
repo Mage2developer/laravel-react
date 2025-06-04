@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\MobileResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -226,5 +227,47 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token): void
+    {
+        $isMobileApp = $this->isMobileRequest();
+
+        $this->notify(new MobileResetPasswordNotification($token, $isMobileApp));
+    }
+
+    /**
+     * Check request created from mobile or not
+     *
+     * @return bool
+     */
+    protected function isMobileRequest(): bool
+    {
+        // Check if request comes from mobile app
+        // You can use various methods:
+
+        // Method 1: Check User-Agent
+     /*   $userAgent = request()->header('User-Agent');
+        if (str_contains($userAgent, 'YourMobileApp')) {
+            return true;
+        }
+
+        // Method 2: Check custom header
+        if (request()->header('X-Mobile-App') === 'true') {
+            return true;
+        }
+
+     */   // Method 3: Check API endpoint
+        if (request()->is('api/*')) {
+            return true;
+        }
+
+        return false;
     }
 }
