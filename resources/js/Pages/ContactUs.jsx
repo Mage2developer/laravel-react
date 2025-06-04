@@ -11,7 +11,7 @@ import TextInput from "@/Components/TextInput";
 import Setting from "@/Utils/Setting";
 import FollowUs from "@/Components/Common/FollowUs";
 
-export default function ContactUs(props) {
+export default function ContactUs() {
     const { flash } = usePage().props;
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",

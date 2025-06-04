@@ -171,6 +171,26 @@ class User extends Authenticatable
     }
 
     /**
+     * @param $id
+     * @return User|Collection|Model|null
+     */
+    public function getUserProfileByIdFromAdmin($id)
+    {
+        return User::with(
+            'userPersonalDetail',
+            'userFamilyDetail',
+            'userEducationDetail',
+            'userContactDetail',
+            'userImages'
+        )
+            ->where([
+                    ['users.id', '=', $id],
+                    ['users.role', '=', Data::USER_SLUG]
+                ]
+            )->first();
+    }
+
+    /**
      * Get latest 10 Active profile list
      *
      * @return array
