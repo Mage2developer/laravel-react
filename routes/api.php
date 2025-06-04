@@ -23,6 +23,8 @@ Route::get('/user', function (Request $request) {
 Route::post("/login", [UserAuthController::class, 'login']);
 Route::post("/signup", [UserAuthController::class, 'signup']);
 
+Route::post('/reset-password', [UserProfileController::class, 'resetPassword'])->name('api.password.update');
+
 Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('contact.submit');
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -40,7 +42,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profileImages/{id}/replace', [UserImageController::class, 'replace']);
     Route::delete('/profileImages/{id}', [UserImageController::class, 'destroy']);
     Route::get('/profileImages', [UserImageController::class, 'index']);
-
 });
 
 Route::get("/profileList/", [UserProfileController::class, 'index']);
