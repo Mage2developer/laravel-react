@@ -59,8 +59,6 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
      */
     protected function resetUrl($notifiable)
     {
-        $email = $notifiable->getEmailForPasswordReset();
-
         if ($this->isMobileApp) {
             return $this->getMobileResetUrl($notifiable);
         }
@@ -79,7 +77,7 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
         $token = $this->token;
         $email = urlencode($notifiable->getEmailForPasswordReset());
 
-        return "{$scheme}://{$path}/{$token}?email={$email}";
+        return " https://{$scheme}://{$path}/{$token}?email={$email}";
     }
 }
 
