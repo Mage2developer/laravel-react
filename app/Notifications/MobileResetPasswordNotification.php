@@ -36,14 +36,14 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
 
     protected function buildMobileMailMessage($notifiable)
     {
-        $email = $notifiable->getEmailForPasswordReset();
+        $url = $this->getMobileResetUrl($notifiable);
 
         return (new MailMessage)
             ->subject(Lang::get('Reset Password Notification'))
             ->line(
                 Lang::get('You are receiving this email because we received a password reset request for your account.')
             )
-            ->action(Lang::get('Reset Password'), $this->getMobileResetUrl($email))
+            ->action(Lang::get('Reset Password'), $url)
             ->line(
                 Lang::get(
                     'This password reset link will expire in :count minutes.',
@@ -62,7 +62,7 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
         $email = $notifiable->getEmailForPasswordReset();
 
         if ($this->isMobileApp) {
-            return $this->getMobileResetUrl($email);
+            return $this->getMobileResetUrl($notifiable);
         }
 
         return parent::resetUrl($notifiable);
@@ -75,12 +75,12 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
      * @param $email
      * @return string
      */
-    protected function getMobileResetUrl($email)
+    protected function getMobileResetUrl($notifiable)
     {
         $scheme = config('app.mobile_app.deep_link_scheme');
         $path = config('app.mobile_app.reset_password_path');
         $token = $this->token;
-        $email = urlencode($email);
+        $email = urlencode($notifiable->getEmailForPasswordReset());
 
         return "{$scheme}://{$path}/{$token}?email={$email}";
     }
