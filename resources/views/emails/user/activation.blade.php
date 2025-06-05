@@ -80,29 +80,20 @@
             border-radius: 8px;
         }
         .feature-icon {
-            width: 35px;
-            height: 30px;
-            background-color: #4f46e5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-weight: bold;
-            position: relative;
-            text-align: center;
-        }
-
-        .feature-icon img {
-            height: 21px;
-            vertical-align: middle;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            width: 17px;
-            left: 50%;
-        }
+                /* width: 15px;
+                height: 15px; */
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #ff3131;
+                font-weight: bold;
+                margin: auto 0px;
+            }
+            .feature-icon img {
+            width: 25px;
+            height: 25px;
+            }
 
         .footer {
             text-align: center;
@@ -118,8 +109,10 @@
         .social-links a {
             display: inline-block;
             margin: 0 10px;
-            color: #4f46e5;
             text-decoration: none;
+        }
+        .icon-size{
+            font-size: 30px;
         }
         @media (max-width: 600px) {
             body {
@@ -137,6 +130,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <div class="email-container">
@@ -176,10 +170,24 @@
     </div>
 
     <div class="footer">
-        <div class="social-links">
-            <a target="_blank" href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/">Facebook</a>
-            <a href="#">Instagram</a>
-        </div>
+    <div class="social-links">
+                    <a
+                        target="_blank"
+                        href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
+                        >
+                        <div class="feature-icon">
+                        <img src="{{ asset('images/icons/facebook.png') }}" alt="">
+                        </div>
+                    </a>
+                    <a
+                        target="_blank"
+                        href="https://www.instagram.com/vanand.vivah/"
+                        >
+                        <div class="feature-icon">
+                        <img src="{{ asset('images/icons/instagram.png') }}" alt="">
+                        </div>
+                    </a>
+                </div>
 
         <p>
             Thanks for joining {{ $appName }}!<br>
