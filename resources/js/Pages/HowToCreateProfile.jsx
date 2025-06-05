@@ -64,8 +64,10 @@ function HowToCreateProfile() {
                         <div className="text-left text-xl max-w-2xl mx-auto space-y-4">
                             <div className="font-bold">👉 Step 1:</div>
                             <p>
-                                Click on Register Button, Fillup all Register
-                                Details, Verify Account from admin
+                                Click the Register button and fill in all
+                                registration details. Once the account is
+                                registered, you'll need to verify it with an
+                                administrator.
                             </p>
                             <video
                                 ref={(el) => (videoRefs.current[0] = el)}
@@ -83,12 +85,9 @@ function HowToCreateProfile() {
                         <div className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 2:</div>
                             <p>
-                                (Once your profile has been verified by the
-                                admin, then you can login)
-                            </p>
-                            <p>
-                                Click on Login Button, Fillup all Profile
-                                Details
+                                Once your account has been verified by the
+                                administrator, you can log in with your password
+                                and complete your profile details.
                             </p>
                             <video
                                 ref={(el) => (videoRefs.current[1] = el)}
@@ -105,7 +104,9 @@ function HowToCreateProfile() {
                         <div className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 3:</div>
                             <p>
-                                Search Profile, Click on Profile to View Details
+                                Once your profile is completed, you can click on
+                                the Profile menu and search by name or other
+                                available options.
                             </p>
                             <video
                                 ref={(el) => (videoRefs.current[2] = el)}
