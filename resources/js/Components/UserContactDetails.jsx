@@ -13,16 +13,22 @@ const UserContactDetails = ({ item }) => {
                     label="Phone Number:"
                     value={item.user_contact_detail.mobile_number}
                     icon={<FaPhoneVolume size={15} className="me-2" />}
+                    contactDetails={true}
                 />
                 <InfoCard
                     label="Father's Phone Number:"
                     value={item.user_contact_detail.father_mobile_number}
                     icon={<FaPhoneVolume size={15} className="me-2" />}
+                    contactDetails={true}
                 />
                 <InfoCard
                     label="Address:"
-                    value={item.user_contact_detail.current_address}
-                    icon={<FaLocationCrosshairs size={22} className="me-2" />}
+                    value={
+                        <div className="ml-8 xs425:ml-0 flex items-center">
+                            {item.user_contact_detail.current_address}
+                        </div>
+                    }
+                    icon={<FaLocationCrosshairs size={24} />}
                 />
                 {!item.user_contact_detail.native_city ? (
                     ""

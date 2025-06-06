@@ -1,16 +1,17 @@
 "use client";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import {Head} from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import UserPhotoGallery from "@/Components/UserPhotoGallery";
 import UserFamilyDetails from "@/Components/UserFamilyDetails";
 import UserContactDetails from "@/Components/UserContactDetails";
 import UserPersonalDetails from "@/Components/UserPersonalDetails";
-import {IoIosArrowDropdown, IoIosArrowDropup,} from "react-icons/io";
-import {LuBriefcaseBusiness} from "react-icons/lu";
+import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
+import { LuBriefcaseBusiness } from "react-icons/lu";
 import { FaGraduationCap } from "react-icons/fa6";
+import AccordionItemProfile from "@/Components/AccordionItemProfile";
 
-function Index({profile}) {
+function Index({ profile }) {
     const [activeTab, setActiveTab] = useState("about");
     const [toggler, setToggler] = useState(false);
     const [slideIndex, setSlideIndex] = useState(1);
@@ -27,15 +28,14 @@ function Index({profile}) {
     const photoUrls = item.user_images.map((img) => `/${img.image_path}`);
     return (
         <AuthenticatedLayout>
-            <Head title={item.name}/>
-            <div className="min-h-screen bg-white p-[15px] sm:p-4">
+            <Head title={item.name} />
+            <div className="min-h-screen bg-white sm:p-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <div className="bg-gradient-to-r from-[#ff3131] to-[#e1a730] text-white p-6">
                             <div className="flex flex-col md:flex-row items-center md:justify-between">
                                 <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
-                                    <div
-                                        className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 md:mb-0 md:mr-6">
+                                    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md mb-4 md:mb-0 md:mr-6">
                                         <img
                                             src={
                                                 item.user_images.length > 0
@@ -53,15 +53,25 @@ function Index({profile}) {
                                             {item.user_personal_detail.dob} */}
                                         </h1>
                                         <div className="flex items-center justify-center md:justify-start mt-1">
-                                            <LuBriefcaseBusiness className={"mr-1"}/>
+                                            <LuBriefcaseBusiness
+                                                className={"mr-1"}
+                                            />
                                             <span className="text-lm">
-                                                {item.user_education_detail.occupation}
+                                                {
+                                                    item.user_education_detail
+                                                        .occupation
+                                                }
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-center md:justify-start mt-1">
-                                            <FaGraduationCap className={"mr-1"} />
+                                            <FaGraduationCap
+                                                className={"mr-1"}
+                                            />
                                             <span className="text-lm">
-                                                {item.user_education_detail.education}
+                                                {
+                                                    item.user_education_detail
+                                                        .education
+                                                }
                                             </span>
                                         </div>
                                     </div>
@@ -113,7 +123,55 @@ function Index({profile}) {
                             </nav>
                         </div>
                         {/* Mobile View Start */}
-                        <div className="block sm:hidden space-y-4 mb-8 mt-4">
+                        <div className="block sm:hidden space-y-4 my-5">
+                            {[
+                                {
+                                    key: "about",
+                                    title: "Personal Details",
+                                    content: (
+                                        <UserPersonalDetails item={item} />
+                                    ),
+                                },
+                                {
+                                    key: "photos",
+                                    title: "Photos",
+                                    content: (
+                                        <UserPhotoGallery
+                                            userImages={item.user_images}
+                                            toggler={toggler}
+                                            slideIndex={slideIndex}
+                                            setToggler={setToggler}
+                                            setSlideIndex={setSlideIndex}
+                                        />
+                                    ),
+                                },
+                                {
+                                    key: "family",
+                                    title: "Family Details",
+                                    content: <UserFamilyDetails item={item} />,
+                                },
+                                {
+                                    key: "preferences",
+                                    title: "Contact Details",
+                                    content: <UserContactDetails item={item} />,
+                                },
+                            ].map(({ key, title, content }) => (
+                                <AccordionItemProfile
+                                    key={key}
+                                    title={title}
+                                    isOpen={openAccordions[key]}
+                                    onToggle={() =>
+                                        setOpenAccordions((prev) => ({
+                                            ...prev,
+                                            [key]: !prev[key],
+                                        }))
+                                    }
+                                >
+                                    {content}
+                                </AccordionItemProfile>
+                            ))}
+                        </div>
+                        {/* <div className="block sm:hidden space-y-4 mb-8 mt-4">
                             {["about", "photos", "family", "preferences"].map(
                                 (section) => {
                                     const isOpen = openAccordions[section];
@@ -200,11 +258,11 @@ function Index({profile}) {
                                     );
                                 }
                             )}
-                        </div>
+                        </div> */}
                         {/* Mobile View End  */}
                         <div className="p-6 hidden sm:block">
                             {activeTab === "about" && (
-                                <UserPersonalDetails item={item}/>
+                                <UserPersonalDetails item={item} />
                             )}
 
                             {activeTab === "photos" && (
@@ -219,12 +277,12 @@ function Index({profile}) {
 
                             {activeTab === "family" && (
                                 <div>
-                                    <UserFamilyDetails item={item}/>
+                                    <UserFamilyDetails item={item} />
                                 </div>
                             )}
 
                             {activeTab === "preferences" && (
-                                <UserContactDetails item={item}/>
+                                <UserContactDetails item={item} />
                             )}
                         </div>
                     </div>

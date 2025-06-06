@@ -21,7 +21,7 @@ import { LiaWeightSolid } from "react-icons/lia";
 import { MdBusinessCenter, MdDiamond } from "react-icons/md";
 import { BiMaleFemale } from "react-icons/bi";
 import InfoCard from "./InfoCard";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 function UserPersonalDetails({ item }) {
     // const items = props.item;
@@ -61,9 +61,10 @@ function UserPersonalDetails({ item }) {
                                         dob={item.user_personal_detail.dob}
                                     />{" "}
                                     (
-                                    {
-                                        format(item.user_personal_detail.dob, 'dd-MM-yyyy')
-                                    }
+                                    {format(
+                                        item.user_personal_detail.dob,
+                                        "dd-MM-yyyy"
+                                    )}
                                     )
                                 </>
                             }
@@ -104,20 +105,22 @@ function UserPersonalDetails({ item }) {
                         <InfoCard
                             label="Have You Specs:"
                             value={
-                                <HaveSpecsStatus
-                                    status={
-                                        item.user_personal_detail.have_specs
-                                    }
-                                />
+                                <span className="ml-1">
+                                    <HaveSpecsStatus
+                                        status={
+                                            item.user_personal_detail.have_specs
+                                        }
+                                    />
+                                </span>
                             }
-                            icon={<GiSpectacles size={30} className="me-2" />}
+                            icon={<GiSpectacles size={28} className="me-2" />}
                         />
                         <div></div>
                         <InfoCard
                             label="Personal Income:"
                             value={
                                 <>
-                                    <span className="ml-7 xs425:ml-2 flex items-center">
+                                    <span className="ml-10 xs425:ml-0 flex items-center">
                                         <FaIndianRupeeSign />
                                         {
                                             item.user_education_detail
@@ -132,7 +135,7 @@ function UserPersonalDetails({ item }) {
                             label="Family Income:"
                             value={
                                 <>
-                                    <span className="ml-7 xs425:ml-2 flex items-center">
+                                    <span className="ml-10 xs425:ml-0 flex items-center">
                                         <FaIndianRupeeSign />
                                         {
                                             item.user_education_detail
@@ -151,7 +154,14 @@ function UserPersonalDetails({ item }) {
                         <div className="grid ">
                             <InfoCard
                                 label="Location:"
-                                value={item.user_contact_detail.current_address}
+                                value={
+                                    <div className="ml-8 xs425:ml-0 flex items-center">
+                                        {
+                                            item.user_contact_detail
+                                                .current_address
+                                        }
+                                    </div>
+                                }
                                 icon={<FaLocationCrosshairs size={24} />}
                             />
                         </div>
@@ -162,7 +172,7 @@ function UserPersonalDetails({ item }) {
                     <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
                         Career
                     </h2>
-                    <div className="p-4 rounded-lg">
+                    <div className="rounded-lg">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <InfoCard
                                 label="Occupation:"
