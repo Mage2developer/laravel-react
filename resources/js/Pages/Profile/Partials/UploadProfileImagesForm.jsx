@@ -163,7 +163,7 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
             {uploadedUrls.length > 0 && (
                 <div className="mt-4">
                     <h2 className="text-lg font-medium mb-2">Uploaded Images:</h2>
-                    <div className="flex gap-8 mt-4 flex-wrap justify-between">
+                    <div className="flex gap-4 sm:gap-8 mt-4 flex-wrap justify-items-center sm:justify-start">
                         {uploadedUrls.map((url) => (
                             <div key={url.id} className="relative group">
                                 <img key={url.id} src={url.image_path} alt={`uploaded-${url.id}`}
