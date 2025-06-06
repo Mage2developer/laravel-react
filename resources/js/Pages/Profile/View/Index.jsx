@@ -29,9 +29,9 @@ function Index({ profile }) {
     return (
         <AuthenticatedLayout>
             <Head title={item.name} />
-            <div className="min-h-screen bg-white sm:p-4">
+            <div className=" bg-white sm:p-4">
                 <div className="max-w-7xl mx-auto">
-                    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div className="bg-white xs425:rounded-lg shadow-md overflow-hidden">
                         <div className="bg-gradient-to-r from-[#ff3131] to-[#e1a730] text-white p-6">
                             <div className="flex flex-col md:flex-row items-center md:justify-between">
                                 <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">

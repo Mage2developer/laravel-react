@@ -120,7 +120,7 @@ function UserPersonalDetails({ item }) {
                             label="Personal Income:"
                             value={
                                 <>
-                                    <span className="ml-10 xs425:ml-0 flex items-center">
+                                    <span className="ml-10 xs425:ml-2 flex items-center">
                                         <FaIndianRupeeSign />
                                         {
                                             item.user_education_detail
@@ -130,12 +130,13 @@ function UserPersonalDetails({ item }) {
                                 </>
                             }
                             icon={<GiMoneyStack size={25} className="me-2" />}
+                            marginCustom={true}
                         />
                         <InfoCard
                             label="Family Income:"
                             value={
                                 <>
-                                    <span className="ml-10 xs425:ml-0 flex items-center">
+                                    <span className="ml-10 xs425:ml-2 flex items-center">
                                         <FaIndianRupeeSign />
                                         {
                                             item.user_education_detail
@@ -145,6 +146,7 @@ function UserPersonalDetails({ item }) {
                                 </>
                             }
                             icon={<GiMoneyStack size={25} className="me-2" />}
+                            marginCustom={true}
                         />
                     </div>
                 </div>
@@ -155,14 +157,15 @@ function UserPersonalDetails({ item }) {
                             <InfoCard
                                 label="Location:"
                                 value={
-                                    <div className="ml-8 xs425:ml-0 flex items-center">
+                                    <span className="ml-8 xs425:ml-2 flex items-center">
                                         {
                                             item.user_contact_detail
                                                 .current_address
                                         }
-                                    </div>
+                                    </span>
                                 }
                                 icon={<FaLocationCrosshairs size={24} />}
+                                marginCustom={true}
                             />
                         </div>
                     </div>

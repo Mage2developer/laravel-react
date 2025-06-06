@@ -86,19 +86,18 @@
                 border-radius: 8px;
             }
             .feature-icon {
-                /* width: 15px;
-                height: 15px; */
-                border-radius: 50%;
+                width: 40px;
+                height: 40px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                color: #ff3131;
-                font-weight: bold;
-                margin: auto 0px;
+                border-radius: 50%;
             }
             .feature-icon img {
-            width: 25px;
-            height: 25px;
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                border-radius: 5px;
             }
             .footer {
                 text-align: center;
@@ -113,7 +112,7 @@
             }
             .social-links a {
                 display: inline-block;
-                margin: 0 10px;
+                margin: 0 0px;
                 color: #ff3131;
                 text-decoration: none;
             }
@@ -170,7 +169,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/active_user.png') }}" alt="">
+                        <img src="{{ asset('images/icons/user-check.svg') }}" alt="">
                         </div>
                         <strong>Activate your profile</strong><br />
                     </div>
@@ -211,7 +210,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/complete.png') }}" alt="">
+                        <img src="{{ asset('images/icons/complete.svg') }}" alt="">
                         </div>
                         <strong>Complete your profile</strong><br />
                     </div>
@@ -222,7 +221,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                            <img src="{{ asset('images/icons/search.png') }}" alt="">
+                            <img src="{{ asset('images/icons/search.svg') }}" alt="">
                         </div>
                         <strong>Explore All Profiles</strong><br />
                     </div>
@@ -246,7 +245,7 @@
                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                         >
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/facebook.png') }}" alt="">
+                        <img src="{{ asset('images/icons/facebook.svg') }}" alt="">
                         </div>
                     </a>
                     <a
@@ -266,7 +265,7 @@
 
                 <p>
                     <a href="{{ $appUrl }}" style="color: #4f46e5"
-                        >Visit our website</a
+                        >www.vanandvivah.com</a
                     >
                     |
                     <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5"

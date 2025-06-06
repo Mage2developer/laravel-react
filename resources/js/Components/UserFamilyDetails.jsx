@@ -10,16 +10,16 @@ const UserFamilyDetails = ({ item }) => {
 
     return (
         <div>
-            <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
+            {/* <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
                 Family Details
-            </h2>
+            </h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard label="Father's Name:" value={family.father_name} />
                 <InfoCard label="Mother's Name:" value={family.mother_name} />
                 <InfoCard label="Brother's Name:" value={family.brother_name} />
                 <InfoCard
                     label="Brother-in-law's Name:"
-                    value={family.brother_in_laws}
+                    value={family.brother_in_laws}  
                 />
                 <InfoCard label="Sister's Name:" value={family.sister_name} />
                 <InfoCard

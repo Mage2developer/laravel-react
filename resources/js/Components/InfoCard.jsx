@@ -1,7 +1,13 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 
-function InfoCard({ label, value, icon, contactDetails = false }) {
+function InfoCard({
+    label,
+    value,
+    icon,
+    contactDetails = false,
+    marginCustom = false,
+}) {
     if (!value) return null;
 
     return (
@@ -19,6 +25,7 @@ function InfoCard({ label, value, icon, contactDetails = false }) {
                     className={
                         contactDetails ? "ml-8 xs425:ml-2" : "ml-10 xs425:ml-2"
                     }
+                    style={marginCustom ? { margin: "0px" } : { margin: "" }}
                 >
                     {value}
                 </span>

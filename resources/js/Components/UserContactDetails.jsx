@@ -5,9 +5,9 @@ import InfoCard from "./InfoCard";
 const UserContactDetails = ({ item }) => {
     return (
         <div>
-            <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
+            {/* <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
                 Contact Details
-            </h2>
+            </h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard
                     label="Phone Number:"
@@ -24,12 +24,13 @@ const UserContactDetails = ({ item }) => {
                 <InfoCard
                     label="Address:"
                     value={
-                        <div className="ml-8 xs425:ml-0 flex items-center">
+                        <div className="ml-8 xs425:ml-2 flex items-center">
                             {item.user_contact_detail.current_address}
                         </div>
                     }
                     icon={<FaLocationCrosshairs size={24} />}
-                />
+                    marginCustom={true}
+                    />
                 {!item.user_contact_detail.native_city ? (
                     ""
                 ) : (
