@@ -39,9 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-account', [ProfileController::class, 'edit'])->name('account.edit');
     Route::patch('/my-account', [ProfileController::class, 'update'])->name('account.update');
     Route::delete('/my-account', [ProfileController::class, 'destroy'])->name('account.destroy');
-    Route::get('/profile', function () {
-        return Inertia::render('Profile/Edit');
-    })->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.edit');
+
     Route::get('/currentProfile/{profileId}', [ApiUserProfileController::class, 'getProfileById']);
     Route::patch('/userContactDetail', [UserContactDetailController::class, 'update']);
     Route::patch('/userEducationDetail', [UserEducationDetailController::class, 'update']);

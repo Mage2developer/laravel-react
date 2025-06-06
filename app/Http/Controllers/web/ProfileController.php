@@ -15,6 +15,18 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+
+    /**
+     * Display Profile Edit page
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request): Response
+    {
+        return Inertia::render('Profile/Edit');
+    }
+
     /**
      * Display the user's profile form.
      */

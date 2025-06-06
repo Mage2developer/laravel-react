@@ -144,6 +144,8 @@ class UserController extends Controller
                     $user->is_deleted = 1;
                     $user->status = 0;
                     $user->save();
+
+                    // Email notification has been sent
                     event(new UserDeleteEvent($user->email));
                 }
             }

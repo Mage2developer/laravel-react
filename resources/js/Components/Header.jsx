@@ -149,14 +149,16 @@ export const Header = () => {
                         </Link>
                     ))}
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 pt-3">
+
                         {user ? (
                             <>
+                                <hr/>
                                 <ResponsiveNavLink href={route("account.edit")}>
                                     My Account
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink href={route("profile.edit")}>
-                                    Profile
+                                    My Profile
                                 </ResponsiveNavLink>
                                 <ResponsiveNavLink
                                     method="post"
