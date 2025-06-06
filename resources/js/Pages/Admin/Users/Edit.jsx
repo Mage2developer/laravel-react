@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Head, Link} from "@inertiajs/react";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { router } from '@inertiajs/react';
 
 import Accordion from "@/Components/Accordion";
 import UpdatePersonalDetailsForm from "@/Pages/Profile/Partials/UpdatePersonalDetailsForm";
@@ -11,11 +12,14 @@ import UpdateContactDetailsForm from "@/Pages/Profile/Partials/UpdateContactDeta
 import UploadProfileImagesForm from "./Partials/UploadProfileImagesForm";
 
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm.jsx";
+import axios from "axios";
 
 
 export default function Edit({ profile }) {
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [profileStatus, setProfileStatus] = useState(profile.status);
+    const [isDeleted, setIsDeleted] = useState(profile.is_deleted);
 
     const items = [
         { id: 1, title: 'Profile Information', content: <UpdateProfileInformationForm className="max-w-xl" userId={profile.id} /> },
@@ -36,14 +40,63 @@ export default function Edit({ profile }) {
             }, 5000);
         }
         return () => clearTimeout(timer);
-    }, [successMessage, errorMessage]);
+    }, [successMessage]);
 
     const handlePermanentDelete = async () => {
+        if (window.confirm(`Are you sure you want to delete this user permanently?`)) {
+            try {
+                await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                const response = await axios.post("/admin/users/mass-delete", {
+                    ids: [profile.id]
+                });
 
+                if (response.data.success) {
+                    router.visit('/admin/users', {
+                        data: {},
+                        preserveState: false,
+                        preserveScroll: false,
+                        props: {
+                            success: response.data.message
+                        }
+                    });
+                }
+                else {
+                    setErrorMessage(response.data.message);
+                }
+            } catch (error) {
+                if (error.response?.status === 422) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage("An error occurred.");
+                }
+            }
+        }
     };
 
     const handleInternalDelete = async () => {
+        if (window.confirm(`Are you sure you want to delete this user internally?`)) {
+            try {
+                await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                const response = await axios.post("/admin/users/mass-internal-delete", {
+                    ids: [profile.id]
+                });
 
+                if (response.data.success) {
+                    setSuccessMessage(response.data.message);
+                }
+                else {
+                    setErrorMessage(response.data.message);
+                }
+                setProfileStatus(response.data.profile_status.status);
+                setIsDeleted(response.data.profile_status.is_deleted);
+            } catch (error) {
+                if (error.response?.status === 422) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage("An error occurred.");
+                }
+            }
+        }
     };
 
     const handleActivateProfile = async () => {
@@ -73,7 +126,7 @@ export default function Edit({ profile }) {
                                 <button type="button" className="primary-button" onClick={handleInternalDelete}>
                                     Internal Delete
                                 </button>
-                                {profile.status ? (
+                                {profileStatus ? (
                                     <button
                                         type="button"
                                         className="primary-button"
@@ -92,14 +145,29 @@ export default function Edit({ profile }) {
                                 )}
                             </div>
 
-                            <h1 className="text-2xl mt-8 font-semibold mb-6">
+                            <div className="flex items-center mb-6">
+                                <h1 className="text-2xl mt-8 font-semibold">
                                     {profile.name}
                                     <span className="text-lg ml-2 text-green-600">
-                                        ( {profile.status ? "Active" : "Inactive"} )
+                                        ( { profileStatus ? "Active" : "Inactive" } )
+                                        { isDeleted ? " ( Deleted )" : "" }
                                     </span>
                                 </h1>
+                                <div className="mt-8 ml-auto">
+                                    {successMessage && (
+                                        <div className="text-green-600 px-2 py-1">
+                                            {successMessage}
+                                        </div>
+                                    )}
+                                    {errorMessage && (
+                                        <div className="text-red-700 px-2 py-1">
+                                            {errorMessage}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
 
-                                <Accordion items={items}/>
+                            <Accordion items={items}/>
                         </div>
                     </div>
                 </div>

@@ -69,10 +69,10 @@ class UserController extends Controller
         $idArray = $request->input('ids');
 
         try {
-           foreach ($idArray as $id) {
-               $user = User::find($id);
-               $user->delete();
-           }
+            foreach ($idArray as $id) {
+                $user = User::find($id);
+                $user->delete();
+            }
 
             return response()->json([
                 'message' => 'Profiles are deleted permanently.',
@@ -95,7 +95,6 @@ class UserController extends Controller
     public function massRestoreProfiles(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
-        // $status = (int)$request->input('status');
 
         try {
             foreach ($idArray as $userId) {
@@ -115,13 +114,15 @@ class UserController extends Controller
             $message = 'Profiles are restored successfully.';
 
             return response()->json([
-                                        'message' => $message,
-                                        'success' => true
-                                    ]);
+                'message' => $message,
+                'success' => true,
+                'profile_status' => 1
+            ]);
         } catch (Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
-                'success' => false
+                'success' => false,
+                'profile_status' => 0
             ]);
         }
     }
@@ -135,32 +136,29 @@ class UserController extends Controller
     public function massInternalDelete(Request $request): JsonResponse
     {
         $idArray = $request->input('ids');
-        //$status = (int)$request->input('status');
+        $isDeleted = 1;
+        $status = 0;
+        $response = [
+            'profile_status' => ['status' => $status, 'is_deleted' => $isDeleted],
+        ];
 
         try {
             foreach ($idArray as $userId) {
                 $user = User::findorfail($userId);
                 if ($user) {
-                    $user->is_deleted = 1;
-                    $user->status = 0;
+                    $user->is_deleted = $isDeleted;
+                    $user->status = $status;
                     $user->save();
-
-                    // Email notification has been sent
                     event(new UserDeleteEvent($user->email));
                 }
             }
-            $message = 'Profiles are deleted internally.';
-
-            return response()->json([
-                'message' => $message,
-                'success' => true
-            ]);
+            $response['message'] = 'Profiles are deleted internally.';
+            $response['success'] = true;
         } catch (Exception $exception) {
-            return response()->json([
-                'message' => $exception->getMessage(),
-                'success' => false
-            ]);
+            $response['message'] = $exception->getMessage();
+            $response['success'] = false;
         }
+        return response()->json($response);
     }
 
     public function edit(Request $request)

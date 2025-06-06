@@ -6,7 +6,6 @@ import Checkbox from "@/Components/Checkbox";
 import axios from "axios";
 
 export default function Index({ users, filters }) {
-    const { flash } = usePage().props;
     const [search, setSearch] = useState(filters.search || '');
     const [sort, setSort] = useState(filters.sort || 'id');
     const [direction, setDirection] = useState(filters.direction || 'asc');
@@ -51,16 +50,6 @@ export default function Index({ users, filters }) {
         return () => clearTimeout(timer);
 
     }, [successMessage]);
-
-    // Set success/error message on page load
-    useEffect(() => {
-        if (flash.success) {
-            setSuccessMessage(flash.success);
-        }
-        if (flash.error) {
-            setErrorMessage(flash.error);
-        }
-    }, [flash]);
 
     const updateSort = (column) => {
         const newDirection = sort === column && direction === 'asc' ? 'desc' : 'asc';
@@ -129,8 +118,7 @@ export default function Index({ users, filters }) {
                 try {
                     await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
                     const response = await axios.post("/admin/users/mass-restore-profiles", {
-                        ids: selectedUsers,
-                        status: 0
+                        ids: selectedUsers
                     });
 
                     if (response.data.success) {
@@ -158,8 +146,7 @@ export default function Index({ users, filters }) {
                 try {
                     await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
                     const response = await axios.post("/admin/users/mass-internal-delete", {
-                        ids: selectedUsers,
-                        status: 1
+                        ids: selectedUsers
                     });
 
                     if (response.data.success) {
