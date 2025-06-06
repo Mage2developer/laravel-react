@@ -3,11 +3,11 @@ import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 function FollowUs({label}) {
     return (
-        <div className="mt-6">
+        <div className="mt-6 text-center sm:text-left">
             <h3 className="text-lg font-semibold mb-4 text-[#ff3131]">
                 {label}
             </h3>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
                 <a
                     target="_blank"
                     href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"

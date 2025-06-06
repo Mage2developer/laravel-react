@@ -11,7 +11,7 @@ export default function Account({mustVerifyEmail, status}) {
         <AuthenticatedLayout>
             <Head title="My Account"/>
 
-            <div className="py-12">
+            <div className="py-4 px-2 sm:py-12 sm:px-0">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                     <div className="border shadow-lg rounded-xl bg-white p-4 shadow sm:rounded-lg sm:p-8">
                         <UpdateProfileInformationForm

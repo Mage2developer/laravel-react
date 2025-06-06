@@ -48,15 +48,15 @@ export default function ContactUs() {
     return (
         <GuestLayout>
             <Head title="Contact Us" />
-            <div className="flex items-center justify-center py-12 px-3 sm:px-0">
+            <div className="flex items-center justify-center py-6 sm:py-12 px-3 sm:px-0">
                 <div className="max-w-6xl w-full mx-auto">
-                    <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center mb-6 sm:mb-10 text-[#ff3131] bg-clip-text">
                         Contact Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Contact Form */}
-                        <div className="bg-white/5 shadow-lg backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10">
-                            <h2 className="text-2xl font-semibold text-[#ff3131]">
+                        <div className="bg-white/5 shadow-lg backdrop-blur-md rounded-xl p-4 sm:p-8 space-y-6 border border-black/10">
+                            <h2 className="text-2xl text-center sm:text-left font-semibold text-[#ff3131]">
                                 Send us a message
                             </h2>
 
@@ -215,8 +215,8 @@ export default function ContactUs() {
                         </div>
 
                         {/* Contact Information */}
-                        <div className="bg-white/5 shadow-lg backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10">
-                            <h2 className="text-2xl font-semibold text-[#ff3131]">
+                        <div className="bg-white/5 shadow-lg backdrop-blur-md rounded-xl p-4 sm:p-8 space-y-6 border border-black/10">
+                            <h2 className="text-2xl text-center sm:text-left font-semibold text-[#ff3131]">
                                 Get in touch
                             </h2>
                             <div className="space-y-4">

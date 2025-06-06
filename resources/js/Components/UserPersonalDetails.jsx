@@ -115,7 +115,6 @@ function UserPersonalDetails({ item }) {
                             }
                             icon={<GiSpectacles size={28} className="me-2" />}
                         />
-                        <div></div>
                         <InfoCard
                             label="Personal Income:"
                             value={

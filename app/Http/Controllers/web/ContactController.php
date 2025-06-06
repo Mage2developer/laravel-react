@@ -32,6 +32,6 @@ class ContactController extends Controller
         }
 
         // Optionally, you can redirect the user with a success message
-        return redirect()->back()->with('success', 'Your message has been received. A member of our team will get back to you shortly. We appreciate your interest and will do our best to assist you as quickly as possible.');
+        return redirect()->back()->with('success', 'Your message has been received. Our team will get back to you shortly. We appreciate your interest and will do our best to assist you as quickly as possible.');
     }
 }

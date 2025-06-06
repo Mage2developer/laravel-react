@@ -18,7 +18,7 @@ function DiscoverYourPerfect() {
                     />
                 </div>
                 <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col gap-4 sm:gap-6">
+                    <div className="flex flex-col gap-4 sm:gap-6 items-center sm:items-start">
                         <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-black capitalize">
                             Discover your perfect match with confidence
                         </h2>

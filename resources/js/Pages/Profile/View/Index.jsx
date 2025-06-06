@@ -123,7 +123,7 @@ function Index({ profile }) {
                             </nav>
                         </div>
                         {/* Mobile View Start */}
-                        <div className="block sm:hidden space-y-4 my-5">
+                        <div className="block sm:hidden space-y-4 my-5 px-2 sm:px-0">
                             {[
                                 {
                                     key: "about",

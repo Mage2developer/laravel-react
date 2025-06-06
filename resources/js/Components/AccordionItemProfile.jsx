@@ -4,7 +4,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 
 const AccordionItemProfile = ({ title, isOpen, onToggle, children }) => {
     return (
-        <div className="border border-black/10 bg-white rounded-lg md:rounded-lg m-1 py-2 shadow-lg" 
+        <div className="border border-black/10 bg-white rounded-lg md:rounded-lg shadow-lg"
         style={{
             shadowColor: "#000",
             shadowOffset: { width: 1, height: 1 },
@@ -15,12 +15,12 @@ const AccordionItemProfile = ({ title, isOpen, onToggle, children }) => {
             <button
                 onClick={onToggle}
                 className={`w-full text-left px-4 py-3 font-medium text-xl flex justify-between items-center`}
-                
+
             >
                 {title}
                 <span className="ml-2">
                     {isOpen ? (
-                        <TiArrowSortedUp size={24}/> 
+                        <TiArrowSortedUp size={24}/>
                     ) : (
                         <TiArrowSortedDown  size={24} />
                     )}
@@ -28,7 +28,7 @@ const AccordionItemProfile = ({ title, isOpen, onToggle, children }) => {
             </button>
 
             {isOpen && (
-                <div className="px-5 py-3 border-t bg-white">{children}</div>
+                <div className="px-3 py-3 border-t bg-white rounded-b-lg md:rounded-b-lg shadow-b-lg">{children}</div>
             )}
         </div>
     );

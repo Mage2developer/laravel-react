@@ -12,9 +12,9 @@ const AboutUs = () => {
     return (
         <GuestLayout>
             <Head title="About Us" />
-            <div className="flex items-center justify-center py-12 px-3 sm:px-0">
+            <div className="flex items-center justify-center py-6 sm:py-12 px-3 sm:px-0">
                 <div className="max-w-6xl w-full mx-auto">
-                    <h1 className="text-3xl font-bold text-center mb-10 text-[#ff3131] bg-clip-text">
+                    <h1 className="text-3xl font-bold text-center mb-6 sm:mb-10 text-[#ff3131] bg-clip-text">
                         About Us
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -28,8 +28,8 @@ const AboutUs = () => {
                         </div>
 
                         {/* Content Column */}
-                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-8 space-y-6 border border-black/10 shadow-lg flex flex-col justify-between">
-                            <h2 className="text-2xl font-semibold text-[#ff3131]">
+                        <div className="h-full bg-white/5 backdrop-blur-md rounded-xl p-4 sm:p-8 space-y-6 border border-black/10 shadow-lg flex flex-col justify-between">
+                            <h2 className="text-2xl font-semibold text-[#ff3131] text-center sm:text-left">
                                 Our Story
                             </h2>
                             <p className="">
@@ -53,7 +53,7 @@ const AboutUs = () => {
                                 all our members.
                             </p>
                             <div className="space-y-4">
-                                <h3 className="text-lg font-semibold text-[#ff3131]">
+                                <h3 className="text-lg font-semibold text-[#ff3131] text-center sm:text-left">
                                     Contact
                                 </h3>
                                 <div className="flex items-center gap-3">

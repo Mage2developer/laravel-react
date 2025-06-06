@@ -111,7 +111,7 @@ export default function Edit({ profile }) {
         <AuthenticatedLayout>
             <Head title="Edit User" />
 
-            <div className="py-12 pt-0">
+            <div className="py-4 px-2 sm:py-12 sm:px-0 pt-0">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden">
                         <div className="p-6 bg-white border-gray-200">

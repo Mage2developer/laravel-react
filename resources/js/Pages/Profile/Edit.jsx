@@ -23,7 +23,7 @@ export default function Edit() {
         <AuthenticatedLayout>
             <Head title="Profile"/>
 
-            <div className="py-12">
+            <div className="py-4 px-2 sm:py-12 sm:px-0">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
                     <Accordion items={items} />
                 </div>
