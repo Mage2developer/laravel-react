@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/react";
 
 function DiscoverYourPerfect() {
     return (
-        <section className="px-10 py-0 mx-auto my-20 max-w-[1200px]">
+        <section className="px-3 sm:px-10 py-0 mx-auto my-6 sm:my-10 max-w-[1200px]">
             <div className="flex items-center gap-5 max-md:flex-col">
                 <div className="w-6/12 max-md:w-full">
                     <LazyLoadImage
@@ -18,7 +18,7 @@ function DiscoverYourPerfect() {
                     />
                 </div>
                 <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-4 sm:gap-6">
                         <h2 className="text-5xl font-semibold leading-tight max-sm:text-3xl text-black capitalize">
                             Discover your perfect match with confidence
                         </h2>
