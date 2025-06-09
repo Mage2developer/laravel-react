@@ -25,7 +25,7 @@ function ProfileGridCard({ profile }) {
                     {profile.name}
                 </h2>
                 <div className="flex gap-5 justify-center items-center text-xl font-medium text-[#ff3131] mb-2.5">
-                    <AgeCalculator dob={profile.user_personal_detail.dob} />
+                    {profile.user_personal_detail.dob ? (<AgeCalculator dob={profile.user_personal_detail.dob} />) : ""}
 
                     <MaritalStatus
                         status={profile.user_personal_detail.marital_status}
