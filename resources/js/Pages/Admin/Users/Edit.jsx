@@ -16,6 +16,7 @@ import axios from "axios";
 
 
 export default function Edit({ profile }) {
+
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [profileStatus, setProfileStatus] = useState(profile.status);
@@ -107,6 +108,14 @@ export default function Edit({ profile }) {
 
     };
 
+    function getClassName(status) {
+        return status ? "text-green-600" : "text-[#ff3131]" ;
+    }
+
+    function getDeleteClassName(status) {
+        return status ? "text-[#ff3131]"  : "text-green-600" ;
+    }
+
     return (
         <AuthenticatedLayout>
             <Head title="Edit User" />
@@ -148,10 +157,15 @@ export default function Edit({ profile }) {
                             <div className="flex items-center mb-6">
                                 <h1 className="text-2xl mt-8 font-semibold">
                                     {profile.name}
-                                    <span className="text-lg ml-2 text-green-600">
-                                        ( { profileStatus ? "Active" : "Inactive" } )
-                                        { isDeleted ? " ( Deleted )" : "" }
+
+                                    <span className={"text-lg ml-2 "+ getClassName(profileStatus)}>
+                                        ( {profileStatus ? "Active" : "Inactive"} )
                                     </span>
+
+                                    <span className={"text-lg ml-2 "+ getDeleteClassName(isDeleted)}>
+                                        {isDeleted ? " ( Deleted )" : ""}
+                                    </span>
+
                                 </h1>
                                 <div className="mt-8 ml-auto">
                                     {successMessage && (
