@@ -101,11 +101,56 @@ export default function Edit({ profile }) {
     };
 
     const handleActivateProfile = async () => {
+        if (window.confirm(`Are you sure you want to activate this user?`)) {
+            try {
+                await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                const response = await axios.post("/admin/users/activate-profile", {
+                    id: profile.id,
+                    status: 1
+                });
 
+                if (response.data.success) {
+                    setSuccessMessage(response.data.message);
+                }
+                else {
+                    setErrorMessage(response.data.message);
+                }
+                setProfileStatus(response.data.profile_status.status);
+                setIsDeleted(response.data.profile_status.is_deleted);
+            } catch (error) {
+                if (error.response?.status === 422) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage("An error occurred.");
+                }
+            }
+        }
     };
 
     const handleInctivateProfile = async () => {
+        if (window.confirm(`Are you sure you want to inactivate this user?`)) {
+            try {
+                await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
+                const response = await axios.post("/admin/users/activate-profile", {
+                    id: profile.id,
+                    status: 0
+                });
 
+                if (response.data.success) {
+                    setSuccessMessage(response.data.message);
+                }
+                else {
+                    setErrorMessage(response.data.message);
+                }
+                setProfileStatus(response.data.profile_status.status);
+            } catch (error) {
+                if (error.response?.status === 422) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage("An error occurred.");
+                }
+            }
+        }
     };
 
     function getClassName(status) {

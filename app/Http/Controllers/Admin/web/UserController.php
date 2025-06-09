@@ -171,4 +171,33 @@ class UserController extends Controller
             'profile' => $userProfile->toArray()
         ]);
     }
+
+    public function activateProfile(Request $request)
+    {
+        $userId = $request->input('id');
+        $status = $request->input('status');
+        $strActive = $status ? "activated" : "inactivated";
+
+        $response = [
+            'profile_status' => ['status' => $status, 'is_deleted' => !$status],
+        ];
+
+        try {
+            $user = User::findorfail($userId);
+            if ($user) {
+                $user->status = $status;
+                if ($status) {
+                    $user->is_deleted = !$status;
+                }
+                $user->save();
+                event(new UserDeleteEvent($user->email));
+            }
+            $response['message'] = 'Profile is ' . $strActive . ' successfully.';
+            $response['success'] = true;
+        } catch (Exception $exception) {
+            $response['message'] = $exception->getMessage();
+            $response['success'] = false;
+        }
+        return response()->json($response);
+    }
 }
