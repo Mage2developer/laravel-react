@@ -130,7 +130,6 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <div class="email-container">
@@ -180,7 +179,7 @@
         </p>
 
         <p>
-            <a href="{{ $appUrl }}" style="color: #4f46e5;">Visit our website</a> |
+            <a href="{{ $appUrl }}" style="color: #4f46e5;">www.vanandvivah.com</a> |
             <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5;">Contact Support</a>
         </p>
 

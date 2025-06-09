@@ -18,10 +18,15 @@
                 margin: 0px auto;
             }
             .email-container {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 background-color: #ffffff;
                 padding: 40px;
                 border-radius: 10px;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+                margin: 0 auto !important;
+                color: #000000;
+                line-height: 1.6;
             }
             .header {
                 text-align: center;
