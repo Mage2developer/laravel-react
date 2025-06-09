@@ -148,14 +148,14 @@
 
     <div class="features">
         <div class="feature-item">
-            <div class="feature-icon"><img src="{{ asset('images/icons/complete.svg') }}" style="width: 40px; height: 40px" alt=""></div>
+            <div class="feature-icon"><img src="{{ asset('images/icons/complete.png') }}" style="width: 40px; height: 40px" alt=""></div>
             <div>
                 <strong>Complete your profile</strong><br>
                 Add your personal information and preferences
             </div>
         </div>
         <div class="feature-item">
-            <div class="feature-icon"><img src="{{ asset('images/icons/search.svg') }}" alt=""></div>
+            <div class="feature-icon"><img src="{{ asset('images/icons/search.png') }}" alt=""></div>
             <div>
                 <strong>Explore All Profiles</strong><br>
                 Discover all profile view available to you

@@ -162,7 +162,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/user-check.svg') }}" alt="">
+                        <img src="{{ asset('images/icons/user-check.png') }}" alt="">
                         </div>
                         <strong>Activate your profile</strong><br />
                     </div>
@@ -203,7 +203,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/complete.svg') }}" alt="" style="width: 40px; height: 40px">
+                        <img src="{{ asset('images/icons/complete.png') }}" alt="" style="width: 40px; height: 40px">
                         </div>
                         <strong>Complete your profile</strong><br />
                     </div>
@@ -214,7 +214,7 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                            <img src="{{ asset('images/icons/search.svg') }}" alt="">
+                            <img src="{{ asset('images/icons/search.png') }}" alt="">
                         </div>
                         <strong>Explore All Profiles</strong><br />
                     </div>
