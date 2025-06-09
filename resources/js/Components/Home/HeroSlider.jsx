@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import { Button } from "../Button";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -27,6 +27,8 @@ const sliderImages = [
 ];
 
 function HeroSlider() {
+    const user = usePage().props.auth.user;
+
     const settings = {
         dots: false,
         infinite: true,
@@ -60,14 +62,16 @@ function HeroSlider() {
                                 <p className="mb-8 text-xl leading-relaxed text-white text-opacity-90">
                                     {slide.description}
                                 </p>
-                                <Link href="/register">
-                                    <Button
-                                        className="px-8 py-4 border-none rounded-[30px] transition-colors duration-300"
-                                        variant="red"
-                                    >
-                                        Register Now
-                                    </Button>
-                                </Link>
+                                {user === null ? (
+                                    <Link href="/register">
+                                        <Button
+                                            className="px-8 py-4 border-none rounded-[30px] transition-colors duration-300"
+                                            variant="red"
+                                        >
+                                            Register Now
+                                        </Button>
+                                    </Link>
+                                ) : ""}
                             </div>
                         </div>
                     ))}
