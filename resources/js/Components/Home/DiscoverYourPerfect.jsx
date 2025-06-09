@@ -16,7 +16,8 @@ function DiscoverYourPerfect() {
                         alt="Feature showcase"
                         src="/images/home/box/destination-wedding.webp"
                         effect="blur"
-                        className="object-cover overflow-hidden w-full rounded-xl aspect-square shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
+                        className="object-cover overflow-hidden w-full rounded-xl aspect-square
+                        shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
                     />
                 </div>
                 <div className="ml-5 w-6/12 max-md:ml-0 max-md:w-full">
@@ -25,9 +26,8 @@ function DiscoverYourPerfect() {
                             Discover your perfect match with confidence
                         </h2>
                         <p className="mb-4 text-lg leading-relaxed text-black">
-                            Vanand Vivah priorities your safety and privacy. Our
-                            advanced matching algorithm connects you with
-                            compatible partners.
+                            Vanand Vivah priorities your safety and privacy. Our advanced matching algorithm connects
+                            you with compatible partners.
                         </p>
                         <div className="flex gap-4 items-start">
                             <div className="p-2 mt-1 rounded-xl bg-[#ff3131]">
@@ -38,8 +38,7 @@ function DiscoverYourPerfect() {
                                     Safety First
                                 </h3>
                                 <p className="leading-relaxed text-black">
-                                    Your data is protected with top-notch
-                                    security measures.
+                                    Your data is protected with top-notch security measures.
                                 </p>
                             </div>
                         </div>
@@ -52,15 +51,15 @@ function DiscoverYourPerfect() {
                                     Proven Success
                                 </h3>
                                 <p className="leading-relaxed text-black">
-                                    Join countless couples who found love
-                                    through our platform.
+                                    Join countless couples who found love through our platform.
                                 </p>
                             </div>
                         </div>
                         {user === null ? (
                             <Link href="/register">
                                 <Button
-                                    className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
+                                    className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none
+                                    duration-200 ease w-fit inline"
                                     variant="red"
                                 >
                                     Create Profile

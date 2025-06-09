@@ -5,9 +5,6 @@ import InfoCard from "@/Components/InfoCard";
 const UserContactDetails = ({ item }) => {
     return (
         <div>
-            {/* <h2 className="text-lg font-semibold text-[#ff3131] mb-4">
-                Contact Details
-            </h2> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard
                     label="Phone Number:"

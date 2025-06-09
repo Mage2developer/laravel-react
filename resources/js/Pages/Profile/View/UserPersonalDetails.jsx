@@ -42,11 +42,7 @@ function UserPersonalDetails({ item }) {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <InfoCard
                             label="Gender:"
-                            value={
-                                <GetGenderText
-                                    status={item.user_personal_detail.sex}
-                                />
-                            }
+                            value={<GetGenderText status={item.user_personal_detail.sex} />}
                             icon={<BiMaleFemale size={24} className="me-2" />}
                         />
                         <InfoCard
@@ -57,12 +53,9 @@ function UserPersonalDetails({ item }) {
                                         <AgeCalculator
                                             dob={item.user_personal_detail.dob}
                                         />{" "}
-                                        (
-                                        {format(
-                                            item.user_personal_detail.dob,
-                                            "dd-MM-yyyy"
-                                        )}
-                                        )
+                                        ({
+                                            format(item.user_personal_detail.dob, "dd-MM-yyyy")
+                                        })
                                     </>
                                 ) : "Not Available"
                             }

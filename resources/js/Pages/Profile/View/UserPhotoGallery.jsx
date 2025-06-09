@@ -8,7 +8,6 @@ const UserPhotoGallery = ({
     setToggler,
     setSlideIndex,
 }) => {
-    // console.log(userImages);
     const photoUrls = userImages.map((photo) => `/${photo.image_path}`);
 
     return (
