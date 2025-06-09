@@ -56,17 +56,19 @@ function UserPersonalDetails({ item }) {
                         <InfoCard
                             label="Age:"
                             value={
-                                <>
-                                    <AgeCalculator
-                                        dob={item.user_personal_detail.dob}
-                                    />{" "}
-                                    (
-                                    {format(
-                                        item.user_personal_detail.dob,
-                                        "dd-MM-yyyy"
-                                    )}
-                                    )
-                                </>
+                                item.user_personal_detail.dob ? (
+                                    <>
+                                        <AgeCalculator
+                                            dob={item.user_personal_detail.dob}
+                                        />{" "}
+                                        (
+                                        {format(
+                                            item.user_personal_detail.dob,
+                                            "dd-MM-yyyy"
+                                        )}
+                                        )
+                                    </>
+                                ) : "Not Available"
                             }
                             icon={<FaCalendarDays size={22} className="me-2" />}
                         />
