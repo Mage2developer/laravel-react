@@ -190,7 +190,12 @@ class UserController extends Controller
                     $user->is_deleted = !$status;
                 }
                 $user->save();
-                event(new UserDeleteEvent($user->email));
+
+                if($status) {
+                    $userData = $user->only(['name', 'email']);
+                    event(new UserActivateEvent($userData));
+                }
+
             }
             $response['message'] = 'Profile is ' . $strActive . ' successfully.';
             $response['success'] = true;

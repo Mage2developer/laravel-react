@@ -82,7 +82,7 @@ function HowToCreateProfile() {
                         </div>
 
                         {/* Step 2 */}
-                        <div className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
+                        <div id="profile-complete" className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 2:</div>
                             <p>
                                 Once your account has been verified by the
@@ -101,7 +101,7 @@ function HowToCreateProfile() {
                         </div>
 
                         {/* Step 3 */}
-                        <div className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
+                        <div id="profile-explore" className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 3:</div>
                             <p>
                                 Once your profile is completed, you can click on

@@ -94,8 +94,6 @@
                 object-fit: contain;
             }
 
-
-
         .footer {
             text-align: center;
             margin-top: 40px;
@@ -131,7 +129,6 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <div class="email-container">
@@ -151,14 +148,14 @@
 
     <div class="features">
         <div class="feature-item">
-            <div class="feature-icon">✓</div>
+            <div class="feature-icon"><img src="{{ asset('images/icons/complete.svg') }}" style="width: 40px; height: 40px" alt=""></div>
             <div>
                 <strong>Complete your profile</strong><br>
                 Add your personal information and preferences
             </div>
         </div>
         <div class="feature-item">
-            <div class="feature-icon">🚀</div>
+            <div class="feature-icon"><img src="{{ asset('images/icons/search.svg') }}" alt=""></div>
             <div>
                 <strong>Explore All Profiles</strong><br>
                 Discover all profile view available to you
@@ -177,7 +174,7 @@
                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
                         >
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/facebook.svg') }}" alt="">
+                        <img src="{{ asset('images/icons/facebook.png') }}" alt="">
                         </div>
                     </a>
                     <a

@@ -30,7 +30,7 @@ class UserActivate extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Your profile has been activated.',
+            subject: 'Your profile has been activated',
         );
     }
 
