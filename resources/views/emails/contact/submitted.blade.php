@@ -7,7 +7,7 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #000000;
             max-width: 800px;
             margin: 0 auto !important;
             padding: 20px;
@@ -85,11 +85,11 @@
                 color: #ff3131;
                 font-weight: bold;
                 margin: auto 0px;
-            }
-            .feature-icon img {
+        }
+        .feature-icon img {
             width: 25px;
             height: 25px;
-            }
+        }
         .footer {
             text-align: center;
             margin-top: 40px;
