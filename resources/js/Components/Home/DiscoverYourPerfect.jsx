@@ -3,9 +3,11 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import { LuHeartHandshake } from "react-icons/lu";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button } from "../Button";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 function DiscoverYourPerfect() {
+    const user = usePage().props.auth.user;
+
     return (
         <section className="px-3 sm:px-10 py-0 mx-auto my-6 sm:my-10 max-w-[1200px]">
             <div className="flex items-center gap-5 max-md:flex-col">
@@ -55,14 +57,16 @@ function DiscoverYourPerfect() {
                                 </p>
                             </div>
                         </div>
-                        <Link href="/register">
-                            <Button
-                                className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
-                                variant="red"
-                            >
-                                Create Profile
-                            </Button>
-                        </Link>
+                        {user === null ? (
+                            <Link href="/register">
+                                <Button
+                                    className="px-8 py-4 rounded-lg transition-transform cursor-pointer border-none duration-200 ease w-fit inline"
+                                    variant="red"
+                                >
+                                    Create Profile
+                                </Button>
+                            </Link>
+                        ) : ""}
                     </div>
                 </div>
             </div>

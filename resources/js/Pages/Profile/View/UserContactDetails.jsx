@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaCity, FaLocationCrosshairs, FaPhoneVolume } from "react-icons/fa6";
-import InfoCard from "./InfoCard";
+import InfoCard from "@/Components/InfoCard";
 
 const UserContactDetails = ({ item }) => {
     return (

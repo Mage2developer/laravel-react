@@ -1,7 +1,5 @@
 import React from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { GiMoneyStack } from "react-icons/gi";
-import InfoCard from "./InfoCard";
+import InfoCard from "@/Components/InfoCard";
 
 const UserFamilyDetails = ({ item }) => {
     const family = item?.user_family_detail || {};
@@ -19,7 +17,7 @@ const UserFamilyDetails = ({ item }) => {
                 <InfoCard label="Brother's Name:" value={family.brother_name} />
                 <InfoCard
                     label="Brother-in-law's Name:"
-                    value={family.brother_in_laws}  
+                    value={family.brother_in_laws}
                 />
                 <InfoCard label="Sister's Name:" value={family.sister_name} />
                 <InfoCard

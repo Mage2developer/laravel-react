@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
-import UserPhotoGallery from "@/Components/UserPhotoGallery";
-import UserFamilyDetails from "@/Components/UserFamilyDetails";
-import UserContactDetails from "@/Components/UserContactDetails";
-import UserPersonalDetails from "@/Components/UserPersonalDetails";
+import UserPhotoGallery from "./UserPhotoGallery";
+import UserFamilyDetails from "./UserFamilyDetails";
+import UserContactDetails from "./UserContactDetails";
+import UserPersonalDetails from "./UserPersonalDetails";
 import { LuBriefcaseBusiness } from "react-icons/lu";
 import { FaGraduationCap } from "react-icons/fa6";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -48,14 +48,20 @@ function Index({ profile }) {
                                     </div>
                                     <div className="text-center md:text-left">
                                         <h1 className="text-2xl font-bold">{item.name}</h1>
-                                        <div className="flex items-center justify-center md:justify-start mt-1">
-                                            <LuBriefcaseBusiness className="mr-1"/>
-                                            <span className="text-lm">{item.user_education_detail.occupation}</span>
-                                        </div>
-                                        <div className="flex items-center justify-center md:justify-start mt-1">
-                                            <FaGraduationCap className="mr-1"/>
-                                            <span className="text-lm">{item.user_education_detail.education}</span>
-                                        </div>
+
+                                        {item.user_education_detail.occupation ? (
+                                            <div className="flex items-center justify-center md:justify-start mt-1">
+                                                <LuBriefcaseBusiness className="mr-1"/>
+                                                <span className="text-lm">{item.user_education_detail.occupation}</span>
+                                            </div>
+                                        ) : ""}
+
+                                        {item.user_education_detail.education ? (
+                                            <div className="flex items-center justify-center md:justify-start mt-1">
+                                                <FaGraduationCap className="mr-1"/>
+                                                <span className="text-lm">{item.user_education_detail.education}</span>
+                                            </div>
+                                        ) : ""}
                                     </div>
                                 </div>
                             </div>
