@@ -266,7 +266,7 @@
                         >www.vanandvivah.com</a
                     >
                     |
-                    <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5"
+                    <a href="{{ $appUrl }}contact-us" style="color: #4f46e5"
                         >Contact Support</a
                     >
                 </p>
