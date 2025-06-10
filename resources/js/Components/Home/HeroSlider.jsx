@@ -66,9 +66,11 @@ function HeroSlider() {
                                     alt="Vanand Vivah Registration"
                                     src={slide.src}
                                     effect="eager"
+                                    srcSet="images/home/slider/mobile/wedding-banner.webp 480w, images/home/slider/wedding-banner.webp 1900w"
                                     className="object-cover w-full h-full"
                                     width={"100%"}
                                     height={"600px"}
+                                    sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, 100vw"
                                 />
                             ) : (
                                 <LazyLoadImage
