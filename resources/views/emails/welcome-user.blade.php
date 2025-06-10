@@ -18,7 +18,7 @@
                 margin: 0px auto;
             }
             .email-container {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
                 background-color: #ffffff;
                 padding: 40px;
                 border-radius: 10px;
@@ -167,7 +167,10 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/user-check.png') }}" alt="">
+                            <img
+                                src="{{ asset('images/icons/user-check.png') }}"
+                                alt=""
+                            />
                         </div>
                         <strong>Activate your profile</strong><br />
                     </div>
@@ -208,7 +211,11 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/complete.png') }}" alt="" style="width: 40px; height: 40px">
+                            <img
+                                src="{{ asset('images/icons/complete.png') }}"
+                                alt=""
+                                style="width: 40px; height: 40px"
+                            />
                         </div>
                         <strong>Complete your profile</strong><br />
                     </div>
@@ -219,7 +226,10 @@
                 <div class="feature-item">
                     <div class="main-title">
                         <div class="feature-icon">
-                            <img src="{{ asset('images/icons/search.png') }}" alt="">
+                            <img
+                                src="{{ asset('images/icons/search.png') }}"
+                                alt=""
+                            />
                         </div>
                         <strong>Explore All Profiles</strong><br />
                     </div>
@@ -227,6 +237,32 @@
                         Discover all profile view available to you
                     </ul>
                 </div>
+            </div>
+
+            <div class="content" style="text-align: center; margin-top: 20px">
+                <p>
+                    Please send your User ID & Full Name via Admin WhatsApp
+                    Number to activate your profile.
+                </p>
+                <p style="text-align: center">
+                    <a
+                        href="https://wa.me/918200426399?text={{ urlencode('Hello Admin, I want to activate my profile.\n\nEmail: ' . $user->email . '\nName: ' . $user->name) }}"
+                        target="_blank"
+                        style="
+                            background: #ff1313;
+                            color: white;
+                            padding: 15px 30px;
+                            text-decoration: none;
+                            border-radius: 8px;
+                            font-weight: 600;
+                            font-size: 16px;
+                            display: inline-block;
+                            transition: background-color 0.3s ease;
+                        "
+                    >
+                    Click to share details with admin on WhatsApp
+                    </a>
+                </p>
             </div>
 
             <div class="content">
@@ -241,17 +277,23 @@
                     <a
                         target="_blank"
                         href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
-                        >
+                    >
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/facebook.png') }}" alt="">
+                            <img
+                                src="{{ asset('images/icons/facebook.png') }}"
+                                alt=""
+                            />
                         </div>
                     </a>
                     <a
                         target="_blank"
                         href="https://www.instagram.com/vanand.vivah/"
-                        >
+                    >
                         <div class="feature-icon">
-                        <img src="{{ asset('images/icons/instagram.png') }}" alt="">
+                            <img
+                                src="{{ asset('images/icons/instagram.png') }}"
+                                alt=""
+                            />
                         </div>
                     </a>
                 </div>
