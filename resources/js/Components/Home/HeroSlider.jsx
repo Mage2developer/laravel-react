@@ -5,6 +5,8 @@ import { Link, usePage } from "@inertiajs/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+
+
 const sliderImages = [
     {
         src: "/images/home/slider/wedding-banner.webp",
@@ -25,6 +27,18 @@ const sliderImages = [
             "We value your privacy and provide you with a secure platform tailored to your unique preferences.",
     },
 ];
+
+const preloadImages = async (imageUrls) => {
+    const promises = imageUrls.map(src => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => resolve();
+            img.onerror = () => reject();
+        });
+    });
+    await Promise.all(promises);
+}
 
 function HeroSlider() {
     const user = usePage().props.auth.user;

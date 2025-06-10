@@ -4,6 +4,8 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import HeroSlider from "@/Components/Home/HeroSlider";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
+import ImagePreloader from "@/Components/Home/ImagePreloader.jsx";
+
 const RecentlyCreatedProfiles = lazy(() => import('@/Components/Home/RecentlyCreatedProfiles'));
 const DiscoverTheBenefits = lazy(() => import('@/Components/Home/DiscoverTheBenefits'));
 const DiscoverYourPerfect = lazy(() => import('@/Components/Home/DiscoverYourPerfect'));
@@ -15,7 +17,9 @@ function Home({ latestProfile }) {
             <div className="w-full min-h-screen text-white bg-white">
 
                 {/* Hero Slider Component Start */}
-                <HeroSlider />
+                <ImagePreloader>
+                    <HeroSlider />
+                </ImagePreloader>
                 {/* Hero Slider Component End */}
 
                 <Suspense fallback={<div>Loading...</div>}>
