@@ -61,14 +61,25 @@ function HeroSlider() {
                 <Slider {...settings}>
                     {sliderImages.map((slide, index) => (
                         <div key={index} className="relative w-full h-[600px]">
-                            <LazyLoadImage
-                                alt="Vanand Vivah Registration"
-                                src={slide.src}
-                                effect="eager"
-                                className="object-cover w-full h-full"
-                                width={"100%"}
-                                height={"600px"}
-                            />
+                            {index === 0 ? (
+                                <img
+                                    alt="Vanand Vivah Registration"
+                                    src={slide.src}
+                                    effect="eager"
+                                    className="object-cover w-full h-full"
+                                    width={"100%"}
+                                    height={"600px"}
+                                />
+                            ) : (
+                                <LazyLoadImage
+                                    alt="Vanand Vivah Registration"
+                                    src={slide.src}
+                                    effect="eager"
+                                    className="object-cover w-full h-full"
+                                    width={"100%"}
+                                    height={"600px"}
+                                />
+                            )}
                             <div className="absolute top-2/4 left-2/4 px-5 py-0 w-full text-center -translate-x-2/4 -translate-y-2/4 max-w-[800px]">
                                 <h2 className="mb-6 text-6xl font-bold max-sm:text-4xl capitalize text-white drop-shadow-xl">
                                     {slide.title}
