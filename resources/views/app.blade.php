@@ -13,7 +13,7 @@
 
     <link rel="preload" fetchpriority=high as="image" href="{{ asset('images/home/slider/wedding-banner.webp') }}"
           imagesrcset="{{ asset('images/home/slider/mobile/wedding-banner.webp') }} 480w, {{ asset('images/home/slider/wedding-banner.webp') }} 1900w"
-          imagesizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 1900px">
+          imagesizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, 1900px">
     <link rel="preload" fetchpriority=high as="image" href="{{ asset('images/header-logo.webp') }}">
 
     <!-- Scripts -->
