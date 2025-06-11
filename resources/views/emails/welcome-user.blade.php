@@ -246,7 +246,7 @@
                 </p>
                 <p style="text-align: center">
                     <a
-                        href="https://wa.me/918200426399?text={{ urlencode('Hello Admin, I want to activate my profile.\n\nEmail: ' . $user->email . '\nName: ' . $user->name) }}"
+                    href="https://wa.me/918200426399?text={{ urlencode("Hello Admin, I want to activate my profile.\n\nEmail: {$user->email}\nName: {$user->name}") }}"
                         target="_blank"
                         style="
                             background: #ff1313;
@@ -308,7 +308,7 @@
                         >www.vanandvivah.com</a
                     >
                     |
-                    <a href="{{ $appUrl }}contact-us" style="color: #4f46e5"
+                    <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5"
                         >Contact Support</a
                     >
                 </p>

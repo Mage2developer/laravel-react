@@ -81,19 +81,18 @@
             border-radius: 8px;
         }
         .feature-icon {
-                /* width: 15px;
-                height: 15px; */
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #ff3131;
-                font-weight: bold;
-                margin: auto 0px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
         }
         .feature-icon img {
-            width: 25px;
-            height: 25px;
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            border-radius: 5px;
         }
         .footer {
             text-align: center;
@@ -108,7 +107,7 @@
         }
         .social-links a {
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 0px;
             text-decoration: none;
         }
         .icon-size{
@@ -172,7 +171,6 @@
                         </div>
                     </a>
                 </div>
-
         <p>
             Thanks for your inquiry {{ $appName }}!<br>
             This email was sent to {{ $email }}
@@ -180,7 +178,7 @@
 
         <p>
             <a href="{{ $appUrl }}" style="color: #4f46e5;">www.vanandvivah.com</a> |
-            <a href="{{ $appUrl }}contact-us" style="color: #4f46e5;">Contact Support</a>
+            <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5;">Contact Support</a>
         </p>
 
         <p style="margin-top: 20px; font-size: 12px;">
