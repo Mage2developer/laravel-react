@@ -65,20 +65,6 @@ class MobileResetPasswordNotification extends ResetPasswordNotification
 
         return parent::resetUrl($notifiable);
     }
-
-    /**
-     * @param $notifiable
-     * @return string
-     */
-    protected function getMobileResetUrl($notifiable)
-    {
-        $scheme = config('app.mobile_app.deep_link_scheme');
-        $path = config('app.mobile_app.reset_password_path');
-        $token = $this->token;
-        $email = urlencode($notifiable->getEmailForPasswordReset());
-
-        return "{$scheme}://{$path}/{$token}?email={$email}";
-    }
 }
 
 

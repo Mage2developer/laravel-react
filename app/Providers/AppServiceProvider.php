@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
+use OpenSoutheners\LaravelCompanionApps\CompanionApplication;
+
+use OpenSoutheners\LaravelCompanionApps\Platform;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,5 +25,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+        \OpenSoutheners\LaravelCompanionApps\ServiceProvider::loadApplications([
+           CompanionApplication::make('com.vanandvivah.vanandvivah', Platform::Android)
+               ->linkScheme('exp+vanandvivah'),
+
+           CompanionApplication::make('com.vanandvivah.vanandvivah_preview', Platform::Android)
+               ->linkScheme('exp+vanandvivah'),
+
+           CompanionApplication::make('com.example', Platform::Apple)
+               ->linkScheme('example')
+               ->setStoreOptions(id: '123456789', slug: 'example_app')
+       ]);
     }
 }
