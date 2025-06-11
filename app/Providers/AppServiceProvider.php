@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
            CompanionApplication::make('com.vanandvivah.vanandvivah', Platform::Android)
                ->linkScheme('exp+vanandvivah'),
 
-           CompanionApplication::make('com.vanandvivah.vanandvivah_preview', Platform::Android)
+           CompanionApplication::make('com.vanandvivah.vanandvivah', Platform::Android)
                ->linkScheme('exp+vanandvivah'),
 
            CompanionApplication::make('com.example', Platform::Apple)

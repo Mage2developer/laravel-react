@@ -33,11 +33,13 @@ class NewPasswordController extends Controller
     {
         if (Agent::isMobile()) {
             $resetUrl =
-                route('password.reset', ['token' => $request->route('token'), 'email' => urlencode($request->email)]);
+                route('password.reset', ['token' => $request->token, 'email' => urlencode($request->email)]);
+
+            $email = urlencode($request->email);
 
             return redirect()->toApp(
                 Companion::android('com.vanandvivah.vanandvivah'),
-                $request->route('token')."?email/{urlencode($request->email)}",
+                $request->token."?email={$email}",
                 $resetUrl
             );
         } else {
