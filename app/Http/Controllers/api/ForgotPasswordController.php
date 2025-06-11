@@ -39,7 +39,7 @@ class ForgotPasswordController extends Controller
         $token = Password::createToken($user);
 
         // Send mobile-specific notification
-        $user->notify(new MobileResetPasswordNotification($token, true));
+        //$user->notify(new MobileResetPasswordNotification($token, true));
 
         return response()->json([
                                     'message' => 'We have emailed your password reset link.'
