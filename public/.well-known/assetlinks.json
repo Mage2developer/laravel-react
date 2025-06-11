@@ -17,7 +17,7 @@
         ],
         "target": {
             "namespace": "android_app",
-            "package_name": "com.vanandvivah.vanandvivah",
+            "package_name": "com.vanandvivah.vanandvivah_preview",
             "sha256_cert_fingerprints": [
                 "49:18:70:0B:ED:FD:3B:4B:06:E6:1B:4A:10:BF:5A:79:2C:3F:00:4D:9B:58:5D:24:26:FD:5D:F5:13:A3:66:64"
             ]

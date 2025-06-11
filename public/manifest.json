@@ -1,0 +1,19 @@
+{
+    "prefer_related_applications": false,
+    "related_applications": [
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=com.vanandvivah.vanandvivah",
+            "id": "com.vanandvivah.vanandvivah"
+        },
+        {
+            "platform": "play",
+            "url": "https://play.google.com/store/apps/details?id=com.vanandvivah.vanandvivah_preview",
+            "id": "com.vanandvivah.vanandvivah_preview"
+        },
+        {
+            "platform": "itunes",
+            "url": "https://apps.apple.com/en/app/example_app/id123456789"
+        }
+    ]
+}
