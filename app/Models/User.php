@@ -235,38 +235,51 @@ class User extends Authenticatable
      * @param $token
      * @return void
      */
-    public function sendPasswordResetNotification($token): void
+    /*public function sendPasswordResetNotification($token): void
     {
         $isMobileApp = $this->isMobileRequest();
 
         $this->notify(new MobileResetPasswordNotification($token, $isMobileApp));
-    }
+    }*/
 
     /**
      * Check request created from mobile or not
      *
      * @return bool
      */
-    protected function isMobileRequest(): bool
+    public function isMobileRequest(): bool
     {
         // Check if request comes from mobile app
         // You can use various methods:
 
         // Method 1: Check User-Agent
-     /*   $userAgent = request()->header('User-Agent');
+        $userAgent = request()->header('User-Agent');
+        echo $userAgent;
+        echo "<br />";
+
+
         if (str_contains($userAgent, 'YourMobileApp')) {
+            return $userAgent;
+            die();
             return true;
         }
 
         // Method 2: Check custom header
         if (request()->header('X-Mobile-App') === 'true') {
+            return request()->header('X-Mobile-App');
+            die();
             return true;
         }
 
-     */   // Method 3: Check API endpoint
+        // Method 3: Check API endpoint
         if (request()->is('api/*')) {
+            echo "test";
+            die();
             return true;
         }
+
+        echo "out";
+        die();
 
         return false;
     }
