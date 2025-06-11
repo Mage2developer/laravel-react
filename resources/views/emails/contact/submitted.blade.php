@@ -178,7 +178,7 @@
 
         <p>
             <a href="{{ $appUrl }}" style="color: #4f46e5;">www.vanandvivah.com</a> |
-            <a href="{{ $appUrl }}/contact-us" style="color: #4f46e5;">Contact Support</a>
+            <a href="{{ $appUrl }}contact-us" style="color: #4f46e5;">Contact Support</a>
         </p>
 
         <p style="margin-top: 20px; font-size: 12px;">
