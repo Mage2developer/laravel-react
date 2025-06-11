@@ -15,15 +15,20 @@
                 background-color: #f4f4f4;
             }
             .email-container {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
                 background-color: #ffffff;
                 padding: 40px;
                 border-radius: 10px;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
                 margin: 0 auto !important;
+                color: #000000;
+                line-height: 1.6;
             }
             .header {
                 text-align: center;
                 margin-bottom: 30px;
+                padding: 0 !important;
             }
             .logo {
                 width: 300px;
@@ -50,6 +55,7 @@
                 margin-bottom: 15px;
                 font-size: 16px;
                 line-height: 1.8;
+                text-align: left;
             }
             .cta-button {
                 display: inline-block;
@@ -76,20 +82,22 @@
                 align-items: center;
                 margin-bottom: 15px;
                 padding: 15px;
+                /* background-color: #f8fafc; */
                 border-radius: 8px;
             }
             .feature-icon {
                 width: 40px;
                 height: 40px;
-                margin-right: 10px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                border-radius: 50%;
             }
             .feature-icon img {
                 width: 30px;
                 height: 30px;
                 object-fit: contain;
+                border-radius: 5px;
             }
             .footer {
                 text-align: center;
