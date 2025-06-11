@@ -35,15 +35,27 @@ class ForgotPasswordController extends Controller
                                     ], 400);
         }
 
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
         // Generate token and send email
-        $token = Password::createToken($user);
+        //$token = Password::createToken($user);
 
         // Send mobile-specific notification
         //$user->notify(new MobileResetPasswordNotification($token, true));
 
-        return response()->json([
-                                    'message' => 'We have emailed your password reset link.'
-                                ], 200);
+        //return response()->json([
+        //                            'message' => 'We have emailed your password reset link.'
+        //                        ], 200);
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return response()->json([
+                                        'success' => true,
+                                        'message' => 'Password reset link sent to your email'
+                                    ], 200);
+        }
     }
 
     /**
