@@ -54,7 +54,7 @@ class UserProfileController extends Controller
             return redirect(route('login.required', absolute: false));
         }
 
-        $profileId = $request->route('profileId');
+        $profileId = base64_decode($request->route('profileId'));
         $userProfile = $this->user->getUserProfileById($profileId);
 
         // If profile not exit
