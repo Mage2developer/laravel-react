@@ -7,6 +7,7 @@ use App\Models\User;
 use DB;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 use App\Notifications\MobileResetPasswordNotification;
@@ -23,16 +24,16 @@ class ForgotPasswordController extends Controller
     public function sendResetLink(Request $request)
     {
         $request->validate([
-                               'email' => 'required|email|exists:users,email'
-                           ]);
+            'email' => 'required|email|exists:users,email'
+        ]);
 
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return response()->json([
-                                        'success' => false,
-                                        'message' => 'Unable to send reset link'
-                                    ], 400);
+                'success' => false,
+                'message' => 'Unable to send reset link'
+            ], 400);
         }
 
 
@@ -40,21 +41,11 @@ class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-        // Generate token and send email
-        //$token = Password::createToken($user);
-
-        // Send mobile-specific notification
-        //$user->notify(new MobileResetPasswordNotification($token, true));
-
-        //return response()->json([
-        //                            'message' => 'We have emailed your password reset link.'
-        //                        ], 200);
-
         if ($status === Password::RESET_LINK_SENT) {
             return response()->json([
-                                        'success' => true,
-                                        'message' => 'Password reset link sent to your email'
-                                    ], 200);
+                'success' => true,
+                'message' => 'Password reset link sent to your email'
+            ], 200);
         }
     }
 
@@ -64,31 +55,31 @@ class ForgotPasswordController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-                               'token' => 'required',
-                               'email' => 'required|email',
-                               'password' => 'required|min:8|confirmed',
-                           ]);
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
                 $user->forceFill([
-                                     'password' => bcrypt($password)
-                                 ])->save();
+                    'password' => bcrypt($password)
+                ])->save();
             }
         );
 
         if ($status === Password::PASSWORD_RESET) {
             return response()->json([
-                                        'success' => true,
-                                        'message' => 'Password has been reset successfully'
-                                    ], 200);
+                'success' => true,
+                'message' => 'Password has been reset successfully'
+            ], 200);
         }
 
         return response()->json([
-                                    'success' => false,
-                                    'message' => 'Failed to reset password'
-                                ], 400);
+            'success' => false,
+            'message' => 'Failed to reset password'
+        ], 400);
     }
 
     /**
@@ -97,30 +88,48 @@ class ForgotPasswordController extends Controller
     public function verifyToken(Request $request)
     {
         $request->validate([
-                               'token' => 'required',
-                               'email' => 'required|email'
-                           ]);
+            'token' => 'required',
+            'email' => 'required|email|exists:users,email'
+        ]);
 
-        $user = User::where('email', $request->email)->first();
+        $email = $request->email;
+        $plainToken = $request->token;
+
+        // Get the hashed token from the database
+        $user = DB::table('password_reset_tokens')
+            ->where('email', $email)
+            ->first();
 
         if (!$user) {
             return response()->json([
-                                        'success' => false,
-                                        'message' => 'User not found'
-                                    ], 404);
+                'success' => false,
+                'message' => 'Invalid email or token.'
+            ], 400);
         }
 
-        // Check if token is valid
-        $tokenExists = DB::table('password_reset_tokens')
-            ->where('email', $request->email)
-            ->where('token', $request->token)
-            ->where('created_at', '>', now()->subHours(1)) // Token expires in 1 hour
-            ->exists();
+        // Compare the plain token with the hashed one
+        if (!Hash::check($plainToken, $user->token)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid token.'
+            ], 400);
+        }
+
+        // Check if token is expired (optional: usually tokens expire in 60 minutes)
+        $expires = 60; // minutes
+        $tokenCreatedAt = \Carbon\Carbon::parse($user->created_at);
+
+        if ($tokenCreatedAt->addMinutes($expires)->isPast()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Token has expired.'
+            ], 400);
+        }
 
         return response()->json([
-                                    'success' => $tokenExists,
-                                    'message' => $tokenExists ? 'Token is valid' : 'Invalid or expired token'
-                                ]);
+            'success' => true,
+            'message' => 'Token is valid.'
+        ], 200);
     }
 
 }

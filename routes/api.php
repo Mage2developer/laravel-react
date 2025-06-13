@@ -49,10 +49,10 @@ Route::get('/profile/{profileId}', [UserProfileController::class, 'getProfileByI
 Route::prefix('password')->group(function () {
     Route::post('/email', [ForgotPasswordController::class, 'sendResetLink']);
 //    Route::post('/reset', [ForgotPasswordController::class, 'resetPassword']);
-    Route::post('/verify-token', [ForgotPasswordController::class, 'verifyToken']);
 });
 
 Route::post('/reset-password', [UserProfileController::class, 'resetPassword'])->name('api.password.reset');
+Route::post('/verify-token', [ForgotPasswordController::class, 'verifyToken']);
 
 Route::get("/hello/{name}", function ($name) {
     return "Hello " . $name . "!";
