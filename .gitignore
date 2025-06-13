@@ -25,3 +25,4 @@ yarn-error.log
 /.idea
 /public/uploads
 package-lock.json
+/public/.well-known
