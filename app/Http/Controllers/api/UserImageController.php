@@ -120,12 +120,14 @@ class UserImageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Image $request, string $id)
+    public function destroy(Request $request, string $id)
     {
         try {
             $image = Image::findOrFail($id);
 
-            $user = Auth::getUser();
+            //$user = Auth::getUser();
+
+            $user = $request->user();
 
             if($user->role != "admin") {
                 if ($image->user_id != Auth::id()) {
