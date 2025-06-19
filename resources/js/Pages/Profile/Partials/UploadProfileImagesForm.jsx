@@ -123,9 +123,11 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
             fetchImages();
             setImages([]);
             setPreviews([]);
+            setAlert(true);
 
         } catch (error) {
             setErrorMessage('Failed to delete image');
+            setAlert(true);
         }
     };
 

@@ -18,8 +18,8 @@ function FollowUs({label}) {
                 </a>
                 <a
                     target="_blank"
-                    href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
-                    aria-label="Facebook"
+                    href="https://www.instagram.com/vanand.vivah/"
+                    aria-label="Instragram"
                     className=" hover:text-[#ff3131] transition-colors"
                 >
                     <FiInstagram className="w-6 h-6" />

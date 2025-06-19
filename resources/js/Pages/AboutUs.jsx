@@ -63,7 +63,7 @@ const AboutUs = () => {
                                 <div className="flex items-start gap-3">
                                     <FiMapPin className="w-10 sm:w-8 h-10 sm:h-8 mt-0.5 text-green-400" />
                                     <span className="">
-                                        Block Number 2, Bluebell Bunglows,
+                                        Block Number 2, Bluebell Bungalows,
                                         Silver park, Junagadh, India, 362001
                                     </span>
                                 </div>
