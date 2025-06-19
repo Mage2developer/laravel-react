@@ -138,13 +138,13 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
                 <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange}/>
 
                 {previews.length > 0 && (
-                    <div className="flex gap-8 mt-4">
+                    <div className="flex gap-4 sm:gap-8 mt-4 flex-wrap justify-items-center sm:justify-start">
                         {previews.map((src, index) => (
                             <div key={index} className="relative group">
                                 <img key={index} src={src} alt={`preview-${index}`} className="w-32 h-32 object-cover"/>
                                 <button type="button" onClick={() => handleRemovePreview(index)}
-                                        className="absolute top-0 text-gray-900 rounded-full p-1 text-sm right-0">
-                                    ✕
+                                        className="absolute bg-[#ff3131] top-0 text-[#fff] rounded-full p-1 text-sm right-0">
+                                    <RxCross2/>
                                 </button>
                             </div>
                         ))}
@@ -172,7 +172,7 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
                                      className="w-32 h-32 object-cover"/>
                                 <button title="Do you want delete this image?" type="button"
                                         onClick={() => handleRemove(url.id)}
-                                        className="absolute top-0 text-gray-900 rounded-full p-1 text-sm right-0">
+                                        className="absolute bg-[#ff3131] top-0 text-[#fff] rounded-full p-1 text-sm right-0">
                                     <RxCross2/>
                                 </button>
                             </div>

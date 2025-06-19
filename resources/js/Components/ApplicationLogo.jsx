@@ -4,7 +4,7 @@ export default function ApplicationLogo(props) {
     return <img
         alt="Vanand Vivah Logo"
         src="/images/header-logo.webp"
-        effect="blur"
+        effect="eager"
         height={"70"}
         width={"234"}
     />
