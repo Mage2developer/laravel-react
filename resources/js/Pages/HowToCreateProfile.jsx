@@ -1,51 +1,19 @@
-"use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head } from "@inertiajs/react";
-
-const videoSources = [
-    "/images/how-to-create-profile/gif/register-process.mp4",
-    "/images/how-to-create-profile/gif/login-process.mp4",
-    "/images/how-to-create-profile/gif/profile-search-process.mp4",
-];
+import YouTube from "react-youtube";
+import Setting from "@/Utils/Setting";
 
 function HowToCreateProfile() {
-    const videoRefs = useRef([]);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry, index) => {
-                    const video = entry.target;
-                    if (entry.isIntersecting) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-                });
-            },
-            {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0.5, // Trigger when 50% of video is visible
-            }
-        );
-
-        videoRefs.current.forEach((video) => {
-            if (video) {
-                observer.observe(video);
-            }
-        });
-
-        // Cleanup
-        return () => {
-            videoRefs.current.forEach((video) => {
-                if (video) {
-                    observer.unobserve(video);
-                }
-            });
-        };
-    }, []);
+    const options = {
+        height: '100%',
+        width: '100%',
+        playerVars: {
+            autoplay: 0,
+            controls: 1,
+            rel: 0
+        },
+    };
 
     return (
         <GuestLayout>
@@ -64,59 +32,30 @@ function HowToCreateProfile() {
                         <div className="text-left text-xl max-w-2xl mx-auto space-y-4">
                             <div className="font-bold">👉 Step 1:</div>
                             <p>
-                                Click the Register button and fill in all
-                                registration details. Once the account is
-                                registered, you'll need to verify it with an
-                                administrator.
+                                Click the Register button and fill in all registration details. Once the account is
+                                registered, you'll need to verify it with an administrator.
                             </p>
-                            <video
-                                ref={(el) => (videoRefs.current[0] = el)}
-                                src={videoSources[0]}
-                                autoPlay
-                                loop
-                                muted
-                                controls
-                                playsInline
-                                className="w-full rounded-lg border border-gray-300"
-                            />
+                            <YouTube videoId={Setting.REGISTER_YT_VIDEO_ID} opts={options} className="video-container" />
                         </div>
 
                         {/* Step 2 */}
                         <div id="profile-complete" className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 2:</div>
                             <p>
-                                Once your account has been verified by the
-                                administrator, you can log in with your password
-                                and complete your profile details.
+                                Once your account has been verified by the administrator, you can log in with your
+                                password and complete your profile details.
                             </p>
-                            <video
-                                ref={(el) => (videoRefs.current[1] = el)}
-                                src={videoSources[1]}
-                                loop
-                                muted
-                                controls
-                                playsInline
-                                className="w-full rounded-lg border border-gray-300"
-                            />
+                            <YouTube videoId={Setting.LOGIN_YT_VIDEO_ID} opts={options} className="video-container" />
                         </div>
 
                         {/* Step 3 */}
                         <div id="profile-explore" className="text-left text-xl max-w-2xl mx-auto space-y-4 mt-10">
                             <div className="font-bold">👉 Step 3:</div>
                             <p>
-                                Once your profile is completed, you can click on
-                                the Profile menu and search by name or other
-                                available options.
+                                Once your profile is completed, you can click on the Profile menu and search by name or
+                                other available options.
                             </p>
-                            <video
-                                ref={(el) => (videoRefs.current[2] = el)}
-                                src={videoSources[2]}
-                                loop
-                                muted
-                                controls
-                                playsInline
-                                className="w-full rounded-lg border border-gray-300"
-                            />
+                            <YouTube videoId={Setting.SEARCH_YT_VIDEO_ID} opts={options} className="video-container" />
                         </div>
                     </section>
                 </div>

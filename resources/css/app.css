@@ -14,3 +14,8 @@
 #app .react-date-picker__wrapper {
     border-color: rgb(209 213 219) !important;
 }
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* For 16:9 aspect ratio */
+}
