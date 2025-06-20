@@ -22,8 +22,12 @@ class UserContactDetail extends Model
     protected $fillable = [
         'mobile_number',
         'father_mobile_number',
-        'native_city',
-        'current_address'
+        'native_address',
+        'address_line_1',
+        'address_line_2',
+        'city_id',
+        'state_id',
+        'country_id'
     ];
 
     protected $hidden = [

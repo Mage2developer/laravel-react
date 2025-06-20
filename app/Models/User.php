@@ -63,8 +63,12 @@ class User extends Authenticatable
             $user->userContactDetail()->create([
                                                    'mobile_number' => $mobile_number,
                                                    'father_mobile_number' => '',
-                                                   'native_city' => '',
-                                                   'current_address' => ''
+                                                   'native_address' => '',
+                                                   'address_line_1' => '',
+                                                   'address_line_2' => '',
+                                                   'city_id' => '',
+                                                   'state_id' => '',
+                                                   'country_id' => ''
                                                ]);
 
             $user->userEducationDetail()->create([

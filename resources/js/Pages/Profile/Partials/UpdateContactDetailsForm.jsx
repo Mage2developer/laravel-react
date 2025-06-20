@@ -18,8 +18,12 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
             user_id: '',
             mobile_number: '',
             father_mobile_number: '',
-            native_city: '',
-            current_address: ''
+            native_address: '',
+            address_line_1: '',
+            address_line_2: '',
+            city_id: '',
+            state_id: '',
+            country_id: '',
         });
 
     const fetchData = async (userId) => {
@@ -105,31 +109,31 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.father_mobile_number} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="native_city" value="Native City"/>
+                    <InputLabel htmlFor="native_address" value="Native City"/>
 
                     <TextInput
-                        id="native_city"
-                        value={data.native_city}
-                        onChange={(e) => setData('native_city', e.target.value)}
+                        id="native_address"
+                        value={data.native_address}
+                        onChange={(e) => setData('native_address', e.target.value)}
                         type="text"
                         className="mt-1 block w-full"
                     />
 
-                    <InputError message={errors.native_city} className="mt-2"/>
+                    <InputError message={errors.native_address} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="current_address" value="Current Address" required />
+                    <InputLabel htmlFor="address_line_1" value="Current Address" required />
 
-                    <textarea id="current_address"
-                              name="current_address"
-                              value={data.current_address}
+                    <textarea id="address_line_1"
+                              name="address_line_1"
+                              value={data.address_line_1}
                               required
-                              onChange={(e) => setData('current_address', e.target.value)}
+                              onChange={(e) => setData('address_line_1', e.target.value)}
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
                               focus:ring-indigo-500 text-sm font-medium text-gray-700"
                     />
 
-                    <InputError message={errors.current_address} className="mt-2"/>
+                    <InputError message={errors.address_line_1} className="mt-2"/>
                 </div>
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>

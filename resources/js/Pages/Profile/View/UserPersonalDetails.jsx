@@ -129,9 +129,9 @@ function UserPersonalDetails({ item }) {
                             <InfoCard
                                 label="Location:"
                                 value={
-                                    item.user_contact_detail.current_address ? (
+                                    item.user_contact_detail.address_line_1 ? (
                                         <span className="ml-10 xs425:ml-2 flex items-center">
-                                        {item.user_contact_detail.current_address}
+                                        {item.user_contact_detail.address_line_1}
                                     </span>
                                     ) : <span className="ml-2">Not Available</span>
                                 }

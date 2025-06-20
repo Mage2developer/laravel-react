@@ -22,18 +22,18 @@ const UserContactDetails = ({ item }) => {
                     label="Address:"
                     value={
                         <div className="ml-8 xs425:ml-2 flex items-center">
-                            {item.user_contact_detail.current_address}
+                            {item.user_contact_detail.address_line_1}
                         </div>
                     }
                     icon={<FaLocationCrosshairs size={24} />}
                     marginCustom={true}
                     />
-                {!item.user_contact_detail.native_city ? (
+                {!item.user_contact_detail.native_address ? (
                     ""
                 ) : (
                     <InfoCard
                         label="Native City:"
-                        value={item.user_contact_detail.native_city}
+                        value={item.user_contact_detail.native_address}
                         icon={<FaCity size={22} className="me-2" />}
                     />
                 )}
