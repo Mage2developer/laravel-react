@@ -52,6 +52,8 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries')
                 ->onDelete('cascade');
+
+            $table->text('foreign_address')->nullable();
         });
     }
 
