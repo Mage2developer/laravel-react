@@ -31,7 +31,8 @@ class UserContactDetailRequest extends FormRequest
             'city_id' => 'required',
             'state_id' => 'required',
             'country_id' => 'required',
-            'user_id' => 'required|exists:users,id'
+            'user_id' => 'required|exists:users,id',
+            'foreign_address' => 'nullable|string|max:500',
         ];
     }
 }

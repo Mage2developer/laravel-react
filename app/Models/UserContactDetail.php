@@ -27,7 +27,8 @@ class UserContactDetail extends Model
         'address_line_2',
         'city_id',
         'state_id',
-        'country_id'
+        'country_id',
+        'foreign_address'
     ];
 
     protected $hidden = [

@@ -61,41 +61,42 @@ class User extends Authenticatable
             $personal_income = request()->personal_income ?: '';
 
             $user->userContactDetail()->create([
-                                                   'mobile_number' => $mobile_number,
-                                                   'father_mobile_number' => '',
-                                                   'native_address' => '',
-                                                   'address_line_1' => '',
-                                                   'address_line_2' => '',
-                                                   'city_id' => '',
-                                                   'state_id' => '',
-                                                   'country_id' => ''
-                                               ]);
+                'mobile_number' => $mobile_number,
+                'father_mobile_number' => '',
+                'native_address' => '',
+                'address_line_1' => '',
+                'address_line_2' => '',
+                'city_id' => '',
+                'state_id' => '',
+                'country_id' => '',
+                'foreign_address' => ''
+            ]);
 
             $user->userEducationDetail()->create([
-                                                     'education' => $education,
-                                                     'occupation' => $occupation,
-                                                     'personal_income' => $personal_income,
-                                                     'family_income' => ''
-                                                 ]);
+                'education' => $education,
+                'occupation' => $occupation,
+                'personal_income' => $personal_income,
+                'family_income' => ''
+            ]);
 
             $user->userFamilyDetail()->create([
-                                                  'father_name' => $father_name,
-                                                  'mother_name' => $mother_name,
-                                                  'brother_name' => '',
-                                                  'brother_in_laws' => '',
-                                                  'sister_name' => '',
-                                                  'sister_in_laws' => ''
-                                              ]);
+                'father_name' => $father_name,
+                'mother_name' => $mother_name,
+                'brother_name' => '',
+                'brother_in_laws' => '',
+                'sister_name' => '',
+                'sister_in_laws' => ''
+            ]);
             $user->userPersonalDetail()->create([
-                                                    'dob' => $dob,
-                                                    'marital_status' => $marital_status,
-                                                    'height' => '',
-                                                    'weight' => '',
-                                                    'manglik' => 0,
-                                                    'have_specs' => 0,
-                                                    'hobby' => '',
-                                                    'sex' => $sex
-                                                ]);
+                'dob' => $dob,
+                'marital_status' => $marital_status,
+                'height' => '',
+                'weight' => '',
+                'manglik' => 0,
+                'have_specs' => 0,
+                'hobby' => '',
+                'sex' => $sex
+            ]);
         });
     }
 
@@ -143,10 +144,10 @@ class User extends Authenticatable
     public function scopeWithAllDetails($query)
     {
         return $query->with([
-                                'userPersonalDetail:id,user_id,dob,marital_status,sex',
-                                'userEducationDetail:id,user_id,occupation,personal_income',
-                                'userImages'
-                            ])
+            'userPersonalDetail:id,user_id,dob,marital_status,sex',
+            'userEducationDetail:id,user_id,occupation,personal_income',
+            'userImages'
+        ])
             ->where('users.status', Data::ENABLE)
             ->where('users.is_deleted', Data::DISABLE)
             ->where('users.role', Data::USER_SLUG)
@@ -167,11 +168,11 @@ class User extends Authenticatable
             'userImages'
         )
             ->where([
-                        ['users.id', '=', $id],
-                        ['users.status', '=', Data::ENABLE],
-                        ['users.is_deleted', '=', Data::DISABLE],
-                        ['users.role', '=', Data::USER_SLUG]
-                    ]
+                    ['users.id', '=', $id],
+                    ['users.status', '=', Data::ENABLE],
+                    ['users.is_deleted', '=', Data::DISABLE],
+                    ['users.role', '=', Data::USER_SLUG]
+                ]
             )->first();
     }
 
@@ -208,10 +209,10 @@ class User extends Authenticatable
             'userImages'
         )
             ->where([
-                        ['users.status', '=', Data::ENABLE],
-                        ['users.is_deleted', '=', Data::DISABLE],
-                        ['users.role', '=', Data::USER_SLUG]
-                    ]
+                    ['users.status', '=', Data::ENABLE],
+                    ['users.is_deleted', '=', Data::DISABLE],
+                    ['users.role', '=', Data::USER_SLUG]
+                ]
             )
             ->orderBy('users.id', Data::DESC)
             ->limit(Data::LATEST_PROFILE_UMBER)
@@ -219,32 +220,6 @@ class User extends Authenticatable
 
         return $users->toArray();
     }
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param $token
-     * @return void
-     */
-    /*public function sendPasswordResetNotification($token): void
-    {
-        $isMobileApp = $this->isMobileRequest();
-
-        $this->notify(new MobileResetPasswordNotification($token, $isMobileApp));
-    }*/
 
     /**
      * Check request created from mobile or not
@@ -286,5 +261,31 @@ class User extends Authenticatable
         die();
 
         return false;
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param $token
+     * @return void
+     */
+    /*public function sendPasswordResetNotification($token): void
+    {
+        $isMobileApp = $this->isMobileRequest();
+
+        $this->notify(new MobileResetPasswordNotification($token, $isMobileApp));
+    }*/
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }
