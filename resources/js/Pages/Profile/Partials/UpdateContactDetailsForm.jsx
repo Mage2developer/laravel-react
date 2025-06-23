@@ -12,7 +12,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [alert, setAlert] = useState(false);
-    const [selectedRegion, setSelectedRegion] = useState("india"); // 'india' | 'foreign' | null
+    const [selectedRegion, setSelectedRegion] = useState("india");
 
     const { data, setData, errors, processing } = useForm({
         user_id: "",
@@ -34,12 +34,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                 const contact = res.data.profile.user_contact_detail;
                 setData(contact);
                 setData("user_id", userId);
-
-                // if (!contact.country_id || contact.country_id !== 76) {
-                //     setSelectedRegion("foreign");
-                // } else {
-                //     setSelectedRegion("india");
-                // }
             })
             .catch((err) => console.error("Error fetching user data", err));
     }, [userId]);
@@ -47,15 +41,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     useEffect(() => {
         if (selectedRegion === "india") {
             setData("country_id", 76);
-        } else if (selectedRegion === "foreign") {
-            setData((prev) => ({
-                ...prev,
-                address_line_1: "",
-                address_line_2: "",
-                state_id: "",
-                city_id: "",
-                country_id: "",
-            }));
         }
     }, [selectedRegion]);
 
@@ -156,43 +141,33 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                     />
                 </div>
 
+                {/* Tab Section for Address */}
                 <div className="mt-4">
-                    <div className="mb-1">
-                        <InputLabel value="Current Address" />
-                    </div>
-                    <div className="flex gap-3 rounded-t-md overflow-hidden w-max">
-                        <SecondaryButton
-                            type="button"
-                            onClick={() => setSelectedRegion("india")}
-                            className={`px-4 py-2 text-sm font-medium border-r border-gray-300 ${
-                                selectedRegion === "india"
-                                    ? "bg-red-600 text-white border-b-0 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
-                                    : "bg-gray-100 text-gray-600 hover:bg-red-400 hover:text-white"
-                            }`}
-                            style={{ fontSize: "12px" }}
-                        >
-                            INDIA
-                        </SecondaryButton>
-                        <SecondaryButton
-                            type="button"
-                            onClick={() => setSelectedRegion("foreign")}
-                            className={`px-4 py-2 text-sm font-medium ${
-                                selectedRegion === "foreign"
-                                    ? "bg-red-600 text-white border-b-0 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
-                                    : "bg-gray-100 text-gray-600 hover:bg-red-400 hover:text-white"
-                            }`}
-                            style={{ fontSize: "12px" }}
-                        >
-                            FOREIGN
-                        </SecondaryButton>
+                    <InputLabel value="Current Address" className="mb-2" />
+
+                    {/* Tabs */}
+                    <div className="flex">
+                        {["india", "foreign"].map((region) => (
+                            <button
+                                key={region}
+                                type="button"
+                                onClick={() => setSelectedRegion(region)}
+                                className={`px-4 py-2 text-sm font-semibold capitalize focus:outline-none transition-all duration-200 
+                                    ${
+                                        selectedRegion === region
+                                            ? "border-b-2 border-red-600 text-red-600"
+                                            : "text-gray-500 hover:text-red-600"
+                                    }`}
+                            >
+                                {region}
+                            </button>
+                        ))}
                     </div>
                 </div>
 
+                {/* Tab Content */}
                 {selectedRegion && (
-                    <div
-                        className="border border-gray-300 rounded-lg p-4 bg-white m-0"
-                        style={{ margin: 0 }}
-                    >
+                    <div className="border border-gray-300 rounded-b-lg p-4 bg-white">
                         {selectedRegion === "foreign" && (
                             <>
                                 <InputLabel
