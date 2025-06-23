@@ -30,7 +30,7 @@ export const fetchCountries = async () => {
 
 export const getNameById = (list, id, key = "name") => {
     const item = list.find((i) => i.id === id);
-    return item?.[key] || "Not Specified";
+    return item?.[key] || "";
 };
 
 export const getCityName = (id) => getNameById(cityList, id, "city_name");

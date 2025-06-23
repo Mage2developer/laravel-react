@@ -14,6 +14,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     const [alert, setAlert] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState("india");
 
+
     const { data, setData, errors, processing } = useForm({
         user_id: "",
         mobile_number: "",
@@ -152,11 +153,11 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                 key={region}
                                 type="button"
                                 onClick={() => setSelectedRegion(region)}
-                                className={`px-4 py-2 text-sm font-semibold capitalize focus:outline-none transition-all duration-200 
+                                className={`px-4 py-2 text-sm font-semibold capitalize focus:outline-none transition-all duration-200
                                     ${
                                         selectedRegion === region
                                             ? "border-b-2 border-red-600 text-red-600"
-                                            : "text-gray-500 hover:text-red-600"
+                                            : "border-b-2 border-white text-gray-500 hover:text-red-600"
                                     }`}
                             >
                                 {region}
@@ -247,6 +248,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     onChange={setData}
                                     apiEndpoint="/api/getCountry"
                                     error={errors.country_id}
+                                    required
                                 />
 
                                 <SelectDropdown
@@ -257,6 +259,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     onChange={setData}
                                     apiEndpoint="/api/getState"
                                     error={errors.state_id}
+                                    required
                                 />
 
                                 <SelectDropdown
