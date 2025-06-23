@@ -1,207 +1,305 @@
-import React from "react";
-import {useEffect, useState} from "react";
-import {useForm} from "@inertiajs/react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "@inertiajs/react";
 import axios from "axios";
 import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
-import SelectBox from "@/Components/SelectBox";
+import SelectDropdown from "@/Components/SelectDropdown";
+import SecondaryButton from "@/Components/SecondaryButton";
 
-export default function UpdateContactDetailsForm({ userId, className = '' }) {
-
-    const [successMessage, setSuccessMessage] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+export default function UpdateContactDetailsForm({ userId, className = "" }) {
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [alert, setAlert] = useState(false);
+    const [selectedRegion, setSelectedRegion] = useState(null); // 'india' | 'foreign' | null
 
-    const {data, setData, errors, processing} =
-        useForm({
-            user_id: '',
-            mobile_number: '',
-            father_mobile_number: '',
-            native_address: '',
-            address_line_1: '',
-            address_line_2: '',
-            city_id: '',
-            state_id: '',
-            country_id: '',
-        });
-
-    const fetchData = async (userId) => {
-        axios.get(`/currentProfile/${userId}`)
-            .then(response => {
-
-                setData(response.data.profile.user_contact_detail);
-                setData('user_id', userId);
-
-            })
-            .catch(error => {
-                console.error("Error fetching user data", error);
-            });
-    };
+    const { data, setData, errors, processing } = useForm({
+        user_id: "",
+        mobile_number: "",
+        father_mobile_number: "",
+        native_address: "",
+        foreign_address: "",
+        address_line_1: "",
+        address_line_2: "",
+        city_id: "",
+        state_id: "",
+        country_id: "",
+    });
 
     useEffect(() => {
-        fetchData(userId);
+        axios
+            .get(`/currentProfile/${userId}`)
+            .then((res) => {
+                const contact = res.data.profile.user_contact_detail;
+                setData(contact);
+                setData("user_id", userId);
+
+                // if (!contact.country_id || contact.country_id !== 76) {
+                //     setSelectedRegion("foreign");
+                // } else {
+                //     setSelectedRegion("india");
+                // }
+            })
+            .catch((err) => console.error("Error fetching user data", err));
     }, [userId]);
 
     useEffect(() => {
-        if (alert) {
-            setTimeout(() => {
-                setAlert(false);
-                setSuccessMessage('');
-                setErrorMessage('');
-            }, 5000);
+        if (selectedRegion === "india") {
+            setData("country_id", 76);
+        } else if (selectedRegion === "foreign") {
+            setData((prev) => ({
+                ...prev,
+                address_line_1: "",
+                address_line_2: "",
+                state_id: "",
+                city_id: "",
+                country_id: "",
+            }));
         }
-    }, [alert, successMessage, errorMessage]);
+    }, [selectedRegion]);
 
-    const updateContactDetails = async (e) => {
+    useEffect(() => {
+        if (alert) {
+            const timeout = setTimeout(() => {
+                setAlert(false);
+                setSuccessMessage("");
+                setErrorMessage("");
+            }, 5000);
+            return () => clearTimeout(timeout);
+        }
+    }, [alert]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.get("/sanctum/csrf-cookie"); // For Laravel Sanctum
-
-            const response = await axios.patch("/userContactDetail", data);
-
-            if (response.data.success) {
-                setSuccessMessage(response.data.message);
-                await fetchData(userId);
+            await axios.get("/sanctum/csrf-cookie");
+            const res = await axios.patch("/userContactDetail", data);
+            if (res.data.success) {
+                setSuccessMessage(res.data.message);
+                await axios
+                    .get(`/currentProfile/${userId}`)
+                    .then((res) =>
+                        setData(res.data.profile.user_contact_detail)
+                    );
             } else {
-                setErrorMessage(response.data.message);
+                setErrorMessage(res.data.message);
             }
-            setAlert(true);
-
-        } catch (error) {
-            if (error.response?.status === 422) {
-                setErrorMessage(error.response.data.message);
-            } else {
-                setErrorMessage("An error occurred.");
-            }
+        } catch (err) {
+            setErrorMessage(
+                err.response?.data?.message || "An error occurred."
+            );
+        } finally {
             setAlert(true);
         }
     };
 
     return (
         <section className={className}>
-            <form onSubmit={updateContactDetails} className="mt-6 space-y-6" method="post">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="mobile_number" value="Mobile Number" required />
-
+                    <InputLabel
+                        htmlFor="mobile_number"
+                        value="Mobile Number"
+                        required
+                    />
                     <TextInput
                         id="mobile_number"
                         value={data.mobile_number}
                         required
-                        onChange={(e) => setData('mobile_number', e.target.value)}
-                        type="text"
+                        onChange={(e) =>
+                            setData("mobile_number", e.target.value)
+                        }
                         className="mt-1 block w-full"
                     />
-
-                    <InputError message={errors.mobile_number} className="mt-2"/>
+                    <InputError
+                        message={errors.mobile_number}
+                        className="mt-2"
+                    />
                 </div>
-                <div>
-                    <InputLabel htmlFor="father_mobile_number" value="Father's Mobile Number"/>
 
+                <div>
+                    <InputLabel
+                        htmlFor="father_mobile_number"
+                        value="Father's Mobile Number"
+                    />
                     <TextInput
                         id="father_mobile_number"
                         value={data.father_mobile_number}
-                        onChange={(e) => setData('father_mobile_number', e.target.value)}
-                        type="text"
+                        onChange={(e) =>
+                            setData("father_mobile_number", e.target.value)
+                        }
                         className="mt-1 block w-full"
                     />
-
-                    <InputError message={errors.father_mobile_number} className="mt-2"/>
-                </div>
-                <div>
-                    <InputLabel htmlFor="native_address" value="Native Address"/>
-
-                    <textarea id="native_address"
-                              name="native_address"
-                              value={data.native_address}
-                              required
-                              onChange={(e) => setData('native_address', e.target.value)}
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
-                              focus:ring-indigo-500 text-sm font-medium text-gray-700"
+                    <InputError
+                        message={errors.father_mobile_number}
+                        className="mt-2"
                     />
-
-                    <InputError message={errors.native_address} className="mt-2"/>
                 </div>
-                <div>
-                    <InputLabel htmlFor="address_line_1" value="Address Line 1" required/>
 
-                    <TextInput
-                        id="address_line_1"
-                        value={data.address_line_1}
+                <div>
+                    <InputLabel
+                        htmlFor="native_address"
+                        value="Native Address"
+                    />
+                    <textarea
+                        id="native_address"
+                        value={data.native_address}
                         required
-                        onChange={(e) => setData('address_line_1', e.target.value)}
-                        type="text"
-                        className="mt-1 block w-full"
+                        onChange={(e) =>
+                            setData("native_address", e.target.value)
+                        }
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm font-medium text-gray-700"
                     />
-
-                    <InputError message={errors.address_line_1} className="mt-2"/>
+                    <InputError
+                        message={errors.native_address}
+                        className="mt-2"
+                    />
                 </div>
+
                 <div>
-                    <InputLabel htmlFor="address_line_2" value="Address Line 2"/>
-
-                    <TextInput
-                        id="address_line_2"
-                        value={data.address_line_2}
-                        onChange={(e) => setData('address_line_2', e.target.value)}
-                        type="text"
-                        className="mt-1 block w-full"
-                    />
-
-                    <InputError message={errors.address_line_2} className="mt-2"/>
+                    <InputLabel value="Current Address" />
+                    <div className="mt-1 flex gap-3 items-center">
+                        <SecondaryButton
+                            type="button"
+                            onClick={() => setSelectedRegion("india")}
+                            className={
+                                selectedRegion === "india"
+                                    ? "bg-red-600 text-white hover:bg-red-400"
+                                    : ""
+                            }
+                            style={{ fontSize: 12 }}
+                        >
+                            INDIA
+                        </SecondaryButton>
+                        <SecondaryButton
+                            type="button"
+                            onClick={() => setSelectedRegion("foreign")}
+                            className={
+                                selectedRegion === "foreign"
+                                    ? "bg-red-600 text-white hover:bg-red-400"
+                                    : ""
+                            }
+                            style={{ fontSize: 12 }}
+                        >
+                            FOREIGN
+                        </SecondaryButton>
+                    </div>
                 </div>
-                <div>
-                    <InputLabel htmlFor="city_id" value="City"/>
 
-                    <SelectBox
-                        id="city_id"
-                        name="city_id"
-                        value={data.city_id}
-                        required
-                        onChange={setData}
-                        options={{}}
-                        className="mt-1 block w-full"
-                    />
+                {selectedRegion === "foreign" && (
+                    <div>
+                        <InputLabel
+                            htmlFor="foreign_address"
+                            value="Foreign Address"
+                        />
+                        <textarea
+                            id="foreign_address"
+                            value={data.foreign_address}
+                            required
+                            onChange={(e) =>
+                                setData("foreign_address", e.target.value)
+                            }
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm font-medium text-gray-700"
+                        />
+                        <InputError
+                            message={errors.foreign_address}
+                            className="mt-2"
+                        />
+                    </div>
+                )}
 
-                    <InputError message={errors.city_id} className="mt-2"/>
-                </div>
-                <div>
-                    <InputLabel htmlFor="state_id" value="State"/>
+                {selectedRegion === "india" && (
+                    <>
+                        <div>
+                            <InputLabel
+                                htmlFor="address_line_1"
+                                value="Address Line 1"
+                                required
+                            />
+                            <TextInput
+                                id="address_line_1"
+                                value={data.address_line_1}
+                                required
+                                onChange={(e) =>
+                                    setData("address_line_1", e.target.value)
+                                }
+                                className="mt-1 block w-full"
+                            />
+                            <InputError
+                                message={errors.address_line_1}
+                                className="mt-2"
+                            />
+                        </div>
 
-                    <SelectBox
-                        id="state_id"
-                        name="state_id"
-                        value={data.state_id}
-                        required
-                        onChange={setData}
-                        options={{}}
-                        className="mt-1 block w-full"
-                    />
+                        <div>
+                            <InputLabel
+                                htmlFor="address_line_2"
+                                value="Address Line 2"
+                            />
+                            <TextInput
+                                id="address_line_2"
+                                value={data.address_line_2}
+                                onChange={(e) =>
+                                    setData("address_line_2", e.target.value)
+                                }
+                                className="mt-1 block w-full"
+                            />
+                            <InputError
+                                message={errors.address_line_2}
+                                className="mt-2"
+                            />
+                        </div>
 
-                    <InputError message={errors.state_id} className="mt-2"/>
-                </div>
-                <div>
-                    <InputLabel htmlFor="country_id" value="Country"/>
+                        <SelectDropdown
+                            id="country_id"
+                            name="country_id"
+                            label="Country"
+                            value={data.country_id}
+                            onChange={setData}
+                            apiEndpoint="/api/getCountry"
+                            required
+                            error={errors.country_id}
+                        />
 
-                    <SelectBox
-                        id="country_id"
-                        name="country_id"
-                        value={data.country_id}
-                        required
-                        onChange={setData}
-                        options={{}}
-                        className="mt-1 block w-full"
-                    />
+                        <SelectDropdown
+                            id="state_id"
+                            name="state_id"
+                            label="States"
+                            value={data.state_id}
+                            onChange={setData}
+                            apiEndpoint="/api/getState"
+                            required
+                            error={errors.state_id}
+                        />
 
-                    <InputError message={errors.country_id} className="mt-2"/>
-                </div>
+                        <SelectDropdown
+                            id="city_id"
+                            name="city_id"
+                            label="City"
+                            value={data.city_id}
+                            onChange={setData}
+                            apiEndpoint="/api/getCity"
+                            required
+                            error={errors.city_id}
+                        />
+                    </>
+                )}
+
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
-                    <div className={`${alert ? 'visible' : 'hidden'}`}>
-                        {successMessage && <p className="text-sm text-green-600">{successMessage}</p>}
-                        {errorMessage && <p className="text-sm text-red-600">{errorMessage}</p>}
-                    </div>
+                    {alert && (
+                        <p
+                            className={`text-sm ${
+                                successMessage
+                                    ? "text-green-600"
+                                    : "text-red-600"
+                            }`}
+                        >
+                            {successMessage || errorMessage}
+                        </p>
+                    )}
                 </div>
             </form>
         </section>
