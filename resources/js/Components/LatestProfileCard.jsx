@@ -9,7 +9,7 @@ export const LatestProfileCard = ({ profile }) => {
     return (
         <div className="flex flex-col items-center p-3 rounded-xl transition-transform border shadow-lg bg-[#fff7f7] bg-opacity-10  duration-300 ease hover:transform hover:scale-105 flex-[0_0_200px]">
             <Link
-                href={`/profile/${profile.id}`}
+                href={`/profile/${btoa(profile.id)}`}
                 className="text-center flex-col items-center justify-center"
             >
                 <div className="text-center flex items-center justify-center cursor-pointer">
