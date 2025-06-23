@@ -22,8 +22,13 @@ class UserContactDetailFactory extends Factory
             'user_id' => '',
             'mobile_number' => $this->faker->phoneNumber(),
             'father_mobile_number' =>$this->faker->phoneNumber(),
-            'native_city' => $this->faker->city,
-            'current_address' => $this->faker->address
+            'native_address' => $this->faker->address,
+            'foreign_address' => $this->faker->address,
+            'address_line_1' => $this->faker->address,
+            'address_line_2' => $this->faker->address,
+            'city_id' => 0,
+            'state_id' => 0,
+            'country_id' => 0
         ];
     }
 }

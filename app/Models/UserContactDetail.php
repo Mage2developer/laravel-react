@@ -22,13 +22,13 @@ class UserContactDetail extends Model
     protected $fillable = [
         'mobile_number',
         'father_mobile_number',
-        'native_address',
+        'native_city',
+        'foreign_address',
         'address_line_1',
         'address_line_2',
         'city_id',
         'state_id',
-        'country_id',
-        'foreign_address'
+        'country_id'
     ];
 
     protected $hidden = [
@@ -38,20 +38,5 @@ class UserContactDetail extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(State::class);
-    }
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
     }
 }

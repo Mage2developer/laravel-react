@@ -45,11 +45,17 @@ class DatabaseSeeder extends Seeder
             Review::factory($numReview)->count($numReview)->bad()->for($book)->create();
         });*/
 
+        $this->call([
+            CountriesTableSeeder::class,
+            StatesTableSeeder::class,
+            CitiesTableSeeder::class,
+        ]);
+
         User::factory(50)->create()->each(function (User $user) {
-            // UserPersonalDetail::factory()->for($user)->create();
-            // UserContactDetail::factory()->for($user)->create();
-            // UserEducationDetail::factory()->for($user)->create();
-            // UserFamilyDetail::factory()->for($user)->create();
+             UserPersonalDetail::factory()->for($user)->create();
+             UserContactDetail::factory()->for($user)->create();
+             UserEducationDetail::factory()->for($user)->create();
+             UserFamilyDetail::factory()->for($user)->create();
         });
     }
 }

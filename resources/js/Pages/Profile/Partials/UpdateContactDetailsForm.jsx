@@ -6,6 +6,7 @@ import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
+import SelectBox from "@/Components/SelectBox";
 
 export default function UpdateContactDetailsForm({ userId, className = '' }) {
 
@@ -109,31 +110,90 @@ export default function UpdateContactDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.father_mobile_number} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="native_address" value="Native City"/>
+                    <InputLabel htmlFor="native_address" value="Native Address"/>
 
-                    <TextInput
-                        id="native_address"
-                        value={data.native_address}
-                        onChange={(e) => setData('native_address', e.target.value)}
-                        type="text"
-                        className="mt-1 block w-full"
+                    <textarea id="native_address"
+                              name="native_address"
+                              value={data.native_address}
+                              required
+                              onChange={(e) => setData('native_address', e.target.value)}
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
+                              focus:ring-indigo-500 text-sm font-medium text-gray-700"
                     />
 
                     <InputError message={errors.native_address} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="address_line_1" value="Current Address" required />
+                    <InputLabel htmlFor="address_line_1" value="Address Line 1" required/>
 
-                    <textarea id="address_line_1"
-                              name="address_line_1"
-                              value={data.address_line_1}
-                              required
-                              onChange={(e) => setData('address_line_1', e.target.value)}
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
-                              focus:ring-indigo-500 text-sm font-medium text-gray-700"
+                    <TextInput
+                        id="address_line_1"
+                        value={data.address_line_1}
+                        required
+                        onChange={(e) => setData('address_line_1', e.target.value)}
+                        type="text"
+                        className="mt-1 block w-full"
                     />
 
                     <InputError message={errors.address_line_1} className="mt-2"/>
+                </div>
+                <div>
+                    <InputLabel htmlFor="address_line_2" value="Address Line 2"/>
+
+                    <TextInput
+                        id="address_line_2"
+                        value={data.address_line_2}
+                        onChange={(e) => setData('address_line_2', e.target.value)}
+                        type="text"
+                        className="mt-1 block w-full"
+                    />
+
+                    <InputError message={errors.address_line_2} className="mt-2"/>
+                </div>
+                <div>
+                    <InputLabel htmlFor="city_id" value="City"/>
+
+                    <SelectBox
+                        id="city_id"
+                        name="city_id"
+                        value={data.city_id}
+                        required
+                        onChange={setData}
+                        options={{}}
+                        className="mt-1 block w-full"
+                    />
+
+                    <InputError message={errors.city_id} className="mt-2"/>
+                </div>
+                <div>
+                    <InputLabel htmlFor="state_id" value="State"/>
+
+                    <SelectBox
+                        id="state_id"
+                        name="state_id"
+                        value={data.state_id}
+                        required
+                        onChange={setData}
+                        options={{}}
+                        className="mt-1 block w-full"
+                    />
+
+                    <InputError message={errors.state_id} className="mt-2"/>
+                </div>
+                <div>
+                    <InputLabel htmlFor="country_id" value="Country"/>
+
+                    <SelectBox
+                        id="country_id"
+                        name="country_id"
+                        value={data.country_id}
+                        required
+                        onChange={setData}
+                        options={{}}
+                        className="mt-1 block w-full"
+                    />
+
+                    <InputError message={errors.country_id} className="mt-2"/>
                 </div>
                 <div className="flex items-center gap-4">
                     <PrimaryButton disabled={processing}>Save</PrimaryButton>

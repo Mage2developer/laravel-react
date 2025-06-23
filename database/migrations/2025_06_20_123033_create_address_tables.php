@@ -36,24 +36,17 @@ return new class extends Migration
             $table->renameColumn('native_city', 'native_address');
             $table->text('native_address')->nullable()->change();
 
-            $table->renameColumn('current_address', 'address_line_1');
-            $table->string('address_line_1', 300)->nullable()->change();
+            $table->renameColumn('current_address', 'foreign_address');
 
+            $table->string('address_line_1', 300)->nullable();
             $table->string('address_line_2', 300)->nullable();
+            $table->unsignedBigInteger('city_id')->default(0);
+            $table->unsignedBigInteger('state_id')->default(0);
+            $table->unsignedBigInteger('country_id')->default(0);
 
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities')
-                ->onDelete('cascade');
-
-            $table->unsignedBigInteger('state_id')->nullable();
-            $table->foreign('state_id')->references('id')->on('states')
-                ->onDelete('cascade');
-
-            $table->unsignedBigInteger('country_id')->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')
-                ->onDelete('cascade');
-
-            $table->text('foreign_address')->nullable();
+            $table->index('city_id');
+            $table->index('state_id');
+            $table->index('country_id');
         });
     }
 
@@ -62,10 +55,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('cities');
 
         Schema::dropIfExists('states');
 
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('countries');
     }
 };

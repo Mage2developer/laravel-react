@@ -64,12 +64,12 @@ class User extends Authenticatable
                 'mobile_number' => $mobile_number,
                 'father_mobile_number' => '',
                 'native_address' => '',
+                'foreign_address' => '',
                 'address_line_1' => '',
                 'address_line_2' => '',
-                'city_id' => '',
-                'state_id' => '',
-                'country_id' => '',
-                'foreign_address' => ''
+                'city_id' => 0,
+                'state_id' => 0,
+                'country_id' => 0
             ]);
 
             $user->userEducationDetail()->create([
