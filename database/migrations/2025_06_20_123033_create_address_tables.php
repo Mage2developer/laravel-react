@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text('native_address')->nullable()->change();
 
             $table->renameColumn('current_address', 'foreign_address');
+            $table->text('foreign_address')->nullable()->change();
 
             $table->string('address_line_1', 300)->nullable();
             $table->string('address_line_2', 300)->nullable();
