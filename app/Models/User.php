@@ -67,9 +67,9 @@ class User extends Authenticatable
                 'foreign_address' => '',
                 'address_line_1' => '',
                 'address_line_2' => '',
-                'city_id' => 0,
-                'state_id' => 0,
-                'country_id' => 0
+                'city_id' => null,
+                'state_id' => null,
+                'country_id' => null
             ]);
 
             $user->userEducationDetail()->create([

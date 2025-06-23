@@ -41,9 +41,9 @@ return new class extends Migration
 
             $table->string('address_line_1', 300)->nullable();
             $table->string('address_line_2', 300)->nullable();
-            $table->unsignedBigInteger('city_id')->default(0);
-            $table->unsignedBigInteger('state_id')->default(0);
-            $table->unsignedBigInteger('country_id')->default(0);
+            $table->integer('city_id')->nullable();
+            $table->integer('state_id')->nullable();
+            $table->integer('country_id')->nullable();
 
             $table->index('city_id');
             $table->index('state_id');

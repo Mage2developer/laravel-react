@@ -145,7 +145,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                     <textarea
                         id="native_address"
                         value={data.native_address}
-                        required
                         onChange={(e) =>
                             setData("native_address", e.target.value)
                         }
@@ -203,7 +202,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                 <textarea
                                     id="foreign_address"
                                     value={data.foreign_address}
-                                    required
                                     onChange={(e) =>
                                         setData(
                                             "foreign_address",
@@ -230,7 +228,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     <TextInput
                                         id="address_line_1"
                                         value={data.address_line_1}
-                                        required
                                         onChange={(e) =>
                                             setData(
                                                 "address_line_1",
@@ -274,7 +271,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     value={data.country_id}
                                     onChange={setData}
                                     apiEndpoint="/api/getCountry"
-                                    required
                                     error={errors.country_id}
                                 />
 
@@ -285,7 +281,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     value={data.state_id}
                                     onChange={setData}
                                     apiEndpoint="/api/getState"
-                                    required
                                     error={errors.state_id}
                                 />
 
@@ -296,7 +291,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     value={data.city_id}
                                     onChange={setData}
                                     apiEndpoint="/api/getCity"
-                                    required
                                     error={errors.city_id}
                                 />
                             </div>
