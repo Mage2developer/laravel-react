@@ -5,7 +5,7 @@ import AddressConcat from "@/Components/Common/AddressConcat";
 
 const UserContactDetails = ({ item }) => {
     return (
-        <div>
+        <div className="flex flex-col gap-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <InfoCard
                     label="Phone Number:"
@@ -23,43 +23,51 @@ const UserContactDetails = ({ item }) => {
             {!item.user_contact_detail.native_address ? (
                 ""
             ) : (
-                <InfoCard
-                    label="Native Address:"
-                    value={item.user_contact_detail.native_address}
-                    icon={<FaCity size={22} className="me-2" />}
-                />
+                <div>
+                    <InfoCard
+                        label="Native Address:"
+                        value={item.user_contact_detail.native_address}
+                        icon={<FaCity size={22} className="me-2" />}
+                    />
+                </div>
             )}
+
             {!item.user_contact_detail.foreign_address ? (
                 ""
             ) : (
-                <InfoCard
-                    label="Foreign Address:"
-                    value={
-                        <div className="ml-8 xs425:ml-2 flex items-center">
-                            {item.user_contact_detail.foreign_address}
-                        </div>
-                    }
-                    icon={<FaLocationCrosshairs size={24} />}
-                    marginCustom={true}
-                />
-            )}
-            {!item.user_contact_detail.address_line_1 ? (
-                ""
-            ) : (
-                <>
+                <div>
                     <InfoCard
-                        label="India Address:"
+                        label="Foreign Address:"
                         value={
                             <div className="ml-8 xs425:ml-2 flex items-center">
-                                <AddressConcat
-                                    contact={item.user_contact_detail}
-                                />
+                                {item.user_contact_detail.foreign_address}
                             </div>
                         }
                         icon={<FaLocationCrosshairs size={24} />}
                         marginCustom={true}
                     />
-                </>
+                </div>
+            )}
+
+            {!item.user_contact_detail.address_line_1 ? (
+                ""
+            ) : (
+                <div>
+                    <>
+                        <InfoCard
+                            label="India Address:"
+                            value={
+                                <div className="ml-8 xs425:ml-2 flex items-center">
+                                    <AddressConcat
+                                        contact={item.user_contact_detail}
+                                    />
+                                </div>
+                            }
+                            icon={<FaLocationCrosshairs size={24} />}
+                            marginCustom={true}
+                        />
+                    </>
+                </div>
             )}
         </div>
     );
