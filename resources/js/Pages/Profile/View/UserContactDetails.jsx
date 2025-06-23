@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCity, FaLocationCrosshairs, FaPhoneVolume } from "react-icons/fa6";
 import InfoCard from "@/Components/InfoCard";
+import AddressConcat from "@/Components/Common/AddressConcat";
 
 const UserContactDetails = ({ item }) => {
     return (
@@ -18,26 +19,48 @@ const UserContactDetails = ({ item }) => {
                     icon={<FaPhoneVolume size={15} className="me-2" />}
                     contactDetails={true}
                 />
+            </div>
+            {!item.user_contact_detail.native_address ? (
+                ""
+            ) : (
                 <InfoCard
-                    label="Address:"
+                    label="Native Address:"
+                    value={item.user_contact_detail.native_address}
+                    icon={<FaCity size={22} className="me-2" />}
+                />
+            )}
+            {!item.user_contact_detail.foreign_address ? (
+                ""
+            ) : (
+                <InfoCard
+                    label="Foreign Address:"
                     value={
                         <div className="ml-8 xs425:ml-2 flex items-center">
-                            {item.user_contact_detail.address_line_1}
+                            {item.user_contact_detail.foreign_address}
                         </div>
                     }
                     icon={<FaLocationCrosshairs size={24} />}
                     marginCustom={true}
-                    />
-                {!item.user_contact_detail.native_address ? (
-                    ""
-                ) : (
+                />
+            )}
+            {!item.user_contact_detail.address_line_1 ? (
+                ""
+            ) : (
+                <>
                     <InfoCard
-                        label="Native City:"
-                        value={item.user_contact_detail.native_address}
-                        icon={<FaCity size={22} className="me-2" />}
+                        label="India Address:"
+                        value={
+                            <div className="ml-8 xs425:ml-2 flex items-center">
+                                <AddressConcat
+                                    contact={item.user_contact_detail}
+                                />
+                            </div>
+                        }
+                        icon={<FaLocationCrosshairs size={24} />}
+                        marginCustom={true}
                     />
-                )}
-            </div>
+                </>
+            )}
         </div>
     );
 };

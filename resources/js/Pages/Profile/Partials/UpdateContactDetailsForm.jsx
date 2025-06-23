@@ -12,7 +12,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [alert, setAlert] = useState(false);
-    const [selectedRegion, setSelectedRegion] = useState(null); // 'india' | 'foreign' | null
+    const [selectedRegion, setSelectedRegion] = useState("india"); // 'india' | 'foreign' | null
 
     const { data, setData, errors, processing } = useForm({
         user_id: "",
@@ -157,133 +157,151 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                     />
                 </div>
 
-                <div>
-                    <InputLabel value="Current Address" />
-                    <div className="mt-1 flex gap-3 items-center">
+                <div className="mt-4">
+                    <div className="mb-1">
+                        <InputLabel value="Current Address" />
+                    </div>
+                    <div className="flex gap-3 rounded-t-md overflow-hidden w-max">
                         <SecondaryButton
                             type="button"
                             onClick={() => setSelectedRegion("india")}
-                            className={
+                            className={`px-4 py-2 text-sm font-medium border-r border-gray-300 ${
                                 selectedRegion === "india"
-                                    ? "bg-red-600 text-white hover:bg-red-400"
-                                    : ""
-                            }
-                            style={{ fontSize: 12 }}
+                                    ? "bg-red-600 text-white border-b-0 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                                    : "bg-gray-100 text-gray-600 hover:bg-red-400 hover:text-white"
+                            }`}
+                            style={{ fontSize: "12px" }}
                         >
                             INDIA
                         </SecondaryButton>
                         <SecondaryButton
                             type="button"
                             onClick={() => setSelectedRegion("foreign")}
-                            className={
+                            className={`px-4 py-2 text-sm font-medium ${
                                 selectedRegion === "foreign"
-                                    ? "bg-red-600 text-white hover:bg-red-400"
-                                    : ""
-                            }
-                            style={{ fontSize: 12 }}
+                                    ? "bg-red-600 text-white border-b-0 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                                    : "bg-gray-100 text-gray-600 hover:bg-red-400 hover:text-white"
+                            }`}
+                            style={{ fontSize: "12px" }}
                         >
                             FOREIGN
                         </SecondaryButton>
                     </div>
                 </div>
 
-                {selectedRegion === "foreign" && (
-                    <div>
-                        <InputLabel
-                            htmlFor="foreign_address"
-                            value="Foreign Address"
-                        />
-                        <textarea
-                            id="foreign_address"
-                            value={data.foreign_address}
-                            required
-                            onChange={(e) =>
-                                setData("foreign_address", e.target.value)
-                            }
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm font-medium text-gray-700"
-                        />
-                        <InputError
-                            message={errors.foreign_address}
-                            className="mt-2"
-                        />
+                {selectedRegion && (
+                    <div
+                        className="border border-gray-300 rounded-lg p-4 bg-white m-0"
+                        style={{ margin: 0 }}
+                    >
+                        {selectedRegion === "foreign" && (
+                            <>
+                                <InputLabel
+                                    htmlFor="foreign_address"
+                                    value="Foreign Address"
+                                />
+                                <textarea
+                                    id="foreign_address"
+                                    value={data.foreign_address}
+                                    required
+                                    onChange={(e) =>
+                                        setData(
+                                            "foreign_address",
+                                            e.target.value
+                                        )
+                                    }
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"
+                                />
+                                <InputError
+                                    message={errors.foreign_address}
+                                    className="mt-2"
+                                />
+                            </>
+                        )}
+
+                        {selectedRegion === "india" && (
+                            <div className="flex flex-col gap-4">
+                                <div>
+                                    <InputLabel
+                                        htmlFor="address_line_1"
+                                        value="Address Line 1"
+                                        required
+                                    />
+                                    <TextInput
+                                        id="address_line_1"
+                                        value={data.address_line_1}
+                                        required
+                                        onChange={(e) =>
+                                            setData(
+                                                "address_line_1",
+                                                e.target.value
+                                            )
+                                        }
+                                        className="mt-1 block w-full"
+                                    />
+                                    <InputError
+                                        message={errors.address_line_1}
+                                        className="mt-2"
+                                    />
+                                </div>
+
+                                <div>
+                                    <InputLabel
+                                        htmlFor="address_line_2"
+                                        value="Address Line 2"
+                                    />
+                                    <TextInput
+                                        id="address_line_2"
+                                        value={data.address_line_2}
+                                        onChange={(e) =>
+                                            setData(
+                                                "address_line_2",
+                                                e.target.value
+                                            )
+                                        }
+                                        className="mt-1 block w-full"
+                                    />
+                                    <InputError
+                                        message={errors.address_line_2}
+                                        className="mt-2"
+                                    />
+                                </div>
+
+                                <SelectDropdown
+                                    id="country_id"
+                                    name="country_id"
+                                    label="Country"
+                                    value={data.country_id}
+                                    onChange={setData}
+                                    apiEndpoint="/api/getCountry"
+                                    required
+                                    error={errors.country_id}
+                                />
+
+                                <SelectDropdown
+                                    id="state_id"
+                                    name="state_id"
+                                    label="States"
+                                    value={data.state_id}
+                                    onChange={setData}
+                                    apiEndpoint="/api/getState"
+                                    required
+                                    error={errors.state_id}
+                                />
+
+                                <SelectDropdown
+                                    id="city_id"
+                                    name="city_id"
+                                    label="City"
+                                    value={data.city_id}
+                                    onChange={setData}
+                                    apiEndpoint="/api/getCity"
+                                    required
+                                    error={errors.city_id}
+                                />
+                            </div>
+                        )}
                     </div>
-                )}
-
-                {selectedRegion === "india" && (
-                    <>
-                        <div>
-                            <InputLabel
-                                htmlFor="address_line_1"
-                                value="Address Line 1"
-                                required
-                            />
-                            <TextInput
-                                id="address_line_1"
-                                value={data.address_line_1}
-                                required
-                                onChange={(e) =>
-                                    setData("address_line_1", e.target.value)
-                                }
-                                className="mt-1 block w-full"
-                            />
-                            <InputError
-                                message={errors.address_line_1}
-                                className="mt-2"
-                            />
-                        </div>
-
-                        <div>
-                            <InputLabel
-                                htmlFor="address_line_2"
-                                value="Address Line 2"
-                            />
-                            <TextInput
-                                id="address_line_2"
-                                value={data.address_line_2}
-                                onChange={(e) =>
-                                    setData("address_line_2", e.target.value)
-                                }
-                                className="mt-1 block w-full"
-                            />
-                            <InputError
-                                message={errors.address_line_2}
-                                className="mt-2"
-                            />
-                        </div>
-
-                        <SelectDropdown
-                            id="country_id"
-                            name="country_id"
-                            label="Country"
-                            value={data.country_id}
-                            onChange={setData}
-                            apiEndpoint="/api/getCountry"
-                            required
-                            error={errors.country_id}
-                        />
-
-                        <SelectDropdown
-                            id="state_id"
-                            name="state_id"
-                            label="States"
-                            value={data.state_id}
-                            onChange={setData}
-                            apiEndpoint="/api/getState"
-                            required
-                            error={errors.state_id}
-                        />
-
-                        <SelectDropdown
-                            id="city_id"
-                            name="city_id"
-                            label="City"
-                            value={data.city_id}
-                            onChange={setData}
-                            apiEndpoint="/api/getCity"
-                            required
-                            error={errors.city_id}
-                        />
-                    </>
                 )}
 
                 <div className="flex items-center gap-4">
