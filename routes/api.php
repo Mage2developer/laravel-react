@@ -28,9 +28,9 @@ Route::post("/signup", [UserAuthController::class, 'signup']);
 
 Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('contact.submit');
 
-Route::get('/getState', [GetStateController::class, 'show'])->name('state.index');
+Route::get('/getState/{id}', [GetStateController::class, 'show'])->name('state.index');
 Route::get('/getCountry', [GetCountryController::class, 'show'])->name('country.index');
-Route::get('/getCity', [GetCityController::class, 'show'])->name('city.index');
+Route::get('/getCity/{id}', [GetCityController::class, 'show'])->name('city.index');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'show']);
