@@ -26,13 +26,23 @@ class UserContactDetailRequest extends FormRequest
             'mobile_number' => 'required|numeric|digits_between:10,15',
             'father_mobile_number' => 'nullable|numeric|digits_between:10,15',
             'native_address' => 'nullable|string|max:500',
-            'foreign_address' => 'required_without:address_line_1,state_id,country_id|string|nullable|max:500',
             'address_line_1' => 'required_without:foreign_address|string|nullable|max:300',
             'address_line_2' => 'nullable|string|max:300',
             'city_id' => 'nullable|integer',
             'state_id' => 'required_without:foreign_address|nullable|integer',
             'country_id' => 'required_without:foreign_address|nullable|integer',
+            'foreign_address' => 'required_without:address_line_1,state_id,country_id|string|nullable|max:500',
             'user_id' => 'required|exists:users,id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'address_line_1.required_without' => 'Either your Foreign Address or Indian Address required.',
+            'state_id.required_without' => 'State is required.',
+            'country_id.required_without' => 'Country is required.',
+            'foreign_address.required_without' => 'Either your Foreign Address or Indian Address required.',
         ];
     }
 }

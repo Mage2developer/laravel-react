@@ -133,6 +133,7 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
 
     return (
         <section className={className}>
+            <div className="text-[#ff3131] font-bold">(Max 5 images)</div>
             <form onSubmit={uploadProfileImages} className="mt-6 space-y-6">
 
                 <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange}/>
