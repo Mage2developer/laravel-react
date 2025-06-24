@@ -12,14 +12,10 @@ class GetCityController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id = '')
+    public function show(Request $request, $state_id)
     {
         try {
-            if($id) {
-                $city = City::where(Data::STATE_COLUMN_ID, $id);
-            } else {
-                $city = City::all();
-            }
+            $city = City::where(Data::STATE_COLUMN_ID, $state_id);
             return response()->json(['message' => $city, 'success' => true]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
