@@ -54,6 +54,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($user->role === Data::ADMIN_SLUG) {
+            return redirect()->intended(route('users.index', absolute: false));
+        }
+
         return redirect()->intended(route('profile.edit', absolute: false));
     }
 
