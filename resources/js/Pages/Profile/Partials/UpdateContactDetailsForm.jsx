@@ -174,6 +174,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                 <InputLabel
                                     htmlFor="foreign_address"
                                     value="Foreign Address"
+                                    required
                                 />
                                 <textarea
                                     id="foreign_address"

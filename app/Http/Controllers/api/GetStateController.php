@@ -12,10 +12,15 @@ class GetStateController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show()
+    public function show($id = '')
     {
         try {
-            $state = State::all();
+            if($id) {
+                $state = State::where(Data::COUNTRY_COLUMN_ID, $id);
+            } else {
+                $state = State::all();
+            }
+
             return response()->json(['message' => $state, 'success' => true]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
