@@ -161,26 +161,6 @@ function UserPersonalDetails({ item }) {
                         />
                     </div>
                 </div>
-
-                {/* <div>
-                    <div className="bg-gray-50 rounded-lg">
-                        <div className="grid ">
-                            <InfoCard
-                                label="Location:"
-                                value={
-                                    item.user_contact_detail.address_line_1 ? (
-                                        <span className="ml-10 xs425:ml-2 flex items-center">
-                                        {item.user_contact_detail.address_line_1}
-                                    </span>
-                                    ) : <span className="ml-2">Not Available</span>
-                                }
-                                icon={<FaLocationCrosshairs size={24} className="me-2" />}
-                                marginCustom={true}
-                            />
-                        </div>
-                    </div>
-                </div> */}
-
                 <div>
                     <h2 className="text-lg font-semibold text-[#ff3131] mb-2">
                         Career

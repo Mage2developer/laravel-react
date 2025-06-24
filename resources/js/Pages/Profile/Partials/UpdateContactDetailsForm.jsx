@@ -14,7 +14,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     const [alert, setAlert] = useState(false);
     const [selectedRegion, setSelectedRegion] = useState("india");
 
-
     const { data, setData, errors, processing } = useForm({
         user_id: "",
         mobile_number: "",
@@ -41,7 +40,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
 
     useEffect(() => {
         if (selectedRegion === "india") {
-            setData("country_id", 76);
+            setData("country_id", 1);
         }
     }, [selectedRegion]);
 
@@ -65,9 +64,10 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                 setSuccessMessage(res.data.message);
                 await axios
                     .get(`/currentProfile/${userId}`)
-                    .then((res) =>
+                    .then((res) => {
                         setData(res.data.profile.user_contact_detail)
-                    );
+                        setData("user_id", userId);
+                    });
             } else {
                 setErrorMessage(res.data.message);
             }
@@ -168,7 +168,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
 
                 {/* Tab Content */}
                 {selectedRegion && (
-                    <div className="border border-gray-300 rounded-b-lg p-4 bg-white">
+                    <div className="border border-gray-300 rounded-lg p-4 bg-white">
                         {selectedRegion === "foreign" && (
                             <>
                                 <InputLabel
@@ -265,7 +265,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                 <SelectDropdown
                                     id="city_id"
                                     name="city_id"
-                                    label="City"
+                                    label="District"
                                     value={data.city_id}
                                     onChange={setData}
                                     apiEndpoint="/api/getCity"
