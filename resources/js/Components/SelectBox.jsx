@@ -12,7 +12,6 @@ const SelectBox = ({
 }) => {
     const handleChange = (e) => {
         const selectedValue = e.target.value;
-        console.log(`Selected ${name}:`, selectedValue);
         onChange(name, selectedValue); // Pass value back to parent
     };
 
@@ -34,7 +33,7 @@ const SelectBox = ({
                 className
             }
         >
-            <option value="" disabled>
+            <option value="">
                 {placeholder}
             </option>
             {safeOptions.map((opt) => (
