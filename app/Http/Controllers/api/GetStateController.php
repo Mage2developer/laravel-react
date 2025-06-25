@@ -8,6 +8,8 @@ use Exception;
 use App\Http\Helper\Data;
 use Illuminate\Http\JsonResponse;
 
+use Illuminate\Http\Request;
+
 class GetStateController extends Controller
 {
     /**
@@ -24,6 +26,18 @@ class GetStateController extends Controller
             }
 
             return response()->json(['success' => true, 'message' => 'Success.', 'data' => $state->toArray()]);
+        } catch (Exception $exception) {
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function getStateById(Request $request): JsonResponse
+    {
+        try {
+            $stateId = $request->route('id');
+            $state = State::where('id', $stateId)->get();
+
+            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $state]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }

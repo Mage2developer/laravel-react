@@ -7,6 +7,8 @@ use App\Models\Country;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
+use Illuminate\Http\Request;
+
 class GetCountryController extends Controller
 {
     /**
@@ -16,6 +18,18 @@ class GetCountryController extends Controller
     {
         try {
             $country = Country::all();
+            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $country]);
+        } catch (Exception $exception) {
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
+        }
+    }
+
+    public function getCountryById(Request $request): JsonResponse
+    {
+        try {
+            $countryId = $request->route('id');
+            $country = Country::where('id', $countryId)->get();
+
             return response()->json(['success' => true, 'message' => 'Success.', 'data' => $country]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
