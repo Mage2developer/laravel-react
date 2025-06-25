@@ -104,7 +104,7 @@ export default function UpdateEducationDetailsForm({ userId, className = '' }) {
                     <InputError message={errors.occupation} className="mt-2"/>
                 </div>
                 <div>
-                    <InputLabel htmlFor="personal_income" value="Personal Income" required />
+                    <InputLabel htmlFor="personal_income" value="Personal Income (Monthly)" required />
 
                     <TextInput
                         id="personal_income"

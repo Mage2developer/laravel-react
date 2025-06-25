@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
-import {
-    getCityName,
-    getStateName,
-    getCountryName,
-} from "@/Utils/locationUtils";
+import React, {useEffect, useState} from "react";
+import {getCityName, getCountryName, getStateName,} from "@/Utils/locationUtils";
 
-const AddressConcat = ({ contact }) => {
-    const { address_line_1, address_line_2, city_id, state_id, country_id } =
+const AddressConcat = ({contact}) => {
+    const {address_line_1, address_line_2, city_id, state_id, country_id} =
         contact;
 
     const [loaded, setLoaded] = useState(false);
@@ -31,9 +27,7 @@ const AddressConcat = ({ contact }) => {
 
     if (!loaded) return <span>Loading address...</span>;
 
-    const address = `${address_line_1} ${
-        address_line_2 ? ", " + address_line_2 : ""
-    }`;
+    const address = `${address_line_1}${address_line_2 ? ", " + address_line_2 : ""}`;
 
     const fullAddress = `${address}, ${city ? city + ", " : ""} ${
         state ? state + ", " : ""

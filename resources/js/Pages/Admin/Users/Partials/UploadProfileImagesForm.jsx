@@ -98,9 +98,6 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
     const uploadProfileImages = async (e) => {
         e.preventDefault();
 
-        console.log(userId);
-
-
         if (uploadedUrls.length >= 5) {
             setErrorMessage('You can add maximum 5 images');
             setAlert(true);

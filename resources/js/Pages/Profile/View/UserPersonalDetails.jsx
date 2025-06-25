@@ -120,7 +120,7 @@ function UserPersonalDetails({ item }) {
                             icon={<GiSpectacles size={28} className="me-2" />}
                         />
                         <InfoCard
-                            label="Personal Income:"
+                            label="Personal Income (Monthly):"
                             value={
                                 item.user_education_detail.personal_income ? (
                                     <>
@@ -140,7 +140,7 @@ function UserPersonalDetails({ item }) {
                             marginCustom={true}
                         />
                         <InfoCard
-                            label="Family Income:"
+                            label="Family Income (Monthly):"
                             value={
                                 item.user_education_detail.family_income ? (
                                     <>

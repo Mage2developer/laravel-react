@@ -151,7 +151,7 @@ export default function Register() {
                                 <InputError message={errors.dob} className="mt-2"/>
                             </div>
                             <div className="w-full my-3 sm:my-0">
-                                <InputLabel htmlFor="personal_income" value="Personal Income" required/>
+                                <InputLabel htmlFor="personal_income" value="Personal Income (Monthly)" required/>
                                 <TextInput
                                     id="personal_income"
                                     value={data.personal_income}

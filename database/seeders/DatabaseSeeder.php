@@ -18,44 +18,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*User::factory(10)->create();
-        User::factory(5)->unverified()->create();
-        Task::factory(20)->create();*/
-
-        /* User::factory()->create([
-             'name' => 'Test User',
-             'email' => 'test@example.com',
-         ]);*/
-
-        /*Book::factory(33)->create()->each(function (Book $book) {
-            $numReview = random_int(5, 30);
-
-            Review::factory($numReview)->count($numReview)->good()->for($book)->create();
-        });
-
-        Book::factory(33)->create()->each(function (Book $book) {
-            $numReview = random_int(5, 30);
-
-            Review::factory($numReview)->count($numReview)->average()->for($book)->create();
-        });
-
-        Book::factory(34)->create()->each(function (Book $book) {
-            $numReview = random_int(5, 30);
-
-            Review::factory($numReview)->count($numReview)->bad()->for($book)->create();
-        });*/
-
+        // Create table of city state
         $this->call([
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
         ]);
 
-        User::factory(50)->create()->each(function (User $user) {
-             /*UserPersonalDetail::factory()->for($user)->create();
-             UserContactDetail::factory()->for($user)->create();
-             UserEducationDetail::factory()->for($user)->create();
-             UserFamilyDetail::factory()->for($user)->create();*/
-        });
+        User::factory(50)->create()->each(function (User $user) {} );
     }
 }
