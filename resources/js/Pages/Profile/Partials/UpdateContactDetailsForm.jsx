@@ -51,9 +51,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
 
             setData(contact);
             setData('user_id', userId);
-
-            console.log(contact);
-
             setAddressData(prevState => ({
                 ...prevState,
                 enableState: contact.country_id === 0,

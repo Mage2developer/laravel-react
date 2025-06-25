@@ -31,7 +31,6 @@ const ProfileActivation = () => {
             ""
         )}?text=${encodeURIComponent(message)}`;
 
-        console.log(url);
         window.open(url, "_blank");
     };
 

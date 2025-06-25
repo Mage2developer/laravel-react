@@ -1,9 +1,5 @@
-// components/AddressConcat.jsx
 import React, { useEffect, useState } from "react";
 import {
-    fetchCities,
-    fetchStates,
-    fetchCountries,
     getCityName,
     getStateName,
     getCountryName,
@@ -14,26 +10,34 @@ const AddressConcat = ({ contact }) => {
         contact;
 
     const [loaded, setLoaded] = useState(false);
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [country, setCountry] = useState("");
 
     useEffect(() => {
-        const loadLocationData = async () => {
-            await Promise.all([fetchCities(), fetchStates(), fetchCountries()]);
-            setLoaded(true);
-        };
-        loadLocationData();
-    }, []);
+        const loadLocation = async () =>
+            Promise.all([
+                getCityName(city_id),
+                getStateName(state_id),
+                getCountryName(country_id),
+            ]).then(([city, state, country]) => {
+                setCity(city);
+                setState(state);
+                setCountry(country);
+                setLoaded(true);
+            });
+        loadLocation();
+    }, [city_id, state_id, country_id, setCity, setState, setCountry]);
 
     if (!loaded) return <span>Loading address...</span>;
 
-    const fullAddress = [
-        address_line_1,
-        address_line_2,
-        getCityName(city_id),
-        getStateName(state_id),
-        getCountryName(country_id),
-    ]
-        .filter(Boolean)
-        .join(", ");
+    const address = `${address_line_1} ${
+        address_line_2 ? ", " + address_line_2 : ""
+    }`;
+
+    const fullAddress = `${address}, ${city ? city + ", " : ""} ${
+        state ? state + ", " : ""
+    } ${country ? country : ""}`;
 
     return <span>{fullAddress}</span>;
 };
