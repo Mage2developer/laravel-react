@@ -1,4 +1,3 @@
-// components/AddressConcat.jsx
 import React, { useEffect, useState } from "react";
 import {
     getCityName,
@@ -35,8 +34,10 @@ const AddressConcat = ({ contact }) => {
     const address = `${address_line_1} ${
         address_line_2 ? ", " + address_line_2 : ""
     }`;
-    
-    const fullAddress = [address, city, state, country].join(", ");
+
+    const fullAddress = `${address}, ${city ? city + ", " : ""} ${
+        state ? state + ", " : ""
+    } ${country ? country : ""}`;
 
     return <span>{fullAddress}</span>;
 };
