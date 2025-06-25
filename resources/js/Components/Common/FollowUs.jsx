@@ -1,5 +1,6 @@
 import React from "react";
-import { FiFacebook, FiInstagram } from "react-icons/fi";
+import {SocialIcon} from "react-social-icons";
+import Setting from "@/Utils/Setting";
 
 function FollowUs({label}) {
     return (
@@ -7,23 +8,10 @@ function FollowUs({label}) {
             <h3 className="text-lg font-semibold mb-4 text-[#ff3131]">
                 {label}
             </h3>
-            <div className="flex gap-4 items-center">
-                <a
-                    target="_blank"
-                    href="https://www.facebook.com/people/Vanand-Vivah/61576099730680/"
-                    aria-label="Facebook"
-                    className=" hover:text-[#ff3131] transition-colors"
-                >
-                    <FiFacebook className="w-6 h-6" />
-                </a>
-                <a
-                    target="_blank"
-                    href="https://www.instagram.com/vanand.vivah/"
-                    aria-label="Instragram"
-                    className=" hover:text-[#ff3131] transition-colors"
-                >
-                    <FiInstagram className="w-6 h-6" />
-                </a>
+            <div className="flex gap-2 justify-center sm:justify-start" >
+                <SocialIcon network="facebook" url={Setting.FACEBOOK_ULR} target="_blank" style={{ height: '35px', width: '35px' }} />
+                <SocialIcon network="instagram" url={Setting.INSTAGRAM_URL} target="_blank" style={{ height: '35px', width: '35px' }} />
+                <SocialIcon network="youtube"  url={Setting.YOUTUBE_URL} target="_blank" style={{ height: '35px', width: '35px' }}  />
             </div>
         </div>
     );

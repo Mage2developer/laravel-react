@@ -2,6 +2,8 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { SocialIcon } from 'react-social-icons'
+import Setting from "@/Utils/Setting.jsx";
 
 export const Footer = () => {
     const arrFooterLinks = [
@@ -39,13 +41,18 @@ export const Footer = () => {
                         height={"80"}
                         width={"267"}
                     />
+                    <div className="text-center">
+                        <SocialIcon className="mr-3" network="facebook" url={Setting.FACEBOOK_ULR} target="_blank" style={{ height: '45px', width: '45px' }} />
+                        <SocialIcon className="mr-3" network="instagram" url={Setting.INSTAGRAM_URL} target="_blank" style={{ height: '45px', width: '45px' }} />
+                        <SocialIcon network="youtube" url={Setting.YOUTUBE_URL} target="_blank" style={{ height: '45px', width: '45px' }}  />
+                    </div>
                     <p className="mt-4 text-sm text-black">
                         © {(new Date().getFullYear())} vanandvivah.com. All rights reserved.
                     </p>
                     <p className="mt-4 text-sm text-black">
                         Powered By
                         <a href="https://www.mage2developer.com/" target="_blank"
-                              className="text-sm font-medium text-black transition-colors duration-300 hover:text-[#ff3131]">
+                           className="text-sm font-medium text-black transition-colors duration-300 hover:text-[#ff3131]">
                             &nbsp; mage2developer.com
                         </a>
                     </p>
