@@ -5,19 +5,20 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Exception;
+use Illuminate\Http\JsonResponse;
 
 class GetCountryController extends Controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function show()
+    public function show(): JsonResponse
     {
         try {
             $country = Country::all();
-            return response()->json(['message' => $country, 'success' => true]);
+            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $country]);
         } catch (Exception $exception) {
-            return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
     }
 }

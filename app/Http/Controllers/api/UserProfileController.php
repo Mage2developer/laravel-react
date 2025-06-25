@@ -17,7 +17,8 @@ class UserProfileController extends Controller
 {
     public function __construct(
         protected User $user
-    ) {
+    )
+    {
     }
 
     /**
@@ -86,8 +87,8 @@ class UserProfileController extends Controller
     {
         try {
             $request->validate([
-                                   'password' => ['required', 'current_password'],
-                               ]);
+                'password' => ['required', 'current_password'],
+            ]);
 
             $user = $request->user();
             $user->status = 0;
@@ -99,9 +100,9 @@ class UserProfileController extends Controller
             $user->tokens()->delete();
 
             return response()->json([
-                                        'message' => 'Your profile has been successfully deleted.',
-                                        'success' => true
-                                    ]);
+                'message' => 'Your profile has been successfully deleted.',
+                'success' => true
+            ]);
         } catch (Exception $exception) {
             return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
         }
@@ -116,17 +117,17 @@ class UserProfileController extends Controller
     public function resetPassword(Request $request): JsonResponse
     {
         $request->validate([
-                               'token' => 'required',
-                               'email' => 'required|email',
-                               'password' => 'required|min:8|confirmed',
-                           ]);
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
                 $user->forceFill([
-                                     'password' => Hash::make($password)
-                                 ])->setRememberToken(Str::random(60));
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
 
                 $user->save();
 
@@ -139,7 +140,7 @@ class UserProfileController extends Controller
         }
 
         throw ValidationException::withMessages([
-                                                    'email' => [__($status)],
-                                                ]);
+            'email' => [__($status)],
+        ]);
     }
 }

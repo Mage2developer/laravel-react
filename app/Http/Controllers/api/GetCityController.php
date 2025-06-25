@@ -6,19 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Http\Helper\Data;
 use Exception;
+use Illuminate\Http\JsonResponse;
 
 class GetCityController extends Controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @param string|int $id
+     * @return JsonResponse
      */
-    public function show(Request $request, $state_id)
+    public function show($id = ''): JsonResponse
     {
         try {
-            $city = City::where(Data::STATE_COLUMN_ID, $state_id);
-            return response()->json(['message' => $city, 'success' => true]);
+            if($id) {
+                $city = City::where(Data::STATE_COLUMN_ID, $id)->get();
+            } else {
+                $city = City::all();
+            }
+            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $city->toArray()]);
         } catch (Exception $exception) {
-            return response()->json(['message' => $exception->getMessage(), 'success' => false], 500);
+            return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
     }
 }
