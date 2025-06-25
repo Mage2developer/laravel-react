@@ -46,4 +46,8 @@ class Data
 
      const EMAIL_LOGO = 'images/email/logo.png';
 
+     const STATE_COLUMN_ID = 'state_id';
+
+     const COUNTRY_COLUMN_ID = 'country_id';
+
 }
