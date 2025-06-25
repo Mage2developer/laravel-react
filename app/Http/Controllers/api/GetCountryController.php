@@ -17,7 +17,7 @@ class GetCountryController extends Controller
     {
         try {
             $country = Country::all();
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $country]);
+            return response()->json(['success' => true, 'data' => $country]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
@@ -27,9 +27,9 @@ class GetCountryController extends Controller
     {
         try {
             $countryId = $request->route('id');
-            $country = Country::where('id', $countryId)->get();
+            $country = Country::where('id', $countryId)->first();
 
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $country]);
+            return response()->json(['success' => true, 'data' => $country->country_name]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }

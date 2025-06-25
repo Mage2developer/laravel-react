@@ -24,7 +24,7 @@ class GetStateController extends Controller
                 $state = State::all();
             }
 
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $state->toArray()]);
+            return response()->json(['success' => true, 'data' => $state->toArray()]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
@@ -34,9 +34,10 @@ class GetStateController extends Controller
     {
         try {
             $stateId = $request->route('id');
-            $state = State::where('id', $stateId)->get();
+            $state = State::where('id', $stateId)->first();
 
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $state]);
+
+            return response()->json(['success' => true, 'data' => $state->state_name]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }

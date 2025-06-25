@@ -339,7 +339,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                 </div>
 
                                 <div>
-                                    <InputLabel htmlFor="city_id" value="City" required/>
+                                    <InputLabel htmlFor="city_id" value="District"/>
                                     <select
                                         id="city_id"
                                         name="city_id"

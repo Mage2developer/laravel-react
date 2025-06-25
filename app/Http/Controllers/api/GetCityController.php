@@ -23,7 +23,7 @@ class GetCityController extends Controller
             } else {
                 $city = City::all();
             }
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $city->toArray()]);
+            return response()->json(['success' => true, 'data' => $city->toArray()]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
@@ -33,9 +33,9 @@ class GetCityController extends Controller
     {
         try {
             $cityId = $request->route('id');
-            $city = City::where('id', $cityId)->get();
+            $city = City::where('id', $cityId)->first();
 
-            return response()->json(['success' => true, 'message' => 'Success.', 'data' => $city]);
+            return response()->json(['success' => true, 'data' => $city->city_name]);
         } catch (Exception $exception) {
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 500);
         }
