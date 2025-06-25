@@ -16,9 +16,6 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
         countryData: [],
         stateData: [],
         cityData: [],
-        countryId: '',
-        stateId: '',
-        cityId: '',
         enableState: true,
         enableCity: true
     });
@@ -47,52 +44,24 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
         }
     }, [alert]);
 
-    useEffect(() => {
-        axios
-            .get(`/currentProfile/${userId}`)
-            .then((res) => {
-                const contact = res.data.profile.user_contact_detail;
-                setData(contact);
-                setData("user_id", userId);
-                // setAddressData(prevState => ({
-                //     ...prevState,
-                //     city_id: contact.city_id,
-                //     state_id: contact.state_id,
-                //     country_id: contact.country_id,
-                //     enableState: contact.country_id === '',
-                //     enableCity: contact.state_id === ''
-                // }));
-                //
-                // fetchStateData(addressData.countryId);
-                // fetchCityData(addressData.stateId);
-            })
-            .catch((err) => console.error("Error fetching user data", err));
-    }, [userId]);
+    const fetchData = async (userId) => {
+        try {
+            const response = await axios.get(`/currentProfile/${userId}`);
+            const contact = response.data.profile.user_contact_detail;
 
-    useEffect(() => {
-        fetchCountryData();
-    }, [addressData.countryId]);
+            setData(contact);
+            setData('user_id', userId);
 
-    // console.log(addressData);
+            setAddressData(prevState => ({
+                ...prevState,
+                enableState: contact.country_id === '',
+                enableCity: contact.state_id === ''
+            }));
 
-    // useEffect(() => {
-    //     console.log("country::" + addressData.countryId);
-    //     fetchStateData(addressData.countryId);
-    // }, [addressData.countryId]);
-    //
-    // useEffect(() => {
-    //     console.log("state::" + addressData.stateId);
-    //     fetchCityData(addressData.stateId);
-    // }, [addressData.stateId]);
-
-    function formatDropdownOptions(options = []) {
-        return options.map((option) => (
-            {
-                label: option.city_name || option.state_name || option.country_name,
-                value: option.id,
-            }
-        ));
-    }
+        } catch (error) {
+            console.log('AJAX call error: ', error);
+        }
+    };
 
     const fetchCountryData = async() => {
         axios
@@ -100,7 +69,10 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
             .then((res) => {
                 const options = formatDropdownOptions(res.data?.data);
 
-                setAddressData(prevState => ({ ...prevState, countryData: options }));
+                setAddressData(prevState => ({
+                    ...prevState,
+                    countryData: options
+                }));
             })
             .catch((err) => console.error("Error fetching user data", err));
     };
@@ -111,7 +83,11 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
             .then((res) => {
                 const options = formatDropdownOptions(res.data?.data);
 
-                setAddressData(prevState => ({ ...prevState, stateData: options }));
+                setAddressData(prevState => ({
+                    ...prevState,
+                    stateData: options,
+                    enableState: options.length === 0
+                }));
             })
             .catch((err) => console.error("Error fetching user data", err));
     };
@@ -130,6 +106,33 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
             })
             .catch((err) => console.error("Error fetching user data", err));
     };
+
+    useEffect(() => {
+        fetchData(userId);
+    }, [userId]);
+
+    useEffect(() => {
+        fetchCountryData();
+    }, []);
+
+    useEffect(() => {
+        if (data.country_id)
+            fetchStateData(data.country_id);
+    }, [data.country_id]);
+
+    useEffect(() => {
+        if (data.state_id)
+            fetchCityData(data.state_id);
+    }, [data.state_id]);
+
+    function formatDropdownOptions(options = []) {
+        return options.map((option) => (
+            {
+                label: option.city_name || option.state_name || option.country_name,
+                value: option.id,
+            }
+        ));
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -157,45 +160,35 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
     };
 
     const handleCountryChange = (e) => {
-        const selectedCountryId = e.target.value;
-        setData('country_id', selectedCountryId);
+        const countryId = e.target.value;
+        setData('country_id', countryId);
+        setData('state_id', '');
+        setData('city_id', '');
 
         setAddressData(prevState => ({
             ...prevState,
-            countryId: selectedCountryId,
-            stateId: '',
-            cityId: '',
-            enableState: selectedCountryId === '',
+            enableState: countryId === '',
             enableCity: true
         }));
 
-        if (selectedCountryId) {
-            fetchStateData(selectedCountryId);
+        if (countryId) {
+            fetchStateData(countryId);
         }
     };
 
     const handleStateChange = (e) => {
-        const selectedStateId = e.target.value;
-        setData('state_id', selectedStateId);
+        const stateId = e.target.value;
+        setData('state_id', stateId);
+        setData('city_id', '');
 
         setAddressData(prevState => ({
             ...prevState,
-            stateId: selectedStateId,
-            cityId: '',
-            enableCity: selectedStateId === ''
+            enableCity: stateId === ''
         }));
 
-        if (selectedStateId) {
-            fetchCityData(selectedStateId);
+        if (stateId) {
+            fetchCityData(stateId);
         }
-    };
-
-    const handleCityChange = (e) => {
-        const selectedCityId = e.target.value;
-        setAddressData(
-            prevState => ({...prevState, cityId: selectedCityId})
-        );
-        setData('city_id', selectedCityId);
     };
 
     return (
@@ -307,7 +300,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     <select
                                         id="country_id"
                                         name="country_id"
-                                        value={addressData.countryId}
+                                        value={data.country_id}
                                         onChange={handleCountryChange}
                                         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500
                                         focus:ring-indigo-500 text-sm font-medium text-gray-700 mt-1 block w-full"
@@ -327,7 +320,7 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     <select
                                         id="state_id"
                                         name="state_id"
-                                        value={addressData.stateId}
+                                        value={data.state_id}
                                         onChange={handleStateChange}
                                         disabled={addressData.enableState}
                                         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500
@@ -348,8 +341,8 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
                                     <select
                                         id="city_id"
                                         name="city_id"
-                                        value={addressData.cityId}
-                                        onChange={handleCityChange}
+                                        value={data.city_id}
+                                        onChange={(e) => setData('city_id', e.target.value)}
                                         disabled={addressData.enableCity}
                                         className="rounded-md border-gray-300 shadow-sm focus:border-indigo-500
                                         focus:ring-indigo-500 text-sm font-medium text-gray-700 mt-1 block w-full"
