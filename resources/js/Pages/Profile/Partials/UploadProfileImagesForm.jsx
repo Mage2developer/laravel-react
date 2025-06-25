@@ -13,6 +13,10 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
     const [uploadedUrls, setUploadedUrls] = useState([]);
     const fileInputRef = useRef(null);
 
+    // Constants for validation
+    const MAX_IMAGES_ALLOWED = 5; // New constant for maximum number of images
+    const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/webp']; // Allowed image MIME types
+
     const fetchImages = async () => {
         try {
             const response = await axios.get(`/profileImages`);
@@ -45,9 +49,51 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        setImages(files);
-        const previewUrls = files.map(file => URL.createObjectURL(file));
-        setPreviews(previewUrls);
+        setSuccessMessage('');
+        setErrorMessage('');
+        setImages([]);
+        setPreviews([]);
+
+        if (files.length === 0) {
+            return;
+        }
+
+        // Validate maximum number of files
+        if (files.length > MAX_IMAGES_ALLOWED) {
+            setErrorMessage(`You can upload a maximum of ${MAX_IMAGES_ALLOWED} images at once.`);
+            setAlert(true);
+            return;
+        }
+
+        let validFiles = [];
+        let hasError = false;
+
+        files.forEach(file => {
+            // Validate file type
+            if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+                setErrorMessage(`Invalid file type: ${file.name}. Only JPEG, PNG, GIF, and WebP images are allowed.`);
+                setAlert(true);
+                hasError = true;
+                return; // Skip this file, but continue checking others if needed (though error stops flow here)
+            }
+
+            validFiles.push(file);
+
+            // Generate preview URL for each valid file
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviews(prevPreviews => [...prevPreviews, reader.result]);
+            };
+            reader.readAsDataURL(file);
+        });
+
+
+        if (!hasError) {
+            setImages(validFiles);
+        } else {
+            setImages([]); // Clear files if any error occurred
+            setPreviews([]);
+        }
     };
 
     const uploadProfileImages = async (e) => {
@@ -133,27 +179,70 @@ export default function UploadProfileImagesForm({userId, className = ''}) {
 
     return (
         <section className={className}>
-            <div className="text-[#ff3131] font-bold">(Max 5 images)</div>
+            <div className="mt-3 mb-6 bg-red-50 border-l-4 border-red-400 text-red-800 p-4 rounded-md">
+                <p className="font-semibold text-lg mb-2">Important Notes:</p>
+                <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>
+                        <span className="font-medium">Allowed File Types:</span> Only JPEG, JPG, PNG, and WebP images
+                        are accepted.
+                    </li>
+                    <li>
+                        <span className="font-medium">Maximum Images:</span> You can upload up
+                        to {MAX_IMAGES_ALLOWED} images at once.
+                    </li>
+                </ul>
+            </div>
+
             <form onSubmit={uploadProfileImages} className="mt-6 space-y-6">
 
-                <input type="file" ref={fileInputRef} multiple accept="image/*" onChange={handleImageChange}/>
-
-                {previews.length > 0 && (
-                    <div className="flex gap-4 sm:gap-8 mt-4 flex-wrap justify-items-center sm:justify-start">
-                        {previews.map((src, index) => (
-                            <div key={index} className="relative group">
-                                <img key={index} src={src} alt={`preview-${index}`} className="w-32 h-32 object-cover"/>
-                                <button type="button" onClick={() => handleRemovePreview(index)}
-                                        className="absolute bg-[#ff3131] top-0 text-[#fff] rounded-full p-1 text-sm right-0">
-                                    <RxCross2/>
-                                </button>
-                            </div>
-                        ))}
+                <div>
+                    <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700 mb-2">
+                        Select Image(s):
+                    </label>
+                    <div
+                        className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed
+                        rounded-xl cursor-pointer hover:border-red-400 transition-all duration-300 relative">
+                        <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            multiple // Allow multiple file selection
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            onChange={handleImageChange}
+                            accept={ALLOWED_FILE_TYPES.join(',')} // Specifies accepted file types for browser
+                        />
+                        <div className="text-center">
+                            {previews.length > 0 ? (
+                                <div className="flex flex-wrap justify-center gap-2 mb-2">
+                                    {previews.map((previewUrl, index) => (
+                                        <img
+                                            key={index}
+                                            src={previewUrl}
+                                            alt={`File Preview ${index + 1}`}
+                                            className="h-20 w-20 object-contain rounded-lg shadow-sm border border-gray-200"
+                                        />
+                                    ))}
+                                </div>
+                            ) : (<></>)}
+                            <p className="mt-1 text-sm text-gray-600">
+                                {images.length > 0 ? (
+                                    <span className="font-medium text-red-700">
+                                      {images.length} file(s) selected
+                                    </span>
+                                ) : (
+                                    <>
+                                        <span className="font-semibold text-red-600">Click to upload</span> or drag and
+                                        drop
+                                    </>
+                                )}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">JPEG, JPG, PNG, WebP, Max {MAX_IMAGES_ALLOWED} images</p>
+                        </div>
                     </div>
-                )}
+                </div>
 
                 <div>
-                    <PrimaryButton>Save</PrimaryButton>
+                    <PrimaryButton disabled={images.length === 0 || !!errorMessage}>Upload Image(s)</PrimaryButton>
                 </div>
 
             </form>
