@@ -52,10 +52,12 @@ export default function UpdateContactDetailsForm({ userId, className = "" }) {
             setData(contact);
             setData('user_id', userId);
 
+            console.log(contact);
+
             setAddressData(prevState => ({
                 ...prevState,
-                enableState: contact.country_id === '',
-                enableCity: contact.state_id === ''
+                enableState: contact.country_id === 0,
+                enableCity: contact.state_id === 0
             }));
 
         } catch (error) {
