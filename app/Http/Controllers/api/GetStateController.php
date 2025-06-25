@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helper\Data;
 use App\Models\State;
 use Exception;
-use App\Http\Helper\Data;
 use Illuminate\Http\JsonResponse;
-
 use Illuminate\Http\Request;
 
 class GetStateController extends Controller
@@ -16,11 +15,11 @@ class GetStateController extends Controller
      * @param string|int $id
      * @return JsonResponse
      */
-    public function show($id = ''): JsonResponse
+    public function show($countryId = ''): JsonResponse
     {
         try {
-            if($id) {
-                $state = State::where(Data::COUNTRY_COLUMN_ID, $id)->get();
+            if ($countryId) {
+                $state = State::where(Data::COUNTRY_COLUMN_ID, $countryId)->get();
             } else {
                 $state = State::all();
             }

@@ -31,11 +31,11 @@ Route::post('/contact-us', [ContactController::class, 'createRequest'])->name('c
 Route::get('/getCountry', [GetCountryController::class, 'show'])->name('country.index');
 Route::get('/getCountryById/{id}', [GetCountryController::class, 'getCountryById'])->name('get.country.byid');
 
-Route::get('/getState', [GetStateController::class, 'show'])->name('state.index');
+Route::get('/getState/{id}', [GetStateController::class, 'show'])->name('state.index');
 Route::get('/getStateById/{id}', [GetStateController::class, 'getStateById'])->name('get.state.byid');
 
-
 Route::get('/getCity/{id}', [GetCityController::class, 'show'])->name('city.index');
+Route::get('/getCityById/{id}', [GetCityController::class, 'getCityById'])->name('get.city.byid');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [UserProfileController::class, 'show']);
