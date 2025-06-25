@@ -1,9 +1,6 @@
 // components/AddressConcat.jsx
 import React, { useEffect, useState } from "react";
 import {
-    fetchCities,
-    fetchStates,
-    fetchCountries,
     getCityName,
     getStateName,
     getCountryName,
@@ -17,7 +14,11 @@ const AddressConcat = ({ contact }) => {
 
     useEffect(() => {
         const loadLocationData = async () => {
-            await Promise.all([fetchCities(), fetchStates(), fetchCountries()]);
+            await Promise.all([
+                getCityName(city_id),
+                getStateName(state_id),
+                getCountryName(country_id),
+            ]);
             setLoaded(true);
         };
         loadLocationData();
