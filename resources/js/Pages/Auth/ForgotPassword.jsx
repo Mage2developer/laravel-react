@@ -24,7 +24,7 @@ export default function ForgotPassword({ status }) {
 
         if (!token) {
             e.preventDefault();
-            setCaptchaError("Invalid Captcha !");
+            setCaptchaError("Please fill the Captcha !");
             return;
         }
 

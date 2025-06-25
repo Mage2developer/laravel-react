@@ -32,7 +32,7 @@ export default function Login({ status, canResetPassword }) {
 
         if (!token) {
             e.preventDefault();
-            setCaptchaError("Invalid Captcha !");
+            setCaptchaError("Please fill the Captcha !");
             return;
         }
 

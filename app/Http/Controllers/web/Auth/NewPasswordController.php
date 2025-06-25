@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\web\Auth;
 
 use App\Http\Controllers\Controller;
@@ -16,22 +15,28 @@ use Inertia\Inertia;
 use Jenssegers\Agent\Facades\Agent;
 use OpenSoutheners\LaravelCompanionApps\Support\Facades\Companion;
 
-
 class NewPasswordController extends Controller
 {
 
+    /**
+     * @param User $userModel
+     */
     public function __construct(
         private User $userModel,
-    ) {
-        $this->userModel = $userModel;
-    }
+    ) {}
 
     /**
      * Display the password reset view.
      */
     public function create(Request $request)
     {
-        if (Agent::isMobile()) {
+        return Inertia::render('Auth/ResetPassword', [
+            'email' => $request->email,
+            'token' => $request->route('token'),
+        ]);
+
+        // TODO:: This code disable because only web released yet need to open once mobile start
+        /*if (Agent::isMobile()) {
             $resetUrl =
                 route('password.reset', ['token' => $request->token, 'email' => urlencode($request->email)]);
 
@@ -47,7 +52,7 @@ class NewPasswordController extends Controller
                 'email' => $request->email,
                 'token' => $request->route('token'),
             ]);
-        }
+        }*/
     }
 
     /**

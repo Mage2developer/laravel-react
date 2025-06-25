@@ -29,7 +29,7 @@ export default function ContactUs() {
         const token = recaptchaRef.current.getValue();
 
         if (!token) {
-            setCaptchaError("Invalid Captcha!");
+            setCaptchaError("Please fill the Captcha !");
             return;
         }
 

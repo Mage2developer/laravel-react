@@ -48,7 +48,7 @@ export default function Register() {
 
         if (!token) {
             e.preventDefault();
-            setcaptchaError("Invalid Captcha !");
+            setcaptchaError("Please fill the Captcha !");
             return;
         }
 

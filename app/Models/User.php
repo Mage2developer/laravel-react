@@ -5,15 +5,12 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Http\Helper\Data;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
-use App\Notifications\MobileResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -220,61 +217,6 @@ class User extends Authenticatable
 
         return $users->toArray();
     }
-
-    /**
-     * Check request created from mobile or not
-     *
-     * @return bool
-     */
-    public function isMobileRequest(): bool
-    {
-        // Check if request comes from mobile app
-        // You can use various methods:
-
-        // Method 1: Check User-Agent
-        $userAgent = request()->header('User-Agent');
-        echo $userAgent;
-        echo "<br />";
-
-
-        if (str_contains($userAgent, 'YourMobileApp')) {
-            return $userAgent;
-            die();
-            return true;
-        }
-
-        // Method 2: Check custom header
-        if (request()->header('X-Mobile-App') === 'true') {
-            return request()->header('X-Mobile-App');
-            die();
-            return true;
-        }
-
-        // Method 3: Check API endpoint
-        if (request()->is('api/*')) {
-            echo "test";
-            die();
-            return true;
-        }
-
-        echo "out";
-        die();
-
-        return false;
-    }
-
-    /**
-     * Send the password reset notification.
-     *
-     * @param $token
-     * @return void
-     */
-    /*public function sendPasswordResetNotification($token): void
-    {
-        $isMobileApp = $this->isMobileRequest();
-
-        $this->notify(new MobileResetPasswordNotification($token, $isMobileApp));
-    }*/
 
     /**
      * Get the attributes that should be cast.
