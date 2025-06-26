@@ -93,6 +93,10 @@
                 align-items: center;
                 border-radius: 50%;
             }
+            .explore-image {
+                width: 22px;
+                height: 22px;
+            }
             .feature-icon img {
                 width: 30px;
                 height: 30px;
@@ -172,6 +176,7 @@
                         <img
                             src="{{ asset('images/icons/search.png') }}"
                             alt=""
+                            class="explore-image"
                         />
                     </div>
                     <div>
