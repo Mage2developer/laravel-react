@@ -1,39 +1,55 @@
-import React, {useEffect, useState} from "react";
-import {getCityName, getCountryName, getStateName,} from "@/Utils/locationUtils";
+import React, { useEffect, useState } from "react";
+import {
+    getCityName,
+    getCountryName,
+    getStateName,
+} from "@/Utils/locationUtils";
 
-const AddressConcat = ({contact}) => {
-    const {address_line_1, address_line_2, city_id, state_id, country_id} =
+const AddressConcat = ({ contact }) => {
+    const { address_line_1, address_line_2, city_id, state_id, country_id } =
         contact;
 
-    const [loaded, setLoaded] = useState(false);
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [country, setCountry] = useState("");
+    const [location, setLocation] = useState({
+        city: "",
+        state: "",
+        country: "",
+        loading: true,
+    });
 
     useEffect(() => {
-        const loadLocation = async () =>
-            Promise.all([
-                getCityName(city_id),
-                getStateName(state_id),
-                getCountryName(country_id),
-            ]).then(([city, state, country]) => {
-                setCity(city);
-                setState(state);
-                setCountry(country);
-                setLoaded(true);
-            });
-        loadLocation();
-    }, [city_id, state_id, country_id, setCity, setState, setCountry]);
+        const fetchLocation = async () => {
+            try {
+                const [city, state, country] = await Promise.all([
+                    getCityName(city_id),
+                    getStateName(state_id),
+                    getCountryName(country_id),
+                ]);
+                setLocation({ city, state, country, loading: false });
+            } catch (error) {
+                console.error("Failed to fetch location info", error);
+                setLocation({
+                    city: "",
+                    state: "",
+                    country: "",
+                    loading: false,
+                });
+            }
+        };
 
-    if (!loaded) return <span>Loading address...</span>;
+        fetchLocation();
+    }, [city_id, state_id, country_id]);
 
-    const address = `${address_line_1}${address_line_2 ? ", " + address_line_2 : ""}`;
+    if (location.loading) return <span>Loading address...</span>;
 
-    const fullAddress = `${address}, ${city ? city + ", " : ""} ${
-        state ? state + ", " : ""
-    } ${country ? country : ""}`;
+    const addressParts = [
+        address_line_1,
+        address_line_2,
+        location.city,
+        location.state,
+        location.country,
+    ].filter(Boolean);
 
-    return <span>{fullAddress}</span>;
+    return <span>{addressParts.join(", ")}</span>;
 };
 
 export default AddressConcat;
