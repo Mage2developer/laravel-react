@@ -3,6 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Find your perfect Valand life partner on Vanand Vivah. Dedicated matrimonial service for the Valand community & thousands of verified profiles in Gujarat, India & Worldwide. Register Now!">
+    <meta name="keywords" content="Valand matrimony, Valand marriage, Valand brides, Valand grooms, Valand Shaadi, Valand Wedding, Gujarat Valand, NRI Valand, matchmaking, Vanand Vivah, Hindu Valand Matrimony, Best Valand Matrimonial Site, Best Valand Matrimony in Gujarat, Best Valand Matrimony in India, Valand Matrimony in World">
+
+    {{-- Open Graph Meta Tags (for social media sharing) --}}
+    <meta property="og:title" content="Valand, Vanand, Nai, Nayi, Sen Samaj Matrimony: Find Your Perfect Match">
+    <meta property="og:description" content="Find your perfect Valand life partner on Vanand Vivah. Dedicated matrimonial service for the Valand community & thousands of verified profiles in Gujarat, India & Worldwide. Register Now!">
+    <meta property="og:image" content="{{ asset('/images/header-logo.webp') }}">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:type" content="website">
 
     <title inertia>{{ config('app.name', 'Vanand-Vivah') }}</title>
 
