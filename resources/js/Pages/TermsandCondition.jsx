@@ -42,11 +42,11 @@ function TermsandCondition() {
                                 Users can register themselves or send their
                                 bio-data personally or by email/WhatsApp.
                             </li>
-                            <li>Free registration for fatherless daughters.</li>
-                            <li>Rs. 1000/- fees if the father runs a salon.</li>
+                            <li>Free registration for orphan daughter.</li>
+                            <li>Free registration for family's financial condition is very poor (Only For Girls).</li>
+                            <li>Rs. 1000/- fees If the family's financial condition is average.</li>
                             <li>
-                                Rs. 2500/- fees if the father has a
-                                government/reputed job or business.
+                                Rs. 2500/- fees if the family member has a government/reputed job or business.
                             </li>
                             <li>All fees are non-refundable.</li>
                         </ul>
