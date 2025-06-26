@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "apps": [
+            "com.example"
+        ],
+        "details": [
+            {
+                "appID": "com.example",
+                "paths": [
+                    "com.example"
+                ]
+            }
+        ]
+    }
+}
