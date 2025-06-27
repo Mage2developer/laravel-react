@@ -151,22 +151,23 @@
         font-size: 30px;
     }
 
-    @media (max-width: 600px) {
+    @media screen and (max-device-width: 767px),
+    screen and (max-width: 767px)     {
         body {
-            padding: 10px;
+            padding: 10px !important;;
         }
 
         .email-container {
-            padding: 10px;
+            padding: 10px !important;
         }
 
         .welcome-title {
-            font-size: 24px;
+            font-size: 24px !important;
         }
 
         .cta-button {
-            padding: 12px 24px;
-            font-size: 14px;
+            padding: 12px 24px !important;
+            font-size: 14px !important;
         }
 
         .activation-container {
@@ -180,9 +181,13 @@
         }
 
         .activation-fee-box {
-            flex-direction: column-reverse;
-            row-gap: 2rem;
+            flex-direction: column-reverse !important;
+            row-gap: 2rem !important;
         }
+    }
+
+    @media (max-width: 600px) {
+
     }
 
     /* Activation Style */
