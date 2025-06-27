@@ -25,6 +25,15 @@
           imagesizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, 1900px">
     <link rel="preload" fetchpriority=high as="image" href="{{ asset('images/header-logo.webp') }}">
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W86S3WGC6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0W86S3WGC6');
+    </script>
+
     <!-- Scripts -->
     @routes
     @viteReactRefresh
