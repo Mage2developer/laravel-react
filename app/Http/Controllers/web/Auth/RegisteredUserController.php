@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\web\Auth\RegisterRequest;
 use App\Mail\WelcomeUser;
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -39,8 +41,8 @@ class RegisteredUserController extends Controller
 
             // Customised code for to redirect on profile activation page with pass Name, Email
             $userInfo = [
-                'email' => $request->name,
-                'name' => $request->email,
+                'email' => $request->email,
+                'name' => $request->name
             ];
 
         } catch(Exception $exception) {

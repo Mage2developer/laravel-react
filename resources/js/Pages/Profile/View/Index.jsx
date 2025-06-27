@@ -24,11 +24,15 @@ function Index({ profile }) {
             <Head title={item.name} />
             <div className=" bg-white sm:p-4">
                 <div className="max-w-7xl mx-auto">
-                    <div className="w-full my-2">
-                        <Link href={route("profile.list")} className="flex items-center justify-center md:justify-start
-                        hover:text-[#ff3131]">
-                            <IoMdArrowRoundBack className="flex mr-1"/> Go back to Profiles
-                        </Link>
+                    <div className="flex mb-2 mx-2">
+                        <div className="flex-1">
+                            <Link href={route("profile.list")} className="flex items-center hover:text-[#ff3131]">
+                                <IoMdArrowRoundBack className="flex mr-1"/> Go back to Profiles
+                            </Link>
+                        </div>
+                        <div className="">
+                            <span className="font-bold">User ID:</span> <span>USER_{profile.id}</span>
+                        </div>
                     </div>
                     <div className="bg-white xs425:rounded-lg shadow-md overflow-hidden">
                         <div className="bg-gradient-to-r from-[#ff3131] to-[#e1a730] text-white p-6">

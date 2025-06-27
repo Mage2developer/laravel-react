@@ -24,12 +24,11 @@ const ProfileActivation = () => {
             return;
         }
 
-        const phoneNumber = "+0918200426399";
+        const phoneNumber = "918200426399";
         const message = `Hello Admin, I want to activate my profile.\n\n*Email:* ${userEmail}\n*Name:* ${fullName}`;
-        const url = `https://wa.me/${phoneNumber.replace(
-            "+",
-            ""
-        )}?text=${encodeURIComponent(message)}`;
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+        console.log(url);
 
         window.open(url, "_blank");
     };

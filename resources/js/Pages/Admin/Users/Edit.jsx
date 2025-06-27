@@ -199,15 +199,15 @@ export default function Edit({ profile }) {
                                 )}
                             </div>
 
-                            <div className="flex items-center mb-6">
+                            <div className="flex items-center">
                                 <h1 className="text-2xl mt-8 font-semibold">
                                     {profile.name}
 
-                                    <span className={"text-lg ml-2 "+ getClassName(profileStatus)}>
+                                    <span className={"text-lg ml-2 " + getClassName(profileStatus)}>
                                         ( {profileStatus ? "Active" : "Inactive"} )
                                     </span>
 
-                                    <span className={"text-lg ml-2 "+ getDeleteClassName(isDeleted)}>
+                                    <span className={"text-lg ml-2 " + getDeleteClassName(isDeleted)}>
                                         {isDeleted ? " ( Deleted )" : ""}
                                     </span>
 
@@ -223,6 +223,11 @@ export default function Edit({ profile }) {
                                             {errorMessage}
                                         </div>
                                     )}
+                                </div>
+                            </div>
+                            <div className="w-full flex items-center mb-6">
+                                <div>
+                                    <span className="font-bold">User ID:</span> <span>USER_{profile.id}</span>
                                 </div>
                             </div>
 
