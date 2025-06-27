@@ -133,6 +133,7 @@
         border-top: 1px solid #e5e7eb;
         color: #6b7280;
         font-size: 14px;
+        width: auto !important;
     }
 
     .social-links {
@@ -156,7 +157,7 @@
         }
 
         .email-container {
-            padding: 20px;
+            padding: 10px;
         }
 
         .welcome-title {
@@ -167,6 +168,15 @@
             padding: 12px 24px;
             font-size: 14px;
         }
+        .activation-container {
+        max-width: 700px;
+        margin: 10px auto;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
     }
 
     /* Activation Style */
