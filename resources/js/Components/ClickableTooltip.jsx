@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const ClickableTooltip = ({ text, tooltipContent }) => {
+const ClickableTooltip = ({ text, tooltipContent, style = '' }) => {
     const [visible, setVisible] = useState(false);
     const tooltipRef = useRef();
 
@@ -24,6 +24,7 @@ const ClickableTooltip = ({ text, tooltipContent }) => {
             <span
                 onClick={() => setVisible((v) => !v)}
                 className="cursor-pointer text-[#ff3131] font-semibold underline"
+                style={style}
             >
                 {text}
             </span>
