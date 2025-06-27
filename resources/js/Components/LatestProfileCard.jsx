@@ -9,8 +9,13 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const LatestProfileCard = ({ profile }) => {
+    const occupation = profile.user_education_detail.occupation;
+    let formattedOccupation = '';
+    if (occupation) {
+        formattedOccupation = occupation.length > 15 ? occupation.substring(0, 15) + ' ...' : occupation;
+    }
     return (
-        <div className="flex flex-col items-center p-3 rounded-xl transition-transform border shadow-lg bg-[#fff7f7] bg-opacity-10  duration-300 ease hover:transform hover:scale-105 flex-[0_0_200px]">
+        <div className="p-3 rounded-xl transition-transform border shadow-lg bg-[#fff7f7] bg-opacity-10  duration-300 ease hover:transform hover:scale-105 flex-[0_0_200px]">
             <Link
                 href={`/profile/${btoa(profile.id)}`}
                 className="text-center flex-col items-center justify-center"
@@ -48,9 +53,9 @@ export const LatestProfileCard = ({ profile }) => {
                         </div>
 
                         <div className="text-black flex items-center justify-center">
-                            {profile.user_education_detail.occupation ? (
+                            {formattedOccupation ? (
                                 <>
-                                    <LuBriefcaseBusiness className="mr-1"/> {profile.user_education_detail.occupation}
+                                    <LuBriefcaseBusiness className="mr-1"/> {formattedOccupation}
                                 </>
                             ) : ""}
                         </div>
