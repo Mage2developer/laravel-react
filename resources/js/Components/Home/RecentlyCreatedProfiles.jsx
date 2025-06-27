@@ -1,20 +1,48 @@
 import React from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import "@splidejs/splide/css";
 import LatestProfileCard from "../LatestProfileCard";
+import "./RecentlyCreatedProfiles.css";
 
 function RecentlyCreatedProfiles({ latestProfile }) {
-    return (
-        <section className="px-3 sm:px-10 py-0 mx-auto my-15 sm:my-5 max-w-[1200px]">
-            <h2 className="mb-2 sm:mb-6 text-5xl font-semibold text-left sm:text-center max-sm:text-3xl text-black">
-                Recently Created Profiles
-            </h2>
+    const options = {
+        type: "loop",
+        drag: "free",
+        focus: "center",
+        perPage: 3,
+        gap: "1rem",
+        autoScroll: {
+            speed: 1,
+            pauseOnHover: false,
+            pauseOnFocus: false,
+        },
+        breakpoints: {
+            1024: {
+                perPage: 2,
+            },
+            768: {
+                perPage: 1,
+            },
+        },
+    };
 
-            <div className="overflow-x-auto">
-                <div className="flex gap-5 px-0 py-5 min-w-min">
-                    {latestProfile.map((profile, index) => (
-                        <LatestProfileCard key={index} profile={profile} />
-                    ))}
-                </div>
-            </div>
+    return (
+        <section className="recent-profiles-container">
+            <h2 className="heading">Recently Created Profiles</h2>
+            <Splide
+                options={options}
+                extensions={{ AutoScroll }}
+                aria-label="Recently Created Profiles"
+            >
+                {latestProfile.map((profile, index) => (
+                    <SplideSlide key={index}>
+                        <div className="slide-container">
+                            <LatestProfileCard profile={profile} />
+                        </div>
+                    </SplideSlide>
+                ))}
+            </Splide>
         </section>
     );
 }
