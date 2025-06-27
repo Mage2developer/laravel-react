@@ -3,6 +3,8 @@ import { Link, usePage } from "@inertiajs/react";
 import AgeCalculator from "./AgeCalculator";
 import MaritalStatus from "./MaritalStatus";
 import { getFormattedName } from "@/Utils/profileUtils";
+import { LuBriefcaseBusiness } from "react-icons/lu";
+import { FaUser, FaCalendarAlt } from 'react-icons/fa';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -32,23 +34,26 @@ export const LatestProfileCard = ({ profile }) => {
                     {getFormattedName(profile.name)}
                 </h3>
                 <div>
-                    <div className="flex-col gap-5 justify-center text-center items-center font-medium text-[#ff3131]">
-                        <div className="mb-1">
-                            <AgeCalculator
-                                dob={profile.user_personal_detail.dob}
-                            />
+                    <div className="flex flex-col justify-center text-center items-center font-medium text-[#ff3131]">
+                        <div className="mb-1 flex items-center gap-1">
+                            {profile.user_personal_detail.dob ? (
+                                <>
+                                    <FaCalendarAlt /><AgeCalculator dob={profile.user_personal_detail.dob} />
+                                </>
+                            ) : ""}
                         </div>
 
-                        <div className="mb-1">
-                            <MaritalStatus
-                                status={
-                                    profile.user_personal_detail.marital_status
-                                }
-                            />
+                        <div className="mb-1 flex items-center gap-1">
+                            <FaUser /><MaritalStatus status={profile.user_personal_detail.marital_status} />
                         </div>
-                    </div>
-                    <div className="text-black  line-clamp-1">
-                        {profile.user_education_detail.occupation}
+
+                        <div className="text-black flex items-center justify-center">
+                            {profile.user_education_detail.occupation ? (
+                                <>
+                                    <LuBriefcaseBusiness className="mr-1"/> {profile.user_education_detail.occupation}
+                                </>
+                            ) : ""}
+                        </div>
                     </div>
                 </div>
             </Link>
