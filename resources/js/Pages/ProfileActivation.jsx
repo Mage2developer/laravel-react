@@ -74,8 +74,7 @@ const ProfileActivation = () => {
                                 </p>
                                 <ul className="list-disc list-inside text-sm space-y-1">
                                     <li>
-                                        Without Aadhaar Card and Payment Receipt
-                                        Your profile will not be approved.
+                                    Your profile will not be approved without an Aadhaar Card Photo Copy and payment receipt.
                                     </li>
                                 </ul>
                             </div>
@@ -86,7 +85,7 @@ const ProfileActivation = () => {
                                     Share your details with the admin.
                                 </div>
                                 <ul className="list-disc px-4 sm:px-5 text-left">
-                                    <li>Aadhaar Card Photo</li>
+                                    <li>Aadhaar Card Photo Copy</li>
                                     <li>
                                         Payment Screenshot (Or Transaction ID)
                                     </li>
