@@ -166,8 +166,8 @@ class User extends Authenticatable
         )
             ->where([
                     ['users.id', '=', $id],
-                    ['users.status', '=', Data::ENABLE],
-                    ['users.is_deleted', '=', Data::DISABLE],
+                    //['users.status', '=', Data::ENABLE],
+                    //['users.is_deleted', '=', Data::DISABLE],
                     ['users.role', '=', Data::USER_SLUG]
                 ]
             )->first();

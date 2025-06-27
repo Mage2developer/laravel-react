@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "@inertiajs/react";
+import React, {use} from "react";
+import { Link, usePage } from "@inertiajs/react";
 import AgeCalculator from "./AgeCalculator";
 import MaritalStatus from "./MaritalStatus";
+import { getFormattedName } from "@/Utils/profileUtils";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -27,8 +28,8 @@ export const LatestProfileCard = ({ profile }) => {
                     />
                 </div>
 
-                <h3 className="mb-1 text-base font-semibold text-center text-black line-clamp-1">
-                    {profile.name}
+                <h3 className="mb-1 text-base font-semibold text-center text-black">
+                    {getFormattedName(profile.name)}
                 </h3>
                 <div>
                     <div className="flex-col gap-5 justify-center text-center items-center font-medium text-[#ff3131]">
