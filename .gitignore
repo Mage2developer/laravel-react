@@ -27,5 +27,5 @@ yarn-error.log
 package-lock.json
 /public/.well-known
 
-Added for Google Analitcs of code and
+#Added for Google Analitcs of code and
 /resources/views/app.blade.php
