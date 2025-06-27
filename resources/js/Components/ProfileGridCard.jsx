@@ -46,7 +46,6 @@ function ProfileGridCard({ profile }) {
                             <LuBriefcaseBusiness className="mr-1"/> {profile.user_education_detail.occupation}
                         </>
                     ) : ""}
-
                 </div>
             </article>
         </Link>
