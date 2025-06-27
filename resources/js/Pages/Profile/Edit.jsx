@@ -25,7 +25,10 @@ export default function Edit() {
 
             <div className="py-4 px-2 sm:py-12 sm:px-0">
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                    <Accordion items={items} />
+                    <div className="mx-4">
+                        <span className="font-bold">User ID:</span> <span>USER_{user.id}</span>
+                    </div>
+                    <Accordion items={items}/>
                 </div>
             </div>
         </AuthenticatedLayout>

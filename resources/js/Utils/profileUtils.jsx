@@ -1,3 +1,5 @@
+import { Link, usePage } from "@inertiajs/react";
+
 export const calculateAge = (dob) => {
     if (!dob) return "-";
     const birthDate = new Date(dob);
@@ -73,4 +75,9 @@ export const getGenderOptions = () => {
         { value: 0, label: 'Male' },
         { value: 1, label: 'Female' }
     ];
+};
+
+export const getFormattedName = (name) => {
+    const user = usePage().props.auth.user;
+    return (user) ? name : name.split(' ')[0] + ' ...'
 };
