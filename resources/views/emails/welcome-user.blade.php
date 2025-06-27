@@ -168,15 +168,21 @@
             padding: 12px 24px;
             font-size: 14px;
         }
+
         .activation-container {
-        max-width: 700px;
-        margin: 10px auto;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        padding: 15px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
+            max-width: 700px;
+            margin: 0 !important;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .activation-fee-box {
+            flex-direction: column-reverse;
+            row-gap: 2rem;
+        }
     }
 
     /* Activation Style */
