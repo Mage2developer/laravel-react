@@ -57,7 +57,7 @@ const ProfileActivation = () => {
                                     <div> {userEmail || "-"}</div>
                                 </div>
                                 <div className="block sm:flex text-center gap-2">
-                                    <div className="font-bold">Name:</div>{" "}
+                                    <div className="font-bold">Name :</div>{" "}
                                     <div>{fullName || "-"}</div>
                                 </div>
                             </div>
