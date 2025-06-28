@@ -61,8 +61,7 @@ class UserImageController extends Controller
             foreach ($request->file('images') as $imageFile) {
                 $manager = new ImageManager(new Driver());
                 $image = $manager->read($imageFile)
-                    ->resizeDown(1200, 1200)
-                    ->toWebp(80);
+                    ->toWebp(90);
                 //    ->toPng();;
 
                 // Random image name
